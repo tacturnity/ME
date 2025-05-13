@@ -30,13 +30,22 @@
              to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
+        @keyframes searchModalEnter {
+            from { opacity: 0; transform: translateY(-30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes searchModalLeave {
+            from { opacity: 1; transform: translateY(0) scale(1); }
+            to { opacity: 0; transform: translateY(-30px) scale(0.95); }
+        }
+
+
         /* Fonts & Base Styling */
         body {
             font-family: 'Roboto Mono', monospace;
             color: #e0e0e0; /* Light grey text for readability */
             line-height: 1.7;
             padding: 25px;
-            /* Static Dark Background */
             background-color: #1a1a1a; /* Simple dark background */
             min-height: 100vh;
         }
@@ -45,17 +54,17 @@
         h1, h2 {
             font-family: 'Roboto Mono', monospace;
             text-align: center;
-            margin-bottom: 1.5em; /* Default bottom margin */
+            margin-bottom: 1.5em;
         }
 
         h1 {
             font-size: 2.4em;
-            color: #ffffff; /* White heading */
+            color: #ffffff;
             font-weight: 700;
             padding-bottom: 12px;
             margin-top: 1.5em;
-            margin-bottom: 1.5em; /* Keep spacing below H1 */
-            border-bottom: 2px solid #ffffff; /* White border */
+            margin-bottom: 1.5em;
+            border-bottom: 2px solid #ffffff;
             animation: fadeIn 0.8s ease-out both;
             animation-delay: 0.1s;
             letter-spacing: -0.5px;
@@ -63,16 +72,16 @@
 
         h2 {
             font-size: 1.6em;
-            color: #cccccc; /* Lighter grey subheading */
+            color: #cccccc;
             font-weight: 500;
-            margin-top: 2.5em; /* Add more space ABOVE H2 */
-            margin-bottom: 1.8em; /* Keep space below H2 */
+            margin-top: 2.5em;
+            margin-bottom: 1.8em;
             animation: fadeIn 0.8s ease-out both;
             animation-delay: 0.3s;
         }
 
         h2:first-of-type {
-            margin-top: 0; /* Remove extra top margin for the first H2 */
+            margin-top: 0;
         }
 
 
@@ -80,17 +89,18 @@
         main {
             max-width: 800px;
             margin: 40px auto;
-            background-color: rgba(30, 30, 30, 0.85); /* Dark grey, slightly transparent */
+            background-color: rgba(30, 30, 30, 0.85);
             padding: 35px 45px;
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border */
+            border: 1px solid rgba(255, 255, 255, 0.1);
             animation: fadeIn 0.8s ease-out both;
             animation-delay: 0.2s;
+            position: relative; /* For potential relative positioning if needed */
         }
 
-        /* List Styling (Applies to both #chapter-list and #tutorial-list) */
+        /* List Styling */
         #chapter-list,
         #tutorial-list {
             list-style: none;
@@ -99,15 +109,14 @@
 
         #chapter-list li,
         #tutorial-list li {
-            background-color: rgba(45, 45, 45, 0.9); /* Slightly darker item background */
+            background-color: rgba(45, 45, 45, 0.9);
             margin-bottom: 14px;
             border-radius: 6px;
             transition: background-color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
-            border-left: 4px solid transparent; /* Placeholder */
+            border-left: 4px solid transparent;
             opacity: 0; /* Start hidden for animation */
         }
 
-        /* Staggered Animation Class (Applied via JS) */
         #chapter-list li.loaded,
         #tutorial-list li.loaded {
              animation: popIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -115,9 +124,9 @@
 
         #chapter-list li:hover,
         #tutorial-list li:hover {
-            background-color: rgba(60, 60, 60, 0.95); /* Lighter grey on hover */
+            background-color: rgba(60, 60, 60, 0.95);
             transform: translateY(-3px);
-            border-left-color: #a6e3a1; /* Keep green accent on hover border */
+            border-left-color: #a6e3a1;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
         }
 
@@ -126,7 +135,7 @@
             display: block;
             padding: 15px 25px;
             text-decoration: none;
-            color: #f5f5f5; /* Bright white/off-white links */
+            color: #f5f5f5;
             font-weight: 500;
             font-size: 1.1em;
             transition: color 0.3s ease, transform 0.25s ease;
@@ -135,31 +144,32 @@
 
         #chapter-list li:hover a,
         #tutorial-list li:hover a {
-            color: #a6e3a1; /* Green text on hover */
-            transform: translateX(4px); /* Nudge text */
+            color: #a6e3a1;
+            transform: translateX(4px);
         }
 
-        /* Loading/Error Message Styling (Using classes now) */
+        /* Message Styling */
         .loading-message,
-        .error-message {
-            opacity: 1; /* Ensure visible immediately */
-            color: #a0a0a0; /* Muted grey text */
+        .error-message,
+        .info-message { /* Added info-message */
+            opacity: 1;
+            color: #a0a0a0;
             font-style: italic;
             text-align: center;
             padding: 20px;
-            background-color: rgba(45, 45, 45, 0.7) !important; /* Match list item base */
+            background-color: rgba(45, 45, 45, 0.7) !important;
             border-radius: 6px;
             border-left: none !important;
             animation: fadeIn 0.6s ease-out both;
-            animation-delay: 0.5s; /* Delay initial appearance slightly */
+            animation-delay: 0.5s;
         }
 
         .error-message {
-             color: #dcdcdc !important; /* Brighter grey for error text */
+             color: #dcdcdc !important;
              font-weight: 500;
              font-style: normal;
-             background-color: rgba(80, 80, 80, 0.2) !important; /* Tinted grey background */
-             border: 1px solid rgba(220, 220, 220, 0.2); /* Subtle light grey border */
+             background-color: rgba(80, 80, 80, 0.2) !important;
+             border: 1px solid rgba(220, 220, 220, 0.2);
         }
 
         /* Footer */
@@ -168,30 +178,260 @@
             margin-top: 70px;
             padding-bottom: 35px;
             font-size: 0.85em;
-            color: #888888; /* Dim grey for footer */
+            color: #888888;
              animation: fadeIn 1s ease-out both;
-             animation-delay: 0.7s; /* Adjust if needed based on list load time */
+             animation-delay: 0.7s;
         }
+
+        /* --- SEARCH STYLES --- */
+        #search-icon-container {
+            position: fixed;
+            top: 25px;
+            right: 30px;
+            z-index: 1001; /* Above search overlay's backdrop */
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgba(45, 45, 45, 0.8);
+            border-radius: 50%;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        #search-icon-container:hover {
+            background-color: rgba(60, 60, 60, 0.95);
+            transform: scale(1.1);
+        }
+        #search-icon-container svg {
+            display: block;
+            width: 28px;
+            height: 28px;
+            fill: #e0e0e0;
+        }
+
+        #search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent backdrop */
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            /*align-items: center; /* Vertically center */
+            align-items: flex-start; /* Align to top */
+            justify-content: center; /* Horizontally center */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+            padding-top: 80px; /* Space from top */
+        }
+        #search-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.4s ease, visibility 0s linear 0s;
+        }
+
+        #search-modal {
+            background-color: #232323; /* Slightly lighter than page bg */
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            width: 90%;
+            max-width: 700px;
+            max-height: 85vh; /* Limit height */
+            display: flex;
+            flex-direction: column;
+            animation: searchModalEnter 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+        #search-overlay:not(.visible) #search-modal {
+             animation: searchModalLeave 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+        }
+
+        #search-modal h2 {
+            color: #ffffff;
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 1.2em;
+            text-align: left;
+            border-bottom: 1px solid #444;
+            padding-bottom: 0.6em;
+        }
+
+        #close-search-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #a0a0a0;
+            font-size: 2.5em;
+            line-height: 1;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+        #close-search-btn:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        #search-query, #search-scope {
+            width: 100%;
+            padding: 12px 18px;
+            margin-bottom: 20px;
+            background-color: rgba(30, 30, 30, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1em;
+        }
+        #search-query::placeholder {
+            color: #777;
+        }
+        #search-query:focus, #search-scope:focus {
+            outline: none;
+            border-color: #a6e3a1;
+            box-shadow: 0 0 0 2px rgba(166, 227, 161, 0.3);
+        }
+        .search-filter-container { margin-bottom: 20px; }
+        .search-filter-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            color: #bbb;
+        }
+
+        #execute-search-btn {
+            padding: 12px 25px;
+            background-color: #a6e3a1;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            align-self: flex-start; /* Align to left if container is flex */
+        }
+        #execute-search-btn:hover {
+            background-color: #8bc34a; /* Darker green */
+            transform: translateY(-2px);
+        }
+
+        #search-results-container {
+            margin-top: 25px;
+            overflow-y: auto; /* Scroll for results */
+            flex-grow: 1; /* Take available space */
+            padding-right: 10px; /* For scrollbar */
+        }
+        #search-results-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        #search-results-list li {
+            background-color: rgba(55, 55, 55, 0.85);
+            margin-bottom: 12px;
+            border-radius: 5px;
+            border-left: 3px solid #555;
+            transition: background-color 0.3s ease, border-left-color 0.3s ease;
+        }
+        #search-results-list li:hover {
+            background-color: rgba(70, 70, 70, 0.9);
+            border-left-color: #a6e3a1;
+        }
+        #search-results-list li a {
+            display: block;
+            padding: 10px 18px;
+            text-decoration: none;
+            color: #f0f0f0;
+            font-weight: 500;
+            font-size: 1.0em;
+            transition: color 0.3s ease;
+        }
+        #search-results-list li:hover a {
+            color: #a6e3a1;
+        }
+        #search-results-list li p.snippet { /* Snippet styling */
+            font-size: 0.9em;
+            color: #b0b0b0;
+            padding: 0px 18px 12px;
+            margin: 0;
+            line-height: 1.5;
+        }
+        #search-results-list li p.snippet mark {
+            background-color: #a6e3a1;
+            color: #1a1a1a;
+            padding: 1px 3px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .search-info { /* For "Type query...", "No results..." */
+            color: #888;
+            text-align: center;
+            padding: 15px;
+            font-style: italic;
+        }
+
+        /* Scrollbar styling for search results (Webkit) */
+        #search-results-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #search-results-container::-webkit-scrollbar-track {
+            background: rgba(30,30,30,0.5);
+            border-radius: 4px;
+        }
+        #search-results-container::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 4px;
+        }
+        #search-results-container::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+
     </style>
 </head>
 <body>
 
+    <div id="search-icon-container" title="Search Content">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+    </div>
+
+    <div id="search-overlay">
+        <div id="search-modal">
+            <button id="close-search-btn" title="Close Search">&times;</button>
+            <h2>Search Content</h2>
+            <input type="text" id="search-query" placeholder="Enter search term...">
+            <div class="search-filter-container">
+                <label for="search-scope">Search in:</label>
+                <select id="search-scope">
+                    <option value="all">All Files</option>
+                    <!-- Specific file options will be populated here by JS -->
+                </select>
+            </div>
+            <button id="execute-search-btn">Search</button>
+            <div id="search-results-container">
+                <ul id="search-results-list"></ul>
+                <p class="search-info">Type a query and press Search, or press Enter.</p>
+            </div>
+        </div>
+    </div>
+
     <header>
-        <h1>Chapter & Tutorial Summaries</h1> <!-- Updated H1 -->
+        <h1>Chapter & Tutorial Summaries</h1>
     </header>
 
     <main>
-        <!-- Chapters Section -->
         <h2>Available Chapters</h2>
         <ul id="chapter-list">
-            <!-- Chapter links will be dynamically inserted here -->
             <li class="loading-message">Loading chapters...</li>
         </ul>
 
-        <!-- Tutorials Section -->
         <h2>Available Tutorials</h2>
         <ul id="tutorial-list">
-            <!-- Tutorial links will be dynamically inserted here -->
             <li class="loading-message">Loading tutorials...</li>
         </ul>
     </main>
@@ -200,34 +440,76 @@
         <!-- Content removed -->
     </footer>
 
-    <!-- Embedded JavaScript Logic -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- CONFIGURATION ---
             const githubUsername = 'tacturnity';
             const githubRepoName = 'ME';
+            const chaptersApiPath = 'chapters';
+            const chaptersRelativeLinkPath = 'chapters';
+            const tutorialsApiPath = 'tutorials';
+            const tutorialsRelativeLinkPath = 'tutorials';
 
-            // Chapter specific config
-            const chaptersApiPath = 'chapters'; // The FOLDER *containing* the chapter HTML files
-            const chaptersRelativeLinkPath = 'chapters'; // Path used for constructing the <a href="..."> links
+            // --- Search Functionality Globals ---
+            const searchableContentStore = []; // Stores {id, name, title, path, textContent}
+            let allFilesForDropdown = [];    // Stores {title, path} for dropdown
+            let searchDropdownPopulated = false;
 
-            // Tutorial specific config
-            const tutorialsApiPath = 'tutorials'; // The FOLDER *containing* the tutorial HTML files
-            const tutorialsRelativeLinkPath = 'tutorials'; // Path used for constructing the <a href="..."> links
-            // ---------------------
+            const searchIcon = document.getElementById('search-icon-container');
+            const searchOverlay = document.getElementById('search-overlay');
+            const searchModal = document.getElementById('search-modal');
+            const closeSearchBtn = document.getElementById('close-search-btn');
+            const searchQueryInput = document.getElementById('search-query');
+            const searchScopeSelect = document.getElementById('search-scope');
+            const executeSearchBtn = document.getElementById('execute-search-btn');
+            const searchResultsList = document.getElementById('search-results-list');
+            const searchInfoMsg = searchModal.querySelector('.search-info');
 
 
             /**
-             * Fetches files from a GitHub repository path and populates a list element.
-             * @param {string} listElementId - The ID of the UL element to populate.
-             * @param {string} apiPath - The path within the repo to fetch (e.g., 'chapters', 'tutorials').
-             * @param {string} relativeLinkPath - The base path for constructing the href links.
-             * @param {string} sectionTitle - A descriptive title for the section (e.g., 'Chapters', 'Tutorials') used in messages.
+             * Generates a display-friendly title from a filename.
+             * @param {string} fileName - The original filename (e.g., "[a] File_Name.html").
+             * @returns {string} A cleaned-up title (e.g., "File Name").
+             */
+            function generateDisplayTitleFromName(fileName) {
+                let rawTitle = fileName.replace(/\.html$/i, '');
+                let displayTitle = rawTitle.replace(/^\[[a-z]\][-_\s]*/i, '');
+                displayTitle = displayTitle.replace(/[-_]/g, ' ').trim();
+                // Capitalize first letter of each word for better display
+                return displayTitle.split(' ')
+                                   .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                                   .join(' ');
+            }
+
+            /**
+             * Fetches the text content of an HTML file.
+             * @param {string} filePath - The path to the HTML file.
+             * @returns {Promise<string>} A promise that resolves with the text content or empty string on error.
+             */
+            async function fetchFileTextContent(filePath) {
+                try {
+                    const response = await fetch(filePath);
+                    if (!response.ok) {
+                        console.error(`Failed to fetch content for ${filePath}: ${response.status} ${response.statusText}`);
+                        return "";
+                    }
+                    const htmlContent = await response.text();
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = htmlContent;
+                    // Fallback for older browsers, prefer textContent
+                    return (tempDiv.textContent || tempDiv.innerText || "").trim();
+                } catch (error) {
+                    console.error(`Error fetching or parsing content for ${filePath}:`, error);
+                    return "";
+                }
+            }
+
+            /**
+             * Fetches files from GitHub, populates lists, and indexes content for search.
              */
             function fetchAndPopulateList(listElementId, apiPath, relativeLinkPath, sectionTitle) {
                 const listElement = document.getElementById(listElementId);
-                const loadingMessage = listElement.querySelector('.loading-message'); // Find loading message within this list
+                const loadingMessage = listElement.querySelector('.loading-message');
 
                 if (!listElement) {
                     console.error(`Element with ID '${listElementId}' not found.`);
@@ -236,119 +518,263 @@
 
                 const encodedPath = apiPath.split('/').map(encodeURIComponent).join('/');
                 const apiUrl = `https://api.github.com/repos/${githubUsername}/${githubRepoName}/contents/${encodedPath}`;
-
                 console.log(`Fetching ${sectionTitle} list from: ${apiUrl}`);
 
                 fetch(apiUrl)
                     .then(response => {
-                         if (!response.ok) {
+                        if (!response.ok) {
                             return response.json().catch(() => null).then(errorData => {
                                 let errorMsg = `GitHub API error (${sectionTitle}): ${response.status} ${response.statusText}`;
                                 if (errorData && errorData.message) {
                                     if (response.status === 404 && errorData.message.toLowerCase().includes("not found")) {
                                         errorMsg = `GitHub API error (${sectionTitle}): 404 Not Found.`;
-                                        errorMsg += ` Could not find the folder '${apiPath}' in the repository '${githubUsername}/${githubRepoName}'. Please ensure the path is correct and the repository is public.`;
+                                        errorMsg += ` Could not find the folder '${apiPath}' in the repository '${githubUsername}/${githubRepoName}'.`;
                                     } else { errorMsg += ` - ${errorData.message}`; }
-                                } else if (response.status === 404) { errorMsg += ` (Is the API path '${apiPath}' correct relative to the repo root? Is the repository public?)`; }
-                                if (response.status === 403) { errorMsg += ` (API rate limit exceeded or private repository access issue?)`; }
+                                } else if (response.status === 404) { errorMsg += ` (Path '${apiPath}' correct?)`; }
+                                if (response.status === 403) { errorMsg += ` (API rate limit or private repo?)`; }
                                 throw new Error(errorMsg);
                             });
                         }
                         return response.json();
                     })
                     .then(data => {
-                         if (loadingMessage && loadingMessage.parentNode === listElement) {
-                             listElement.removeChild(loadingMessage);
+                        if (loadingMessage && loadingMessage.parentNode === listElement) {
+                            listElement.removeChild(loadingMessage);
                         }
 
                         if (!Array.isArray(data)) {
-                            console.error(`Received data for ${sectionTitle} is not an array:`, data);
-                            if (typeof data === 'object' && data !== null && data.message && data.message.includes("This repository is empty")) {
-                                throw new Error(`The repository '${githubUsername}/${githubRepoName}' appears to be empty.`);
-                            } else if (typeof data === 'object' && data !== null && data.message) {
-                                throw new Error(`GitHub API returned an object instead of an array for ${sectionTitle}: ${data.message}. Check if '${apiPath}' is a file instead of a directory.`);
+                            const baseError = `Invalid data format for ${sectionTitle}. Expected array.`;
+                            if (typeof data === 'object' && data !== null && data.message) {
+                                throw new Error(`${baseError} GitHub API: ${data.message}. Check if '${apiPath}' is a file, not directory.`);
                             }
-                            throw new Error(`Invalid data format received from GitHub API for ${sectionTitle}. Expected an array of files/directories.`);
+                            throw new Error(baseError);
                         }
 
                         const htmlFiles = data.filter(item => item.type === 'file' && item.name.toLowerCase().endsWith('.html'));
 
                         if (htmlFiles.length === 0) {
                             const li = document.createElement('li');
-                            const directoriesFound = data.some(item => item.type === 'dir');
-                            if (directoriesFound) {
-                                li.textContent = `No HTML files found directly inside the '${apiPath}' directory. HTML files must be in this folder, not subfolders.`;
-                            } else if (data.length === 0) {
-                                li.textContent = `The '${apiPath}' directory is empty.`;
-                            } else {
-                                li.textContent = `No HTML files found in the '${apiPath}' directory.`;
-                            }
+                            li.textContent = data.length === 0 ? `The '${apiPath}' directory is empty.` : `No HTML files found in '${apiPath}'.`;
                             li.classList.add('error-message');
                             listElement.appendChild(li);
                             return;
                         }
 
-                        // --- ALPHABETICAL SORTING LOGIC ---
-                        // Sorts by full filename alphabetically (e.g., "Tutorial - 10.html" before "Tutorial - 9.html")
-                        // --- NUMERIC/ALPHABETICAL SORTING LOGIC ---
-htmlFiles.sort((a, b) => {
-    // Function to extract the first number found in a string
-    const extractNumber = (str) => {
-        const match = str.match(/\d+/); // Find the first sequence of digits
-        return match ? parseInt(match[0], 10) : NaN; // Return number or NaN
-    };
+                        htmlFiles.sort((a, b) => {
+                            const extractNumber = (str) => {
+                                const match = str.match(/\d+/);
+                                return match ? parseInt(match[0], 10) : NaN;
+                            };
+                            const numA = extractNumber(a.name);
+                            const numB = extractNumber(b.name);
+                            if (!isNaN(numA) && !isNaN(numB) && numA !== numB) return numA - numB;
+                            return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+                        });
 
-    const numA = extractNumber(a.name);
-    const numB = extractNumber(b.name);
-
-    // If both names contain numbers, sort numerically
-    if (!isNaN(numA) && !isNaN(numB)) {
-        if (numA !== numB) {
-            return numA - numB; // Sort by number ascending
-        }
-        // If numbers are the same, fall back to alphabetical for secondary sorting (e.g., "Tut 1a", "Tut 1b")
-        // Although not strictly needed for the current filenames, it's good practice.
-    }
-
-    // Fallback: If numbers are the same, or one/both don't have numbers, sort alphabetically
-    return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
-});
-// ------------------------------------------
-                        // -----------------------------------
+                        const contentFetchPromises = [];
 
                         htmlFiles.forEach((file, index) => {
                             const listItem = document.createElement('li');
                             const link = document.createElement('a');
+                            const displayTitle = generateDisplayTitleFromName(file.name);
+                            const filePath = `${relativeLinkPath}/${encodeURIComponent(file.name)}`;
 
-                            // --- TITLE GENERATION ---
-                            let rawTitle = file.name.replace(/\.html$/i, '');
-                            let displayTitle = rawTitle.replace(/^\[[a-z]\][-_\s]*/i, ''); // Remove prefix like [a] or [A]
-                            displayTitle = displayTitle.replace(/[-_]/g, ' ').trim(); // Replace separators, trim
-                            // ------------------------
-
-
-                            link.href = `${relativeLinkPath}/${encodeURIComponent(file.name)}`;
+                            link.href = filePath;
                             link.textContent = displayTitle;
-
                             listItem.appendChild(link);
                             listElement.appendChild(listItem);
-
-                            // Apply staggered animation
                             listItem.style.animationDelay = `${index * 0.07}s`;
                             listItem.classList.add('loaded');
+
+                            // --- Prepare for search indexing ---
+                            const fileDataForSearch = {
+                                id: filePath, // Unique ID
+                                name: file.name,
+                                title: displayTitle,
+                                path: filePath,
+                                textContent: "" // Will be filled by fetchFileTextContent
+                            };
+                            // Add to dropdown list (will be sorted later)
+                            if (!allFilesForDropdown.find(f => f.path === filePath)) {
+                                allFilesForDropdown.push({ title: displayTitle, path: filePath });
+                            }
+
+                            contentFetchPromises.push(
+                                fetchFileTextContent(filePath).then(textContent => {
+                                    if (textContent) {
+                                        fileDataForSearch.textContent = textContent.toLowerCase(); // Store lowercase for search
+                                        // Only add to store if not already there (e.g. if file appears in multiple lists)
+                                        if (!searchableContentStore.find(item => item.id === fileDataForSearch.id)) {
+                                            searchableContentStore.push(fileDataForSearch);
+                                        }
+                                    } else {
+                                        console.warn(`No content fetched for ${filePath}, it won't be searchable.`);
+                                    }
+                                }).catch(err => console.error(`Failed to process content for ${file.name}: ${err}`))
+                            );
                         });
+
+                        // Log when all content for this section is attempted
+                        Promise.allSettled(contentFetchPromises).then(results => {
+                            console.log(`Content fetching for ${sectionTitle} settled. ${searchableContentStore.length} items now in search index.`);
+                            // Potentially update search dropdown if it's already open, or flag for update
+                            searchDropdownPopulated = false; // Force repopulate if modal opened
+                        });
+
                     })
                     .catch(error => {
                         console.error(`Error loading ${sectionTitle}:`, error);
-                        if (loadingMessage && loadingMessage.parentNode === listElement) {
-                            listElement.removeChild(loadingMessage);
-                        }
+                        if (loadingMessage && loadingMessage.parentNode === listElement) listElement.removeChild(loadingMessage);
                         const errorItem = document.createElement('li');
-                        errorItem.textContent = error.message || `Failed to load ${sectionTitle} list. Check console for details.`;
+                        errorItem.textContent = error.message || `Failed to load ${sectionTitle} list.`;
                         errorItem.classList.add('error-message');
                         listElement.appendChild(errorItem);
                     });
             }
+
+
+            // --- Search UI Handlers ---
+            function openSearchModal() {
+                if (!searchDropdownPopulated && allFilesForDropdown.length > 0) {
+                    populateSearchScopeDropdown();
+                }
+                searchOverlay.classList.add('visible');
+                searchQueryInput.focus();
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            }
+
+            function closeSearchModal() {
+                searchOverlay.classList.remove('visible');
+                document.body.style.overflow = ''; // Restore scroll
+            }
+
+            function populateSearchScopeDropdown() {
+                // Clear existing options except "All Files"
+                while (searchScopeSelect.options.length > 1) {
+                    searchScopeSelect.remove(1);
+                }
+                // Sort files by title for dropdown
+                allFilesForDropdown.sort((a, b) => a.title.localeCompare(b.title));
+                allFilesForDropdown.forEach(file => {
+                    const option = document.createElement('option');
+                    option.value = file.path;
+                    option.textContent = file.title;
+                    searchScopeSelect.appendChild(option);
+                });
+                searchDropdownPopulated = true;
+            }
+
+            searchIcon.addEventListener('click', openSearchModal);
+            closeSearchBtn.addEventListener('click', closeSearchModal);
+            searchOverlay.addEventListener('click', (e) => { // Close on backdrop click
+                if (e.target === searchOverlay) closeSearchModal();
+            });
+            document.addEventListener('keydown', (e) => { // Close with Escape key
+                if (e.key === 'Escape' && searchOverlay.classList.contains('visible')) {
+                    closeSearchModal();
+                }
+            });
+
+            // --- Search Execution ---
+            function generateSnippet(text, keyword, contextLength = 70) {
+                const lowerText = text.toLowerCase();
+                const lowerKeyword = keyword.toLowerCase();
+                let matchIndex = lowerText.indexOf(lowerKeyword);
+
+                if (matchIndex === -1) return "";
+
+                let start = Math.max(0, matchIndex - contextLength);
+                let end = Math.min(text.length, matchIndex + keyword.length + contextLength);
+
+                // Try to start/end on word boundaries
+                if (start > 0) {
+                    const spaceBefore = text.lastIndexOf(' ', start);
+                    if (spaceBefore !== -1) start = spaceBefore + 1; else start = 0;
+                }
+                if (end < text.length) {
+                    const spaceAfter = text.indexOf(' ', end);
+                    if (spaceAfter !== -1) end = spaceAfter; else end = text.length;
+                }
+
+                let snippet = text.substring(start, end);
+                if (start > 0) snippet = "..." + snippet;
+                if (end < text.length && end !== text.length -1) snippet = snippet + "...";
+
+                const regex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+                return snippet.replace(regex, '<mark>$&</mark>');
+            }
+
+
+            function performSearch() {
+                const query = searchQueryInput.value.trim();
+                const scope = searchScopeSelect.value;
+                searchResultsList.innerHTML = ''; // Clear previous results
+
+                if (!query) {
+                    searchInfoMsg.textContent = "Please enter a search term.";
+                    searchInfoMsg.style.display = 'block';
+                    return;
+                }
+
+                searchInfoMsg.style.display = 'none'; // Hide default/error message
+                let resultsFound = 0;
+
+                const itemsToSearch = scope === 'all'
+                    ? searchableContentStore
+                    : searchableContentStore.filter(item => item.path === scope);
+
+                if (itemsToSearch.length === 0 && scope !== 'all') {
+                     searchInfoMsg.textContent = "Selected file not found in index or has no content.";
+                     searchInfoMsg.style.display = 'block';
+                     return;
+                }
+                if (searchableContentStore.length === 0) {
+                    searchInfoMsg.textContent = "Content indexing might still be in progress or failed. No items to search.";
+                    searchInfoMsg.style.display = 'block';
+                    return;
+                }
+
+
+                itemsToSearch.forEach(item => {
+                    if (item.textContent.includes(query.toLowerCase())) {
+                        // Simple search: find first occurrence for snippet
+                        const snippetText = generateSnippet(item.textContent, query);
+
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = item.path;
+                        a.textContent = item.title;
+                        a.target = "_blank"; // Open in new tab
+
+                        li.appendChild(a);
+
+                        if (snippetText) {
+                            const p = document.createElement('p');
+                            p.classList.add('snippet');
+                            p.innerHTML = snippetText; //innerHTML because of <mark>
+                            li.appendChild(p);
+                        }
+                        searchResultsList.appendChild(li);
+                        resultsFound++;
+                    }
+                });
+
+                if (resultsFound === 0) {
+                    searchInfoMsg.textContent = `No results found for "${query}"` + (scope === 'all' ? "." : ` in "${searchScopeSelect.options[searchScopeSelect.selectedIndex].text}".`);
+                    searchInfoMsg.style.display = 'block';
+                } else {
+                     searchInfoMsg.textContent = `${resultsFound} result(s) found.`; // Optional: show count
+                     searchInfoMsg.style.display = 'block'; // Or hide if you prefer cleaner look
+                }
+            }
+
+            executeSearchBtn.addEventListener('click', performSearch);
+            searchQueryInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
 
             // --- Initiate Fetching for Both Sections ---
             fetchAndPopulateList('chapter-list', chaptersApiPath, chaptersRelativeLinkPath, 'Chapters');
