@@ -211,7 +211,8 @@
             const tutorialsRelativeLinkPath = 'tutorials';
             const SEARCH_INDEX_FILE_PATH = 'search_index.json'; // Ensure this file exists and is up-to-date
 
-            const interestingFacts = [
+                        // ... (near the top of your <script> tag) ...
+                            const interestingFacts = [
                 "This project uses client-side search, making it fast once loaded!",
                 "The styling is inspired by modern dark themes.",
                 "Content is fetched directly from GitHub.",
@@ -221,6 +222,7 @@
                 "Every character typed here was with enthusiasm!"
             ];
             let factInterval;
+            // ...
 
             // --- DOM Elements ---
             const pageLoader = document.getElementById('page-loader');
