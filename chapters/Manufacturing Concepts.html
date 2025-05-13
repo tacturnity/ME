@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" style="--base-font-size: 10px;"> <!-- Default font size set to 10px -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: Manufacturing Concepts</title> <!-- CHANGE THIS TITLE -->
+
+    <!-- Google Fonts - Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+          tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true, tags: 'ams' },
+          options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'tex2jax_ignore', processHtmlClass: 'tex2jax_process' },
+          svg: { fontCache: 'global' },
+          startup: {
+            ready: () => { console.log('MathJax ready.'); MathJax.startup.defaultReady(); MathJax.startup.promise.then(() => console.log('MathJax initial typeset complete.')); }
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Keyframes for Animations (FadeIn) */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Fonts & Base Styling */
+        body {
+            font-family: 'Roboto Mono', monospace;
+            color: #e0e0e0;
+            line-height: 1.7;
+            padding: 25px;
+            background-color: #1a1a1a;
+            min-height: 100vh;
+            font-size: var(--base-font-size); /* Controlled by JS */
+            transition: font-size 0.2s ease-in-out; /* Default smooth transition */
+            padding-bottom: 80px; /* Space for controls */
+            overflow-x: hidden;
+        }
+        /* Class to disable transition during rapid changes (e.g., hold) */
+        body.no-font-transition {
+            transition: none !important;
+        }
+
+        /* Headings */
+        h1, h2 { font-family: 'Roboto Mono', monospace; text-align: center; margin-bottom: 1.5em; }
+        h1 { font-size: 2.4em; color: #ffffff; font-weight: 700; padding-bottom: 12px; margin-top: 1.5em; margin-bottom: 1.5em; border-bottom: 2px solid #ffffff; animation: fadeIn 0.8s ease-out both; animation-delay: 0.1s; letter-spacing: -0.5px; }
+        h2 { font-size: 1.6em; color: #cccccc; font-weight: 500; margin-top: 30px; margin-bottom: 1.5em; border-bottom: 1px solid #555555; padding-bottom: 5px; animation: fadeIn 0.8s ease-out both; animation-delay: 0.3s; }
+        h3 { font-size: 1.2em; color: #bdbdbd; font-weight: 500; margin-top: 1.8em; margin-bottom: 0.8em; padding-bottom: 3px; border-bottom: 1px dotted #444; text-align: left; }
+        h4 { font-size: 1.1em; color: #b0b0b0; font-weight: 500; margin-top: 1.5em; margin-bottom: 0.7em; text-align: left; }
+
+
+        /* Main Content Area */
+        main { max-width: 800px; margin: 40px auto; background-color: rgba(30, 30, 30, 0.85); padding: 35px 45px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); border: 1px solid rgba(255, 255, 255, 0.1); animation: fadeIn 0.8s ease-out both; animation-delay: 0.2s; }
+        /* Paragraph and List styling */
+        p { margin-bottom: 1em; color: inherit; font-size: inherit; }
+        ul, ol { margin-left: 25px; list-style: disc; margin-bottom: 1em; }
+        ol { list-style: decimal; }
+        li { margin-bottom: 8px; font-size: inherit; }
+        strong { font-weight: 500; color: #ffffff; }
+
+        /* Formula Container Styling (with horizontal scroll) */
+        .formula-container {
+            margin: 15px 0 20px 0; padding: 10px 20px; background-color: rgba(45, 45, 45, 0.9);
+            border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto; overflow-y: hidden; /* Horizontal scroll, no vertical */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer; color: #e0e0e0; border-left: 4px solid transparent;
+            font-family: 'Roboto Mono', monospace; position: relative; white-space: nowrap;
+        }
+        .formula-container:hover { background-color: rgba(60, 60, 60, 0.95); border-left-color: #a6e3a1; border-color: rgba(166, 227, 161, 0.5); }
+        .formula-container.copied { background-color: rgba(166, 227, 161, 0.2); border-color: #a6e3a1; border-left-color: #a6e3a1; }
+        /* Optional Scrollbar Style */
+        .formula-container::-webkit-scrollbar { height: 8px; }
+        .formula-container::-webkit-scrollbar-track { background: rgba(60, 60, 60, 0.5); border-radius: 4px; }
+        .formula-container::-webkit-scrollbar-thumb { background-color: #888; border-radius: 4px; border: 2px solid transparent; background-clip: content-box; }
+        .formula-container::-webkit-scrollbar-thumb:hover { background-color: #aaa; }
+        /* MathJax display style */
+        .formula-container mjx-container[display="true"] { margin: 0.5em 0 !important; text-align: left !important; display: inline-block; vertical-align: middle; }
+        
+        table { border-collapse: collapse; margin: 1em auto; background-color: rgba(40,40,40,0.8); width: auto; }
+        th, td { border: 1px solid #555; padding: 8px 12px; text-align: center; }
+        th { background-color: rgba(60,60,60,0.9); color: #ddd; }
+
+        pre {
+            background-color: #2b2b2b; padding: 10px; border-radius: 5px; 
+            color: #ccc; overflow-x: auto; white-space: pre; 
+            font-family: 'Roboto Mono', monospace; font-size: 0.95em;
+            margin: 1em 0;
+        }
+
+        /* Footer Styling */
+        footer { text-align: center; margin-top: 70px; padding-bottom: 35px; font-size: 0.85em; color: #888888; animation: fadeIn 1s ease-out both; animation-delay: 0.7s; }
+
+        /* Simple Dark Theme Scrollbar for Page */
+        body::-webkit-scrollbar { width: 10px; }
+        body::-webkit-scrollbar-track { background: #2a2a2a; border-radius: 5px; }
+        body::-webkit-scrollbar-thumb { background-color: #777; border-radius: 5px; border: 2px solid #2a2a2a; background-clip: content-box; }
+        body::-webkit-scrollbar-thumb:hover { background-color: #999; }
+        html { scrollbar-width: thin; scrollbar-color: #777 #2a2a2a; }
+        @supports (scrollbar-gutter: stable) { html { scrollbar-gutter: stable; } }
+
+        /* Font Control Icons CSS */
+        .font-control { position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px 25px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; pointer-events: none; z-index: 10; }
+        .font-control-icon { font-size: 28px; font-weight: bold; color: #777; cursor: pointer; padding: 8px; transition: color 0.3s ease; pointer-events: auto; user-select: none; line-height: 1; display: inline-block; }
+        .font-control-icon:hover { color: #a6e3a1; }
+        #fontSizeDisplay { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); background-color: rgba(45, 45, 45, 0.9); color: #e0e0e0; padding: 6px 12px; border-radius: 5px; font-size: 13px; font-family: 'Roboto Mono', monospace; z-index: 11; opacity: 0; transition: opacity 0.3s ease-in-out; pointer-events: none; white-space: nowrap; }
+        #fontSizeDisplay.visible { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Chapter 1: Manufacturing Concepts</h1> <!-- EDIT THIS LINE -->
+    </header>
+
+    <main>
+        <!-- START OF NEW CONTENT -->
+        <h2>1.1 Introduction</h2>
+        <ul>
+            <li><strong>Core Idea:</strong> Manufacturing is the process of transforming <strong>raw materials</strong> (materials as found in nature, like iron ore, wood, crude oil) into useful <strong>products</strong> (like pens, cars, furniture) that satisfy human needs.</li>
+            <li>This involves:
+                <ol>
+                    <li>Converting raw material into a usable form with desired properties.</li>
+                    <li>Shaping the material into parts.</li>
+                    <li>Assembling parts to create the final object (product).</li>
+                </ol>
+            </li>
+            <li>The overall process is called the <strong>manufacturing process</strong>.</li>
+        </ul>
+
+        <h2>The 5 Ms of Manufacturing (Page 2)</h2>
+        <ul>
+            <li>Manufacturing is vital for any industrialized nation's economy.</li>
+            <li>To carry out manufacturing, you essentially need 5 key inputs, often called the <strong>5 Ms</strong>:
+                <ol>
+                    <li><strong>Material:</strong> The raw or processed substance the product is made from.</li>
+                    <li><strong>Methods:</strong> The specific techniques and procedures used (like casting, machining).</li>
+                    <li><strong>Machinery:</strong> The tools, machines, and equipment needed.</li>
+                    <li><strong>Men (Manpower):</strong> The people who operate machines, apply methods, and manage the process.</li>
+                    <li><strong>Money:</strong> The financial investment required for materials, machinery, manpower, etc.</li>
+                </ol>
+            </li>
+            <li>(See Figure 1.1) This figure visually shows these 5 inputs feeding into the manufacturing process, which results in a product.</li>
+        </ul>
+
+        <h2>1.2 Manufacturing Processes</h2>
+        <p>There are many ways to make a product. These are broadly classified into five main groups:</p>
+
+        <h3>1.2.1 Casting</h3>
+        <ul>
+            <li><strong>What:</strong> Melting material (usually metal) and pouring it into a <strong>mould</strong> (a cavity with the desired shape). The material then solidifies, taking the shape of the mould.</li>
+            <li><strong>Key Features:</strong> Good for intricate shapes, can make very large or very small products.</li>
+            <li><strong>Example:</strong> Making engine blocks, frying pans, machine bases. (See Figure 1.2 for a visual).</li>
+        </ul>
+
+        <h3>1.2.2 Machining</h3>
+        <ul>
+            <li><strong>What:</strong> Removing unwanted material from a workpiece using <strong>cutting tools</strong> on a <strong>machine tool</strong> (like a lathe or milling machine) to achieve the desired shape and size. When applied to metals, it's often called <strong>metal cutting</strong>.</li>
+            <li><strong>Key Features:</strong> Can achieve high precision and tight tolerances (very accurate dimensions). Results in waste material (<strong>scrap</strong>).</li>
+            <li><strong>Examples:</strong> Drilling holes, making gears, nuts, bolts, turning a shaft on a lathe. (See Figure 1.3 showing turning on a lathe).</li>
+        </ul>
+
+        <h3>1.2.3 Forming</h3>
+        <ul>
+            <li><strong>What:</strong> Shaping material (usually metal) by applying forces (like compression, tension) that cause it to permanently deform (change shape) without removing material.</li>
+            <li><strong>Key Features:</strong> No material is wasted as scrap; it's just reshaped.</li>
+            <li><strong>Examples:</strong> Rolling metal sheets, forging parts, drawing wire, making kitchen utensils, car body panels. (See Figure 1.4 showing the rolling process).</li>
+        </ul>
+
+        <h3>1.2.4 Powder Metallurgy</h3>
+        <ul>
+            <li><strong>What:</strong> Blending fine material powders, pressing them into a desired shape in a die, and then heating (sintering) them in a controlled atmosphere so the particles bond together.</li>
+            <li><strong>Key Features:</strong> Good dimensional accuracy and finish, often requires no further processing. Can create parts from materials that are hard to machine.</li>
+            <li><strong>Examples:</strong> Making certain types of gears, tungsten filaments for light bulbs, some cutting tools.</li>
+        </ul>
+
+        <h3>1.2.5 Joining</h3>
+        <ul>
+            <li><strong>What:</strong> Assembling two or more separate pieces to form a single product. The individual pieces might have been made using any of the above processes.</li>
+            <li><strong>Types:</strong>
+                <ul>
+                    <li><strong>Permanent:</strong> Welding, brazing, soldering (involve heating, often melting, and sometimes adding filler material).</li>
+                    <li><strong>Temporary/Semi-permanent:</strong> Using fasteners like nuts, bolts, screws, rivets, or adhesives.</li>
+                </ul>
+            </li>
+            <li><strong>Key Features:</strong> Essential for creating complex products made of multiple parts. Widely used in <strong>fabrication</strong>.</li>
+            <li><strong>Examples:</strong> Welding parts of a ship's hull, bolting engine components together, soldering electronic components. (See Figure 1.5 showing different joint types).</li>
+        </ul>
+
+        <h2>1.3 Allied Activities</h2>
+        <p>Besides the core shaping processes, manufacturing involves other essential activities:</p>
+
+        <h3>1.3.1 Measurement</h3>
+        <ul>
+            <li><strong>What:</strong> Checking the dimensions (size, shape, smoothness, etc.) of parts during and after manufacturing to ensure they meet the design specifications.</li>
+            <li><strong>Why:</strong> To guarantee the product functions correctly and parts fit together. Includes <strong>inspection</strong>.</li>
+            <li><strong>Example:</strong> Using calipers to check the diameter of a machined rod.</li>
+        </ul>
+
+        <h3>1.3.2 Assembly</h3>
+        <ul>
+            <li><strong>What:</strong> The process of putting individual manufactured components together to create the final product. (Distinct from <em>joining</em>, which might be one step <em>within</em> making a component or <em>during</em> assembly).</li>
+            <li><strong>Why:</strong> Most products (like pens, cars, computers) are made from multiple parts that need to be assembled.</li>
+            <li><strong>Example:</strong> Putting together the body, refill, cap, etc., to make a pen; assembling the thousands of parts that make up a car. (See Figure 1.6 showing major car parts).</li>
+        </ul>
+
+        <h3>1.3.3 Property Changing</h3>
+        <ul>
+            <li><strong>What:</strong> Processes specifically designed to alter the properties of a material (like hardness, strength) to make it suitable for its function or easier to manufacture.</li>
+            <li><strong>Why:</strong> Sometimes a material needs to be soft for shaping but hard for final use. Material selection is crucial here.</li>
+            <li><strong>Example:</strong> Heat treating steel parts (like gears or tools) to make them harder and more wear-resistant after they have been machined or formed.</li>
+        </ul>
+
+        <h2>1.4 Selection of Manufacturing Process</h2>
+        <ul>
+            <li>Often, a part <em>could</em> be made by more than one process. The choice depends on:
+                <ol>
+                    <li><strong>Volume of Production:</strong> How many identical parts are needed? (influences cost per part).</li>
+                    <li><strong>Expected Quality & Properties:</strong> What level of precision, surface finish, or material strength is required?</li>
+                    <li><strong>Technical Viability:</strong> Is the process capable of making the required shape and features?</li>
+                    <li><strong>Economy:</strong> What is the total cost (materials, labor, tooling, machine time)?</li>
+                </ol>
+            </li>
+        </ul>
+
+        <h2>1.5 Types of Production</h2>
+        <p>Manufacturing activities are often categorized based on the quantity and variety of products:</p>
+
+        <h3>1.5.1 Job Shop Production</h3>
+        <ul>
+            <li><strong>Characteristics:</strong> Low volume (often just one or a few), high variety, usually custom-made to specific customer orders. Uses general-purpose machines.</li>
+            <li><strong>Examples:</strong> A custom-built racing car, a specific replacement part for old machinery, a prototype, a special tool.</li>
+        </ul>
+
+        <h3>1.5.2 Batch Production</h3>
+        <ul>
+            <li><strong>Characteristics:</strong> Medium volume (products made in batches or <code>lot sizes</code>), moderate variety. The same equipment might be used for different batches of different products. Orders may be repetitive.</li>
+            <li><strong>Examples:</strong> Batches of furniture, textbooks, clothing.</li>
+        </ul>
+
+        <h3>1.5.3 Mass Production</h3>
+        <ul>
+            <li><strong>Characteristics:</strong> High volume, low (or no) variety (identical products). Uses specialized, dedicated machines and assembly lines for maximum efficiency and low cost per unit. High initial investment.</li>
+            <li><strong>Examples:</strong> Pens, screws, standard nuts and bolts, cars on an assembly line, smartphones.</li>
+        </ul>
+
+        <h2>1.6 Professionalism and Ethics</h2>
+        <ul>
+            <li><strong>Core Idea:</strong> Engineers and technologists involved in manufacturing have a responsibility to society. Products must be safe and perform reliably.</li>
+            <li><strong>Ethics:</strong> Adherence to high ethical standards and codes (like the IEEE code mentioned) is expected to ensure public safety and trust.</li>
+        </ul>
+
+        <h2>1.7 Safety</h2>
+        <ul>
+            <li><strong>Core Idea:</strong> Safety is paramount in manufacturing due to inherent hazards. It's everyone's responsibility ("Safety First").</li>
+            <li><strong>Hazards:</strong> Manufacturing involves many potential dangers (See Table 1.1):
+                <ul>
+                    <li>Moving/rotating machine parts</li>
+                    <li>Hot materials (molten metal, hot chips)</li>
+                    <li>Sharp tools and workpiece edges</li>
+                    <li>Electrical shocks</li>
+                    <li>Noise, dust, fumes</li>
+                    <li>Falling objects</li>
+                    <li>Spills (oil, grease)</li>
+                </ul>
+            </li>
+            <li><strong>Causes of Accidents:</strong> Often human error (negligence, lack of training, haste), but also unsafe equipment or conditions.</li>
+            <li><strong>Ensuring Safety:</strong>
+                <ul>
+                    <li><strong>Equipment Design:</strong> Machines have guards, safety stops, sensors. These must <em>never</em> be bypassed.</li>
+                    <li><strong>Regulations (1.7.1):</strong> Governments enforce safety through laws (Factory Acts, Industrial Safety Acts) and standards. Employers have legal responsibilities.</li>
+                    <li><strong>General Safety Considerations (1.7.2 - Key Practices):</strong>
+                        <ol>
+                            <li>Wear appropriate clothing (no loose items), proper shoes.</li>
+                            <li><strong>Always wear safety glasses.</strong></li>
+                            <li>Get proper training before using any machine; know how to stop it quickly.</li>
+                            <li>Use tools correctly and ensure they are in good condition.</li>
+                            <li>Clamp workpieces securely before machining/processing.</li>
+                            <li>Be aware of moving parts; don't reach near them.</li>
+                            <li>Handle freshly cut metal/chips carefully (sharp edges).</li>
+                            <li>Handle cutting tools carefully (very sharp).</li>
+                            <li>Keep guards in place; don't tamper with safety devices.</li>
+                            <li>Be cautious with electrical equipment, especially near water or if wires are damaged.</li>
+                            <li>Report all injuries, even minor ones, immediately.</li>
+                            <li>Avoid working when overly tired or distracted.</li>
+                        </ol>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- END OF NEW CONTENT -->
+
+    </main>
+
+    <footer>
+        <!-- Optional: Add footer text if needed -->
+    </footer>
+
+     <!-- Font Size Control Icons HTML -->
+     <div class="font-control">
+         <span class="font-control-icon" id="fontMinusBtn" title="Decrease font size">-</span>
+         <span class="font-control-icon" id="fontPlusBtn" title="Increase font size">+</span>
+     </div>
+     <div id="fontSizeDisplay">10px</div> <!-- Initial size display -->
+
+    <script>
+        // --- Formula Copy Function (Corrected) ---
+        function copyFormulaLatex(element, latexStringToCopy) { 
+            if (!latexStringToCopy) { 
+                console.error('No LaTeX string passed to copy function.');
+                return;
+            }
+
+            navigator.clipboard.writeText(latexStringToCopy).then(() => { 
+                element.classList.add('copied');
+                const originalTitle = element.title;
+                element.title = 'Copied: ' + latexStringToCopy; 
+                setTimeout(() => {
+                    element.classList.remove('copied');
+                    element.title = originalTitle; 
+                 }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy LaTeX: ', err);
+                const originalTitle = element.title;
+                element.title = 'Copy failed!';
+                 setTimeout(() => { element.title = originalTitle; }, 1500);
+            });
+        }
+
+        // --- Font Size Control & Hold Functionality ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const minusBtn = document.getElementById('fontMinusBtn');
+            const plusBtn = document.getElementById('fontPlusBtn');
+            const display = document.getElementById('fontSizeDisplay');
+            const htmlEl = document.documentElement;
+            const bodyEl = document.body; // Target body for transition class
+
+            // Configuration
+            let currentSize = 10; // Initial size set to 10px
+            const minSize = 10;
+            const maxSize = 28; // Adjust max size if needed
+            const step = 1;
+            let displayTimeout = null;
+            let holdTimeout = null;
+            let holdInterval = null;
+            const initialHoldDelay = 400; // ms before repeat starts
+            const repeatInterval = 100;  // ms between repeats while holding
+            const mathJaxDebounceDelay = 350; // ms to wait after last change before re-typesetting
+
+            // --- Debounce Function ---
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => { clearTimeout(timeout); func(...args); };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // --- Debounced MathJax Typesetting ---
+            const queueMathJaxTypeset = debounce(() => {
+                if (window.MathJax && MathJax.typesetPromise) {
+                    console.log("Debounced: Typesetting MathJax");
+                    MathJax.typesetPromise([bodyEl]).catch((err) => console.error('MathJax typesetting error:', err));
+                 }
+            }, mathJaxDebounceDelay);
+
+            // --- Update Font Size and Display ---
+            function updateFontSize(newSize) {
+                const oldSize = currentSize;
+                currentSize = Math.max(minSize, Math.min(maxSize, newSize));
+
+                if (currentSize !== oldSize) {
+                    htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
+                    display.textContent = currentSize + 'px';
+                    display.classList.add('visible');
+
+                    if (displayTimeout) { clearTimeout(displayTimeout); }
+                    displayTimeout = setTimeout(() => {
+                        display.classList.remove('visible');
+                        displayTimeout = null;
+                    }, 1500);
+                    return true; // Indicate size changed
+                }
+                return false; // Indicate size hit limit
+            }
+
+            // --- Stop Holding Action ---
+            function stopHolding() {
+                bodyEl.classList.remove('no-font-transition'); // Re-enable transition
+                if (holdTimeout) { clearTimeout(holdTimeout); holdTimeout = null; }
+                if (holdInterval) { clearInterval(holdInterval); holdInterval = null; }
+                queueMathJaxTypeset();
+            }
+
+            // --- Start Holding Action ---
+            function startHolding(direction) {
+                bodyEl.classList.add('no-font-transition'); 
+                updateFontSize(currentSize + direction * step); 
+                // Clear previous timers to prevent multiple intervals if mousedown event fires rapidly
+                if (holdTimeout) clearTimeout(holdTimeout);
+                if (holdInterval) clearInterval(holdInterval);
+
+                holdTimeout = setTimeout(() => {
+                    holdInterval = setInterval(() => {
+                        if (!updateFontSize(currentSize + direction * step)) {
+                            stopHolding(); // Stop if size limit is reached
+                        }
+                    }, repeatInterval);
+                }, initialHoldDelay);
+            }
+
+            // --- Event Listeners ---
+            if (minusBtn && plusBtn && display) {
+                minusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(-1); });
+                plusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(1); });
+                window.addEventListener('mouseup', stopHolding); // Stop on release anywhere
+                minusBtn.addEventListener('mouseleave', stopHolding); // Stop if mouse leaves while holding
+                plusBtn.addEventListener('mouseleave', stopHolding);
+
+                // Set initial state
+                htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
+                display.textContent = currentSize + 'px';
+                console.log("Font control initialized. Current size:", currentSize);
+                 // Initial MathJax typeset on load (after ready)
+                 if (window.MathJax) {
+                     MathJax.startup.promise.then(() => {
+                         console.log("Queueing initial MathJax typeset");
+                         queueMathJaxTypeset(); // Use the debounced version even initially
+                     });
+                 }
+            } else {
+                console.error("Font control elements not found!");
+            }
+
+            // --- Horizontal Scroll Redirect for Formula Containers ---
+             const formulaContainers = document.querySelectorAll('.formula-container');
+             formulaContainers.forEach(container => {
+                 container.addEventListener('wheel', function(event) {
+                     const isScrollableHorizontally = this.scrollWidth > this.clientWidth;
+                     if (isScrollableHorizontally) {
+                         // Only prevent vertical scroll IF we are actually going to scroll horizontally
+                         if (event.deltaY !== 0) { // Check if there's vertical scroll input
+                             event.preventDefault();
+                             this.scrollLeft += event.deltaY;
+                         }
+                     }
+                 }, { passive: false });
+             });
+             console.log("Horizontal scroll override applied to formula containers.");
+
+        });
+    </script>
+
+</body>
+</html>

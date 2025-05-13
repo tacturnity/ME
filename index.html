@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter & Tutorial Summaries Menu</title>
+
+    <!-- Google Fonts - Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Embedded CSS Styles -->
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Keyframes for Animations (FadeIn, PopIn) */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes popIn {
+             from { opacity: 0; transform: scale(0.98) translateY(8px); }
+             to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Fonts & Base Styling */
+        body {
+            font-family: 'Roboto Mono', monospace;
+            color: #e0e0e0; /* Light grey text for readability */
+            line-height: 1.7;
+            padding: 25px;
+            /* Static Dark Background */
+            background-color: #1a1a1a; /* Simple dark background */
+            min-height: 100vh;
+        }
+
+        /* Headings */
+        h1, h2 {
+            font-family: 'Roboto Mono', monospace;
+            text-align: center;
+            margin-bottom: 1.5em; /* Default bottom margin */
+        }
+
+        h1 {
+            font-size: 2.4em;
+            color: #ffffff; /* White heading */
+            font-weight: 700;
+            padding-bottom: 12px;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em; /* Keep spacing below H1 */
+            border-bottom: 2px solid #ffffff; /* White border */
+            animation: fadeIn 0.8s ease-out both;
+            animation-delay: 0.1s;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 1.6em;
+            color: #cccccc; /* Lighter grey subheading */
+            font-weight: 500;
+            margin-top: 2.5em; /* Add more space ABOVE H2 */
+            margin-bottom: 1.8em; /* Keep space below H2 */
+            animation: fadeIn 0.8s ease-out both;
+            animation-delay: 0.3s;
+        }
+
+        h2:first-of-type {
+            margin-top: 0; /* Remove extra top margin for the first H2 */
+        }
+
+
+        /* Main Content Area */
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: rgba(30, 30, 30, 0.85); /* Dark grey, slightly transparent */
+            padding: 35px 45px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border */
+            animation: fadeIn 0.8s ease-out both;
+            animation-delay: 0.2s;
+        }
+
+        /* List Styling (Applies to both #chapter-list and #tutorial-list) */
+        #chapter-list,
+        #tutorial-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #chapter-list li,
+        #tutorial-list li {
+            background-color: rgba(45, 45, 45, 0.9); /* Slightly darker item background */
+            margin-bottom: 14px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
+            border-left: 4px solid transparent; /* Placeholder */
+            opacity: 0; /* Start hidden for animation */
+        }
+
+        /* Staggered Animation Class (Applied via JS) */
+        #chapter-list li.loaded,
+        #tutorial-list li.loaded {
+             animation: popIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        #chapter-list li:hover,
+        #tutorial-list li:hover {
+            background-color: rgba(60, 60, 60, 0.95); /* Lighter grey on hover */
+            transform: translateY(-3px);
+            border-left-color: #a6e3a1; /* Keep green accent on hover border */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        #chapter-list a,
+        #tutorial-list a {
+            display: block;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: #f5f5f5; /* Bright white/off-white links */
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.25s ease;
+            letter-spacing: 0.5px;
+        }
+
+        #chapter-list li:hover a,
+        #tutorial-list li:hover a {
+            color: #a6e3a1; /* Green text on hover */
+            transform: translateX(4px); /* Nudge text */
+        }
+
+        /* Loading/Error Message Styling (Using classes now) */
+        .loading-message,
+        .error-message {
+            opacity: 1; /* Ensure visible immediately */
+            color: #a0a0a0; /* Muted grey text */
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(45, 45, 45, 0.7) !important; /* Match list item base */
+            border-radius: 6px;
+            border-left: none !important;
+            animation: fadeIn 0.6s ease-out both;
+            animation-delay: 0.5s; /* Delay initial appearance slightly */
+        }
+
+        .error-message {
+             color: #dcdcdc !important; /* Brighter grey for error text */
+             font-weight: 500;
+             font-style: normal;
+             background-color: rgba(80, 80, 80, 0.2) !important; /* Tinted grey background */
+             border: 1px solid rgba(220, 220, 220, 0.2); /* Subtle light grey border */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 70px;
+            padding-bottom: 35px;
+            font-size: 0.85em;
+            color: #888888; /* Dim grey for footer */
+             animation: fadeIn 1s ease-out both;
+             animation-delay: 0.7s; /* Adjust if needed based on list load time */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Chapter & Tutorial Summaries</h1> <!-- Updated H1 -->
+    </header>
+
+    <main>
+        <!-- Chapters Section -->
+        <h2>Available Chapters</h2>
+        <ul id="chapter-list">
+            <!-- Chapter links will be dynamically inserted here -->
+            <li class="loading-message">Loading chapters...</li>
+        </ul>
+
+        <!-- Tutorials Section -->
+        <h2>Available Tutorials</h2>
+        <ul id="tutorial-list">
+            <!-- Tutorial links will be dynamically inserted here -->
+            <li class="loading-message">Loading tutorials...</li>
+        </ul>
+    </main>
+
+    <footer>
+        <!-- Content removed -->
+    </footer>
+
+    <!-- Embedded JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- CONFIGURATION ---
+            const githubUsername = 'tacturnity';
+            const githubRepoName = 'ME';
+
+            // Chapter specific config
+            const chaptersApiPath = 'chapters'; // The FOLDER *containing* the chapter HTML files
+            const chaptersRelativeLinkPath = 'chapters'; // Path used for constructing the <a href="..."> links
+
+            // Tutorial specific config
+            const tutorialsApiPath = 'tutorials'; // The FOLDER *containing* the tutorial HTML files
+            const tutorialsRelativeLinkPath = 'tutorials'; // Path used for constructing the <a href="..."> links
+            // ---------------------
+
+
+            /**
+             * Fetches files from a GitHub repository path and populates a list element.
+             * @param {string} listElementId - The ID of the UL element to populate.
+             * @param {string} apiPath - The path within the repo to fetch (e.g., 'chapters', 'tutorials').
+             * @param {string} relativeLinkPath - The base path for constructing the href links.
+             * @param {string} sectionTitle - A descriptive title for the section (e.g., 'Chapters', 'Tutorials') used in messages.
+             */
+            function fetchAndPopulateList(listElementId, apiPath, relativeLinkPath, sectionTitle) {
+                const listElement = document.getElementById(listElementId);
+                const loadingMessage = listElement.querySelector('.loading-message'); // Find loading message within this list
+
+                if (!listElement) {
+                    console.error(`Element with ID '${listElementId}' not found.`);
+                    return;
+                }
+
+                const encodedPath = apiPath.split('/').map(encodeURIComponent).join('/');
+                const apiUrl = `https://api.github.com/repos/${githubUsername}/${githubRepoName}/contents/${encodedPath}`;
+
+                console.log(`Fetching ${sectionTitle} list from: ${apiUrl}`);
+
+                fetch(apiUrl)
+                    .then(response => {
+                         if (!response.ok) {
+                            return response.json().catch(() => null).then(errorData => {
+                                let errorMsg = `GitHub API error (${sectionTitle}): ${response.status} ${response.statusText}`;
+                                if (errorData && errorData.message) {
+                                    if (response.status === 404 && errorData.message.toLowerCase().includes("not found")) {
+                                        errorMsg = `GitHub API error (${sectionTitle}): 404 Not Found.`;
+                                        errorMsg += ` Could not find the folder '${apiPath}' in the repository '${githubUsername}/${githubRepoName}'. Please ensure the path is correct and the repository is public.`;
+                                    } else { errorMsg += ` - ${errorData.message}`; }
+                                } else if (response.status === 404) { errorMsg += ` (Is the API path '${apiPath}' correct relative to the repo root? Is the repository public?)`; }
+                                if (response.status === 403) { errorMsg += ` (API rate limit exceeded or private repository access issue?)`; }
+                                throw new Error(errorMsg);
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                         if (loadingMessage && loadingMessage.parentNode === listElement) {
+                             listElement.removeChild(loadingMessage);
+                        }
+
+                        if (!Array.isArray(data)) {
+                            console.error(`Received data for ${sectionTitle} is not an array:`, data);
+                            if (typeof data === 'object' && data !== null && data.message && data.message.includes("This repository is empty")) {
+                                throw new Error(`The repository '${githubUsername}/${githubRepoName}' appears to be empty.`);
+                            } else if (typeof data === 'object' && data !== null && data.message) {
+                                throw new Error(`GitHub API returned an object instead of an array for ${sectionTitle}: ${data.message}. Check if '${apiPath}' is a file instead of a directory.`);
+                            }
+                            throw new Error(`Invalid data format received from GitHub API for ${sectionTitle}. Expected an array of files/directories.`);
+                        }
+
+                        const htmlFiles = data.filter(item => item.type === 'file' && item.name.toLowerCase().endsWith('.html'));
+
+                        if (htmlFiles.length === 0) {
+                            const li = document.createElement('li');
+                            const directoriesFound = data.some(item => item.type === 'dir');
+                            if (directoriesFound) {
+                                li.textContent = `No HTML files found directly inside the '${apiPath}' directory. HTML files must be in this folder, not subfolders.`;
+                            } else if (data.length === 0) {
+                                li.textContent = `The '${apiPath}' directory is empty.`;
+                            } else {
+                                li.textContent = `No HTML files found in the '${apiPath}' directory.`;
+                            }
+                            li.classList.add('error-message');
+                            listElement.appendChild(li);
+                            return;
+                        }
+
+                        // --- ALPHABETICAL SORTING LOGIC ---
+                        // Sorts by full filename alphabetically (e.g., "Tutorial - 10.html" before "Tutorial - 9.html")
+                        // --- NUMERIC/ALPHABETICAL SORTING LOGIC ---
+htmlFiles.sort((a, b) => {
+    // Function to extract the first number found in a string
+    const extractNumber = (str) => {
+        const match = str.match(/\d+/); // Find the first sequence of digits
+        return match ? parseInt(match[0], 10) : NaN; // Return number or NaN
+    };
+
+    const numA = extractNumber(a.name);
+    const numB = extractNumber(b.name);
+
+    // If both names contain numbers, sort numerically
+    if (!isNaN(numA) && !isNaN(numB)) {
+        if (numA !== numB) {
+            return numA - numB; // Sort by number ascending
+        }
+        // If numbers are the same, fall back to alphabetical for secondary sorting (e.g., "Tut 1a", "Tut 1b")
+        // Although not strictly needed for the current filenames, it's good practice.
+    }
+
+    // Fallback: If numbers are the same, or one/both don't have numbers, sort alphabetically
+    return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+});
+// ------------------------------------------
+                        // -----------------------------------
+
+                        htmlFiles.forEach((file, index) => {
+                            const listItem = document.createElement('li');
+                            const link = document.createElement('a');
+
+                            // --- TITLE GENERATION ---
+                            let rawTitle = file.name.replace(/\.html$/i, '');
+                            let displayTitle = rawTitle.replace(/^\[[a-z]\][-_\s]*/i, ''); // Remove prefix like [a] or [A]
+                            displayTitle = displayTitle.replace(/[-_]/g, ' ').trim(); // Replace separators, trim
+                            // ------------------------
+
+
+                            link.href = `${relativeLinkPath}/${encodeURIComponent(file.name)}`;
+                            link.textContent = displayTitle;
+
+                            listItem.appendChild(link);
+                            listElement.appendChild(listItem);
+
+                            // Apply staggered animation
+                            listItem.style.animationDelay = `${index * 0.07}s`;
+                            listItem.classList.add('loaded');
+                        });
+                    })
+                    .catch(error => {
+                        console.error(`Error loading ${sectionTitle}:`, error);
+                        if (loadingMessage && loadingMessage.parentNode === listElement) {
+                            listElement.removeChild(loadingMessage);
+                        }
+                        const errorItem = document.createElement('li');
+                        errorItem.textContent = error.message || `Failed to load ${sectionTitle} list. Check console for details.`;
+                        errorItem.classList.add('error-message');
+                        listElement.appendChild(errorItem);
+                    });
+            }
+
+            // --- Initiate Fetching for Both Sections ---
+            fetchAndPopulateList('chapter-list', chaptersApiPath, chaptersRelativeLinkPath, 'Chapters');
+            fetchAndPopulateList('tutorial-list', tutorialsApiPath, tutorialsRelativeLinkPath, 'Tutorials');
+
+        });
+    </script>
+
+</body>
+</html>
