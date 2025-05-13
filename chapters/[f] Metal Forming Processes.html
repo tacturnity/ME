@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" style="--base-font-size: 10px;"> <!-- Default font size set to 10px -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 12: Metal Forming Processes</title> <!-- CHANGE THIS TITLE -->
+
+    <!-- Google Fonts - Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+          tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true, tags: 'ams' },
+          options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'tex2jax_ignore', processHtmlClass: 'tex2jax_process' },
+          svg: { fontCache: 'global' },
+          startup: {
+            ready: () => { console.log('MathJax ready.'); MathJax.startup.defaultReady(); MathJax.startup.promise.then(() => console.log('MathJax initial typeset complete.')); }
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Keyframes for Animations (FadeIn) */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Fonts & Base Styling */
+        body {
+            font-family: 'Roboto Mono', monospace;
+            color: #e0e0e0;
+            line-height: 1.7;
+            padding: 25px;
+            background-color: #1a1a1a;
+            min-height: 100vh;
+            font-size: var(--base-font-size); /* Controlled by JS */
+            transition: font-size 0.2s ease-in-out; /* Default smooth transition */
+            padding-bottom: 80px; /* Space for controls */
+            overflow-x: hidden;
+        }
+        /* Class to disable transition during rapid changes (e.g., hold) */
+        body.no-font-transition {
+            transition: none !important;
+        }
+
+        /* Headings */
+        h1, h2 { font-family: 'Roboto Mono', monospace; text-align: center; margin-bottom: 1.5em; }
+        h1 { font-size: 2.4em; color: #ffffff; font-weight: 700; padding-bottom: 12px; margin-top: 1.5em; margin-bottom: 1.5em; border-bottom: 2px solid #ffffff; animation: fadeIn 0.8s ease-out both; animation-delay: 0.1s; letter-spacing: -0.5px; }
+        h2 { font-size: 1.6em; color: #cccccc; font-weight: 500; margin-top: 30px; margin-bottom: 1.5em; border-bottom: 1px solid #555555; padding-bottom: 5px; animation: fadeIn 0.8s ease-out both; animation-delay: 0.3s; }
+        h3 { font-size: 1.2em; color: #bdbdbd; font-weight: 500; margin-top: 1.8em; margin-bottom: 0.8em; padding-bottom: 3px; border-bottom: 1px dotted #444; text-align: left; }
+        h4 { font-size: 1.1em; color: #b0b0b0; font-weight: 500; margin-top: 1.5em; margin-bottom: 0.7em; text-align: left; }
+
+
+        /* Main Content Area */
+        main { max-width: 800px; margin: 40px auto; background-color: rgba(30, 30, 30, 0.85); padding: 35px 45px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); border: 1px solid rgba(255, 255, 255, 0.1); animation: fadeIn 0.8s ease-out both; animation-delay: 0.2s; }
+        /* Paragraph and List styling */
+        p { margin-bottom: 1em; color: inherit; font-size: inherit; }
+        ul, ol { margin-left: 25px; list-style: disc; margin-bottom: 1em; }
+        ol { list-style: decimal; }
+        li { margin-bottom: 8px; font-size: inherit; }
+        strong { font-weight: 500; color: #ffffff; }
+
+        /* Formula Container Styling (with horizontal scroll) */
+        .formula-container {
+            margin: 15px 0 20px 0; padding: 10px 20px; background-color: rgba(45, 45, 45, 0.9);
+            border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto; overflow-y: hidden; /* Horizontal scroll, no vertical */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer; color: #e0e0e0; border-left: 4px solid transparent;
+            font-family: 'Roboto Mono', monospace; position: relative; white-space: nowrap;
+        }
+        .formula-container:hover { background-color: rgba(60, 60, 60, 0.95); border-left-color: #a6e3a1; border-color: rgba(166, 227, 161, 0.5); }
+        .formula-container.copied { background-color: rgba(166, 227, 161, 0.2); border-color: #a6e3a1; border-left-color: #a6e3a1; }
+        /* Optional Scrollbar Style */
+        .formula-container::-webkit-scrollbar { height: 8px; }
+        .formula-container::-webkit-scrollbar-track { background: rgba(60, 60, 60, 0.5); border-radius: 4px; }
+        .formula-container::-webkit-scrollbar-thumb { background-color: #888; border-radius: 4px; border: 2px solid transparent; background-clip: content-box; }
+        .formula-container::-webkit-scrollbar-thumb:hover { background-color: #aaa; }
+        /* MathJax display style */
+        .formula-container mjx-container[display="true"] { margin: 0.5em 0 !important; text-align: left !important; display: inline-block; vertical-align: middle; }
+        
+        table { border-collapse: collapse; margin: 1em auto; background-color: rgba(40,40,40,0.8); width: auto; }
+        th, td { border: 1px solid #555; padding: 8px 12px; text-align: center; }
+        th { background-color: rgba(60,60,60,0.9); color: #ddd; }
+
+        pre {
+            background-color: #2b2b2b; padding: 10px; border-radius: 5px; 
+            color: #ccc; overflow-x: auto; white-space: pre; 
+            font-family: 'Roboto Mono', monospace; font-size: 0.95em;
+            margin: 1em 0;
+        }
+
+        /* Footer Styling */
+        footer { text-align: center; margin-top: 70px; padding-bottom: 35px; font-size: 0.85em; color: #888888; animation: fadeIn 1s ease-out both; animation-delay: 0.7s; }
+
+        /* Simple Dark Theme Scrollbar for Page */
+        body::-webkit-scrollbar { width: 10px; }
+        body::-webkit-scrollbar-track { background: #2a2a2a; border-radius: 5px; }
+        body::-webkit-scrollbar-thumb { background-color: #777; border-radius: 5px; border: 2px solid #2a2a2a; background-clip: content-box; }
+        body::-webkit-scrollbar-thumb:hover { background-color: #999; }
+        html { scrollbar-width: thin; scrollbar-color: #777 #2a2a2a; }
+        @supports (scrollbar-gutter: stable) { html { scrollbar-gutter: stable; } }
+
+        /* Font Control Icons CSS */
+        .font-control { position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px 25px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; pointer-events: none; z-index: 10; }
+        .font-control-icon { font-size: 28px; font-weight: bold; color: #777; cursor: pointer; padding: 8px; transition: color 0.3s ease; pointer-events: auto; user-select: none; line-height: 1; display: inline-block; }
+        .font-control-icon:hover { color: #a6e3a1; }
+        #fontSizeDisplay { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); background-color: rgba(45, 45, 45, 0.9); color: #e0e0e0; padding: 6px 12px; border-radius: 5px; font-size: 13px; font-family: 'Roboto Mono', monospace; z-index: 11; opacity: 0; transition: opacity 0.3s ease-in-out; pointer-events: none; white-space: nowrap; }
+        #fontSizeDisplay.visible { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Chapter 12: Metal Forming Processes</h1>
+    </header>
+
+    <main>
+        <p>This chapter explores metal forming, a method of shaping components by applying external forces to cause plastic deformation. It contrasts forming with machining and casting, classifies forming processes based on applied stresses, and delves into specific bulk deformation processes like rolling, extrusion, and forging, including their variations, terminologies, equipment, parameters, and examples.</p>
+
+        <h2>12.1 Introduction</h2>
+        <ul>
+            <li><strong>Metal Forming:</strong> A process where desired size and shape are obtained by plastically deforming metals under external forces.</li>
+            <li>Also known as <strong>bulk deformation processes</strong> (due to large forces) or <strong>plastic working</strong> (deformation in the plastic state).</li>
+            <li><strong>Example:</strong> Blacksmith forging - hammering heated iron (compressive force).</li>
+            <li>Performed on <strong>metal forming machines</strong>. Can be done <strong>hot</strong> (material heated to soften) or <strong>cold</strong>.</li>
+            <li><strong>Classification by Stress Type:</strong>
+                <ol>
+                    <li><strong>Compressive:</strong> Forging, Rolling, Extrusion.</li>
+                    <li><strong>Tensile:</strong> Stretch forming, Creep forming, Vacuum forming.</li>
+                    <li><strong>Shearing:</strong> Shearing, Blanking, Fine blanking.</li>
+                    <li><strong>Combined Tensile & Compressive:</strong> Wire drawing, Deep drawing, Ironing.</li>
+                </ol>
+            </li>
+            <li><strong>Comparison with Machining/Casting (using Fig 12.1 component):</strong>
+                <ul>
+                    <li>Machining: Requires removing large amounts of material (chips), involves material loss, skill-dependent for contours.</li>
+                    <li>Casting: Involves pattern/mould making, melting, pouring, solidification, potential material waste (risers/gating), may need further machining.</li>
+                    <li>Forming (e.g., Stretch forming over a die, Fig 12.2): No material loss, potentially less skilled operation needed, fewer steps.</li>
+                </ul>
+            </li>
+            <li><strong>Material Limitation:</strong> Metal forming generally requires ductile materials; brittle materials cannot be shaped this way. Machining/casting work for most materials.</li>
+        </ul>
+
+        <h2>12.2 Rolling Processes</h2>
+        <p>Shaping metals/alloys by passing them between rolls.</p>
+        <p>Causes plastic deformation: reduces thickness, increases length and width.</p>
+        <p>Widely used (~90% of metal products). Developed late 1500s.</p>
+        <p><strong>Products:</strong> Rails, girders, plates, sheets, strips.</p>
+
+        <h3>12.2.1 Rolling operation (Figure 12.3)</h3>
+        <ul>
+            <li><strong>Ingot</strong> (metal piece) passed between two rolls rotating oppositely.</li>
+            <li>Space between rolls adjusted for desired thickness.</li>
+            <li>Rolls squeeze ingot, reducing thickness/cross-section, increasing width/length.</li>
+            <li><strong>Structural changes:</strong> Grains elongate in rolling direction. Material velocity higher at exit than entry.
+                <ul>
+                    <li><em>Hot rolling:</em> Grains start refining after passing stress zone.</li>
+                    <li><em>Cold rolling:</em> Grains retain elongated shape.</li>
+                </ul>
+            </li>
+            <li><strong>Arc of Contact (AB):</strong> Distance metal is in contact with rolls.</li>
+            <li><strong>Angle of Contact (Angle of Bite) (AOB):</strong> Angle subtended by arc AB at roll center.</li>
+            <li><strong>Friction:</strong> Between rolls and metal provides grip to draw metal through. Higher friction allows greater reduction but increases force/power needs and can damage surface. Lubricants used for low friction.</li>
+        </ul>
+
+        <h4>Pressure Distribution (Figure 12.4)</h4>
+        <ul>
+            <li>Varies along arc of contact. Minimum at entry (A) and exit (B).</li>
+            <li>Maximum at a point C (neutral point or no-slip point) between A and B.</li>
+            <li>From A to C: Metal moves slower than roll surface.</li>
+            <li>From C to B: Metal moves faster than roll surface.</li>
+            <li>(Why rolling vs stretching?) Stretching causes non-uniform deformation and may cause fracture beyond yield point.</li>
+        </ul>
+
+        <h3>12.2.2 Terminology used in rolling</h3>
+        <ul>
+            <li><strong>Ingot:</strong> Initial cast product (circular, square, etc.).</li>
+            <li><strong>Bloom:</strong> First product from hot rolling ingot. Square cross-section, area > 225 cm².</li>
+            <li><strong>Billet:</strong> Minimum cross-section ~4cm x 4cm. Can be hot worked ingot or casting suitable for hot working.</li>
+            <li><strong>Slab:</strong> Hot rolled ingot, area > 100 cm², width at least twice thickness.</li>
+            <li><strong>Plate:</strong> Rolled intermediate product, thickness > 6 mm.</li>
+            <li><strong>Sheet:</strong> Rolled intermediate product, thickness < 6 mm.</li>
+            <li><strong>Strip:</strong> Rolled product, thickness < 6 mm, width < 300 mm. (Sheet width > 300 mm).</li>
+        </ul>
+
+        <h3>12.2.3 Rolling mills (Arrangement of rolls) (Figure 12.5)</h3>
+        <ul>
+            <li><strong>Two-high rolling mill (Fig. 12.5a):</strong> Two rolls, rotate one direction. Workpiece passed through, taken over top, returned for next pass.</li>
+            <li><strong>Two-high reversing mill (Fig. 12.5b):</strong> Rolls can reverse direction. Rolling done in both directions.</li>
+            <li><strong>Three-high rolling mill (Fig. 12.5c):</strong> Top/bottom rolls driven, middle rotates by friction. Material rolled between bottom/middle pair, then lifted and rolled between top/middle pair.</li>
+            <li><strong>Four-high rolling mill (Fig. 12.5d):</strong> Two small diameter <strong>working rolls</strong> supported by two large diameter <strong>back-up rolls</strong>. Provides rigidity, reduces power (less friction area). Used for sheet rolling.</li>
+            <li><strong>Continuous (Tandem) mill (Fig. 12.5e):</strong> Multiple sets of rolls (<strong>stands</strong>) in series. For high production. Roll speeds synchronized as strip velocity increases at each stand. Has <strong>uncoiler</strong> (feeds stock) and <strong>windup reel</strong> (coils product).</li>
+            <li><strong>Planetary rolling mill (Fig. 12.5f):</strong> Reduces slabs to strips in single pass. Multiple small rollers ("planets") around large back-up rolls.</li>
+            <li><strong>Universal rolling mill (Fig. 12.5g):</strong> Two pairs of rolls: one horizontal (like two-high), one vertical. Rolls edges simultaneously. For beams, I-sections, plates needing finished edges.</li>
+        </ul>
+
+        <h3>12.2.4 Rolling parameters</h3>
+        <ul>
+            <li><strong>Absolute draught (draft) ($\delta t$):</strong> Initial thickness ($t_1$) - Final thickness ($t_2$).
+                <p>$\delta t = t_1 - t_2$ (Eq. 12.1)</p>
+            </li>
+            <li><strong>Maximum possible draft ($\delta_{max}$):</strong> Determined by friction ($\mu$) and roll radius (R).
+                <p>$\delta_{max} = \mu^2 R$ (Eq. 12.2) (Higher friction/radius allows more reduction).</p>
+            </li>
+            <li><strong>Absolute elongation ($\delta l$):</strong> Final length ($l_2$) - Initial length ($l_1$).
+                <p>$\delta l = l_2 - l_1$ (Eq. 12.3)</p>
+            </li>
+            <li><strong>Absolute spread ($\delta b$):</strong> Final breadth ($b_2$) - Initial breadth ($b_1$).
+                <p>$\delta b = b_2 - b_1$ (Eq. 12.4)</p>
+            </li>
+            <li><strong>Relative draught ($R_t$):</strong> (Absolute draught / Initial thickness) x 100.
+                <p>$R_t = (\delta t / t_1) \times 100$ (Eq. 12.5)</p>
+            </li>
+            <li><strong>Elongation coefficient ($\mu_L$):</strong> Ratio of final length to initial length.
+                <p>$\mu_L = l_2 / l_1$ (Eq. 12.6)</p>
+            </li>
+            <li><strong>Angle of contact ($\alpha$):</strong> Angle subtended by arc of contact AB at roll center.
+                <p>$\cos \alpha = 1 - \delta t / D$ (Eq. 12.7) (where D = roll diameter).</p>
+            </li>
+            <li><strong>Coefficient of friction ($\mu$):</strong>
+                <p>$\mu = \tan \alpha$ (Eq. 12.8)</p>
+            </li>
+        </ul>
+
+        <h2>12.3 Thread Rolling (Figure 12.6)</h2>
+        <p>Cold working process.</p>
+        <p>Cylindrical workpiece (diameter $\approx$ pitch diameter) rotated between hard dies with negative thread contour.</p>
+        <p>Can use two flat dies (one stationary, one reciprocating).</p>
+        <p>Versatile: can roll different threads simultaneously, knurling, left/right hand threads.</p>
+
+        <h2>12.4 Extrusion Process</h2>
+        <p>Reducing cross-section of a metal block (billet) by forcing it through a die orifice under high pressure.</p>
+        <p>Principle like squeezing toothpaste. Orifice shape determines product shape.</p>
+        <p>Can achieve high reduction ratios (e.g., 100:1 for soft metals).</p>
+        <ul>
+            <li><strong>Hot extrusion:</strong> Done at high temps (50-75% of melting point).</li>
+            <li><strong>Cold extrusion:</strong> Done at room temp or slightly elevated temp.</li>
+        </ul>
+        <p>High temps/pressures affect die life; good lubrication needed.</p>
+        <p><strong>Extrudable metals:</strong> Lead, tin, Al alloys, copper, titanium, molybdenum, vanadium, low carbon steel.</p>
+        <p><strong>Products (Fig 12.7):</strong> Complex cross-sections, collapsible tubes, cans, cylinders, window frames, railings, structural parts, gear blanks.</p>
+        <p><strong>Difficult to extrude:</strong> Stainless steel (high yield strength, sticks to die).</p>
+
+        <h3>12.4.1 Types of extrusion</h3>
+        <ol>
+            <li><strong>Direct (Forward) Extrusion (Figure 12.8):</strong>
+                <ul>
+                    <li>Billet in container. Ram pushes billet. Metal flows through die in <em>same direction</em> as ram motion. Small discard amount left.</li>
+                </ul>
+            </li>
+            <li><strong>Indirect (Backward) Extrusion (Figure 12.9):</strong>
+                <ul>
+                    <li>Die mounted on hollow ram. Ram pushes die into billet. Metal flows through die opening in direction <em>opposite</em> to ram motion (through hollow ram).</li>
+                    <li>No friction between billet and container wall (billet is stationary relative to container).</li>
+                </ul>
+            </li>
+            <li><strong>Impact Extrusion (Figure 12.12, 12.13):</strong>
+                <ul>
+                    <li>Cold extrusion, higher speeds. Punch strikes unheated slug in die cavity with single blow.</li>
+                    <li>Metal squirts up around punch (backward flow). High pressure fills cavity instantly.</li>
+                    <li>Forms tube-shaped part (Fig 12.12).</li>
+                    <li>For toothpaste tubes (Fig 12.13): Hole punched in blank center, die shapes neck. Tube blown off ram by compressed air.</li>
+                    <li>Low cost, excellent surface quality, high production rates (millions/year).</li>
+                    <li>Applications: Collapsible tubes, ointments, shell cases, soft drink cans.</li>
+                </ul>
+            </li>
+            <li><strong>Side Extrusion (Figure 12.14):</strong>
+                <ul>
+                    <li>Material movement perpendicular to ram motion. Metal flows sideways.</li>
+                    <li>Requires very high force. Mostly for non-ferrous or highly plastic metals (lead).</li>
+                    <li>Example shows cable producing seamless tube.</li>
+                </ul>
+            </li>
+            <li><strong>Tube Extrusion (Figure 12.15):</strong>
+                <ul>
+                    <li>Form of direct extrusion. Uses a <strong>mandrel</strong> to shape inside of tube.</li>
+                    <li>Die containing mandrel pushed through billet, then press stem extrudes metal through die and around mandrel.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>12.4.2 Extrusion pressure in direct and indirect extrusion (Figure 12.10)</h3>
+        <ul>
+            <li><strong>Extrusion pressure = Extrusion force / Billet cross-sectional area.</strong></li>
+            <li>Initial rapid pressure rise (compressing billet to fill container).</li>
+            <li><strong>Direct:</strong> Pressure peaks (breakthrough pressure), then decreases as billet length reduces (less friction).</li>
+            <li><strong>Indirect:</strong> Pressure relatively constant after initial rise (no billet-container friction). Represents stress needed for deformation.</li>
+            <li>Indirect seems attractive, but limited by need for hollow ram (limits size/pressure). Complex process.</li>
+            <li>Rapid pressure rise at end of stroke (difficult to push last bit). Extrusion halted before this.</li>
+        </ul>
+        <p><strong>Direction of flow (Figure 12.11):</strong> Initially diagonal, becomes perpendicular to ram near end of cycle.</p>
+
+        <h2>12.5 Forging Processes</h2>
+        <p>Shaping metal (usually heated) by plastic deformation using compressive force (hammer blows or press).</p>
+        <ul>
+            <li><strong>Process:</strong> Metal heated (elastic properties disappear, becomes soft), shaped by pressure following path of least resistance.</li>
+            <li><strong>Effects:</strong> Refines grain structure, improves physical properties (strength, ductility, toughness) compared to base metal. Yields high strength-to-weight ratio parts.</li>
+            <li>Consistent products, no porosity/voids/inclusions (unlike casting). Finishing operations don't expose defects. Good surface for coating.</li>
+            <li>Ancient technique (4000-8000 BC). Produces discrete parts (unlike continuous rolling products).</li>
+            <li><strong>Why forge? (vs cast/machine):</strong> If high strength, shock/vibration resistance needed. Properties uniform, predictable. Often achieved by hot working (rolling or forging).</li>
+            <li><strong>Typical products (Figure 12.16):</strong> Various discrete parts shown.</li>
+        </ul>
+
+        <h3>12.5.1 Forging materials</h3>
+        <p>Must be ductile.</p>
+        <ul>
+            <li>Readily forged: Low/medium carbon steel, wrought iron, copper alloys, Al alloys, Mg alloys.</li>
+            <li>Difficult: High carbon/alloy steel, stainless steel, nickel alloys.</li>
+            <li>Usually starts from bars or billets (round/rectangular).</li>
+        </ul>
+
+        <h3>12.5.2 Classification of forging operations</h3>
+        <ul>
+            <li><strong>Open Die Forging (Figure 12.17):</strong>
+                <ul>
+                    <li>Deformation between flat or simple shaped dies. Workpiece not fully enclosed.</li>
+                    <li>Simplest example: <strong>Upsetting</strong> (compressing height, increasing diameter). Workpiece bulges (barrel shape) due to friction at die interface and faster cooling of surfaces. No barreling if friction=0 (hypothetical).</li>
+                </ul>
+            </li>
+            <li><strong>Closed Die Forging (Impression Die Forging) (Figure 12.18):</strong>
+                <ul>
+                    <li>Workpiece deformed between two die halves containing impressions of final shape.</li>
+                    <li>Workpiece enclosed in cavity. High pressure forces metal to fill cavity.</li>
+                    <li>Excess metal forms <strong>flash</strong> (thin extrusion at parting line), acts as seal, ensures cavity fills. Flash trimmed later.</li>
+                    <li>Requires lubricant (prevents sticking, thermal insulation).</li>
+                    <li>Produces precision parts, close tolerances.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>12.5.3 Types of forging operations</h3>
+        <ul>
+            <li><strong>Hand Forging (Figure 12.19):</strong>
+                <ul>
+                    <li>Blacksmith method: heated metal shaped by repeated hand hammer blows on an anvil.</li>
+                    <li>Positioning/turning part manually. <strong>Fuller</strong> (rounded chisel edge) used to draw out metal.</li>
+                    <li>Quality depends on smith's skill. Simple shapes only. (Horseshoes).</li>
+                </ul>
+            </li>
+            <li><strong>Drop Forging (Drop Hammer Forging) (Figure 12.20):</strong>
+                <ul>
+                    <li>Mechanized hammer. Heated bar/billet hammered into die cavities.</li>
+                    <li>Die halves on ram and anvil. Ram raised (e.g., compressed air), falls by gravity.</li>
+                    <li>Used for copper alloys, steel, titanium, refractory alloys. Hydraulic hammer shown.</li>
+                </ul>
+            </li>
+            <li><strong>Press Forging:</strong>
+                <ul>
+                    <li>Slow squeezing action using a press (mechanical or hydraulic).</li>
+                    <li>Transfers force uniformly/gradually through bulk. For large forgings (up to 125 kg, 3m long).</li>
+                    <li>More accurate than drop forging. Slower action allows metal flow time.</li>
+                    <li>Needs ejectors, venting (escape of air/lubricant).</li>
+                    <li>Quieter than drop forging. More energy transmitted to work (less absorbed by machine/foundation).</li>
+                    <li>Mechanical presses: 25-100 strokes/min, 100-12,000 tons force.</li>
+                    <li>Used for Al, Mg, Be alloys, bronze, brass.</li>
+                </ul>
+            </li>
+            <li>
+                <h4>12.5.4 Rotary Swaging (Figure 12.21)</h4> <!-- Numbering implies it's a subtype, but format of text is list item -->
+                <ul>
+                    <li>Forging process for shaping round bars/tubes.</li>
+                    <li>Workpiece fed into rapidly rotating dies housed in a cage.</li>
+                    <li>As cage rotates, hammers contact rollers, giving blows to workpiece through dies.</li>
+                    <li>Dies reciprocate at high frequency, deforming workpiece.</li>
+                    <li>High production rate compared to other forging methods.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>12.6 Solved Examples</h2>
+
+        <h3>Example 12.1</h3>
+        <p>Rolling 30mm stock to 10mm (stage 1, $\alpha$=40°), then 10mm to 5mm (stage 2, $\alpha$=30°). Find min roll diameter (D) and friction coeff ($\mu$).</p>
+        <ul>
+            <li><strong>Stage 1:</strong> $t_1$=30, $t_2$=10 $\Rightarrow \delta t = 20$ mm. $\alpha = 40^\circ$.
+                <ul>
+                    <li>$\cos 40^\circ = 1 - 20 / D \Rightarrow 0.766 = 1 - 20 / D$</li>
+                    <li>$20 / D = 1 - 0.766 = 0.234 \Rightarrow D = 20 / 0.234 \approx 85.47 \text{ mm}$. (PDF: 85.49 mm)</li>
+                    <li>$\mu = \tan 40^\circ \approx 0.839$. (PDF: 0.84)</li>
+                </ul>
+            </li>
+            <li><strong>Stage 2:</strong> $t_1$=10, $t_2$=5 $\Rightarrow \delta t = 5$ mm. $\alpha = 30^\circ$.
+                <ul>
+                    <li>$\cos 30^\circ = 1 - 5 / D \Rightarrow 0.866 = 1 - 5 / D$</li>
+                    <li>$5 / D = 1 - 0.866 = 0.134 \Rightarrow D = 5 / 0.134 \approx 37.31 \text{ mm}$. (PDF: 37.32 mm)</li>
+                    <li>$\mu = \tan 30^\circ \approx 0.577$. (PDF: 0.58)</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Example 12.2 (Figure 12.22)</h3>
+        <p>Procedure for forging a rivet head.</p>
+        <ol>
+            <li>Keep blank in die, position kickout pin for desired length. Punch has negative head shape.</li>
+            <li>Apply force through punch; head formed at end of stroke.</li>
+            <li>Remove rivet using kickout pin.</li>
+        </ol>
+
+        <h3>Example 12.3 (Figure 12.23)</h3>
+        <p>Stages in forging a bolt head from a rod.</p>
+        <ol>
+            <li>Gather material at one end (upsetting) (Fig 12.23a).</li>
+            <li>Produce round head (Fig 12.23b).</li>
+            <li>Produce hexagonal head (Fig 12.23c).</li>
+        </ol>
+        <!-- END OF NEW CONTENT -->
+
+    </main>
+
+    <footer>
+        <!-- Optional: Add footer text if needed -->
+    </footer>
+
+     <!-- Font Size Control Icons HTML -->
+     <div class="font-control">
+         <span class="font-control-icon" id="fontMinusBtn" title="Decrease font size">-</span>
+         <span class="font-control-icon" id="fontPlusBtn" title="Increase font size">+</span>
+     </div>
+     <div id="fontSizeDisplay">10px</div> <!-- Initial size display -->
+
+    <script>
+        // --- Formula Copy Function (Corrected) ---
+        function copyFormulaLatex(element, latexStringToCopy) { 
+            if (!latexStringToCopy) { 
+                console.error('No LaTeX string passed to copy function.');
+                return;
+            }
+
+            navigator.clipboard.writeText(latexStringToCopy).then(() => { 
+                element.classList.add('copied');
+                const originalTitle = element.title;
+                element.title = 'Copied: ' + latexStringToCopy; 
+                setTimeout(() => {
+                    element.classList.remove('copied');
+                    element.title = originalTitle; 
+                 }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy LaTeX: ', err);
+                const originalTitle = element.title;
+                element.title = 'Copy failed!';
+                 setTimeout(() => { element.title = originalTitle; }, 1500);
+            });
+        }
+
+        // --- Font Size Control & Hold Functionality ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const minusBtn = document.getElementById('fontMinusBtn');
+            const plusBtn = document.getElementById('fontPlusBtn');
+            const display = document.getElementById('fontSizeDisplay');
+            const htmlEl = document.documentElement;
+            const bodyEl = document.body; // Target body for transition class
+
+            // Configuration
+            let currentSize = 10; // Initial size set to 10px
+            const minSize = 10;
+            const maxSize = 28; // Adjust max size if needed
+            const step = 1;
+            let displayTimeout = null;
+            let holdTimeout = null;
+            let holdInterval = null;
+            const initialHoldDelay = 400; // ms before repeat starts
+            const repeatInterval = 100;  // ms between repeats while holding
+            const mathJaxDebounceDelay = 350; // ms to wait after last change before re-typesetting
+
+            // --- Debounce Function ---
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => { clearTimeout(timeout); func(...args); };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // --- Debounced MathJax Typesetting ---
+            const queueMathJaxTypeset = debounce(() => {
+                if (window.MathJax && MathJax.typesetPromise) {
+                    console.log("Debounced: Typesetting MathJax");
+                    MathJax.typesetPromise([bodyEl]).catch((err) => console.error('MathJax typesetting error:', err));
+                 }
+            }, mathJaxDebounceDelay);
+
+            // --- Update Font Size and Display ---
+            function updateFontSize(newSize) {
+                const oldSize = currentSize;
+                currentSize = Math.max(minSize, Math.min(maxSize, newSize));
+
+                if (currentSize !== oldSize) {
+                    htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
+                    display.textContent = currentSize + 'px';
+                    display.classList.add('visible');
+
+                    if (displayTimeout) { clearTimeout(displayTimeout); }
+                    displayTimeout = setTimeout(() => {
+                        display.classList.remove('visible');
+                        displayTimeout = null;
+                    }, 1500);
+                    return true; // Indicate size changed
+                }
+                return false; // Indicate size hit limit
+            }
+
+            // --- Stop Holding Action ---
+            function stopHolding() {
+                bodyEl.classList.remove('no-font-transition'); // Re-enable transition
+                if (holdTimeout) { clearTimeout(holdTimeout); holdTimeout = null; }
+                if (holdInterval) { clearInterval(holdInterval); holdInterval = null; }
+                queueMathJaxTypeset();
+            }
+
+            // --- Start Holding Action ---
+            function startHolding(direction) {
+                bodyEl.classList.add('no-font-transition'); 
+                updateFontSize(currentSize + direction * step); 
+                // Clear previous timers to prevent multiple intervals if mousedown event fires rapidly
+                if (holdTimeout) clearTimeout(holdTimeout);
+                if (holdInterval) clearInterval(holdInterval);
+
+                holdTimeout = setTimeout(() => {
+                    holdInterval = setInterval(() => {
+                        if (!updateFontSize(currentSize + direction * step)) {
+                            stopHolding(); // Stop if size limit is reached
+                        }
+                    }, repeatInterval);
+                }, initialHoldDelay);
+            }
+
+            // --- Event Listeners ---
+            if (minusBtn && plusBtn && display) {
+                minusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(-1); });
+                plusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(1); });
+                window.addEventListener('mouseup', stopHolding); // Stop on release anywhere
+                minusBtn.addEventListener('mouseleave', stopHolding); // Stop if mouse leaves while holding
+                plusBtn.addEventListener('mouseleave', stopHolding);
+
+                // Set initial state
+                htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
+                display.textContent = currentSize + 'px';
+                console.log("Font control initialized. Current size:", currentSize);
+                 // Initial MathJax typeset on load (after ready)
+                 if (window.MathJax) {
+                     MathJax.startup.promise.then(() => {
+                         console.log("Queueing initial MathJax typeset");
+                         queueMathJaxTypeset(); // Use the debounced version even initially
+                     });
+                 }
+            } else {
+                console.error("Font control elements not found!");
+            }
+
+            // --- Horizontal Scroll Redirect for Formula Containers ---
+             const formulaContainers = document.querySelectorAll('.formula-container');
+             formulaContainers.forEach(container => {
+                 container.addEventListener('wheel', function(event) {
+                     const isScrollableHorizontally = this.scrollWidth > this.clientWidth;
+                     if (isScrollableHorizontally) {
+                         // Only prevent vertical scroll IF we are actually going to scroll horizontally
+                         if (event.deltaY !== 0) { // Check if there's vertical scroll input
+                             event.preventDefault();
+                             this.scrollLeft += event.deltaY;
+                         }
+                     }
+                 }, { passive: false });
+             });
+             console.log("Horizontal scroll override applied to formula containers.");
+
+        });
+    </script>
+
+</body>
+</html>

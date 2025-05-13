@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" style="--base-font-size: 10px;"> <!-- Default font size set to 10px -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 15: Mechanical Joining Processes</title> <!-- CHANGE THIS TITLE -->
+
+    <!-- Google Fonts - Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+          tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true, tags: 'ams' },
+          options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'tex2jax_ignore', processHtmlClass: 'tex2jax_process' },
+          svg: { fontCache: 'global' },
+          startup: {
+            ready: () => { console.log('MathJax ready.'); MathJax.startup.defaultReady(); MathJax.startup.promise.then(() => console.log('MathJax initial typeset complete.')); }
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Keyframes for Animations (FadeIn) */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Fonts & Base Styling */
+        body {
+            font-family: 'Roboto Mono', monospace;
+            color: #e0e0e0;
+            line-height: 1.7;
+            padding: 25px;
+            background-color: #1a1a1a;
+            min-height: 100vh;
+            font-size: var(--base-font-size); /* Controlled by JS */
+            transition: font-size 0.2s ease-in-out; /* Default smooth transition */
+            padding-bottom: 80px; /* Space for controls */
+            overflow-x: hidden;
+        }
+        /* Class to disable transition during rapid changes (e.g., hold) */
+        body.no-font-transition {
+            transition: none !important;
+        }
+
+        /* Headings */
+        h1, h2 { font-family: 'Roboto Mono', monospace; text-align: center; margin-bottom: 1.5em; }
+        h1 { font-size: 2.4em; color: #ffffff; font-weight: 700; padding-bottom: 12px; margin-top: 1.5em; margin-bottom: 1.5em; border-bottom: 2px solid #ffffff; animation: fadeIn 0.8s ease-out both; animation-delay: 0.1s; letter-spacing: -0.5px; }
+        h2 { font-size: 1.6em; color: #cccccc; font-weight: 500; margin-top: 30px; margin-bottom: 1.5em; border-bottom: 1px solid #555555; padding-bottom: 5px; animation: fadeIn 0.8s ease-out both; animation-delay: 0.3s; }
+        h3 { font-size: 1.2em; color: #bdbdbd; font-weight: 500; margin-top: 1.8em; margin-bottom: 0.8em; padding-bottom: 3px; border-bottom: 1px dotted #444; text-align: left; }
+        h4 { font-size: 1.1em; color: #b0b0b0; font-weight: 500; margin-top: 1.5em; margin-bottom: 0.7em; text-align: left; }
+
+
+        /* Main Content Area */
+        main { max-width: 800px; margin: 40px auto; background-color: rgba(30, 30, 30, 0.85); padding: 35px 45px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); border: 1px solid rgba(255, 255, 255, 0.1); animation: fadeIn 0.8s ease-out both; animation-delay: 0.2s; }
+        /* Paragraph and List styling */
+        p { margin-bottom: 1em; color: inherit; font-size: inherit; }
+        ul, ol { margin-left: 25px; list-style: disc; margin-bottom: 1em; }
+        ol { list-style: decimal; }
+        li { margin-bottom: 8px; font-size: inherit; }
+        strong { font-weight: 500; color: #ffffff; }
+
+        /* Formula Container Styling (with horizontal scroll) */
+        .formula-container {
+            margin: 15px 0 20px 0; padding: 10px 20px; background-color: rgba(45, 45, 45, 0.9);
+            border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto; overflow-y: hidden; /* Horizontal scroll, no vertical */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer; color: #e0e0e0; border-left: 4px solid transparent;
+            font-family: 'Roboto Mono', monospace; position: relative; white-space: nowrap;
+        }
+        .formula-container:hover { background-color: rgba(60, 60, 60, 0.95); border-left-color: #a6e3a1; border-color: rgba(166, 227, 161, 0.5); }
+        .formula-container.copied { background-color: rgba(166, 227, 161, 0.2); border-color: #a6e3a1; border-left-color: #a6e3a1; }
+        /* Optional Scrollbar Style */
+        .formula-container::-webkit-scrollbar { height: 8px; }
+        .formula-container::-webkit-scrollbar-track { background: rgba(60, 60, 60, 0.5); border-radius: 4px; }
+        .formula-container::-webkit-scrollbar-thumb { background-color: #888; border-radius: 4px; border: 2px solid transparent; background-clip: content-box; }
+        .formula-container::-webkit-scrollbar-thumb:hover { background-color: #aaa; }
+        /* MathJax display style */
+        .formula-container mjx-container[display="true"] { margin: 0.5em 0 !important; text-align: left !important; display: inline-block; vertical-align: middle; }
+        
+        table { border-collapse: collapse; margin: 1em auto; background-color: rgba(40,40,40,0.8); width: auto; }
+        th, td { border: 1px solid #555; padding: 8px 12px; text-align: center; }
+        th { background-color: rgba(60,60,60,0.9); color: #ddd; }
+
+        pre {
+            background-color: #2b2b2b; padding: 10px; border-radius: 5px; 
+            color: #ccc; overflow-x: auto; white-space: pre; 
+            font-family: 'Roboto Mono', monospace; font-size: 0.95em;
+            margin: 1em 0;
+        }
+
+        /* Footer Styling */
+        footer { text-align: center; margin-top: 70px; padding-bottom: 35px; font-size: 0.85em; color: #888888; animation: fadeIn 1s ease-out both; animation-delay: 0.7s; }
+
+        /* Simple Dark Theme Scrollbar for Page */
+        body::-webkit-scrollbar { width: 10px; }
+        body::-webkit-scrollbar-track { background: #2a2a2a; border-radius: 5px; }
+        body::-webkit-scrollbar-thumb { background-color: #777; border-radius: 5px; border: 2px solid #2a2a2a; background-clip: content-box; }
+        body::-webkit-scrollbar-thumb:hover { background-color: #999; }
+        html { scrollbar-width: thin; scrollbar-color: #777 #2a2a2a; }
+        @supports (scrollbar-gutter: stable) { html { scrollbar-gutter: stable; } }
+
+        /* Font Control Icons CSS */
+        .font-control { position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px 25px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; pointer-events: none; z-index: 10; }
+        .font-control-icon { font-size: 28px; font-weight: bold; color: #777; cursor: pointer; padding: 8px; transition: color 0.3s ease; pointer-events: auto; user-select: none; line-height: 1; display: inline-block; }
+        .font-control-icon:hover { color: #a6e3a1; }
+        #fontSizeDisplay { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); background-color: rgba(45, 45, 45, 0.9); color: #e0e0e0; padding: 6px 12px; border-radius: 5px; font-size: 13px; font-family: 'Roboto Mono', monospace; z-index: 11; opacity: 0; transition: opacity 0.3s ease-in-out; pointer-events: none; white-space: nowrap; }
+        #fontSizeDisplay.visible { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Chapter 15: Mechanical Joining Processes</h1>
+    </header>
+
+    <main>
+        <p>This chapter focuses on methods to join two or more parts of the same or different materials to create a final product or structure. It covers the classification of joining processes (permanent, temporary, semi-permanent), and then delves into specific methods like welding (arc, gas, resistance, TIG), soldering, brazing, and mechanical fasteners (threaded and non-threaded).</p>
+
+        <h2>15.1 Introduction (Figure 15.1, 15.2)</h2>
+        <p>Many products are made by joining individual parts (e.g., furniture, computers, bridges, towers). It's often impractical to make complex items as a single piece.</p>
+        <p>Joining is essential when:</p>
+        <ul>
+            <li>Manufacturing a desired system (e.g., Fig 15.1: a complex shaft best made by joining three simpler pieces, especially for small batches, to save on machining/casting costs).</li>
+            <li>As an alternative to other processes.</li>
+            <li>In product assembly.</li>
+            <li>For repairing broken/worn parts.</li>
+        </ul>
+        <p><strong>Example (Fig 15.1):</strong> A stepped shaft (a) can be made by machining a large bar (wastage) or casting (requires patterns, furnace). For small batches, joining three simpler machined parts (b) is more economical with minimal wastage.</p>
+        <p><strong>Example (Fig 15.2):</strong> A complex tubular part is very difficult to make as a single piece; better to make parts and join them.</p>
+        <p>Common joining processes: welding, soldering, brazing, mechanical fastening.</p>
+
+        <h2>15.2 Classification of Joining Processes</h2>
+        <p><strong>Based on type of joint produced:</strong></p>
+        <ol>
+            <li><strong>Permanent joint:</strong> Properties similar to base metal; parts become one piece. Cannot be separated without damage/destruction. (e.g., welding, adhesive bonding).</li>
+            <li><strong>Temporary joint:</strong> Easily dismantled without damaging parts. (e.g., most mechanical fasteners).</li>
+            <li><strong>Semi-permanent joint:</strong> Allows separation with some difficulty, but not normally dismantled. (e.g., rivets).</li>
+        </ol>
+        <p><strong>Based on process used for making the joint:</strong></p>
+        <ul>
+            <li>Welding</li>
+            <li>Brazing (considered permanent, but can be dismantled by heating for repair)</li>
+            <li>Soldering (considered permanent, but can be dismantled by heating for repair)</li>
+            <li>Mechanical fasteners (rivets, bolts, nuts, screws, etc.)</li>
+            <li>Adhesive bonding</li>
+        </ul>
+        <p><strong>Choice of process depends on:</strong> Application, loads/stresses, joint design, materials, size/shape.</p>
+        <p>(Figure 15.3) shows examples of joints: soldered butt joint (a), butt joint with weld bead (b), corner joint with screw (c), lap joint with rivet (d), lap joint with fillet weld (e), assembly with bolt and nut (f).</p>
+
+        <h2>15.3 Welding Process</h2>
+        <p>Metallurgically joining two metal pieces by fusing them to form essentially a single piece. Technology is >2500 years old.</p>
+        <p>Most metals (even plastics/glasses with proper techniques) are weldable.</p>
+        <p>Heat, pressure, or both melt metal edges to fuse permanently. Filler material may be used.</p>
+        <p><strong>Heat sources:</strong> Electric arc, electric current (resistance), gas flame, chemical reaction.</p>
+        <p><strong>Terminology:</strong></p>
+        <ul>
+            <li><strong>Base metal:</strong> Workpieces to be joined.</li>
+            <li><strong>Weld bead (Bead):</strong> Material deposited by welding, appears separate from base metal. (Fig. 15.3b).</li>
+            <li><strong>Puddle:</strong> Portion of base metals at joint melted during welding.</li>
+            <li><strong>Weld pass:</strong> Movement of welding torch from one end of joint to other, resulting in a joint.</li>
+            <li><strong>Tack weld:</strong> Temporary small weld at ends to hold workpieces together during welding.</li>
+        </ul>
+
+        <h3>15.3.1 Types of welding processes (based on heat source)</h3>
+        <ol>
+            <li><strong>Arc welding:</strong> Heat from electric arc.</li>
+            <li><strong>Gas welding:</strong> Heat from flame (burning oxygen + combustible gas like acetylene).</li>
+        </ol>
+        <p>Other specialized processes like resistance welding (heat from electric current through parts) are beyond scope.</p>
+
+        <h3>15.3.2 Pre-welding requirements</h3>
+        <ul>
+            <li>Base metals must be clean (free from dirt, grease, oil, moisture) for proper fusion and high-quality welds.</li>
+            <li>Joint edges must be prepared for proper joint formation.</li>
+        </ul>
+
+        <h3>15.3.3 Types of welding joints (Figure 15.4)</h3>
+        <p>Defines relative positions of pieces.</p>
+        <ul>
+            <li><strong>Butt joint (Fig. 15.4a):</strong> Pieces joined edge to edge.</li>
+            <li><strong>Lap joint (Fig. 15.4b):</strong> Pieces overlap.</li>
+            <li><strong>Corner joint (Fig. 15.4c, d):</strong> Pieces joined at an angle at their edges.</li>
+            <li><strong>T-joint (Fig. 15.4e):</strong> One piece perpendicular to another, forming a 'T'.</li>
+        </ul>
+        <p>(Position of weld marked with 'x').</p>
+
+        <h3>15.3.4 Edge preparations for welding (Figure 15.5 - for butt joints)</h3>
+        <p>Essential for complete penetration and sound welds, especially in thick plates.</p>
+        <ul>
+            <li><strong>Square faces (Fig. 15.5a):</strong> For thin plates. Heat may not melt entire thickness if too thick.</li>
+            <li><strong>Root:</strong> Max thickness weldable with square faces.</li>
+            <li><strong>Grooves (for thicker plates):</strong>
+                <ul>
+                    <li><strong>Single-V (Fig. 15.5b), Single-U (Fig. 15.5d):</strong> Cut leaving a root thickness. Allows deeper penetration.</li>
+                    <li><strong>Double-V (Fig. 15.5c), Double-U (Fig. 15.5e):</strong> For very thick material, allows welding from both sides.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>15.3.5 Welding technique (Figure 15.6)</h3>
+        <p>Direction of heat concentration.</p>
+        <ul>
+            <li><strong>Forehand welding (Fig. 15.6b):</strong> Torch points in direction of welding. Heat not concentrated as much into metal ahead. Used for relatively thin parts.</li>
+            <li><strong>Backhand welding (Fig. 15.6c):</strong> Torch points opposite to direction of welding. Heat concentrated into metal ahead. For thicker parts.</li>
+        </ul>
+
+        <h2>15.4 Arc Welding</h2>
+        <p>Widely accepted: best, most economical, practical method.</p>
+        <p><strong>Principle:</strong> Requires electrode, low voltage-high current power source, cables, workpiece.</p>
+        <p>Workpiece connected to one cable, electrode to other. Electric arc struck between workpiece and electrode. Large current jumps, producing immense heat. Electrode moved along seam to melt and fuse metal.</p>
+
+        <h3>15.4.1 Electron theory of arc column (Figure 15.7)</h3>
+        <ul>
+            <li>Electric arc struck: electrons flow from cathode (electrode) to anode (workpiece).</li>
+            <li>Electrons (small mass, high velocity) convert kinetic energy to heat upon striking workpiece.</li>
+            <li>Positively charged ions (anode to cathode) provide protective shield for electrons.</li>
+            <li>~50% electrical energy becomes heat. ~2/3 of released heat is at anode (positive pole) in DC systems. AC: heat equalized.</li>
+        </ul>
+
+        <h3>15.4.2 Arc welding process (Figure 15.8)</h3>
+        <ul>
+            <li>Heat from electrical energy. Electrodes: thin metal/graphite rods.</li>
+            <li>Arc initiated by striking electrode tip against workpiece, then quickly withdrawing to maintain arc.</li>
+            <li>Arc temp ~30,000°C, melts base metal and electrode tip. Electrode metal mixes with molten base metal.</li>
+            <li>Electrode consumed, moved down at uniform speed along weld line.</li>
+            <li><strong>Coated electrodes (Fig. 15.8b):</strong> Coating acts as <strong>flux</strong>.
+                <ul>
+                    <li>Forms gaseous shield around weld, protects molten metal from atmosphere (oxygen).</li>
+                    <li>Flux melts, mixes with impurities in molten pool, floats to top.</li>
+                    <li>Forms <strong>slag</strong> on cooling, protects hot weld bead from further contamination.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>15.4.3 Weld penetration (Figure 15.9)</h3>
+        <p>Depth to which base metal is affected.</p>
+        <ul>
+            <li>Mechanical strength depends on penetration depth.</li>
+            <li><strong>DC current:</strong>
+                <ul>
+                    <li><strong>Straight polarity (Workpiece Positive) (Fig. 15.9a):</strong> More heat at work, more penetration. For thicker workpieces.</li>
+                    <li><strong>Reverse polarity (Workpiece Negative) (Fig. 15.9b):</strong> ~2/3 heat at electrode tip, less penetration. For thinner workpieces.</li>
+                </ul>
+            </li>
+            <li><strong>AC current (Fig. 15.9c):</strong> Combines characteristics of both.</li>
+            <li><strong>Operating conditions:</strong> Current, voltage, welding speed.
+                <ul>
+                    <li>Too low current: poor penetration. Too high: excessive spatter, irregular deposits.</li>
+                    <li>Too high speed: less metal deposition, small beads, weak joints. Too slow: overlapping beads, no more penetration.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>15.5 Gas Welding (Figure 15.10)</h2>
+        <p>Fusion welding: heat from combustion of oxygen + fuel gas (acetylene, propane, butane, natural gas).</p>
+        <p>Gases burned with oxygen (not air, as N₂ lowers flame temp).</p>
+        <p><strong>Oxy-acetylene welding:</strong> Most common. Oxygen supports combustion, acetylene is fuel. Highest flame temp (~3300°C). Oxy-hydrogen ~2200°C.</p>
+        <p>Fuel gases are hydrocarbons (C, H). Burned with pure O₂, produce CO₂ + H₂O (can damage reactive metals like Ti). Metals welded should not be reactive to combustion products.</p>
+        <p>Commonly used for repairs.</p>
+
+        <h3>15.5.1 Gas welding process (Fig. 15.10a - setup, Fig. 15.10b - combustion triangle)</h3>
+        <ul>
+            <li><strong>Equipment:</strong> Oxygen cylinder, Acetylene cylinder, hoses, regulators (reduce cylinder pressure to working line pressure), torch.</li>
+            <li><strong>Operation:</strong> Gases mixed in torch mixing chamber, ejected through nozzle/tip, ignited by spark. (Kindling temp reached for combustion - Fig 15.10b).</li>
+            <li>Flame type/temp controlled by O₂/Acetylene ratio via torch valves.</li>
+            <li>Sound weld depends on: torch size, flame, filler material, torch movement. Joint heated till weld pool forms, filler metal added as rod/wire.</li>
+            <li><strong>Combustion reaction (oxy-acetylene):</strong>
+                <p>$2\text{C}_2\text{H}_2 + 5\text{O}_2 \rightarrow 4\text{CO}_2 + 2\text{H}_2\text{O} \text{ (vapour) + Heat } (\approx 300 \text{ kcal/mole})$</p>
+            </li>
+            <li>Temperature generated: ~3300°C.</li>
+        </ul>
+
+        <h3>15.5.2 Types of flames</h3>
+        <ol>
+            <li><strong>Carbonizing flame (Reducing flame):</strong> Excess acetylene. Low flame temp. Unburnt carbon forced into molten metal, makes ferrous weld bead hard/brittle.</li>
+            <li><strong>Oxidizing flame:</strong> Excess oxygen. Hottest flame. Causes metal to burn/oxidize quickly.</li>
+            <li><strong>Neutral flame (Balanced flame):</strong> Equal O₂/Acetylene. Little effect on base metal. Produces sound weld beads compared to others.</li>
+        </ol>
+
+        <h3>15.5.3 Fluxes</h3>
+        <ul>
+            <li>During fusion, O₂ (atmosphere/torch) forms oxides with molten metal. Oxides entrapped -> low quality/strength welds.</li>
+            <li>Flux removes oxides from parent metal surfaces, helps oxides float in molten pool. Reacts with oxides to form <strong>slag</strong> (low melting point, low density).</li>
+            <li>Slag floats, protects weld from oxidation during solidification/cooling.</li>
+            <li>Common fluxes: Sodium, potassium, lithium, borax. Applied as paste, powder, liquid, solid coating, or gas.</li>
+        </ul>
+
+        <h3>15.5.4 Filler material</h3>
+        <ul>
+            <li>Generally added. Melted by flame, fills space between pieces.</li>
+            <li>Must be same composition as base metal.</li>
+            <li>Some metals welded without extra filler: <strong>autogenous</strong> welding.</li>
+        </ul>
+
+        <h2>15.6 Resistance Welding (Figure 15.11, 15.12)</h2>
+        <p>Also known as electric welding. Heat from electrical resistance between two members to be joined.</p>
+        <p>Heat generated: $H = I^2Rtk$ (Eq. 15.1)</p>
+        <ul>
+            <li>$H$: heat (Joules), $I$: current (Amps), $R$: resistance (Ohms), $t$: time (secs), $k$: constant for losses (<1).</li>
+        </ul>
+        <p><strong>Five basic methods:</strong> Spot, Seam, Projection, Flash, Upset welding. (Focus on first two).</p>
+
+        <h3>15.6.1 Spot welding (Figure 15.11)</h3>
+        <ul>
+            <li>Simplest, commonest. For sheets.</li>
+            <li>Two solid cylindrical electrode tips placed on lap joint of two sheets. High current passed.</li>
+            <li>Heat at contact point melts metals locally. Current off, melt solidifies -> small circular weld (nugget).</li>
+            <li>Strength depends on surface roughness/cleanliness. Surfaces must be cleaned.</li>
+        </ul>
+
+        <h3>15.6.2 Seam welding (Figure 15.12)</h3>
+        <ul>
+            <li>Cylindrical spot welding electrodes replaced by electrode wheels (rollers).</li>
+            <li>Metals drawn between rollers. Continuous AC supply.</li>
+            <li>Electrically conducting wheels produce continuous weld (series of overlapping spot welds) when current is high in AC cycle. (Fig. 15.12b shows continuous spot welds).</li>
+        </ul>
+
+        <h3>15.6.3 Tungsten inert gas (TIG) welding (Gas Tungsten Arc Welding - GTAW) (Figure 15.13)</h3>
+        <ul>
+            <li>Arc welding process with non-consumable tungsten electrode in protective inert gas atmosphere.</li>
+            <li><strong>Process:</strong> Tungsten electrode in holder strikes arc with base metal. Electrode shielded by inert gas (Argon, CO₂, Helium). Arc melts base metal, filler supplied from rod to puddle.</li>
+            <li>Backside of joint also protected (carbon block bars or shielding gas).</li>
+            <li>For Al, Mg (oxidize/burn easily), stainless steel, Monel, tungsten, bronze. Can weld dissimilar metals.</li>
+            <li>Does not produce deep penetration; needs more passes for thick metals. Slow, expensive.</li>
+        </ul>
+
+        <h2>15.7 Soldering and Brazing</h2>
+        <p>Metal parts heated (not melted), molten filler flows between closely placed adjacent surfaces by capillary action.</p>
+        <p>Strong joint forms on cooling by bond between parent metal and filler metal atoms.</p>
+        <p>Suitable for dissimilar metals.</p>
+        <p><strong>Distinction:</strong></p>
+        <ul>
+            <li><strong>Soldering:</strong> Filler metal melts <em>below</em> 450°C.</li>
+            <li><strong>Brazing:</strong> Filler metal melts <em>above</em> 450°C (up to 900°C, but below base metal melting point).</li>
+        </ul>
+
+        <h3>15.7.1 Soldering (Figure 15.14)</h3>
+        <ul>
+            <li>For low mechanical strength joints. Filler = <strong>solder</strong> (low melting point).</li>
+            <li><strong>Wetting:</strong> Metallic surface must be capable of being wetted by solder. Liquid solubility needed. Atoms of solder may form solid solution or intermetallic compound with base metal.</li>
+            <li><strong>Cleanliness:</strong> Wetting affected by surface cleanliness. Thin oxide film inhibits wetting. Flux used to dissolve oxide film and protect surface until wetted.</li>
+            <li><strong>Basic operations:</strong>
+                <ol>
+                    <li><strong>Shaping and fitting parts:</strong> Close fit for capillary action. Large gap -> no capillary action, weak joint.</li>
+                    <li><strong>Cleaning surfaces:</strong> Remove dirt, grease for strong atomic bonds.</li>
+                    <li><strong>Flux application:</strong> Essential. Clean metal rapidly oxidizes with heat. Flux breaks/removes oxide film.</li>
+                    <li><strong>Application of heat and solder:</strong> Parts held (vice/fixture). Heat parts to solder-melting/alloying temp <em>before</em> applying solder. Heat via soldering iron (heated electrically/other). Soldering iron's sole function is to heat the joint.
+                        <ul>
+                            <li>(Fig 15.14): Soldering simple lap joint.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </li>
+            <li>Heat applied -> flux breaks oxide film -> solder applied, melts -> metal-to-metal contact via molten solder -> cool.</li>
+            <li>Other heating: blowtorches, dipping in molten solder.</li>
+            <li><strong>Solder:</strong> Mostly Pb-Sn alloys. May contain Cd, Sb. Composition determines properties. Forms: bar, stick, fill, wire, strip, rings. Cored solder wire: tube of solder filled with flux.</li>
+            <li><strong>Fluxes:</strong> Remove non-metallic oxide film for mutual metallic contact. Not part of joint. Examples: ZnCl₂, NH₄Cl, HCl.</li>
+        </ul>
+
+        <h3>15.7.2 Brazing</h3>
+        <ul>
+            <li>AWS definition: Coalescence by heating >500°C, using non-ferrous filler metal (melts <900°C, below base metal MP), distributed by capillary action.</li>
+            <li>For thicker parts or stronger joints. Similar/dissimilar parts.</li>
+            <li>Like soldering: success depends on molten filler (low surface tension) flowing easily over properly heated, clean base metal.</li>
+            <li>Base metal not melted. Some diffusion/alloying of filler with base metal occurs.</li>
+            <li>Surfaces must be chemically clean. Fluxes (e.g., Borax) remove oxides. Borax dissolves most common metal oxides.</li>
+            <li><strong>Methods (based on heating):</strong>
+                <ol>
+                    <li><strong>Torch brazing:</strong> Most widely used. Heat from oxy-acetylene gas flame (carbonizing flame suitable).</li>
+                    <li><strong>Furnace brazing:</strong> For large number of small/medium parts. Filler (granular, powder, strips) placed at joint, assembly heated in furnace.</li>
+                </ol>
+            </li>
+        </ul>
+
+        <h2>15.8 Mechanical Fasteners (Figure 15.15 - 15.22)</h2>
+        <p>Devices to hold two parts together. Easily unfastened, parts separated without damage.</p>
+        <p>Mostly for temporary/semi-permanent joints. Welding gives permanent.</p>
+        <p><strong>Applications:</strong></p>
+        <ol>
+            <li>Where dismantling needed (replacement/maintenance).</li>
+            <li>Materials not weldable/brazable/solderable (e.g., wood). No heat/filler needed.</li>
+        </ol>
+        <p>Huge variety. Boeing 747 uses ~2.5 million fasteners.</p>
+        <p><strong>Selection factors:</strong> Service type, materials joined, joint type, required strength.</p>
+        <p><strong>Categories:</strong></p>
+        <ol>
+            <li><strong>Threaded fasteners:</strong> Threads cut on them (entire or part length). (Nuts, bolts, screws).</li>
+            <li><strong>Non-threaded fasteners:</strong> No threads. (Rivets).</li>
+        </ol>
+
+        <h3>15.8.1 Threaded fasteners (Fig 15.15 - methodology)</h3>
+        <ul>
+            <li>Internal threads = nuts. External threads = bolts/screws.</li>
+            <li>Threads may be cut in holes in parts.</li>
+            <li>Joining by frictional surface contact between internal/external threads. Relative motion -> axial motion, tightening parts.</li>
+            <li><strong>Screw fasteners (Fig 15.16):</strong> Single piece, external threads. One part usually has internal threads.
+                <ul>
+                    <li><strong>Machine screws (Fig 15.16):</strong> For assembly where one part has tapped hole. Various heads (countersunk, raised countersunk, round, hexagon) and tails (flat, conical, spherical). Screwdriver for slot, spanner for hex. (Fig 15.16e - grub screw).</li>
+                    <li><strong>Socket screws (Fig 15.17):</strong> Hexagonal socket in head. Tightened with L-shaped <strong>Allen key</strong>. Higher strength joints than machine screws. (Cap head, countersunk head shown).</li>
+                    <li><strong>Self-tapping screws:</strong> For fast assembly. No pre-drilled/tapped holes needed. Hardened, produce own thread in pilot hole. Good vibration resistance. Tapping op not needed.</li>
+                </ul>
+            </li>
+            <li><strong>Bolts and nuts (Fig 15.18 - bolts, Fig 15.19 - nuts):</strong> Two-part. Bolt: headed cylindrical bar, threaded shank. Used with nuts for stronger joints. Bolts usually partly threaded (twice bolt diameter).
+                <ul>
+                    <li>(Fig 15.18): Hexagonal head, Square head bolts.</li>
+                    <li>(Fig 15.19): Hexagonal nut (common), Wing nut (hand tightening).</li>
+                </ul>
+            </li>
+            <li><strong>Studs (Fig 15.20):</strong> Headless bolt, threaded both ends. For joining parts where both have threaded holes. (e.g., engine cylinder head to block).</li>
+            <li><strong>Locking devices:</strong> Prevent loosening from vibration/stress (lock pins, lock nuts, locking washers, headed keys).</li>
+        </ul>
+
+        <h3>15.8.2 Non-threaded fasteners (Figure 15.21, 15.22)</h3>
+        <ul>
+            <li><strong>Rivets (Fig. 15.21):</strong> Cylindrical bar, pre-formed head one end. Other end deformed after fitting.
+                <ul>
+                    <li>For semi-permanent joints (need not be normally dismantled). Can be permanent if parts never dismantled.</li>
+                    <li>Unfastening by chipping off head (can damage parts).</li>
+                    <li>Parts (Fig. 15.21): Head, Body/Shank, Tail.</li>
+                    <li>Used in structural/machine work (vibration), poor weldability metals. (Boiler drums, roof trusses, bridges, towers). For shear stresses, not tension.</li>
+                    <li><strong>Riveting Process (Fig. 15.22):</strong>
+                        <ol>
+                            <li>Drill holes in parts (Fig 15.22a).</li>
+                            <li>Align holes, insert rivet (Fig 15.22b).</li>
+                            <li>Deform tail end to form second head (Fig 15.22c) (manual hammer or riveting machine).</li>
+                            <li>Finished joint (Fig 15.22d).</li>
+                        </ol>
+                    </li>
+                    <li>Unfastening: cut one head, blow rivet out.</li>
+                </ul>
+            </li>
+        </ul>
+        <!-- END OF NEW CONTENT -->
+
+    </main>
+
+    <footer>
+        <!-- Optional: Add footer text if needed -->
+    </footer>
+
+     <!-- Font Size Control Icons HTML -->
+     <div class="font-control">
+         <span class="font-control-icon" id="fontMinusBtn" title="Decrease font size">-</span>
+         <span class="font-control-icon" id="fontPlusBtn" title="Increase font size">+</span>
+     </div>
+     <div id="fontSizeDisplay">10px</div> <!-- Initial size display -->
+
+    <script>
+        // --- Formula Copy Function (Corrected) ---
+        function copyFormulaLatex(element, latexStringToCopy) { 
+            if (!latexStringToCopy) { 
+                console.error('No LaTeX string passed to copy function.');
+                return;
+            }
+
+            navigator.clipboard.writeText(latexStringToCopy).then(() => { 
+                element.classList.add('copied');
+                const originalTitle = element.title;
+                element.title = 'Copied: ' + latexStringToCopy; 
+                setTimeout(() => {
+                    element.classList.remove('copied');
+                    element.title = originalTitle; 
+                 }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy LaTeX: ', err);
+                const originalTitle = element.title;
+                element.title = 'Copy failed!';
+                 setTimeout(() => { element.title = originalTitle; }, 1500);
+            });
+        }
+
+        // --- Font Size Control & Hold Functionality ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const minusBtn = document.getElementById('fontMinusBtn');
+            const plusBtn = document.getElementById('fontPlusBtn');
+            const display = document.getElementById('fontSizeDisplay');
+            const htmlEl = document.documentElement;
+            const bodyEl = document.body; // Target body for transition class
+
+            // Configuration
+            let currentSize = 10; // Initial size set to 10px
+            const minSize = 10;
+            const maxSize = 28; // Adjust max size if needed
+            const step = 1;
+            let displayTimeout = null;
+            let holdTimeout = null;
+            let holdInterval = null;
+            const initialHoldDelay = 400; // ms before repeat starts
+            const repeatInterval = 100;  // ms between repeats while holding
+            const mathJaxDebounceDelay = 350; // ms to wait after last change before re-typesetting
+
+            // --- Debounce Function ---
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => { clearTimeout(timeout); func(...args); };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // --- Debounced MathJax Typesetting ---
+            const queueMathJaxTypeset = debounce(() => {
+                if (window.MathJax && MathJax.typesetPromise) {
+                    console.log("Debounced: Typesetting MathJax");
+                    MathJax.typesetPromise([bodyEl]).catch((err) => console.error('MathJax typesetting error:', err));
+                 }
+            }, mathJaxDebounceDelay);
+
+            // --- Update Font Size and Display ---
+            function updateFontSize(newSize) {
+                const oldSize = currentSize;
+                currentSize = Math.max(minSize, Math.min(maxSize, newSize));
+
+                if (currentSize !== oldSize) {
+                    htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
+                    display.textContent = currentSize + 'px';
+                    display.classList.add('visible');
+
+                    if (displayTimeout) { clearTimeout(displayTimeout); }
+                    displayTimeout = setTimeout(() => {
+                        display.classList.remove('visible');
+                        displayTimeout = null;
+                    }, 1500);
+                    return true; // Indicate size changed
+                }
+                return false; // Indicate size hit limit
+            }
+
+            // --- Stop Holding Action ---
+            function stopHolding() {
+                bodyEl.classList.remove('no-font-transition'); // Re-enable transition
+                if (holdTimeout) { clearTimeout(holdTimeout); holdTimeout = null; }
+                if (holdInterval) { clearInterval(holdInterval); holdInterval = null; }
+                queueMathJaxTypeset();
+            }
+
+            // --- Start Holding Action ---
+            function startHolding(direction) {
+                bodyEl.classList.add('no-font-transition'); 
+                updateFontSize(currentSize + direction * step); 
+                // Clear previous timers to prevent multiple intervals if mousedown event fires rapidly
+                if (holdTimeout) clearTimeout(holdTimeout);
+                if (holdInterval) clearInterval(holdInterval);
+
+                holdTimeout = setTimeout(() => {
+                    holdInterval = setInterval(() => {
+                        if (!updateFontSize(currentSize + direction * step)) {
+                            stopHolding(); // Stop if size limit is reached
+                        }
+                    }, repeatInterval);
+                }, initialHoldDelay);
+            }
+
+            // --- Event Listeners ---
+            if (minusBtn && plusBtn && display) {
+                minusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(-1); });
+                plusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(1); });
+                window.addEventListener('mouseup', stopHolding); // Stop on release anywhere
+                minusBtn.addEventListener('mouseleave', stopHolding); // Stop if mouse leaves while holding
+                plusBtn.addEventListener('mouseleave', stopHolding);
+
+                // Set initial state
+                htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
+                display.textContent = currentSize + 'px';
+                console.log("Font control initialized. Current size:", currentSize);
+                 // Initial MathJax typeset on load (after ready)
+                 if (window.MathJax) {
+                     MathJax.startup.promise.then(() => {
+                         console.log("Queueing initial MathJax typeset");
+                         queueMathJaxTypeset(); // Use the debounced version even initially
+                     });
+                 }
+            } else {
+                console.error("Font control elements not found!");
+            }
+
+            // --- Horizontal Scroll Redirect for Formula Containers ---
+             const formulaContainers = document.querySelectorAll('.formula-container');
+             formulaContainers.forEach(container => {
+                 container.addEventListener('wheel', function(event) {
+                     const isScrollableHorizontally = this.scrollWidth > this.clientWidth;
+                     if (isScrollableHorizontally) {
+                         // Only prevent vertical scroll IF we are actually going to scroll horizontally
+                         if (event.deltaY !== 0) { // Check if there's vertical scroll input
+                             event.preventDefault();
+                             this.scrollLeft += event.deltaY;
+                         }
+                     }
+                 }, { passive: false });
+             });
+             console.log("Horizontal scroll override applied to formula containers.");
+
+        });
+    </script>
+
+</body>
+</html>

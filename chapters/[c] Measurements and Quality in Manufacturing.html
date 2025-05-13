@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" style="--base-font-size: 10px;"> <!-- Default font size set to 10px -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Measurements and Quality in Manufacturing</title> <!-- CHANGE THIS TITLE -->
+
+    <!-- Google Fonts - Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+          tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true, tags: 'ams' },
+          options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'tex2jax_ignore', processHtmlClass: 'tex2jax_process' },
+          svg: { fontCache: 'global' },
+          startup: {
+            ready: () => { console.log('MathJax ready.'); MathJax.startup.defaultReady(); MathJax.startup.promise.then(() => console.log('MathJax initial typeset complete.')); }
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Keyframes for Animations (FadeIn) */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Fonts & Base Styling */
+        body {
+            font-family: 'Roboto Mono', monospace;
+            color: #e0e0e0;
+            line-height: 1.7;
+            padding: 25px;
+            background-color: #1a1a1a;
+            min-height: 100vh;
+            font-size: var(--base-font-size); /* Controlled by JS */
+            transition: font-size 0.2s ease-in-out; /* Default smooth transition */
+            padding-bottom: 80px; /* Space for controls */
+            overflow-x: hidden;
+        }
+        /* Class to disable transition during rapid changes (e.g., hold) */
+        body.no-font-transition {
+            transition: none !important;
+        }
+
+        /* Headings */
+        h1, h2 { font-family: 'Roboto Mono', monospace; text-align: center; margin-bottom: 1.5em; }
+        h1 { font-size: 2.4em; color: #ffffff; font-weight: 700; padding-bottom: 12px; margin-top: 1.5em; margin-bottom: 1.5em; border-bottom: 2px solid #ffffff; animation: fadeIn 0.8s ease-out both; animation-delay: 0.1s; letter-spacing: -0.5px; }
+        h2 { font-size: 1.6em; color: #cccccc; font-weight: 500; margin-top: 30px; margin-bottom: 1.5em; border-bottom: 1px solid #555555; padding-bottom: 5px; animation: fadeIn 0.8s ease-out both; animation-delay: 0.3s; }
+        h3 { font-size: 1.2em; color: #bdbdbd; font-weight: 500; margin-top: 1.8em; margin-bottom: 0.8em; padding-bottom: 3px; border-bottom: 1px dotted #444; text-align: left; }
+        h4 { font-size: 1.1em; color: #b0b0b0; font-weight: 500; margin-top: 1.5em; margin-bottom: 0.7em; text-align: left; }
+
+
+        /* Main Content Area */
+        main { max-width: 800px; margin: 40px auto; background-color: rgba(30, 30, 30, 0.85); padding: 35px 45px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); border: 1px solid rgba(255, 255, 255, 0.1); animation: fadeIn 0.8s ease-out both; animation-delay: 0.2s; }
+        /* Paragraph and List styling */
+        p { margin-bottom: 1em; color: inherit; font-size: inherit; }
+        ul, ol { margin-left: 25px; list-style: disc; margin-bottom: 1em; }
+        ol { list-style: decimal; }
+        li { margin-bottom: 8px; font-size: inherit; }
+        strong { font-weight: 500; color: #ffffff; }
+
+        /* Formula Container Styling (with horizontal scroll) */
+        .formula-container {
+            margin: 15px 0 20px 0; padding: 10px 20px; background-color: rgba(45, 45, 45, 0.9);
+            border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto; overflow-y: hidden; /* Horizontal scroll, no vertical */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer; color: #e0e0e0; border-left: 4px solid transparent;
+            font-family: 'Roboto Mono', monospace; position: relative; white-space: nowrap;
+        }
+        .formula-container:hover { background-color: rgba(60, 60, 60, 0.95); border-left-color: #a6e3a1; border-color: rgba(166, 227, 161, 0.5); }
+        .formula-container.copied { background-color: rgba(166, 227, 161, 0.2); border-color: #a6e3a1; border-left-color: #a6e3a1; }
+        /* Optional Scrollbar Style */
+        .formula-container::-webkit-scrollbar { height: 8px; }
+        .formula-container::-webkit-scrollbar-track { background: rgba(60, 60, 60, 0.5); border-radius: 4px; }
+        .formula-container::-webkit-scrollbar-thumb { background-color: #888; border-radius: 4px; border: 2px solid transparent; background-clip: content-box; }
+        .formula-container::-webkit-scrollbar-thumb:hover { background-color: #aaa; }
+        /* MathJax display style */
+        .formula-container mjx-container[display="true"] { margin: 0.5em 0 !important; text-align: left !important; display: inline-block; vertical-align: middle; }
+        
+        table { border-collapse: collapse; margin: 1em auto; background-color: rgba(40,40,40,0.8); width: auto; }
+        th, td { border: 1px solid #555; padding: 8px 12px; text-align: center; }
+        th { background-color: rgba(60,60,60,0.9); color: #ddd; }
+
+        pre {
+            background-color: #2b2b2b; padding: 10px; border-radius: 5px; 
+            color: #ccc; overflow-x: auto; white-space: pre; 
+            font-family: 'Roboto Mono', monospace; font-size: 0.95em;
+            margin: 1em 0;
+        }
+
+        /* Footer Styling */
+        footer { text-align: center; margin-top: 70px; padding-bottom: 35px; font-size: 0.85em; color: #888888; animation: fadeIn 1s ease-out both; animation-delay: 0.7s; }
+
+        /* Simple Dark Theme Scrollbar for Page */
+        body::-webkit-scrollbar { width: 10px; }
+        body::-webkit-scrollbar-track { background: #2a2a2a; border-radius: 5px; }
+        body::-webkit-scrollbar-thumb { background-color: #777; border-radius: 5px; border: 2px solid #2a2a2a; background-clip: content-box; }
+        body::-webkit-scrollbar-thumb:hover { background-color: #999; }
+        html { scrollbar-width: thin; scrollbar-color: #777 #2a2a2a; }
+        @supports (scrollbar-gutter: stable) { html { scrollbar-gutter: stable; } }
+
+        /* Font Control Icons CSS */
+        .font-control { position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px 25px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; pointer-events: none; z-index: 10; }
+        .font-control-icon { font-size: 28px; font-weight: bold; color: #777; cursor: pointer; padding: 8px; transition: color 0.3s ease; pointer-events: auto; user-select: none; line-height: 1; display: inline-block; }
+        .font-control-icon:hover { color: #a6e3a1; }
+        #fontSizeDisplay { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); background-color: rgba(45, 45, 45, 0.9); color: #e0e0e0; padding: 6px 12px; border-radius: 5px; font-size: 13px; font-family: 'Roboto Mono', monospace; z-index: 11; opacity: 0; transition: opacity 0.3s ease-in-out; pointer-events: none; white-space: nowrap; }
+        #fontSizeDisplay.visible { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Chapter 3: Measurements and Quality in Manufacturing</h1>
+    </header>
+
+    <main>
+        <p>This chapter discusses the importance of measurement in manufacturing to ensure parts meet specified dimensions and quality standards. It covers fundamental metrology concepts, types of inspection, key terminologies like accuracy, precision, tolerance, surface finish, quality, reliability, and interchangeability. It also introduces measuring instruments, the system of limits and fits, and quality aspects like quality control, zero quality control, and ISO 9000.</p>
+
+        <h2>3.1 Introduction</h2>
+        <ul>
+            <li>Measurement has been vital since societies began, for trade and defining boundaries.</li>
+            <li>Early units (palm, inch, foot, yard) were non-standard and varied.</li>
+            <li>Modern measurements can be accurate to $10^{-12}$ mm or less.</li>
+            <li>Accurate measurement and inspection are essential in manufacturing to ensure:
+                <ul>
+                    <li>Components are made to requirements, consistently and within specified dimensional accuracy.</li>
+                    <li>Parts fit and assemble correctly to perform their intended function.</li>
+                </ul>
+            </li>
+            <li><strong>Quality control</strong> is crucial for producing better products and satisfying customers. Dimensional accuracy is a key aspect of product quality.</li>
+        </ul>
+
+        <h2>3.2 Metrology</h2>
+        <p><strong>Metrology:</strong> The science of measurement.</p>
+        <p>In manufacturing, this often involves measuring linear or angular dimensions.</p>
+        <ul>
+            <li><strong>1. What is measurement?</strong>
+                <ul>
+                    <li>The act of determining measurable properties of an object (e.g., diameter, length, hardness, weight, voltage).</li>
+                </ul>
+            </li>
+            <li><strong>2. What is inspection?</strong>
+                <ul>
+                    <li>Examination of a part to determine if it meets designer specifications (correct size, shape, weight, etc.).</li>
+                </ul>
+            </li>
+            <li><strong>3. How is measurement different from inspection?</strong>
+                <ul>
+                    <li>Inspection <em>involves</em> measurements to determine if specifications are met.</li>
+                    <li>Inspection can also be done without direct measurement, for example, by <strong>gauging</strong>: determining if a dimension is within specified maximum and minimum limits.</li>
+                </ul>
+            </li>
+        </ul>
+        <p><strong>Testing:</strong> A related term; the process to know the performance of a product (e.g., testing material strength, or if a finished product performs to design specs).</p>
+
+        <h2>3.3 Inspection</h2>
+        <p>Inspection can be:</p>
+        <ul>
+            <li><strong>Post-process inspection:</strong> Done <em>after</em> the part is produced.</li>
+            <li><strong>On-line inspection (In-process or Real-time inspection):</strong> Done <em>while</em> the part is being produced on the machine.
+                <ul>
+                    <li>Necessary because dimensional variations occur due to material property changes, thermal effects, tool wear.</li>
+                    <li>Advantage: Reduces wastage compared to post-process inspection.</li>
+                    <li><strong>Automated inspection:</strong> Can be used for both on-line and post-process; more suitable for on-line.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>3.4 Definition of Terms</h2>
+        
+        <h3>3.4.1 Accuracy</h3>
+        <ul>
+            <li><strong>Accuracy of measurement:</strong> Capability of an instrument to give an accurate measure.
+                <ul>
+                    <li><strong>Example:</strong> Measuring 15 mm with a scale vs. 15.31 mm with a micrometer. The micrometer is more accurate. Modern industry requires micron-level accuracy (0.000001 m).</li>
+                </ul>
+            </li>
+            <li><strong>Accuracy of manufacturing:</strong> How closely a manufactured part's measurement matches the true or specified value.
+                <ul>
+                    <li><strong>Example:</strong> Specified dimension = 15.25 mm. Part 1 measures 15.52 mm, Part 2 measures 15.38 mm. Part 2 is more accurately manufactured.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>3.4.2 Precision</h3>
+        <ul>
+            <li>How close together multiple readings of the same measurement are, using the same instrument.</li>
+            <li><strong>Example:</strong> Five readings of 15.15, 15.48, 15.37, 15.52, 15.23 mm show low precision (values are spread out).</li>
+            <li>Readings of 15.30, 15.31, 15.29, 15.30, 15.31 mm show high precision (values are close together).</li>
+            <li><em>Note:</em> An instrument can be precise but not accurate (e.g., consistently gives readings that are close together but far from the true value).</li>
+        </ul>
+
+        <h3>3.4.3 Tolerance (Figure 3.1)</h3>
+        <ul>
+            <li>It's practically impossible to make parts to exact dimensions.</li>
+            <li><strong>Basic size:</strong> The desired theoretical size specified by the designer.</li>
+            <li><strong>Tolerance:</strong> The permissible deviation of a dimension from the basic size. It defines the acceptable range (largest acceptable dimension to smallest acceptable dimension).</li>
+            <li>Determined by the function of the part. Closer tolerances increase manufacturing cost.</li>
+        </ul>
+
+        <h3>3.4.4 Surface finish (Surface texture)</h3>
+        <ul>
+            <li>The amount of geometric irregularity on an object's surface from fabrication.</li>
+            <li>Important for proper functioning of mating surfaces (e.g., pistons, gears) to reduce friction and wear.</li>
+            <li>An absolutely smooth surface is impossible; all surfaces have irregularities.</li>
+            <li>Also important for aesthetics.</li>
+        </ul>
+
+        <h3>3.4.5 Quality</h3>
+        <ul>
+            <li>Assessing a product's performance. A characteristic property considering surface finish, functionality, accuracy, performance, aesthetics, etc.</li>
+            <li>Definitions: "Fitness for purpose," "measure of fulfilment of promises by manufacturers."</li>
+            <li>Relative term, depends on end use.</li>
+            <li>Depends on material, manufacturing method, tools, operator skill, etc.</li>
+        </ul>
+
+        <h3>3.4.6 Reliability</h3>
+        <ul>
+            <li>Measure of a product functioning as intended, over its intended life, under normal operating conditions.</li>
+            <li>Associated with the quality of performance over time.</li>
+            <li><strong>Example:</strong> A watch should show the correct time, not just run. A watch that runs but is always wrong is not reliable.</li>
+            <li>Requirement varies by product: very high for airplanes, can be less for a pen.</li>
+        </ul>
+
+        <h3>3.4.7 Interchangeability</h3>
+        <ul>
+            <li>Concept where any part from a lot A (all made within tolerance) will assemble correctly with any part from lot B (also made within tolerance).</li>
+            <li>Overcomes tedious and expensive custom fitting of parts.</li>
+            <li>Achieved by establishing permissible inaccuracy (tolerance).</li>
+            <li>Permits parts to be made in large batches; simplifies assembly and repair (e.g., replacing a worn ball bearing or a fused electric bulb with a new one of the same specification).</li>
+            <li>Integral to standardization and mass production.</li>
+        </ul>
+
+        <h2>3.5 Measuring and Inspection Instruments</h2>
+        <p>Classified into three categories:</p>
+
+        <h3>3.5.1 Direct-measuring instruments</h3>
+        <ul>
+            <li>The dimension is directly compared to a standard calibrated instrument, which gives the value.</li>
+            <li>Obtains value without assistance from other instruments.</li>
+            <li><strong>Examples:</strong> Scale (for length), vernier caliper, micrometer (for linear dimensions), sine bar, protractors (for angles), optical flats (for flatness), dial indicator (for ovality).</li>
+        </ul>
+
+        <h3>3.5.2 Indirect-measuring instruments</h3>
+        <ul>
+            <li>Require another measuring instrument to get the measurement. Transfers the measurement from workpiece to a direct-measuring instrument (comparison measuring).</li>
+            <li><strong>Examples:</strong> Simple calipers, comparators (mechanical, electronic, pneumatic). Comparators indicate deviation from a specified size.</li>
+        </ul>
+
+        <h3>3.5.3 Gauges (Figure 3.2, Figure 3.3)</h3>
+        <ul>
+            <li>Used to determine dimensional acceptability (whether a dimension is within specified tolerance), not the exact dimension.</li>
+            <li>Faster, easier, lower inspection cost than direct measurement, especially for large quantities.</li>
+            <li>Not general-purpose; each gauge is for a specific dimension of a specific part.</li>
+            <li><strong>"GO-NOGO" gauge (Fig. 3.2a):</strong> Has two ends/openings.
+                <ul>
+                    <li><strong>GO end (Fig. 3.2b):</strong> Corresponds to the maximum acceptable size of a feature (e.g., minimum hole size or maximum shaft size, depending on whether it's an internal or external feature. For a hole, GO corresponds to minimum hole size; for a shaft, GO corresponds to maximum shaft size. Figure 3.2 shows a snap gauge for an external feature, where GO is the maximum acceptable size of the part). <em>The description in the text for Figure 3.2b has "GO size corresponding to the maximum acceptable size" which seems to refer to an external feature like a shaft. If it were for a hole, GO would be the minimum acceptable hole size.</em></li>
+                    <li><strong>NOGO end (Fig. 3.2b):</strong> Corresponds to the minimum acceptable size of a feature (e.g., maximum hole size or minimum shaft size. For the external feature in Figure 3.2, NOGO corresponds to the minimum acceptable size of the part).</li>
+                    <li><strong>Usage (Fig. 3.3 - checking an external dimension):</strong>
+                        <ul>
+                            <li><strong>Good part (Fig. 3.3a):</strong> Passes through GO end, does not pass through NOGO end.</li>
+                            <li><strong>Oversized part (Fig. 3.3b):</strong> Does not pass through GO end. (Rejected).</li>
+                            <li><strong>Undersized part (Fig. 3.3c):</strong> Passes through GO end AND NOGO end. (Rejected).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Example:</strong> Basic size 10 mm, tolerance ±0.1 mm. Acceptable range: 9.9 mm to 10.1 mm.
+                <ul>
+                    <li>For an external feature (shaft): GO gauge = 10.1 mm, NOGO gauge = 9.9 mm.</li>
+                    <li>Part 10.2 mm (oversized): Won't pass GO. Rejected.</li>
+                    <li>Part 9.7 mm (undersized): Passes GO and NOGO. Rejected.</li>
+                    <li>Part 10.05 mm (good): Passes GO, doesn't pass NOGO. Accepted.</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h3>3.5.4 Inspection in mass production</h3>
+        <ul>
+            <li>Inspecting every item is often uneconomical/unnecessary (e.g., nuts, bolts).</li>
+            <li><strong>Sampling:</strong> A small percentage of components is randomly picked from a lot for inspection.</li>
+            <li>If the percentage of bad components in the sample exceeds a limit, the whole lot is rejected.</li>
+            <li>Not suitable for vital components (e.g., engine piston) where 100% inspection might be needed.</li>
+        </ul>
+
+        <h2>3.6 Limits and Fits</h2>
+        <ul>
+            <li>Early manufacturing involved custom fitting, which was slow and costly.</li>
+            <li>Manufacturing parts within permissible deviation (tolerance) allows for proper assembly without additional machining.</li>
+            <li><strong>System of limits and fits:</strong> A standardized system for interchangeable part manufacture and proper assembly. Reduces cost, allows easy part replacement.</li>
+            <li>The <strong>ISO System of Limits and Fits</strong> is widely used.</li>
+            <li><strong>Benefits:</strong>
+                <ol>
+                    <li>Interchangeability and ease of assembly.</li>
+                    <li>Eliminates minor rectifications (fitting) during assembly.</li>
+                    <li>Avoids unnecessary high accuracy/surface finish, saving cost.</li>
+                </ol>
+            </li>
+        </ul>
+
+        <h2>3.7 Tolerance (Revisited in context of Limits and Fits - Figure 3.4)</h2>
+        <ul>
+            <li>Acceptance of manufacturing error; a dimension cannot be economically made to an exact size.</li>
+            <li><strong>Tolerance:</strong> Difference between the maximum and minimum limit of size of a part (total permissible variation).</li>
+            <li><strong>Nominal size (Basic size, Dn):</strong> Theoretical size specified by design, usually a rounded whole-millimeter value. Represented by the <strong>zero line (0-0)</strong>.</li>
+            <li><strong>Deviations:</strong> Specified from the zero line.
+                <ul>
+                    <li><strong>Upper deviation:</strong> Difference between maximum limit of size (Dmax) and nominal size.</li>
+                    <li><strong>Lower deviation:</strong> Difference between minimum limit of size (Dmin) and nominal size.</li>
+                    <li>Deviations can be on one or both sides of the zero line (Fig. 3.4a - both sides, Fig. 3.4b - one side, minus direction).</li>
+                </ul>
+            </li>
+            <li><strong>Limits of size (Dmax, Dmin):</strong> Minimum and maximum allowed dimensions. Acceptable parts are within these limits.</li>
+            <li>Tolerance = Dmax - Dmin.</li>
+            <li><strong>Selection of tolerance depends on:</strong>
+                <ol>
+                    <li>Nominal size.</li>
+                    <li>Manufacturing method used.</li>
+                    <li>Accuracy and quality desired.</li>
+                    <li>Type of fit required.</li>
+                </ol>
+            </li>
+        </ul>
+        <p><strong>Types of Tolerances (Figure 3.5):</strong></p>
+        <ul>
+            <li><strong>Unilateral tolerance (Fig. 3.5a):</strong> Applies in one direction from nominal size; other direction's variation is zero.
+                <ul>
+                    <li>Example: 24.000 (+0.030 / -0) mm. Max size = 24.030, Min size = 24.000.</li>
+                </ul>
+            </li>
+            <li><strong>Bilateral tolerance (Fig. 3.5b):</strong> Split (equally or unequally) and applied on both sides of nominal size.
+                <ul>
+                    <li>Example: 24.000 (+0.025 / -0.005) mm. Max size = 24.025, Min size = 23.995.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>3.8 Fits (Figure 3.6, 3.7, 3.8)</h2>
+        <p><strong>Fit:</strong> General term for the relative degree of tightness or looseness of assembled mating parts (e.g., shaft and hole), which determines relative movement.</p>
+        <p><strong>Allowance:</strong> The intentional difference between the hole size and shaft size (before tolerances are applied to each).</p>
+        <p><strong>Three types of fits:</strong></p>
+
+        <h3>3.8.1 Clearance fit (Figure 3.6)</h3>
+        <ul>
+            <li>Assembled parts are always free to move relative to each other.</li>
+            <li>Size of the hole is always larger than the size of the shaft.</li>
+            <li><strong>Clearance:</strong> Difference between hole size and shaft size. Results in a positive allowance (air space).</li>
+            <li>Parts can be assembled by hand.</li>
+            <li><strong>Examples:</strong> Door hinges, shaft and bearing, wheel and axle.</li>
+            <li><strong>Maximum clearance:</strong> Max hole size - Min shaft size.</li>
+            <li><strong>Minimum clearance:</strong> Min hole size - Max shaft size. (Both must be > 0 for a clearance fit).</li>
+        </ul>
+
+        <h3>3.8.2 Interference fit (Figure 3.7)</h3>
+        <ul>
+            <li>Mating parts are joined tightly; no relative motion possible.</li>
+            <li>Size of the hole is always smaller than the size of the shaft.</li>
+            <li><strong>Interference (negative clearance/allowance):</strong> Difference between shaft size and hole size.</li>
+            <li>Used for permanent/semi-permanent assembly needing rigidity (e.g., dowel pins, bearings in casting).</li>
+            <li>Parts usually pressed together (e.g., using an arbor press).</li>
+            <li><strong>Maximum interference:</strong> Max shaft size - Min hole size.</li>
+            <li><strong>Minimum interference:</strong> Min shaft size - Max hole size. (Both must be > 0 for an interference fit).</li>
+        </ul>
+
+        <h3>3.8.3 Transition fit (Figure 3.8)</h3>
+        <ul>
+            <li>Limits of size for hole and shaft overlap, so either a clearance or an interference may result.</li>
+            <li>Compromise fit; small amount of clearance or interference is permissible.</li>
+            <li>Sometimes shaft is larger than hole, sometimes smaller.</li>
+        </ul>
+
+        <h2>3.9 Quality Aspects</h2>
+
+        <h3>3.9.1 Quality control</h3>
+        <ul>
+            <li>Systematic control of factors affecting product quality.</li>
+            <li>Involves inspection, testing, analysis to ensure product meets standards.</li>
+            <li>Emphasis on quality of <em>future</em> production (e.g., worker education).</li>
+            <li>Often handled by a separate quality control department.</li>
+            <li>Quality control involves inspection, but inspection alone isn't quality control.</li>
+        </ul>
+
+        <h3>3.9.2 Zero quality control</h3>
+        <ul>
+            <li>Concept (developed by Japanese): "Do the things right at the first time."</li>
+            <li>If every job is done right always, no need for QC/inspection.</li>
+            <li>Argues inspection implies distrust of workers. Automation reduces human error.</li>
+            <li>Assures quality at the source; system should be immune to errors and self-correcting.</li>
+            <li><strong>Poka yoke:</strong> Japanese term for "error-proofing" systems (e.g., word processor spell/grammar check). A defective product should not move to the next process.</li>
+        </ul>
+
+        <h3>3.9.3 ISO 9000</h3>
+        <ul>
+            <li><strong>ISO:</strong> International Organisation for Standardization (Geneva), founded 1947.</li>
+            <li>Develops standards to facilitate global trade. India represented by Bureau of Indian Standards.</li>
+            <li><strong>ISO 9000 series:</strong> Internationally recognized quality management standards.
+                <ul>
+                    <li>Generic, applicable to any organization.</li>
+                    <li>Ensures consistent production and timely delivery.</li>
+                    <li>Helps meet customer expectations, keeping them satisfied/loyal.</li>
+                    <li>Certification distinguishes an organization, controls quality, saves money.</li>
+                </ul>
+            </li>
+            <li><strong>Reasons for adopting ISO 9000:</strong> Improve quality, reduce costs, be competitive, customer expectation, mandatory requirement.</li>
+            <li><strong>Implementation:</strong> Starts with <strong>gap analysis</strong> (identify differences between current processes and ISO 9000 standard), then steps to fill gaps, improving overall performance.</li>
+        </ul>
+
+        <h2>3.10 Solved Examples</h2>
+
+        <h3>Example 3.1</h3>
+        <p>Hole: 29.00 (+0.013/+0) mm, Shaft: 29.00 (+0/-0.013) mm.</p>
+        <ul>
+            <li>Max hole = 29.00 + 0.013 = 29.013 mm</li>
+            <li>Min hole = 29.00 + 0 = 29.000 mm</li>
+            <li>Max shaft = 29.00 + 0 = 29.000 mm</li>
+            <li>Min shaft = 29.00 - 0.013 = 28.987 mm</li>
+            <li><strong>Max clearance:</strong> Max hole - Min shaft = 29.013 - 28.987 = 0.026 mm</li>
+            <li><strong>Min clearance:</strong> Min hole - Max shaft = 29.000 - 29.000 = 0.000 mm</li>
+            <li>Since both clearances $\ge$ 0, it's a <strong>clearance fit</strong>.</li>
+        </ul>
+
+        <h3>Example 3.2</h3>
+        <p>Hole: 50.00 (-0.026/-0.065) mm, Shaft: 50.00 (-0/-0.011) mm.</p>
+        <ul>
+            <li>Max hole = 50.00 - 0.026 = 49.974 mm</li>
+            <li>Min hole = 50.00 - 0.065 = 49.935 mm</li>
+            <li>Max shaft = 50.00 - 0 = 50.000 mm</li>
+            <li>Min shaft = 50.00 - 0.011 = 49.989 mm</li>
+            <li><strong>Max clearance (Smallest hole - Largest shaft for potential tightest condition):</strong> Max hole - Min shaft = 49.974 - 49.989 = -0.015 mm</li>
+            <li><strong>Min clearance (Largest hole - Smallest shaft for potential loosest condition):</strong> Min hole - Max shaft = 49.935 - 50.000 = -0.065 mm</li>
+            <li>The text calculates based on "Max Clearance = Max Hole - Min Shaft" and "Min Clearance = Min Hole - Max Shaft". This convention is for clearance. If we are calculating "interference" the terms would be swapped for shaft and hole.</li>
+            <li>Since both calculated "clearances" are negative, this means there is always interference. Max possible interference is 0.065mm, min possible interference is 0.015mm.</li>
+            <li>It's an <strong>interference fit</strong>.</li>
+        </ul>
+
+        <h3>Example 3.3</h3>
+        <p>Three blocks A, B, C in a channel D. Min gap E $\ge$ 0.005 mm.</p>
+        <ul>
+            <li>A = 0.75 ± 0.003 mm => Max A = 0.753 mm</li>
+            <li>B = 1.0 ± 0.005 mm => Max B = 1.005 mm</li>
+            <li>C = 1.125 ± 0.004 mm => Max C = 1.129 mm</li>
+            <li>Basic D = 2.894 mm.</li>
+            <li>Condition for minimum gap E: Min D = Max A + Max B + Max C + Min E</li>
+            <li>Min D = 0.753 + 1.005 + 1.129 + 0.005 = 2.892 mm</li>
+            <li>Let Min D = Basic D - X (where X is the lower deviation for D, assuming unilateral tolerance for D with upper deviation 0, i.e., D (+0 / -X) )</li>
+            <li>2.892 = 2.894 - X</li>
+            <li>X = 2.894 - 2.892 = 0.002 mm</li>
+            <li>So, dimension of channel D = 2.894 (+0 / -0.002) mm.</li>
+            <li>(The PDF text shows (0.750+0.003)+(1+0.005)+(1.125+0.004)+(0.005) = (2.894-X). This matches: Max A = 0.753, Max B = 1.005, Max C = 1.129. Sum = 2.887. 2.887 + 0.005 = 2.892. So 2.892 = 2.894 - X, X = 0.002 mm).</li>
+        </ul>
+        <!-- END OF NEW CONTENT -->
+
+    </main>
+
+    <footer>
+        <!-- Optional: Add footer text if needed -->
+    </footer>
+
+     <!-- Font Size Control Icons HTML -->
+     <div class="font-control">
+         <span class="font-control-icon" id="fontMinusBtn" title="Decrease font size">-</span>
+         <span class="font-control-icon" id="fontPlusBtn" title="Increase font size">+</span>
+     </div>
+     <div id="fontSizeDisplay">10px</div> <!-- Initial size display -->
+
+    <script>
+        // --- Formula Copy Function (Corrected) ---
+        function copyFormulaLatex(element, latexStringToCopy) { 
+            if (!latexStringToCopy) { 
+                console.error('No LaTeX string passed to copy function.');
+                return;
+            }
+
+            navigator.clipboard.writeText(latexStringToCopy).then(() => { 
+                element.classList.add('copied');
+                const originalTitle = element.title;
+                element.title = 'Copied: ' + latexStringToCopy; 
+                setTimeout(() => {
+                    element.classList.remove('copied');
+                    element.title = originalTitle; 
+                 }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy LaTeX: ', err);
+                const originalTitle = element.title;
+                element.title = 'Copy failed!';
+                 setTimeout(() => { element.title = originalTitle; }, 1500);
+            });
+        }
+
+        // --- Font Size Control & Hold Functionality ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const minusBtn = document.getElementById('fontMinusBtn');
+            const plusBtn = document.getElementById('fontPlusBtn');
+            const display = document.getElementById('fontSizeDisplay');
+            const htmlEl = document.documentElement;
+            const bodyEl = document.body; // Target body for transition class
+
+            // Configuration
+            let currentSize = 10; // Initial size set to 10px
+            const minSize = 10;
+            const maxSize = 28; // Adjust max size if needed
+            const step = 1;
+            let displayTimeout = null;
+            let holdTimeout = null;
+            let holdInterval = null;
+            const initialHoldDelay = 400; // ms before repeat starts
+            const repeatInterval = 100;  // ms between repeats while holding
+            const mathJaxDebounceDelay = 350; // ms to wait after last change before re-typesetting
+
+            // --- Debounce Function ---
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => { clearTimeout(timeout); func(...args); };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // --- Debounced MathJax Typesetting ---
+            const queueMathJaxTypeset = debounce(() => {
+                if (window.MathJax && MathJax.typesetPromise) {
+                    console.log("Debounced: Typesetting MathJax");
+                    MathJax.typesetPromise([bodyEl]).catch((err) => console.error('MathJax typesetting error:', err));
+                 }
+            }, mathJaxDebounceDelay);
+
+            // --- Update Font Size and Display ---
+            function updateFontSize(newSize) {
+                const oldSize = currentSize;
+                currentSize = Math.max(minSize, Math.min(maxSize, newSize));
+
+                if (currentSize !== oldSize) {
+                    htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
+                    display.textContent = currentSize + 'px';
+                    display.classList.add('visible');
+
+                    if (displayTimeout) { clearTimeout(displayTimeout); }
+                    displayTimeout = setTimeout(() => {
+                        display.classList.remove('visible');
+                        displayTimeout = null;
+                    }, 1500);
+                    return true; // Indicate size changed
+                }
+                return false; // Indicate size hit limit
+            }
+
+            // --- Stop Holding Action ---
+            function stopHolding() {
+                bodyEl.classList.remove('no-font-transition'); // Re-enable transition
+                if (holdTimeout) { clearTimeout(holdTimeout); holdTimeout = null; }
+                if (holdInterval) { clearInterval(holdInterval); holdInterval = null; }
+                queueMathJaxTypeset();
+            }
+
+            // --- Start Holding Action ---
+            function startHolding(direction) {
+                bodyEl.classList.add('no-font-transition'); 
+                updateFontSize(currentSize + direction * step); 
+                // Clear previous timers to prevent multiple intervals if mousedown event fires rapidly
+                if (holdTimeout) clearTimeout(holdTimeout);
+                if (holdInterval) clearInterval(holdInterval);
+
+                holdTimeout = setTimeout(() => {
+                    holdInterval = setInterval(() => {
+                        if (!updateFontSize(currentSize + direction * step)) {
+                            stopHolding(); // Stop if size limit is reached
+                        }
+                    }, repeatInterval);
+                }, initialHoldDelay);
+            }
+
+            // --- Event Listeners ---
+            if (minusBtn && plusBtn && display) {
+                minusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(-1); });
+                plusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(1); });
+                window.addEventListener('mouseup', stopHolding); // Stop on release anywhere
+                minusBtn.addEventListener('mouseleave', stopHolding); // Stop if mouse leaves while holding
+                plusBtn.addEventListener('mouseleave', stopHolding);
+
+                // Set initial state
+                htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
+                display.textContent = currentSize + 'px';
+                console.log("Font control initialized. Current size:", currentSize);
+                 // Initial MathJax typeset on load (after ready)
+                 if (window.MathJax) {
+                     MathJax.startup.promise.then(() => {
+                         console.log("Queueing initial MathJax typeset");
+                         queueMathJaxTypeset(); // Use the debounced version even initially
+                     });
+                 }
+            } else {
+                console.error("Font control elements not found!");
+            }
+
+            // --- Horizontal Scroll Redirect for Formula Containers ---
+             const formulaContainers = document.querySelectorAll('.formula-container');
+             formulaContainers.forEach(container => {
+                 container.addEventListener('wheel', function(event) {
+                     const isScrollableHorizontally = this.scrollWidth > this.clientWidth;
+                     if (isScrollableHorizontally) {
+                         // Only prevent vertical scroll IF we are actually going to scroll horizontally
+                         if (event.deltaY !== 0) { // Check if there's vertical scroll input
+                             event.preventDefault();
+                             this.scrollLeft += event.deltaY;
+                         }
+                     }
+                 }, { passive: false });
+             });
+             console.log("Horizontal scroll override applied to formula containers.");
+
+        });
+    </script>
+
+</body>
+</html>
