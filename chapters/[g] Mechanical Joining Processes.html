@@ -62,7 +62,7 @@
         ul, ol { margin-left: 25px; list-style: disc; margin-bottom: 1em; }
         ol { list-style: decimal; }
         li { margin-bottom: 8px; font-size: inherit; }
-        strong { font-weight: 500; color: #ffffff; }
+        strong { font-weight: 700; color: #ffffff; } /* CHANGED HERE */
 
         /* Formula Container Styling (with horizontal scroll) */
         .formula-container {
@@ -82,14 +82,14 @@
         .formula-container::-webkit-scrollbar-thumb:hover { background-color: #aaa; }
         /* MathJax display style */
         .formula-container mjx-container[display="true"] { margin: 0.5em 0 !important; text-align: left !important; display: inline-block; vertical-align: middle; }
-        
+
         table { border-collapse: collapse; margin: 1em auto; background-color: rgba(40,40,40,0.8); width: auto; }
         th, td { border: 1px solid #555; padding: 8px 12px; text-align: center; }
         th { background-color: rgba(60,60,60,0.9); color: #ddd; }
 
         pre {
-            background-color: #2b2b2b; padding: 10px; border-radius: 5px; 
-            color: #ccc; overflow-x: auto; white-space: pre; 
+            background-color: #2b2b2b; padding: 10px; border-radius: 5px;
+            color: #ccc; overflow-x: auto; white-space: pre;
             font-family: 'Roboto Mono', monospace; font-size: 0.95em;
             margin: 1em 0;
         }
@@ -116,327 +116,641 @@
 <body>
 
     <header>
-        <h1>Chapter 15: Mechanical Joining Processes</h1>
+        <h1>Chapter 15: Mechanical Joining Processes</h1> <!-- EDIT THIS LINE -->
     </header>
 
     <main>
-        <p>This chapter focuses on methods to join two or more parts of the same or different materials to create a final product or structure. It covers the classification of joining processes (permanent, temporary, semi-permanent), and then delves into specific methods like welding (arc, gas, resistance, TIG), soldering, brazing, and mechanical fasteners (threaded and non-threaded).</p>
+        <p>
+            This chapter focuses on methods to join two or more parts of the same or different materials to create a final product or structure. It covers the classification of joining processes (permanent, temporary, semi-permanent), and then delves into specific methods like welding (arc, gas, resistance, TIG), soldering, brazing, and mechanical fasteners (threaded and non-threaded).
+        </p>
 
         <h2>15.1 Introduction (Figure 15.1, 15.2)</h2>
-        <p>Many products are made by joining individual parts (e.g., furniture, computers, bridges, towers). It's often impractical to make complex items as a single piece.</p>
-        <p>Joining is essential when:</p>
+
         <ul>
-            <li>Manufacturing a desired system (e.g., Fig 15.1: a complex shaft best made by joining three simpler pieces, especially for small batches, to save on machining/casting costs).</li>
-            <li>As an alternative to other processes.</li>
-            <li>In product assembly.</li>
-            <li>For repairing broken/worn parts.</li>
+            <li>
+                Many products are made by joining individual parts (e.g., furniture, computers, bridges, towers). It's often impractical to make complex items as a single piece.
+            </li>
+            <li>
+                 Joining is essential when:
+                 <ul>
+                     <li>
+                         Manufacturing a desired system (e.g., Fig 15.1: a complex shaft best made by joining three simpler pieces, especially for small batches, to save on machining/casting costs).
+                     </li>
+                     <li>
+                         As an alternative to other processes.
+                     </li>
+                     <li>
+                         In product assembly.
+                     </li>
+                     <li>
+                         For repairing broken/worn parts.
+                     </li>
+                 </ul>
+            </li>
+            <li>
+                **Example (Fig 15.1):** A stepped shaft (a) can be made by machining a large bar (wastage) or casting (requires patterns, furnace). For small batches, joining three simpler machined parts (b) is more economical with minimal wastage.
+            </li>
+            <li>
+                **Example (Fig 15.2):** A complex tubular part is very difficult to make as a single piece; better to make parts and join them.
+            </li>
+            <li>
+                 Common joining processes: welding, soldering, brazing, mechanical fastening.
+            </li>
         </ul>
-        <p><strong>Example (Fig 15.1):</strong> A stepped shaft (a) can be made by machining a large bar (wastage) or casting (requires patterns, furnace). For small batches, joining three simpler machined parts (b) is more economical with minimal wastage.</p>
-        <p><strong>Example (Fig 15.2):</strong> A complex tubular part is very difficult to make as a single piece; better to make parts and join them.</p>
-        <p>Common joining processes: welding, soldering, brazing, mechanical fastening.</p>
 
         <h2>15.2 Classification of Joining Processes</h2>
-        <p><strong>Based on type of joint produced:</strong></p>
-        <ol>
-            <li><strong>Permanent joint:</strong> Properties similar to base metal; parts become one piece. Cannot be separated without damage/destruction. (e.g., welding, adhesive bonding).</li>
-            <li><strong>Temporary joint:</strong> Easily dismantled without damaging parts. (e.g., most mechanical fasteners).</li>
-            <li><strong>Semi-permanent joint:</strong> Allows separation with some difficulty, but not normally dismantled. (e.g., rivets).</li>
-        </ol>
-        <p><strong>Based on process used for making the joint:</strong></p>
+
         <ul>
-            <li>Welding</li>
-            <li>Brazing (considered permanent, but can be dismantled by heating for repair)</li>
-            <li>Soldering (considered permanent, but can be dismantled by heating for repair)</li>
-            <li>Mechanical fasteners (rivets, bolts, nuts, screws, etc.)</li>
-            <li>Adhesive bonding</li>
+            <li>
+                **Based on type of joint produced:**
+                <ol>
+                    <li>
+                        **Permanent joint:** Properties similar to base metal; parts become one piece. Cannot be separated without damage/destruction. (e.g., welding, adhesive bonding).
+                    </li>
+                    <li>
+                        **Temporary joint:** Easily dismantled without damaging parts. (e.g., most mechanical fasteners).
+                    </li>
+                    <li>
+                        **Semi-permanent joint:** Allows separation with some difficulty, but not normally dismantled. (e.g., rivets).
+                    </li>
+                </ol>
+            </li>
+            <li>
+                **Based on process used for making the joint:**
+                <ul>
+                    <li>
+                        Welding
+                    </li>
+                    <li>
+                        Brazing (considered permanent, but can be dismantled by heating for repair)
+                    </li>
+                    <li>
+                        Soldering (considered permanent, but can be dismantled by heating for repair)
+                    </li>
+                    <li>
+                        Mechanical fasteners (rivets, bolts, nuts, screws, etc.)
+                    </li>
+                    <li>
+                        Adhesive bonding
+                    </li>
+                </ul>
+            </li>
         </ul>
-        <p><strong>Choice of process depends on:</strong> Application, loads/stresses, joint design, materials, size/shape.</p>
-        <p>(Figure 15.3) shows examples of joints: soldered butt joint (a), butt joint with weld bead (b), corner joint with screw (c), lap joint with rivet (d), lap joint with fillet weld (e), assembly with bolt and nut (f).</p>
+        <p>
+             **Choice of process depends on:** Application, loads/stresses, joint design, materials, size/shape.
+        </p>
+        <p>
+            **(Figure 15.3)** shows examples of joints: soldered butt joint (a), butt joint with weld bead (b), corner joint with screw (c), lap joint with rivet (d), lap joint with fillet weld (e), assembly with bolt and nut (f).
+        </p>
 
         <h2>15.3 Welding Process</h2>
-        <p>Metallurgically joining two metal pieces by fusing them to form essentially a single piece. Technology is >2500 years old.</p>
-        <p>Most metals (even plastics/glasses with proper techniques) are weldable.</p>
-        <p>Heat, pressure, or both melt metal edges to fuse permanently. Filler material may be used.</p>
-        <p><strong>Heat sources:</strong> Electric arc, electric current (resistance), gas flame, chemical reaction.</p>
-        <p><strong>Terminology:</strong></p>
+
+        <p>
+             Metallurgically joining two metal pieces by fusing them to form essentially a single piece. Technology is &gt;2500 years old. Most metals (even plastics/glasses with proper techniques) are weldable. Heat, pressure, or both melt metal edges to fuse permanently. Filler material may be used.
+        </p>
+        <p>
+             **Heat sources:** Electric arc, electric current (resistance), gas flame, chemical reaction.
+        </p>
+        <p>
+             **Terminology:**
+        </p>
         <ul>
-            <li><strong>Base metal:</strong> Workpieces to be joined.</li>
-            <li><strong>Weld bead (Bead):</strong> Material deposited by welding, appears separate from base metal. (Fig. 15.3b).</li>
-            <li><strong>Puddle:</strong> Portion of base metals at joint melted during welding.</li>
-            <li><strong>Weld pass:</strong> Movement of welding torch from one end of joint to other, resulting in a joint.</li>
-            <li><strong>Tack weld:</strong> Temporary small weld at ends to hold workpieces together during welding.</li>
+            <li>
+                **Base metal:** Workpieces to be joined.
+            </li>
+            <li>
+                **Weld bead (Bead):** Material deposited by welding, appears separate from base metal. (Fig. 15.3b).
+            </li>
+            <li>
+                **Puddle:** Portion of base metals at joint melted during welding.
+            </li>
+            <li>
+                **Weld pass:** Movement of welding torch from one end of joint to other, resulting in a joint.
+            </li>
+            <li>
+                **Tack weld:** Temporary small weld at ends to hold workpieces together during welding.
+            </li>
         </ul>
 
         <h3>15.3.1 Types of welding processes (based on heat source)</h3>
         <ol>
-            <li><strong>Arc welding:</strong> Heat from electric arc.</li>
-            <li><strong>Gas welding:</strong> Heat from flame (burning oxygen + combustible gas like acetylene).</li>
+            <li>
+                **Arc welding:** Heat from electric arc.
+            </li>
+            <li>
+                **Gas welding:** Heat from flame (burning oxygen + combustible gas like acetylene).
+            </li>
         </ol>
-        <p>Other specialized processes like resistance welding (heat from electric current through parts) are beyond scope.</p>
+        <p>
+             Other specialized processes like resistance welding (heat from electric current through parts) are beyond scope.
+        </p>
 
         <h3>15.3.2 Pre-welding requirements</h3>
         <ul>
-            <li>Base metals must be clean (free from dirt, grease, oil, moisture) for proper fusion and high-quality welds.</li>
-            <li>Joint edges must be prepared for proper joint formation.</li>
+            <li>
+                Base metals must be clean (free from dirt, grease, oil, moisture) for proper fusion and high-quality welds.
+            </li>
+            <li>
+                 Joint edges must be prepared for proper joint formation.
+            </li>
         </ul>
 
         <h3>15.3.3 Types of welding joints (Figure 15.4)</h3>
-        <p>Defines relative positions of pieces.</p>
+        <p>
+             Defines relative positions of pieces. (Position of weld marked with 'x').
+        </p>
         <ul>
-            <li><strong>Butt joint (Fig. 15.4a):</strong> Pieces joined edge to edge.</li>
-            <li><strong>Lap joint (Fig. 15.4b):</strong> Pieces overlap.</li>
-            <li><strong>Corner joint (Fig. 15.4c, d):</strong> Pieces joined at an angle at their edges.</li>
-            <li><strong>T-joint (Fig. 15.4e):</strong> One piece perpendicular to another, forming a 'T'.</li>
+            <li>
+                **Butt joint (Fig. 15.4a):** Pieces joined edge to edge.
+            </li>
+            <li>
+                **Lap joint (Fig. 15.4b):** Pieces overlap.
+            </li>
+            <li>
+                **Corner joint (Fig. 15.4c, d):** Pieces joined at an angle at their edges.
+            </li>
+            <li>
+                **T-joint (Fig. 15.4e):** One piece perpendicular to another, forming a 'T'.
+            </li>
         </ul>
-        <p>(Position of weld marked with 'x').</p>
 
         <h3>15.3.4 Edge preparations for welding (Figure 15.5 - for butt joints)</h3>
-        <p>Essential for complete penetration and sound welds, especially in thick plates.</p>
+        <p>
+            Essential for complete penetration and sound welds, especially in thick plates.
+        </p>
         <ul>
-            <li><strong>Square faces (Fig. 15.5a):</strong> For thin plates. Heat may not melt entire thickness if too thick.</li>
-            <li><strong>Root:</strong> Max thickness weldable with square faces.</li>
-            <li><strong>Grooves (for thicker plates):</strong>
-                <ul>
-                    <li><strong>Single-V (Fig. 15.5b), Single-U (Fig. 15.5d):</strong> Cut leaving a root thickness. Allows deeper penetration.</li>
-                    <li><strong>Double-V (Fig. 15.5c), Double-U (Fig. 15.5e):</strong> For very thick material, allows welding from both sides.</li>
-                </ul>
+            <li>
+                **Square faces (Fig. 15.5a):** For thin plates. Heat may not melt entire thickness if too thick.
+                 <ul>
+                     <li>
+                         **Root:** Max thickness weldable with square faces.
+                     </li>
+                 </ul>
+            </li>
+            <li>
+                 **Grooves (for thicker plates):**
+                 <ul>
+                     <li>
+                         **Single-V (Fig. 15.5b), Single-U (Fig. 15.5d):** Cut leaving a root thickness. Allows deeper penetration.
+                     </li>
+                     <li>
+                         **Double-V (Fig. 15.5c), Double-U (Fig. 15.5e):** For very thick material, allows welding from both sides.
+                     </li>
+                 </ul>
             </li>
         </ul>
 
         <h3>15.3.5 Welding technique (Figure 15.6)</h3>
-        <p>Direction of heat concentration.</p>
+        <p>
+             Direction of heat concentration.
+        </p>
         <ul>
-            <li><strong>Forehand welding (Fig. 15.6b):</strong> Torch points in direction of welding. Heat not concentrated as much into metal ahead. Used for relatively thin parts.</li>
-            <li><strong>Backhand welding (Fig. 15.6c):</strong> Torch points opposite to direction of welding. Heat concentrated into metal ahead. For thicker parts.</li>
+            <li>
+                **Forehand welding (Fig. 15.6b):** Torch points in direction of welding. Heat not concentrated as much into metal ahead. Used for relatively thin parts.
+            </li>
+            <li>
+                **Backhand welding (Fig. 15.6c):** Torch points opposite to direction of welding. Heat concentrated into metal ahead. For thicker parts.
+            </li>
         </ul>
 
         <h2>15.4 Arc Welding</h2>
-        <p>Widely accepted: best, most economical, practical method.</p>
-        <p><strong>Principle:</strong> Requires electrode, low voltage-high current power source, cables, workpiece.</p>
-        <p>Workpiece connected to one cable, electrode to other. Electric arc struck between workpiece and electrode. Large current jumps, producing immense heat. Electrode moved along seam to melt and fuse metal.</p>
+
+        <p>
+             Widely accepted: best, most economical, practical method.
+        </p>
+        <p>
+             **Principle:** Requires electrode, low voltage-high current power source, cables, workpiece. Workpiece connected to one cable, electrode to other. Electric arc struck between workpiece and electrode. Large current jumps, producing immense heat. Electrode moved along seam to melt and fuse metal.
+        </p>
 
         <h3>15.4.1 Electron theory of arc column (Figure 15.7)</h3>
         <ul>
-            <li>Electric arc struck: electrons flow from cathode (electrode) to anode (workpiece).</li>
-            <li>Electrons (small mass, high velocity) convert kinetic energy to heat upon striking workpiece.</li>
-            <li>Positively charged ions (anode to cathode) provide protective shield for electrons.</li>
-            <li>~50% electrical energy becomes heat. ~2/3 of released heat is at anode (positive pole) in DC systems. AC: heat equalized.</li>
+            <li>
+                 Electric arc struck: electrons flow from cathode (electrode) to anode (workpiece).
+            </li>
+            <li>
+                 Electrons (small mass, high velocity) convert kinetic energy to heat upon striking workpiece.
+            </li>
+            <li>
+                 Positively charged ions (anode to cathode) provide protective shield for electrons.
+            </li>
+            <li>
+                 ~50% electrical energy becomes heat. ~2/3 of released heat is at anode (positive pole) in DC systems. AC: heat equalized.
+            </li>
         </ul>
 
         <h3>15.4.2 Arc welding process (Figure 15.8)</h3>
         <ul>
-            <li>Heat from electrical energy. Electrodes: thin metal/graphite rods.</li>
-            <li>Arc initiated by striking electrode tip against workpiece, then quickly withdrawing to maintain arc.</li>
-            <li>Arc temp ~30,000°C, melts base metal and electrode tip. Electrode metal mixes with molten base metal.</li>
-            <li>Electrode consumed, moved down at uniform speed along weld line.</li>
-            <li><strong>Coated electrodes (Fig. 15.8b):</strong> Coating acts as <strong>flux</strong>.
+            <li>
+                 Heat from electrical energy. Electrodes: thin metal/graphite rods.
+            </li>
+            <li>
+                 Arc initiated by striking electrode tip against workpiece, then quickly withdrawing to maintain arc.
+            </li>
+            <li>
+                 Arc temp ~30,000°C, melts base metal and electrode tip. Electrode metal mixes with molten base metal.
+            </li>
+            <li>
+                 Electrode consumed, moved down at uniform speed along weld line.
+            </li>
+            <li>
+                **Coated electrodes (Fig. 15.8b):** Coating acts as **flux**.
                 <ul>
-                    <li>Forms gaseous shield around weld, protects molten metal from atmosphere (oxygen).</li>
-                    <li>Flux melts, mixes with impurities in molten pool, floats to top.</li>
-                    <li>Forms <strong>slag</strong> on cooling, protects hot weld bead from further contamination.</li>
+                    <li>
+                         Forms gaseous shield around weld, protects molten metal from atmosphere (oxygen).
+                    </li>
+                    <li>
+                         Flux melts, mixes with impurities in molten pool, floats to top.
+                    </li>
+                    <li>
+                         Forms **slag** on cooling, protects hot weld bead from further contamination.
+                    </li>
                 </ul>
             </li>
         </ul>
 
         <h3>15.4.3 Weld penetration (Figure 15.9)</h3>
-        <p>Depth to which base metal is affected.</p>
+        <p>
+             Depth to which base metal is affected. Mechanical strength depends on penetration depth.
+        </p>
         <ul>
-            <li>Mechanical strength depends on penetration depth.</li>
-            <li><strong>DC current:</strong>
-                <ul>
-                    <li><strong>Straight polarity (Workpiece Positive) (Fig. 15.9a):</strong> More heat at work, more penetration. For thicker workpieces.</li>
-                    <li><strong>Reverse polarity (Workpiece Negative) (Fig. 15.9b):</strong> ~2/3 heat at electrode tip, less penetration. For thinner workpieces.</li>
-                </ul>
+            <li>
+                 **DC current:**
+                 <ul>
+                     <li>
+                         **Straight polarity (Workpiece Positive) (Fig. 15.9a):** More heat at work, more penetration. For thicker workpieces.
+                     </li>
+                     <li>
+                         **Reverse polarity (Workpiece Negative) (Fig. 15.9b):** ~2/3 heat at electrode tip, less penetration. For thinner workpieces.
+                     </li>
+                 </ul>
             </li>
-            <li><strong>AC current (Fig. 15.9c):</strong> Combines characteristics of both.</li>
-            <li><strong>Operating conditions:</strong> Current, voltage, welding speed.
+            <li>
+                 **AC current (Fig. 15.9c):** Combines characteristics of both.
+            </li>
+            <li>
+                **Operating conditions:** Current, voltage, welding speed.
                 <ul>
-                    <li>Too low current: poor penetration. Too high: excessive spatter, irregular deposits.</li>
-                    <li>Too high speed: less metal deposition, small beads, weak joints. Too slow: overlapping beads, no more penetration.</li>
+                    <li>
+                         Too low current: poor penetration. Too high: excessive spatter, irregular deposits.
+                    </li>
+                    <li>
+                         Too high speed: less metal deposition, small beads, weak joints. Too slow: overlapping beads, no more penetration.
+                    </li>
                 </ul>
             </li>
         </ul>
 
         <h2>15.5 Gas Welding (Figure 15.10)</h2>
-        <p>Fusion welding: heat from combustion of oxygen + fuel gas (acetylene, propane, butane, natural gas).</p>
-        <p>Gases burned with oxygen (not air, as N₂ lowers flame temp).</p>
-        <p><strong>Oxy-acetylene welding:</strong> Most common. Oxygen supports combustion, acetylene is fuel. Highest flame temp (~3300°C). Oxy-hydrogen ~2200°C.</p>
-        <p>Fuel gases are hydrocarbons (C, H). Burned with pure O₂, produce CO₂ + H₂O (can damage reactive metals like Ti). Metals welded should not be reactive to combustion products.</p>
-        <p>Commonly used for repairs.</p>
+
+        <p>
+            Fusion welding: heat from combustion of oxygen + fuel gas (acetylene, propane, butane, natural gas). Gases burned with oxygen (not air, as N₂ lowers flame temp).
+        </p>
+        <ul>
+            <li>
+                 **Oxy-acetylene welding:** Most common. Oxygen supports combustion, acetylene is fuel. Highest flame temp (~3300°C). Oxy-hydrogen ~2200°C.
+            </li>
+            <li>
+                 Fuel gases are hydrocarbons (C, H). Burned with pure O₂, produce CO₂ + H₂O (can damage reactive metals like Ti). Metals welded should not be reactive to combustion products.
+            </li>
+            <li>
+                 Commonly used for repairs.
+            </li>
+        </ul>
 
         <h3>15.5.1 Gas welding process (Fig. 15.10a - setup, Fig. 15.10b - combustion triangle)</h3>
         <ul>
-            <li><strong>Equipment:</strong> Oxygen cylinder, Acetylene cylinder, hoses, regulators (reduce cylinder pressure to working line pressure), torch.</li>
-            <li><strong>Operation:</strong> Gases mixed in torch mixing chamber, ejected through nozzle/tip, ignited by spark. (Kindling temp reached for combustion - Fig 15.10b).</li>
-            <li>Flame type/temp controlled by O₂/Acetylene ratio via torch valves.</li>
-            <li>Sound weld depends on: torch size, flame, filler material, torch movement. Joint heated till weld pool forms, filler metal added as rod/wire.</li>
-            <li><strong>Combustion reaction (oxy-acetylene):</strong>
-                <p>$2\text{C}_2\text{H}_2 + 5\text{O}_2 \rightarrow 4\text{CO}_2 + 2\text{H}_2\text{O} \text{ (vapour) + Heat } (\approx 300 \text{ kcal/mole})$</p>
+            <li>
+                 **Equipment:** Oxygen cylinder, Acetylene cylinder, hoses, regulators (reduce cylinder pressure to working line pressure), torch.
             </li>
-            <li>Temperature generated: ~3300°C.</li>
+            <li>
+                 **Operation:** Gases mixed in torch mixing chamber, ejected through nozzle/tip, ignited by spark. (Kindling temp reached for combustion - Fig 15.10b).
+            </li>
+            <li>
+                 Flame type/temp controlled by O₂/Acetylene ratio via torch valves.
+            </li>
+            <li>
+                 Sound weld depends on: torch size, flame, filler material, torch movement. Joint heated till weld pool forms, filler metal added as rod/wire.
+            </li>
+            <li>
+                **Combustion reaction (oxy-acetylene):**
+                 <div class="formula-container"
+                     onclick="copyFormulaLatex(this, this.dataset.latex)"
+                     data-latex="\color{white} 2\text{C}_2\text{H}_2 + 5\text{O}_2 \rightarrow 4\text{CO}_2 + 2\text{H}_2\text{O} \text{ (vapour) } + \text{Heat} (\approx 300 \text{ kcal/mole})"
+                     title="Click to copy LaTeX (equation number will be removed)">
+                     $$ \color{white} 2\text{C}_2\text{H}_2 + 5\text{O}_2 \rightarrow 4\text{CO}_2 + 2\text{H}_2\text{O} \text{ (vapour) } + \text{Heat} (\approx 300 \text{ kcal/mole}) $$
+                </div>
+            </li>
+            <li>
+                 Temperature generated: ~3300°C.
+            </li>
         </ul>
 
         <h3>15.5.2 Types of flames</h3>
         <ol>
-            <li><strong>Carbonizing flame (Reducing flame):</strong> Excess acetylene. Low flame temp. Unburnt carbon forced into molten metal, makes ferrous weld bead hard/brittle.</li>
-            <li><strong>Oxidizing flame:</strong> Excess oxygen. Hottest flame. Causes metal to burn/oxidize quickly.</li>
-            <li><strong>Neutral flame (Balanced flame):</strong> Equal O₂/Acetylene. Little effect on base metal. Produces sound weld beads compared to others.</li>
+            <li>
+                **Carbonizing flame (Reducing flame):** Excess acetylene. Low flame temp. Unburnt carbon forced into molten metal, makes ferrous weld bead hard/brittle.
+            </li>
+            <li>
+                **Oxidizing flame:** Excess oxygen. Hottest flame. Causes metal to burn/oxidize quickly.
+            </li>
+            <li>
+                **Neutral flame (Balanced flame):** Equal O₂/Acetylene. Little effect on base metal. Produces sound weld beads compared to others.
+            </li>
         </ol>
 
         <h3>15.5.3 Fluxes</h3>
         <ul>
-            <li>During fusion, O₂ (atmosphere/torch) forms oxides with molten metal. Oxides entrapped -> low quality/strength welds.</li>
-            <li>Flux removes oxides from parent metal surfaces, helps oxides float in molten pool. Reacts with oxides to form <strong>slag</strong> (low melting point, low density).</li>
-            <li>Slag floats, protects weld from oxidation during solidification/cooling.</li>
-            <li>Common fluxes: Sodium, potassium, lithium, borax. Applied as paste, powder, liquid, solid coating, or gas.</li>
+            <li>
+                 During fusion, O₂ (atmosphere/torch) forms oxides with molten metal. Oxides entrapped &rarr; low quality/strength welds.
+            </li>
+            <li>
+                 Flux removes oxides from parent metal surfaces, helps oxides float in molten pool. Reacts with oxides to form **slag** (low melting point, low density).
+            </li>
+            <li>
+                 Slag floats, protects weld from oxidation during solidification/cooling.
+            </li>
+            <li>
+                 Common fluxes: Sodium, potassium, lithium, borax. Applied as paste, powder, liquid, solid coating, or gas.
+            </li>
         </ul>
 
         <h3>15.5.4 Filler material</h3>
         <ul>
-            <li>Generally added. Melted by flame, fills space between pieces.</li>
-            <li>Must be same composition as base metal.</li>
-            <li>Some metals welded without extra filler: <strong>autogenous</strong> welding.</li>
+            <li>
+                 Generally added. Melted by flame, fills space between pieces. Must be same composition as base metal.
+            </li>
+            <li>
+                 Some metals welded without extra filler: **autogenous** welding.
+            </li>
         </ul>
 
         <h2>15.6 Resistance Welding (Figure 15.11, 15.12)</h2>
-        <p>Also known as electric welding. Heat from electrical resistance between two members to be joined.</p>
-        <p>Heat generated: $H = I^2Rtk$ (Eq. 15.1)</p>
+
+        <p>
+            Also known as electric welding. Heat from electrical resistance between two members to be joined.
+        </p>
+        <div class="formula-container"
+            onclick="copyFormulaLatex(this, this.dataset.latex)"
+            data-latex="\color{white} H = I^2 R t k \quad (\text{Eq } 15.1)"
+            title="Click to copy LaTeX (equation number will be removed)">
+            $$ \color{white} H = I^2 R t k \quad (\text{Eq } 15.1) $$
+        </div>
         <ul>
-            <li>$H$: heat (Joules), $I$: current (Amps), $R$: resistance (Ohms), $t$: time (secs), $k$: constant for losses (<1).</li>
+            <li>
+                `H`: heat (Joules), `I`: current (Amps), `R`: resistance (Ohms), `t`: time (secs), `k`: constant for losses (&lt;1).
+            </li>
         </ul>
-        <p><strong>Five basic methods:</strong> Spot, Seam, Projection, Flash, Upset welding. (Focus on first two).</p>
+        <p>
+             **Five basic methods:** Spot, Seam, Projection, Flash, Upset welding. (Focus on first two).
+        </p>
 
         <h3>15.6.1 Spot welding (Figure 15.11)</h3>
         <ul>
-            <li>Simplest, commonest. For sheets.</li>
-            <li>Two solid cylindrical electrode tips placed on lap joint of two sheets. High current passed.</li>
-            <li>Heat at contact point melts metals locally. Current off, melt solidifies -> small circular weld (nugget).</li>
-            <li>Strength depends on surface roughness/cleanliness. Surfaces must be cleaned.</li>
+            <li>
+                 Simplest, commonest. For sheets.
+            </li>
+            <li>
+                 Two solid cylindrical electrode tips placed on lap joint of two sheets. High current passed.
+            </li>
+            <li>
+                 Heat at contact point melts metals locally. Current off, melt solidifies &rarr; small circular weld (nugget).
+            </li>
+            <li>
+                 Strength depends on surface roughness/cleanliness. Surfaces must be cleaned.
+            </li>
         </ul>
 
         <h3>15.6.2 Seam welding (Figure 15.12)</h3>
         <ul>
-            <li>Cylindrical spot welding electrodes replaced by electrode wheels (rollers).</li>
-            <li>Metals drawn between rollers. Continuous AC supply.</li>
-            <li>Electrically conducting wheels produce continuous weld (series of overlapping spot welds) when current is high in AC cycle. (Fig. 15.12b shows continuous spot welds).</li>
+            <li>
+                 Cylindrical spot welding electrodes replaced by electrode wheels (rollers).
+            </li>
+            <li>
+                 Metals drawn between rollers. Continuous AC supply.
+            </li>
+            <li>
+                 Electrically conducting wheels produce continuous weld (series of overlapping spot welds) when current is high in AC cycle. (Fig. 15.12b shows continuous spot welds).
+            </li>
         </ul>
 
         <h3>15.6.3 Tungsten inert gas (TIG) welding (Gas Tungsten Arc Welding - GTAW) (Figure 15.13)</h3>
         <ul>
-            <li>Arc welding process with non-consumable tungsten electrode in protective inert gas atmosphere.</li>
-            <li><strong>Process:</strong> Tungsten electrode in holder strikes arc with base metal. Electrode shielded by inert gas (Argon, CO₂, Helium). Arc melts base metal, filler supplied from rod to puddle.</li>
-            <li>Backside of joint also protected (carbon block bars or shielding gas).</li>
-            <li>For Al, Mg (oxidize/burn easily), stainless steel, Monel, tungsten, bronze. Can weld dissimilar metals.</li>
-            <li>Does not produce deep penetration; needs more passes for thick metals. Slow, expensive.</li>
+            <li>
+                 Arc welding process with non-consumable tungsten electrode in protective inert gas atmosphere.
+            </li>
+            <li>
+                 **Process:** Tungsten electrode in holder strikes arc with base metal. Electrode shielded by inert gas (Argon, CO₂, Helium). Arc melts base metal, filler supplied from rod to puddle.
+            </li>
+            <li>
+                 Backside of joint also protected (carbon block bars or shielding gas).
+            </li>
+            <li>
+                 For Al, Mg (oxidize/burn easily), stainless steel, Monel, tungsten, bronze. Can weld dissimilar metals.
+            </li>
+            <li>
+                 Does not produce deep penetration; needs more passes for thick metals. Slow, expensive.
+            </li>
         </ul>
 
         <h2>15.7 Soldering and Brazing</h2>
-        <p>Metal parts heated (not melted), molten filler flows between closely placed adjacent surfaces by capillary action.</p>
-        <p>Strong joint forms on cooling by bond between parent metal and filler metal atoms.</p>
-        <p>Suitable for dissimilar metals.</p>
-        <p><strong>Distinction:</strong></p>
+
+        <p>
+             Metal parts heated (not melted), molten filler flows between closely placed adjacent surfaces by capillary action. Strong joint forms on cooling by bond between parent metal and filler metal atoms. Suitable for dissimilar metals.
+        </p>
+        <p>
+             **Distinction:**
+        </p>
         <ul>
-            <li><strong>Soldering:</strong> Filler metal melts <em>below</em> 450°C.</li>
-            <li><strong>Brazing:</strong> Filler metal melts <em>above</em> 450°C (up to 900°C, but below base metal melting point).</li>
+            <li>
+                **Soldering:** Filler metal melts <em>below</em> 450°C.
+            </li>
+            <li>
+                **Brazing:** Filler metal melts <em>above</em> 450°C (up to 900°C, but below base metal melting point).
+            </li>
         </ul>
 
         <h3>15.7.1 Soldering (Figure 15.14)</h3>
         <ul>
-            <li>For low mechanical strength joints. Filler = <strong>solder</strong> (low melting point).</li>
-            <li><strong>Wetting:</strong> Metallic surface must be capable of being wetted by solder. Liquid solubility needed. Atoms of solder may form solid solution or intermetallic compound with base metal.</li>
-            <li><strong>Cleanliness:</strong> Wetting affected by surface cleanliness. Thin oxide film inhibits wetting. Flux used to dissolve oxide film and protect surface until wetted.</li>
-            <li><strong>Basic operations:</strong>
-                <ol>
-                    <li><strong>Shaping and fitting parts:</strong> Close fit for capillary action. Large gap -> no capillary action, weak joint.</li>
-                    <li><strong>Cleaning surfaces:</strong> Remove dirt, grease for strong atomic bonds.</li>
-                    <li><strong>Flux application:</strong> Essential. Clean metal rapidly oxidizes with heat. Flux breaks/removes oxide film.</li>
-                    <li><strong>Application of heat and solder:</strong> Parts held (vice/fixture). Heat parts to solder-melting/alloying temp <em>before</em> applying solder. Heat via soldering iron (heated electrically/other). Soldering iron's sole function is to heat the joint.
-                        <ul>
-                            <li>(Fig 15.14): Soldering simple lap joint.</li>
-                        </ul>
-                    </li>
-                </ol>
+            <li>
+                 For low mechanical strength joints. Filler = **solder** (low melting point). Mostly Pb-Sn alloys. May contain Cd, Sb. Composition determines properties. Forms: bar, stick, fill, wire, strip, rings. Cored solder wire: tube of solder filled with flux.
             </li>
-            <li>Heat applied -> flux breaks oxide film -> solder applied, melts -> metal-to-metal contact via molten solder -> cool.</li>
-            <li>Other heating: blowtorches, dipping in molten solder.</li>
-            <li><strong>Solder:</strong> Mostly Pb-Sn alloys. May contain Cd, Sb. Composition determines properties. Forms: bar, stick, fill, wire, strip, rings. Cored solder wire: tube of solder filled with flux.</li>
-            <li><strong>Fluxes:</strong> Remove non-metallic oxide film for mutual metallic contact. Not part of joint. Examples: ZnCl₂, NH₄Cl, HCl.</li>
+            <li>
+                **Wetting:** Metallic surface must be capable of being wetted by solder. Liquid solubility needed. Atoms of solder may form solid solution or intermetallic compound with base metal.
+            </li>
+            <li>
+                **Cleanliness:** Wetting affected by surface cleanliness. Thin oxide film inhibits wetting. Flux used to dissolve oxide film and protect surface until wetted.
+            </li>
+            <li>
+                 **Basic operations:**
+                 <ol>
+                     <li>
+                         **Shaping and fitting parts:** Close fit for capillary action. Large gap &rarr; no capillary action, weak joint.
+                     </li>
+                     <li>
+                         **Cleaning surfaces:** Remove dirt, grease for strong atomic bonds.
+                     </li>
+                     <li>
+                         **Flux application:** Essential. Clean metal rapidly oxidizes with heat. Flux breaks/removes oxide film. Common fluxes: Sodium, potassium, lithium, borax. Applied as paste, powder, liquid, solid coating, or gas.
+                     </li>
+                     <li>
+                         **Application of heat and solder:** Parts held (vice/fixture). Heat parts to solder-melting/alloying temp <em>before</em> applying solder. Heat via soldering iron (heated electrically/other). Soldering iron's sole function is to heat the joint.
+                         <ul>
+                             <li>
+                                 **(Fig 15.14):** Soldering simple lap joint.
+                             </li>
+                         </ul>
+                         Heat applied &rarr; flux breaks oxide film &rarr; solder applied, melts &rarr; metal-to-metal contact via molten solder &rarr; cool. Other heating: blowtorches, dipping in molten solder.
+                     </li>
+                 </ol>
+            </li>
         </ul>
 
         <h3>15.7.2 Brazing</h3>
         <ul>
-            <li>AWS definition: Coalescence by heating >500°C, using non-ferrous filler metal (melts <900°C, below base metal MP), distributed by capillary action.</li>
-            <li>For thicker parts or stronger joints. Similar/dissimilar parts.</li>
-            <li>Like soldering: success depends on molten filler (low surface tension) flowing easily over properly heated, clean base metal.</li>
-            <li>Base metal not melted. Some diffusion/alloying of filler with base metal occurs.</li>
-            <li>Surfaces must be chemically clean. Fluxes (e.g., Borax) remove oxides. Borax dissolves most common metal oxides.</li>
-            <li><strong>Methods (based on heating):</strong>
-                <ol>
-                    <li><strong>Torch brazing:</strong> Most widely used. Heat from oxy-acetylene gas flame (carbonizing flame suitable).</li>
-                    <li><strong>Furnace brazing:</strong> For large number of small/medium parts. Filler (granular, powder, strips) placed at joint, assembly heated in furnace.</li>
-                </ol>
+            <li>
+                 AWS definition: Coalescence by heating &gt;500°C, using non-ferrous filler metal (melts &lt;900°C, below base metal MP), distributed by capillary action.
+            </li>
+            <li>
+                 For thicker parts or stronger joints. Similar/dissimilar parts.
+            </li>
+            <li>
+                 Like soldering: success depends on molten filler (low surface tension) flowing easily over properly heated, clean base metal.
+            </li>
+            <li>
+                 Base metal not melted. Some diffusion/alloying of filler with base metal occurs.
+            </li>
+            <li>
+                 Surfaces must be chemically clean. Fluxes (e.g., Borax) remove oxides. Borax dissolves most common metal oxides.
+            </li>
+            <li>
+                 **Methods (based on heating):**
+                 <ol>
+                     <li>
+                         **Torch brazing:** Most widely used. Heat from oxy-acetylene gas flame (carbonizing flame suitable).
+                     </li>
+                     <li>
+                         **Furnace brazing:** For large number of small/medium parts. Filler (granular, powder, strips) placed at joint, assembly heated in furnace.
+                     </li>
+                 </ol>
             </li>
         </ul>
 
         <h2>15.8 Mechanical Fasteners (Figure 15.15 - 15.22)</h2>
-        <p>Devices to hold two parts together. Easily unfastened, parts separated without damage.</p>
-        <p>Mostly for temporary/semi-permanent joints. Welding gives permanent.</p>
-        <p><strong>Applications:</strong></p>
+
+        <p>
+             Devices to hold two parts together. Easily unfastened, parts separated without damage. Mostly for temporary/semi-permanent joints. Welding gives permanent.
+        </p>
+        <p>
+             **Applications:**
+        </p>
         <ol>
-            <li>Where dismantling needed (replacement/maintenance).</li>
-            <li>Materials not weldable/brazable/solderable (e.g., wood). No heat/filler needed.</li>
+            <li>
+                 Where dismantling needed (replacement/maintenance).
+            </li>
+            <li>
+                 Materials not weldable/brazable/solderable (e.g., wood). No heat/filler needed.
+            </li>
         </ol>
-        <p>Huge variety. Boeing 747 uses ~2.5 million fasteners.</p>
-        <p><strong>Selection factors:</strong> Service type, materials joined, joint type, required strength.</p>
-        <p><strong>Categories:</strong></p>
+        <p>
+             Huge variety. Boeing 747 uses ~2.5 million fasteners.
+        </p>
+        <p>
+             **Selection factors:** Service type, materials joined, joint type, required strength.
+        </p>
+        <p>
+             **Categories:**
+        </p>
         <ol>
-            <li><strong>Threaded fasteners:</strong> Threads cut on them (entire or part length). (Nuts, bolts, screws).</li>
-            <li><strong>Non-threaded fasteners:</strong> No threads. (Rivets).</li>
+            <li>
+                 **Threaded fasteners:** Threads cut on them (entire or part length). (Nuts, bolts, screws).
+            </li>
+            <li>
+                 **Non-threaded fasteners:** No threads. (Rivets).
+            </li>
         </ol>
 
         <h3>15.8.1 Threaded fasteners (Fig 15.15 - methodology)</h3>
         <ul>
-            <li>Internal threads = nuts. External threads = bolts/screws.</li>
-            <li>Threads may be cut in holes in parts.</li>
-            <li>Joining by frictional surface contact between internal/external threads. Relative motion -> axial motion, tightening parts.</li>
-            <li><strong>Screw fasteners (Fig 15.16):</strong> Single piece, external threads. One part usually has internal threads.
+            <li>
+                 Internal threads = nuts. External threads = bolts/screws. Threads may be cut in holes in parts.
+            </li>
+            <li>
+                 Joining by frictional surface contact between internal/external threads. Relative motion &rarr; axial motion, tightening parts.
+            </li>
+            <li>
+                **Screw fasteners (Fig 15.16):** Single piece, external threads. One part usually has internal threads.
                 <ul>
-                    <li><strong>Machine screws (Fig 15.16):</strong> For assembly where one part has tapped hole. Various heads (countersunk, raised countersunk, round, hexagon) and tails (flat, conical, spherical). Screwdriver for slot, spanner for hex. (Fig 15.16e - grub screw).</li>
-                    <li><strong>Socket screws (Fig 15.17):</strong> Hexagonal socket in head. Tightened with L-shaped <strong>Allen key</strong>. Higher strength joints than machine screws. (Cap head, countersunk head shown).</li>
-                    <li><strong>Self-tapping screws:</strong> For fast assembly. No pre-drilled/tapped holes needed. Hardened, produce own thread in pilot hole. Good vibration resistance. Tapping op not needed.</li>
+                    <li>
+                         **Machine screws (Fig 15.16):** For assembly where one part has tapped hole. Various heads (countersunk, raised countersunk, round, hexagon) and tails (flat, conical, spherical). Screwdriver for slot, spanner for hex. (Fig 15.16e - grub screw).
+                    </li>
+                    <li>
+                         **Socket screws (Fig 15.17):** Hexagonal socket in head. Tightened with L-shaped **Allen key**. Higher strength joints than machine screws. (Cap head, countersunk head shown).
+                    </li>
+                    <li>
+                         **Self-tapping screws:** For fast assembly. No pre-drilled/tapped holes needed. Hardened, produce own thread in pilot hole. Good vibration resistance. Tapping op not needed.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Bolts and nuts (Fig 15.18 - bolts, Fig 15.19 - nuts):</strong> Two-part. Bolt: headed cylindrical bar, threaded shank. Used with nuts for stronger joints. Bolts usually partly threaded (twice bolt diameter).
+            <li>
+                **Bolts and nuts (Fig 15.18 - bolts, Fig 15.19 - nuts):** Two-part. Bolt: headed cylindrical bar, threaded shank. Used with nuts for stronger joints. Bolts usually partly threaded (twice bolt diameter).
                 <ul>
-                    <li>(Fig 15.18): Hexagonal head, Square head bolts.</li>
-                    <li>(Fig 15.19): Hexagonal nut (common), Wing nut (hand tightening).</li>
+                    <li>
+                         **(Fig 15.18):** Hexagonal head, Square head bolts.
+                    </li>
+                    <li>
+                         **(Fig 15.19):** Hexagonal nut (common), Wing nut (hand tightening).
+                    </li>
                 </ul>
             </li>
-            <li><strong>Studs (Fig 15.20):</strong> Headless bolt, threaded both ends. For joining parts where both have threaded holes. (e.g., engine cylinder head to block).</li>
-            <li><strong>Locking devices:</strong> Prevent loosening from vibration/stress (lock pins, lock nuts, locking washers, headed keys).</li>
+            <li>
+                **Studs (Fig 15.20):** Headless bolt, threaded both ends. For joining parts where both have threaded holes. (e.g., engine cylinder head to block).
+            </li>
+            <li>
+                 **Locking devices:** Prevent loosening from vibration/stress (lock pins, lock nuts, locking washers, headed keys).
+            </li>
         </ul>
 
         <h3>15.8.2 Non-threaded fasteners (Figure 15.21, 15.22)</h3>
         <ul>
-            <li><strong>Rivets (Fig. 15.21):</strong> Cylindrical bar, pre-formed head one end. Other end deformed after fitting.
+            <li>
+                **Rivets (Fig. 15.21):** Cylindrical bar, pre-formed head one end. Other end deformed after fitting.
                 <ul>
-                    <li>For semi-permanent joints (need not be normally dismantled). Can be permanent if parts never dismantled.</li>
-                    <li>Unfastening by chipping off head (can damage parts).</li>
-                    <li>Parts (Fig. 15.21): Head, Body/Shank, Tail.</li>
-                    <li>Used in structural/machine work (vibration), poor weldability metals. (Boiler drums, roof trusses, bridges, towers). For shear stresses, not tension.</li>
-                    <li><strong>Riveting Process (Fig. 15.22):</strong>
-                        <ol>
-                            <li>Drill holes in parts (Fig 15.22a).</li>
-                            <li>Align holes, insert rivet (Fig 15.22b).</li>
-                            <li>Deform tail end to form second head (Fig 15.22c) (manual hammer or riveting machine).</li>
-                            <li>Finished joint (Fig 15.22d).</li>
-                        </ol>
+                    <li>
+                         For semi-permanent joints (need not be normally dismantled). Can be permanent if parts never dismantled.
                     </li>
-                    <li>Unfastening: cut one head, blow rivet out.</li>
-                </ul>
+                    <li>
+                         Unfastening by chipping off head (can damage parts).
+                    </li>
+                    <li>
+                         Parts (Fig. 15.21): Head, Body/Shank, Tail.
+                    </li>
+                    <li>
+                         Used in structural/machine work (vibration), poor weldability metals. (Boiler drums, roof trusses, bridges, towers). For shear stresses, not tension.
+                    </li>
+                    <li>
+                         **Riveting Process (Fig. 15.22):**
+                         <ol>
+                             <li>
+                                 Drill holes in parts (Fig 15.22a).
+                             </li>
+                             <li>
+                                 Align holes, insert rivet (Fig 15.22b).
+                             </li>
+                             <li>
+                                 Deform tail end to form second head (Fig 15.22c) (manual hammer or riveting machine).
+                             </li>
+                             <li>
+                                 Finished joint (Fig 15.22d).
+                             </li>
+                         </ol>
+                    </li>
+                     <li>
+                         Unfastening: cut one head, blow rivet out.
+                     </li>
+                 </ul>
             </li>
         </ul>
-        <!-- END OF NEW CONTENT -->
+
 
     </main>
 
@@ -452,20 +766,53 @@
      <div id="fontSizeDisplay">10px</div> <!-- Initial size display -->
 
     <script>
-        // --- Formula Copy Function (Corrected) ---
-        function copyFormulaLatex(element, latexStringToCopy) { 
-            if (!latexStringToCopy) { 
+        // --- Formula Copy Function ---
+        // This function copies the LaTeX string from the data-latex attribute.
+        // It attempts to remove common equation number/identifier patterns
+        // (\quad (...), \qquad (...), or just (...)) from the *end* of the string.
+        // CRITICAL: The regex patterns used are specifically designed to match
+        // spacing and parentheses at the end and DO NOT include patterns like \color{...}.
+        // Therefore, \color{...} commands placed before the equation number
+        // annotation will be preserved during the copying process, fulfilling the user's requirement.
+        function copyFormulaLatex(element, latexToProcess) {
+            if (!latexToProcess) {
                 console.error('No LaTeX string passed to copy function.');
                 return;
             }
 
-            navigator.clipboard.writeText(latexStringToCopy).then(() => { 
+            let latexStringToCopy = latexToProcess.trim(); // Start with the original string, trimmed.
+
+            // 1. Attempt to remove \quad (number) or \qquad (number) from the end.
+            //    This pattern is common for AMS tags or manual equation numbers.
+            //    Regex: \s*                  - optional leading whitespace
+            //           \\q(?:uad|quad)     - \quad or \qquad
+            //           \s*                  - optional space after \quad
+            //           \([^)]+\)            - parentheses with at least one char inside
+            //           \s*$                 - optional trailing whitespace then end of string
+            //    --> This pattern does NOT match \color{...}
+            let cleanedLatex = latexStringToCopy.replace(/\s*\\q(?:uad|quad)\s*\([^)]+\)\s*$/, "");
+
+            // 2. If the first pattern didn't change the string, try removing a simpler " (number)" from the end.
+            //    This handles cases where the equation number is just parenthesized at the end, preceded by a space.
+            //    Regex: \s+                  - one or more whitespace characters (ensures separation)
+            //           \([^)]+\)            - parentheses with at least one char inside
+            //           \s*$                 - optional trailing whitespace then end of string
+            //    --> This pattern also does NOT match \color{...}
+            if (cleanedLatex === latexStringToCopy) { // Only if the first replacement did nothing
+                cleanedLatex = cleanedLatex.replace(/\s+\([^)]+\)\s*$/, "");
+            }
+
+            latexStringToCopy = cleanedLatex.trim(); // Final trim
+
+            navigator.clipboard.writeText(latexStringToCopy).then(() => {
                 element.classList.add('copied');
                 const originalTitle = element.title;
-                element.title = 'Copied: ' + latexStringToCopy; 
+                // Show the *actually copied* (cleaned) LaTeX in the temporary tooltip
+                // Note: If the *entire* string was just the eq number, this shows "[empty...]"
+                element.title = 'Copied: ' + (latexStringToCopy.substring(0, 50) + (latexStringToCopy.length > 50 ? '...' : '') || "[empty - only eq number?]");
                 setTimeout(() => {
                     element.classList.remove('copied');
-                    element.title = originalTitle; 
+                    element.title = originalTitle;
                  }, 1500);
             }).catch(err => {
                 console.error('Failed to copy LaTeX: ', err);
@@ -509,6 +856,9 @@
             const queueMathJaxTypeset = debounce(() => {
                 if (window.MathJax && MathJax.typesetPromise) {
                     console.log("Debounced: Typesetting MathJax");
+                    // Use typesetPromise on the body to update all math
+                    // Need to clear the typeset elements first to prevent duplicates/issues
+                    MathJax.typesetClear([bodyEl]);
                     MathJax.typesetPromise([bodyEl]).catch((err) => console.error('MathJax typesetting error:', err));
                  }
             }, mathJaxDebounceDelay);
@@ -528,6 +878,10 @@
                         display.classList.remove('visible');
                         displayTimeout = null;
                     }, 1500);
+
+                    // Re-queue MathJax typesetting after font size change
+                    queueMathJaxTypeset();
+
                     return true; // Indicate size changed
                 }
                 return false; // Indicate size hit limit
@@ -538,21 +892,27 @@
                 bodyEl.classList.remove('no-font-transition'); // Re-enable transition
                 if (holdTimeout) { clearTimeout(holdTimeout); holdTimeout = null; }
                 if (holdInterval) { clearInterval(holdInterval); holdInterval = null; }
-                queueMathJaxTypeset();
+                // A final typeset is queued on mouseup/mouseleave by queueMathJaxTypeset called in updateFontSize
             }
 
             // --- Start Holding Action ---
             function startHolding(direction) {
-                bodyEl.classList.add('no-font-transition'); 
-                updateFontSize(currentSize + direction * step); 
-                // Clear previous timers to prevent multiple intervals if mousedown event fires rapidly
+                bodyEl.classList.add('no-font-transition');
+                // Perform the first step immediately
+                if (!updateFontSize(currentSize + direction * step)) {
+                    stopHolding(); // Stop if already at limit
+                    return;
+                }
+
                 if (holdTimeout) clearTimeout(holdTimeout);
                 if (holdInterval) clearInterval(holdInterval);
 
+                // Start repeating after initial delay
                 holdTimeout = setTimeout(() => {
                     holdInterval = setInterval(() => {
+                        // If updateFontSize returns false, we hit a limit, so stop holding
                         if (!updateFontSize(currentSize + direction * step)) {
-                            stopHolding(); // Stop if size limit is reached
+                            stopHolding();
                         }
                     }, repeatInterval);
                 }, initialHoldDelay);
@@ -560,43 +920,76 @@
 
             // --- Event Listeners ---
             if (minusBtn && plusBtn && display) {
-                minusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(-1); });
-                plusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(1); });
-                window.addEventListener('mouseup', stopHolding); // Stop on release anywhere
-                minusBtn.addEventListener('mouseleave', stopHolding); // Stop if mouse leaves while holding
-                plusBtn.addEventListener('mouseleave', stopHolding);
+                // Use pointerdown for hold sensitivity, prevent default text selection
+                minusBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startHolding(-1); });
+                plusBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startHolding(1); });
 
-                // Set initial state
+                // Use pointerup/pointerleave on the window/buttons to stop holding
+                // pointerup captures release anywhere, pointerleave on button allows sliding off to stop
+                window.addEventListener('pointerup', stopHolding);
+                minusBtn.addEventListener('pointerleave', (e) => { if (e.buttons === 0) stopHolding(); }); // Only stop if button is not pressed
+                plusBtn.addEventListener('pointerleave', (e) => { if (e.buttons === 0) stopHolding(); }); // Only stop if button is not pressed
+
+                // Set initial font size and display
                 htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
                 display.textContent = currentSize + 'px';
                 console.log("Font control initialized. Current size:", currentSize);
-                 // Initial MathJax typeset on load (after ready)
+
+                 // Ensure MathJax typesets *after* initial load and any potential font size restoration
                  if (window.MathJax) {
                      MathJax.startup.promise.then(() => {
-                         console.log("Queueing initial MathJax typeset");
-                         queueMathJaxTypeset(); // Use the debounced version even initially
+                         console.log("Initial MathJax typesetting complete. Queueing final typeset for layout stability.");
+                         // A slight delay might help ensure all rendering is stable before final typeset
+                         setTimeout(() => queueMathJaxTypeset(), 50);
                      });
+                 } else {
+                      console.log("MathJax not found. Font size changes will not trigger typesetting.");
                  }
+
+                 // Restore font size from localStorage on page load (optional)
+                 const savedSize = localStorage.getItem('baseFontSize');
+                 if (savedSize) {
+                    const size = parseInt(savedSize, 10);
+                    if (!isNaN(size) && size >= minSize && size <= maxSize) {
+                         currentSize = size; // Update internal state
+                         htmlEl.style.setProperty('--base-font-size', currentSize + 'px'); // Apply immediately
+                         display.textContent = currentSize + 'px'; // Update display
+                         console.log("Restored font size from localStorage:", currentSize);
+                         // MathJax typesetting is handled by the initial load promise or the debounce
+                    }
+                 }
+
+                 // Save font size to localStorage when updated
+                 const originalUpdateFontSize = updateFontSize;
+                 updateFontSize = function(newSize) {
+                     const changed = originalUpdateFontSize.call(this, newSize);
+                     if (changed) {
+                         localStorage.setItem('baseFontSize', currentSize);
+                     }
+                     return changed;
+                 };
+
+
             } else {
                 console.error("Font control elements not found!");
             }
 
             // --- Horizontal Scroll Redirect for Formula Containers ---
+            // This makes vertical mouse wheel scrolling cause horizontal scrolling
+            // when the container has horizontal overflow.
              const formulaContainers = document.querySelectorAll('.formula-container');
              formulaContainers.forEach(container => {
                  container.addEventListener('wheel', function(event) {
+                     // Check if there's horizontal overflow
                      const isScrollableHorizontally = this.scrollWidth > this.clientWidth;
-                     if (isScrollableHorizontally) {
-                         // Only prevent vertical scroll IF we are actually going to scroll horizontally
-                         if (event.deltaY !== 0) { // Check if there's vertical scroll input
-                             event.preventDefault();
-                             this.scrollLeft += event.deltaY;
-                         }
+                     // Check if the user is scrolling vertically
+                     if (isScrollableHorizontally && event.deltaY !== 0) {
+                         event.preventDefault(); // Prevent default vertical scroll
+                         this.scrollLeft += event.deltaY; // Scroll horizontally instead
                      }
-                 }, { passive: false });
+                 }, { passive: false }); // Use passive: false because we call preventDefault
              });
              console.log("Horizontal scroll override applied to formula containers.");
-
         });
     </script>
 

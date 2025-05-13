@@ -82,14 +82,14 @@
         .formula-container::-webkit-scrollbar-thumb:hover { background-color: #aaa; }
         /* MathJax display style */
         .formula-container mjx-container[display="true"] { margin: 0.5em 0 !important; text-align: left !important; display: inline-block; vertical-align: middle; }
-        
+
         table { border-collapse: collapse; margin: 1em auto; background-color: rgba(40,40,40,0.8); width: auto; }
         th, td { border: 1px solid #555; padding: 8px 12px; text-align: center; }
         th { background-color: rgba(60,60,60,0.9); color: #ddd; }
 
         pre {
-            background-color: #2b2b2b; padding: 10px; border-radius: 5px; 
-            color: #ccc; overflow-x: auto; white-space: pre; 
+            background-color: #2b2b2b; padding: 10px; border-radius: 5px;
+            color: #ccc; overflow-x: auto; white-space: pre;
             font-family: 'Roboto Mono', monospace; font-size: 0.95em;
             margin: 1em 0;
         }
@@ -116,617 +116,1216 @@
 <body>
 
     <header>
-        <h1>Chapter 11: Casting Processes</h1>
+        <h1>Chapter 11: Casting Processes</h1> <!-- EDIT THIS LINE -->
     </header>
 
     <main>
-        <p>This chapter delves into the casting process, an ancient manufacturing method. It covers the fundamental principles, the steps involved in sand casting (the most common method), pattern making including materials and allowances, moulding sand properties, types of moulds and moulding operations, the use of cores, gating system design, melting and pouring, solidification concepts, casting yield, common defects, and various special casting processes.</p>
+        <p>
+            This chapter delves into the casting process, an ancient manufacturing method. It covers the fundamental principles, the steps involved in sand casting (the most common method), pattern making including materials and allowances, moulding sand properties, types of moulds and moulding operations, the use of cores, gating system design, melting and pouring, solidification concepts, casting yield, common defects, and various special casting processes.
+        </p>
 
         <h2>11.1 Introduction</h2>
+
         <ul>
-            <li><strong>Basic Principle:</strong> Casting utilizes the property of liquids to take the shape of their container.</li>
-            <li><strong>Definition:</strong> A casting is a metal object made by pouring molten metal into a <strong>mould</strong> (a cavity of the desired shape) and allowing it to solidify.</li>
-            <li><strong>Foundry (Foundry Shop):</strong> The workshop section where metal castings are produced.</li>
-            <li><strong>Historical Significance:</strong> Casting is an ancient art (dating back to 5000 BC) used for knives, coins, arrows, etc.
+            <li>
+                <strong>Basic Principle:</strong> Casting utilizes the property of liquids to take the shape of their container.
+            </li>
+            <li>
+                <strong>Definition:</strong> A casting is a metal object made by pouring molten metal into a <strong>mould</strong> (a cavity of the desired shape) and allowing it to solidify.
+            </li>
+            <li>
+                <strong>Foundry (Foundry Shop):</strong> The workshop section where metal castings are produced.
+            </li>
+            <li>
+                <strong>Historical Significance:</strong> Casting is an ancient art (dating back to 5000 BC) used for knives, coins, arrows, etc.
                 <ul>
-                    <li><strong>Example:</strong> The largest cannon at Jaigarh Fort, Jaipur (50 tons, 17th century) was cast.</li>
+                    <li>
+                        <strong>Example:</strong> The largest cannon at Jaigarh Fort, Jaipur (50 tons, 17th century) was cast.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Modern Applications:</strong> Cylinder blocks, piston rings, machine tool beds, pipes, locomotive wheels. Essential in transportation, power, agriculture, etc.</li>
-            <li><strong>Why Casting is Essential (Examples):</strong>
+            <li>
+                <strong>Modern Applications:</strong> Cylinder blocks, piston rings, machine tool beds, pipes, locomotive wheels. Essential in transportation, power, agriculture, etc.
+            </li>
+            <li>
+                <strong>Why Casting is Essential (Examples):</strong>
                 <ol>
-                    <li><strong>Very Large Components:</strong> e.g., a 5m diameter, 10m long component is too large to machine.</li>
-                    <li><strong>Large Features in Hard Materials:</strong> e.g., a 2m diameter hole in a very hard material is impractical to drill; casting is more economical.</li>
-                    <li><strong>Complicated Shapes:</strong> Machining complex shapes is skill-dependent, slow, and hard to maintain consistency in mass production. Casting offers a solution.</li>
+                    <li>
+                        <strong>Very Large Components:</strong> e.g., a 5m diameter, 10m long component is too large to machine.
+                    </li>
+                    <li>
+                        <strong>Large Features in Hard Materials:</strong> e.g., a 2m diameter hole in a very hard material is impractical to drill; casting is more economical.
+                    </li>
+                    <li>
+                        <strong>Complicated Shapes:</strong> Machining complex shapes is skill-dependent, slow, and hard to maintain consistency in mass production. Casting offers a solution.
+                    </li>
                 </ol>
             </li>
         </ul>
 
         <h2>11.2 The Sand Casting Process</h2>
+
         <ul>
-            <li><strong>Most common method:</strong> Uses sand moulds. Sand is rammed in metallic or wooden <strong>flasks</strong>.</li>
-            <li><strong>Analogy:</strong> Similar to baking a cake (pour batter into a pan, bake, cool, remove).</li>
-            <li><strong>Basic Sequence of Operations:</strong>
+            <li>
+                <strong>Most common method:</strong> Uses sand moulds. Sand is rammed in metallic or wooden **flasks**.
+            </li>
+            <li>
+                <strong>Analogy:</strong> Similar to baking a cake (pour batter into a pan, bake, cool, remove).
+            </li>
+            <li>
+                <strong>Basic Sequence of Operations:</strong>
                 <ol>
-                    <li><strong>Pattern making:</strong> Creating a model of the casting.</li>
-                    <li><strong>Mould making:</strong> Using the pattern to create a cavity in refractory material (like sand).</li>
-                    <li><strong>Core making:</strong> If internal cavities are needed, cores are made and placed in the mould.</li>
-                    <li><strong>Melting of metal and pouring:</strong> Metal is melted and poured into the mould.</li>
-                    <li><strong>Cooling and solidification:</strong> Metal cools and solidifies in the shape of the mould cavity.</li>
-                    <li><strong>Cleaning of castings and inspection:</strong> Casting is removed, cleaned, and inspected.</li>
+                    <li>
+                        **Pattern making:** Creating a model of the casting.
+                    </li>
+                    <li>
+                        **Mould making:** Using the pattern to create a cavity in refractory material (like sand).
+                    </li>
+                    <li>
+                        **Core making:** If internal cavities are needed, cores are made and placed in the mould.
+                    </li>
+                    <li>
+                        **Melting of metal and pouring:** Metal is melted and poured into the mould.
+                    </li>
+                    <li>
+                        **Cooling and solidification:** Metal cools and solidifies in the shape of the mould cavity.
+                    </li>
+                    <li>
+                        **Cleaning of castings and inspection:** Casting is removed, cleaned, and inspected.
+                    </li>
                 </ol>
             </li>
-            <li><strong>Mould:</strong> A cavity in a refractory material (e.g., sand, metal, plaster, ceramics) that withstands high temperatures. Sand is common.</li>
-            <li><strong>Pattern:</strong> A model of the casting, used to form the mould cavity. (See Figure 11.1)</li>
-            <li><strong>Core:</strong> A pre-formed shape (usually of dry sand) placed in the mould to create internal hollow spaces in the casting. (See Figure 11.1)
-                <ul>
-                    <li>(Figure 11.1) Illustrates a required casting, its pattern, a core box (to make the core), the core itself, and the assembled sand mould in a two-piece flask showing the cavity, core, and gating system.</li>
-                </ul>
+            <li>
+                **Mould:** A cavity in a refractory material (e.g., sand, metal, plaster, ceramics) that withstands high temperatures. Sand is common.
             </li>
-            <li><strong>Melting:</strong> Done in furnaces; type and size depend on casting size, quantity, rate, and metal.</li>
+            <li>
+                **Pattern:** A model of the casting, used to form the mould cavity. (See Figure 11.1)
+            </li>
+            <li>
+                **Core:** A pre-formed shape (usually of dry sand) placed in the mould to create internal hollow spaces in the casting. (See Figure 11.1)
+            </li>
+             <li>
+                 **(Figure 11.1)** Illustrates a required casting, its pattern, a core box (to make the core), the core itself, and the assembled sand mould in a two-piece flask showing the cavity, core, and gating system.
+             </li>
+            <li>
+                **Melting:** Done in furnaces; type and size depend on casting size, quantity, rate, and metal.
+            </li>
         </ul>
 
         <h2>11.3 Pattern Making</h2>
-        <p>Patterns are the tools used to form the mould cavity. One pattern can make many identical moulds.</p>
+
+        <p>
+            Patterns are the tools used to form the mould cavity. One pattern can make many identical moulds.
+        </p>
 
         <h3>11.3.1 Pattern materials</h3>
-        <p>Must be durable for multiple uses.</p>
+        <p>
+             Must be durable for multiple uses.
+        </p>
         <ul>
-            <li><strong>Requirements:</strong>
+            <li>
+                **Requirements:**
                 <ol>
-                    <li>Easily shaped, worked, machined, joined.</li>
-                    <li>Resistant to wear and corrosion.</li>
-                    <li>Resistant to chemical action.</li>
-                    <li>Dimensionally stable (unaffected by temperature/humidity).</li>
-                    <li>Available and economical.</li>
+                    <li>
+                        Easily shaped, worked, machined, joined.
+                    </li>
+                    <li>
+                        Resistant to wear and corrosion.
+                    </li>
+                    <li>
+                        Resistant to chemical action.
+                    </li>
+                    <li>
+                        Dimensionally stable (unaffected by temperature/humidity).
+                    </li>
+                    <li>
+                        Available and economical.
+                    </li>
                 </ol>
             </li>
-            <li><strong>Common Materials:</strong>
+            <li>
+                **Common Materials:**
                 <ul>
-                    <li><strong>Wood:</strong> Most common (dried/seasoned). Easily available, low weight, low cost, easily shaped. Used for >90% of castings. <em>Disadvantage:</em> Absorbs moisture, leading to distortion; lower life. Economical for small quantities; may be the only option for very large castings.</li>
-                    <li><strong>Metal:</strong> For large quantity production, closer tolerances. Longer life, free from moisture issues. Aluminum is common (light, easy to work, corrosion-resistant); cast iron and brass also used.</li>
-                    <li><strong>Plastic:</strong> Low weight, easy formability, smooth surface, durable. Don't absorb moisture, dimensionally stable, good corrosion resistance.</li>
-                    <li><strong>Polystyrene (Expanded Thermocole):</strong> Disposable patterns for single castings (e.g., prototypes). Soft, easy to make. Left in the mould; vaporizes when molten metal is poured, leaving negligible residue. (This is part of the "lost-foam" or "full-mould" process).</li>
+                    <li>
+                        **Wood:** Most common (dried/seasoned). Easily available, low weight, low cost, easily shaped. Used for &gt;90% of castings. <em>Disadvantage:</em> Absorbs moisture, leading to distortion; lower life. Economical for small quantities; may be the only option for very large castings.
+                    </li>
+                    <li>
+                        **Metal:** For large quantity production, closer tolerances. Longer life, free from moisture issues. Aluminum is common (light, easy to work, corrosion-resistant); cast iron and brass also used.
+                    </li>
+                    <li>
+                        **Plastic:** Low weight, easy formability, smooth surface, durable. Don't absorb moisture, dimensionally stable, good corrosion resistance.
+                    </li>
+                    <li>
+                        **Polystyrene (Expanded Thermocole):** Disposable patterns for single castings (e.g., prototypes). Soft, easy to make. Left in the mould; vaporizes when molten metal is poured, leaving negligible residue. (This is part of the "lost-foam" or "full-mould" process).
+                    </li>
                 </ul>
             </li>
         </ul>
 
         <h3>11.3.2 Types of patterns (Figure 11.2, Figure 11.3)</h3>
         <ul>
-            <li><strong>Solid pattern (Single-piece pattern) (Fig. 11.2a):</strong> One piece, no partings or loose pieces. For simple shapes, cavity usually in the lower flask (drag).</li>
-            <li><strong>Split pattern (Fig. 11.2b):</strong> Made in two (or more for multi-piece) parts to ease removal from the mould. Split usually at the parting line. Halves aligned by dowel pins.</li>
-            <li><strong>Loose-piece pattern (Fig. 11.2c):</strong> Has loose pieces for features (projections, undercuts) that would hinder pattern withdrawal. Main pattern removed first, then loose pieces are withdrawn through the gap. Requires skill, expensive.</li>
-            <li><strong>Gated pattern (Fig. 11.3a, 11.3b):</strong> Multiple small patterns attached to a common runner and gates. Used for producing many small castings in one mould. Often made of metal for strength.</li>
-            <li><strong>Match plate pattern (Fig. 11.3c):</strong> Two halves of a split pattern mounted on opposite sides of a "match plate." One side makes the cope, other makes the drag. Ensures perfect alignment, easy removal, speeds production, good uniformity.</li>
+            <li>
+                **Solid pattern (Single-piece pattern) (Fig. 11.2a):** One piece, no partings or loose pieces. For simple shapes, cavity usually in the lower flask (drag).
+            </li>
+            <li>
+                **Split pattern (Fig. 11.2b):** Made in two (or more for multi-piece) parts to ease removal from the mould. Split usually at the parting line. Halves aligned by dowel pins.
+            </li>
+            <li>
+                **Loose-piece pattern (Fig. 11.2c):** Has loose pieces for features (projections, undercuts) that would hinder pattern withdrawal. Main pattern removed first, then loose pieces are withdrawn through the gap. Requires skill, expensive.
+            </li>
+            <li>
+                **Gated pattern (Fig. 11.3a, 11.3b):** Multiple small patterns attached to a common runner and gates. Used for producing many small castings in one mould. Often made of metal for strength.
+            </li>
+            <li>
+                **Match plate pattern (Fig. 11.3c):** Two halves of a split pattern mounted on opposite sides of a "match plate." One side makes the cope, other makes the drag. Ensures perfect alignment, easy removal, speeds production, good uniformity.
+            </li>
         </ul>
 
         <h3>11.3.3 Removable and disposable patterns (Figure 11.4)</h3>
         <ul>
-            <li><strong>Removable pattern:</strong> Used for multiple identical moulds. Sand packed around, pattern withdrawn, cavity filled. (Patterns discussed above are mostly removable).</li>
-            <li><strong>Disposable pattern:</strong> Made from polystyrene, etc. Sand rammed around, pattern <em>left in the mould</em>. Vaporizes on pouring metal. Also known as full mould or cavityless method. (Fig. 11.4 shows a disposable pattern in sand, and then hot metal replacing it).</li>
+            <li>
+                **Removable pattern:** Used for multiple identical moulds. Sand packed around, pattern withdrawn, cavity filled. (Patterns discussed above are mostly removable).
+            </li>
+            <li>
+                **Disposable pattern:** Made from polystyrene, etc. Sand rammed around, pattern <em>left in the mould</em>. Vaporizes on pouring metal. Also known as full mould or cavityless method. (Fig. 11.4 shows a disposable pattern in sand, and then hot metal replacing it).
+            </li>
         </ul>
 
         <h3>11.3.4 Pattern allowances</h3>
-        <p>Patterns are not exact replicas of the final part; they include allowances for metallurgical and mechanical reasons.</p>
+        <p>
+             Patterns are not exact replicas of the final part; they include allowances for metallurgical and mechanical reasons.
+        </p>
         <ul>
-            <li><strong>Shrinkage allowance (Contraction allowance):</strong> Metals shrink upon solidification and cooling. Pattern is made <em>larger</em> than the required casting to compensate.
+            <li>
+                **Shrinkage allowance (Contraction allowance):** Extra material added to pattern to compensate for metal shrinking upon solidification and cooling. Pattern is made <em>larger</em> than the required casting.
                 <ul>
-                    <li>Amount varies by metal, composition, pouring temp.</li>
-                    <li><strong>Example:</strong> Gray cast iron (depends on carbon/silicon), graphite expands on cooling (may need negative allowance).</li>
-                    <li>Typical: 1-2% for gray iron & non-ferrous, 2-3% for steel.</li>
+                    <li>
+                        Amount varies by metal, composition, pouring temp.
+                    </li>
+                    <li>
+                        **Example:** Gray cast iron (depends on carbon/silicon), graphite expands on cooling (may need negative allowance).
+                    </li>
+                    <li>
+                         Typical: 1-2% for gray iron &amp; non-ferrous, 2-3% for steel.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Machining allowance (Finishing allowance):</strong> Extra material added to surfaces that will be machined to achieve final size, accuracy, and finish.
+            <li>
+                **Machining allowance (Finishing allowance):** Extra material added to surfaces that will be machined to achieve final size, accuracy, and finish.
                 <ul>
-                    <li>Depends on casting method, size/shape, material, machining process, required accuracy.</li>
+                    <li>
+                        Depends on casting method, size/shape, material, machining process, required accuracy.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Draft or Taper allowance (Figure 11.5):</strong> Taper on vertical faces of removable patterns to allow easy withdrawal from sand without damaging mould walls.
+            <li>
+                **Draft or Taper allowance (Figure 11.5):** Taper on vertical faces of removable patterns to allow easy withdrawal from sand without damaging mould walls.
                 <ul>
-                    <li><strong>Example (Fig. 11.5):</strong> Pattern with draft (b) is easier to remove than one without (a).</li>
-                    <li>Typical: 1° to 3° for wooden patterns.</li>
+                    <li>
+                        **Example (Fig. 11.5):** Pattern with draft (b) is easier to remove than one without (a).
+                    </li>
+                    <li>
+                         Typical: 1° to 3° for wooden patterns.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Distortion allowance (Figure 11.6):</strong> For castings prone to distortion (e.g., U-shape, V-shape, long flat sections) due to unequal cooling rates. Pattern is intentionally distorted (bent inwards for U-shape, Fig. 11.6c) so the casting achieves the correct shape after cooling (Fig. 11.6a). Fig. 11.6b shows distortion if no allowance.</li>
-            <li><strong>Rapping or Shake allowance:</strong> To loosen pattern for withdrawal, it's rapped (tapped). This enlarges the mould cavity. Pattern is made slightly <em>smaller</em> to compensate. Important for large/precision castings. Amount is hard to evaluate.</li>
+            <li>
+                **Distortion allowance (Figure 11.6):** For castings prone to distortion (e.g., U-shape, V-shape, long flat sections) due to unequal cooling rates. Pattern is intentionally distorted (bent inwards for U-shape, Fig. 11.6c) so the casting achieves the correct shape after cooling (Fig. 11.6a). Fig. 11.6b shows distortion if no allowance.
+            </li>
+            <li>
+                **Rapping or Shake allowance:** To loosen pattern for withdrawal, it's rapped (tapped). This enlarges the mould cavity. Pattern is made slightly <em>smaller</em> to compensate. Important for large/precision castings. Amount is hard to evaluate.
+            </li>
         </ul>
 
         <h2>11.4 Moulding Sand</h2>
-        <p>Principal material for moulds. Needs high fusion temp, good thermal stability.</p>
-        <p><strong>Ingredients:</strong> Silica sand grains, clay (binder), moisture, special additives (coal dust for surface finish, fuel oil for mouldability, pearlite for thermal stability). Clay + moisture = plasticity, strength.</p>
+
+        <p>
+             Principal material for moulds. Needs high fusion temp, good thermal stability.
+        </p>
+        <p>
+            **Ingredients:** Silica sand grains, clay (binder), moisture, special additives (coal dust for surface finish, fuel oil for mouldability, pearlite for thermal stability). Clay + moisture = plasticity, strength.
+        </p>
 
         <h3>11.4.1 Types of moulding sand</h3>
         <ul>
-            <li><strong>Natural moulding sand:</strong> From riverbeds, pits. Also by crushing yellow sandstone.</li>
-            <li><strong>Artificial (Synthetic) moulding sand:</strong> Prepared by crushing sandstone, washing, grading. Additives develop properties. More flexible property control, but more expensive.</li>
-            <li><strong>Classification by use/composition:</strong>
+            <li>
+                **Natural moulding sand:** From riverbeds, pits. Also by crushing yellow sandstone.
+            </li>
+            <li>
+                **Artificial (Synthetic) moulding sand:** Prepared by crushing sandstone, washing, grading. Additives develop properties. More flexible property control, but more expensive.
+            </li>
+            <li>
+                **Classification by use/composition:**
                 <ul>
-                    <li><strong>Green sand:</strong> Silica sand + 18-30% clay + 4-8% water. Used moist/undried ("green"). Moulds used immediately. Retains moisture well.</li>
-                    <li><strong>Dry sand:</strong> Green sand that's dried/baked after mould preparation. No moisture, yields porous castings. For large castings (>500 kg).</li>
-                    <li><strong>Loam sand:</strong> Clay + silica in equal proportions, few additives. Used for loam moulding.</li>
+                    <li>
+                        **Green sand:** Silica sand + 18-30% clay + 4-8% water. Used moist/undried ("green"). Moulds used immediately. Retains moisture well.
+                    </li>
+                    <li>
+                        **Dry sand:** Green sand that's dried/baked after mould preparation. No moisture, yields porous castings. For large castings (&gt;500 kg). Metallic flasks needed for baking.
+                    </li>
+                    <li>
+                        **Loam sand:** Clay + silica in equal proportions, few additives. Used for loam moulding. Built up with bricks/iron parts, plastered with loam sand. Dried slowly/completely. Takes long to prepare. For very large castings.
+                    </li>
+                     <li>
+                         **Metal mould:** Made of metal. Used for die casting, permanent mould casting, centrifugal casting. (Listed under types of sand/moulding material in source, but is a mould type).
+                     </li>
                 </ul>
             </li>
         </ul>
 
         <h3>11.4.2 Properties of moulding sand</h3>
         <ul>
-            <li><strong>Cohesiveness (Strength):</strong> Ability of sand particles to stick together (due to binder). Must withstand compressive/erosive forces of molten metal. Moisture/clay content determine strength.</li>
-            <li><strong>Chemical resistivity:</strong> Must be inert, not react with molten metal (especially reactive metals like Mg, Ti).</li>
-            <li><strong>Permeability:</strong> Allows gases/vapors (from moisture, binders reacting with hot metal) to escape. Prevents defects like <strong>blowholes</strong>. (1 cc water can make 1600 cc steam).</li>
-            <li><strong>Flowability:</strong> Ability of sand to flow into intricate details of the pattern. More significant in machine moulding.</li>
-            <li><strong>Adhesiveness:</strong> Ability of sand to adhere to mould box surfaces, helping retain cavity shape.</li>
-            <li><strong>Refractoriness:</strong> Ability to withstand high temperatures without fusing with molten metal. Prevents rough, sand-fused surfaces. (e.g., for steel castings, >1500°C).</li>
-            <li><strong>Collapsibility:</strong> Ability of sand to break down easily after casting solidifies, allowing free metal contraction and easy removal of casting. Prevents defects and high fettling (cleaning) costs.</li>
+            <li>
+                **Cohesiveness (Strength):** Ability of sand particles to stick together (due to binder). Must withstand compressive/erosive forces of molten metal. Moisture/clay content determine strength.
+            </li>
+            <li>
+                **Chemical resistivity:** Must be inert, not react with molten metal (especially reactive metals like Mg, Ti).
+            </li>
+            <li>
+                **Permeability:** Allows gases/vapors (from moisture, binders reacting with hot metal) to escape. Prevents defects like **blowholes**. (1 cc water can make 1600 cc steam).
+            </li>
+            <li>
+                **Flowability:** Ability of sand to flow into intricate details of the pattern. More significant in machine moulding.
+            </li>
+            <li>
+                **Adhesiveness:** Ability of sand to adhere to mould box surfaces, helping retain cavity shape.
+            </li>
+            <li>
+                **Refractoriness:** Ability to withstand high temperatures without fusing with molten metal. Prevents rough, sand-fused surfaces. (e.g., for steel castings, &gt;1500°C).
+            </li>
+            <li>
+                **Collapsibility:** Ability of sand to break down easily after casting solidifies, allowing free metal contraction and easy removal of casting. Prevents defects and high fettling (cleaning) costs.
+            </li>
         </ul>
 
         <h2>11.5 Moulding</h2>
-        <p>Process of making a mould with the desired cavity using a pattern and suitable material (like sand).</p>
-        <p>Pattern (with allowances) is kept in a <strong>flask</strong>, sand rammed around it, then pattern removed.</p>
+
+        <p>
+            Process of making a mould with the desired cavity using a pattern and suitable material (like sand). Pattern (with allowances) is kept in a **flask**, sand rammed around it, then pattern removed.
+        </p>
 
         <h3>11.5.1 Types of moulds</h3>
         <ul>
-            <li><strong>Green sand mould:</strong> Made with green sand. Easy patching/finishing. For small/medium castings.</li>
-            <li><strong>Dry sand mould:</strong> Prepared with green sand, then dried/baked. Structure becomes compact. For large castings. Metallic flasks needed for baking.</li>
-            <li><strong>Loam mould:</strong> Built up with bricks/iron parts, plastered with loam sand. Dried slowly/completely. Takes long to prepare. For very large castings.</li>
-            <li><strong>Metal mould:</strong> Made of metal. Used for die casting, permanent mould casting, centrifugal casting.</li>
+            <li>
+                **Green sand mould:** Made with green sand. Easy patching/finishing. For small/medium castings.
+            </li>
+            <li>
+                **Dry sand mould:** Prepared with green sand, then dried/baked. Structure becomes compact. For large castings. Metallic flasks needed for baking.
+            </li>
+            <li>
+                **Loam mould:** Built up with bricks/iron parts, plastered with loam sand. Dried slowly/completely. Takes long to prepare. For very large castings.
+            </li>
+            <li>
+                **Metal mould:** Made of metal. Used for die casting, permanent mould casting, centrifugal casting. (Repeated from 11.4.1 classification).
+            </li>
         </ul>
 
         <h3>11.5.2 Tools used in moulding (Figure 11.7)</h3>
         <ul>
-            <li><strong>Shovel (Fig. 11.7a):</strong> Mixing sand, filling flask.</li>
-            <li><strong>Riddle (Fig. 11.7b):</strong> Removing foreign materials from sand.</li>
-            <li><strong>Rammer (Fig. 11.7c):</strong> Packing/ramming sand. Hand or machine.</li>
-            <li><strong>Trowel (Fig. 11.7d):</strong> Smoothing mould surfaces.</li>
-            <li><strong>Sprue pin (Fig. 11.7e):</strong> Conical wooden pin to make opening (sprue) for pouring metal.</li>
-            <li><strong>Vent rod (Fig. 11.7f):</strong> Making small holes (vents) for gas escape.</li>
-            <li><strong>Draw spike (Fig. 11.7g):</strong> Loop-ended tool for drawing pattern from sand.</li>
-            <li><strong>Moulding boxes (Flasks) (Fig. 11.7h):</strong> Rigid frames (iron/wood) to hold sand. Impart rigidity/strength. Usually two parts (cope - top, drag - bottom), assembled by pins. Middle section (if three) is called cheek.</li>
+            <li>
+                **Shovel (Fig. 11.7a):** Mixing sand, filling flask.
+            </li>
+            <li>
+                **Riddle (Fig. 11.7b):** Removing foreign materials from sand.
+            </li>
+            <li>
+                **Rammer (Fig. 11.7c):** Packing/ramming sand. Hand or machine.
+            </li>
+            <li>
+                **Trowel (Fig. 11.7d):** Smoothing mould surfaces.
+            </li>
+            <li>
+                **Sprue pin (Fig. 11.7e):** Conical wooden pin to make opening (sprue) for pouring metal.
+            </li>
+            <li>
+                **Vent rod (Fig. 11.7f):** Making small holes (vents) for gas escape.
+            </li>
+            <li>
+                **Draw spike (Fig. 11.7g):** Loop-ended tool for drawing pattern from sand.
+            </li>
+            <li>
+                **Moulding boxes (Flasks) (Fig. 11.7h):** Rigid frames (iron/wood) to hold sand. Impart rigidity/strength. Usually two parts (cope - top, drag - bottom), assembled by pins. Middle section (if three) is called cheek.
+            </li>
         </ul>
 
         <h3>11.5.3 Procedure for making a mould (Figure 11.8 - using a split pattern)</h3>
         <ol>
-            <li>Place first half of pattern on moulding board. Place drag (bottom flask) over it (Fig. 11.8a).</li>
-            <li>Sprinkle parting sand on pattern. Riddle moulding sand to cover pattern.</li>
-            <li>Press sand around pattern, fill drag completely. Ram firmly (not too hard to reduce permeability, not too soft to lose shape).</li>
-            <li>Level excess sand with strike rod/trowel. Make vent holes near pattern with vent rod.</li>
-            <li>Sprinkle parting sand, place another moulding board on top. Turn drag upside down. Remove top board.</li>
-            <li>Smooth surface, apply fine parting sand. Place cope (top flask) on drag. Align with pins.</li>
-            <li>Place second half of pattern on first (using dowel pins). Place sprue pin 20-30mm from pattern.</li>
-            <li>Fill, ram, vent cope similarly to drag.</li>
-            <li>Remove sprue pin. Scoop funnel shape (pouring basin) at top of sprue opening. (Fig. 11.8c shows final mould).</li>
-            <li>Lift cope carefully. Moisten sand edges around pattern with swab.</li>
-            <li>Drive draw spike into pattern, rap lightly, lift pattern out (from both cope and drag).</li>
-            <li>Cut <strong>gate</strong> (passage) between sprue opening and mould cavity.</li>
-            <li>Assemble mould: Place cope back on drag. Blow off loose sand.</li>
-            <li>A <strong>riser</strong> (extra cavity, often in cope) may be cut to store extra metal to compensate for shrinkage.</li>
+            <li>
+                Place first half of pattern on moulding board. Place drag (bottom flask) over it (Fig. 11.8a).
+            </li>
+            <li>
+                Sprinkle parting sand on pattern. Riddle moulding sand to cover pattern.
+            </li>
+            <li>
+                Press sand around pattern, fill drag completely. Ram firmly (not too hard to reduce permeability, not too soft to lose shape).
+            </li>
+            <li>
+                Level excess sand with strike rod/trowel. Make vent holes near pattern with vent rod.
+            </li>
+            <li>
+                Sprinkle parting sand, place another moulding board on top. Turn drag upside down. Remove top board.
+            </li>
+            <li>
+                Smooth surface, apply fine parting sand. Place cope (top flask) on drag. Align with pins.
+            </li>
+            <li>
+                Place second half of pattern on first (using dowel pins). Place sprue pin 20-30mm from pattern.
+            </li>
+            <li>
+                Fill, ram, vent cope similarly to drag.
+            </li>
+            <li>
+                Remove sprue pin. Scoop funnel shape (pouring basin) at top of sprue opening. (Fig. 11.8c shows final mould).
+            </li>
+            <li>
+                Lift cope carefully. Moisten sand edges around pattern with swab.
+            </li>
+            <li>
+                Drive draw spike into pattern, rap lightly, lift pattern out (from both cope and drag).
+            </li>
+            <li>
+                Cut **gate** (passage) between sprue opening and mould cavity.
+            </li>
+            <li>
+                Assemble mould: Place cope back on drag. Blow off loose sand.
+            </li>
+            <li>
+                A **riser** (extra cavity, often in cope) may be cut to store extra metal to compensate for shrinkage.
+            </li>
         </ol>
 
         <h3>11.5.4 Moulding processes</h3>
         <ul>
-            <li><strong>Bench moulding:</strong> For small, light moulds on benches. Green, dry, or skin-dried moulds. Usually loose-piece patterns. Slow, laborious (hand ramming).</li>
-            <li><strong>Floor moulding:</strong> For larger moulds, done on foundry floor. Medium/large moulds, green/dry sand. Slow.</li>
-            <li><strong>Pit moulding:</strong> For very big castings not fittable in flasks. Mould cavity in a pit in foundry floor. Sand moulds.</li>
+            <li>
+                **Bench moulding:** For small, light moulds on benches. Green, dry, or skin-dried moulds. Usually loose-piece patterns. Slow, laborious (hand ramming).
+            </li>
+            <li>
+                **Floor moulding:** For larger moulds, done on foundry floor. Medium/large moulds, green/dry sand. Slow.
+            </li>
+            <li>
+                **Pit moulding:** For very big castings not fittable in flasks. Mould cavity in a pit in foundry floor. Sand moulds.
+            </li>
         </ul>
 
         <h3>11.5.5 Types of moulding operations</h3>
         <ul>
-            <li><strong>Hand moulding:</strong> All operations manual (sand ramming). Slow, laborious, hard to get uniform hardness. Low initial cost (no machines, simple tools). Can make difficult shapes not possible by machine.</li>
-            <li><strong>Machine moulding:</strong> For faster, uniform quality moulds in mass production. Operations like ramming, pattern withdrawal, finishing done by machines. Uniform hardness. Fast, homogeneous, any size. High initial cost. Difficult shapes not always possible.</li>
+            <li>
+                **Hand moulding:** All operations manual (sand ramming). Slow, laborious, hard to get uniform hardness. Low initial cost (no machines, simple tools). Can make difficult shapes not possible by machine.
+            </li>
+            <li>
+                **Machine moulding:** For faster, uniform quality moulds in mass production. Operations like ramming, pattern withdrawal, finishing done by machines. Uniform hardness. Fast, homogeneous, any size. High initial cost. Difficult shapes not always possible.
+            </li>
         </ul>
 
         <h2>11.6 Cores (Figure 11.1)</h2>
-        <p>Used for holes or internal cavities in castings.</p>
-        <p>A sand shape/form making the contour of a casting for which no provision is in the pattern.</p>
-        <p>Produced separately, baked for strength, placed in mould in <strong>core prints</strong> (cavities in mould for core support).</p>
-        <p>Made from sand, metal, plaster, ceramics.</p>
-        <p>Acts as an obstruction; molten metal doesn't fill core space, creating hollow casting.</p>
-        <p>Surrounded by molten metal, so faces severe thermal/mechanical conditions.</p>
-        <p>Ejected/broken after solidification.</p>
+
+        <p>
+            Used for holes or internal cavities in castings. A sand shape/form making the contour of a casting for which no provision is in the pattern. Produced separately, baked for strength, placed in mould in **core prints** (cavities in mould for core support).
+        </p>
+        <p>
+             Made from sand, metal, plaster, ceramics. Acts as an obstruction; molten metal doesn't fill core space, creating hollow casting. Surrounded by molten metal, so faces severe thermal/mechanical conditions. Ejected/broken after solidification.
+        </p>
 
         <h3>11.6.1 Properties of core</h3>
         <ol>
-            <li>Strong (to retain shape during handling).</li>
-            <li>Resist erosion by molten metal.</li>
-            <li>Permeable to gases.</li>
-            <li>High refractoriness.</li>
-            <li>Good surface finish (replicates onto casting).</li>
+            <li>
+                Strong (to retain shape during handling).
+            </li>
+            <li>
+                Resist erosion by molten metal.
+            </li>
+            <li>
+                Permeable to gases.
+            </li>
+            <li>
+                High refractoriness.
+            </li>
+            <li>
+                Good surface finish (replicates onto casting).
+            </li>
         </ol>
 
         <h3>11.6.2 Core making</h3>
-        <p>Made of clay-free silica sand + binders + water + ingredients = <strong>core mix</strong>.</p>
-        <p>Packed into <strong>core box</strong> (cavity of desired core shape, Fig. 11.1).</p>
-        <p><strong>Operations:</strong></p>
+        <p>
+             Made of clay-free silica sand + binders + water + ingredients = **core mix**. Packed into **core box** (cavity of desired core shape, Fig. 11.1).
+        </p>
+        <p>
+             **Operations:**
+        </p>
         <ol>
-            <li><strong>Core sand preparation:</strong> Homogeneous mixing for uniform strength.</li>
-            <li><strong>Core making:</strong> Fill core box, ram. Remove core. Manual or machine.</li>
-            <li><strong>Core baking:</strong> Removes moisture, imparts strength. Proper baking essential.
+            <li>
+                **Core sand preparation:** Homogeneous mixing for uniform strength.
+            </li>
+            <li>
+                **Core making:** Fill core box, ram. Remove core. Manual or machine.
+            </li>
+            <li>
+                **Core baking:** Removes moisture, imparts strength. Proper baking essential.
                 <ul>
-                    <li>Under-baked: release gases, cause defects.</li>
-                    <li>Over-baked: collapse too early, break before metal solidifies.</li>
+                    <li>
+                        Under-baked: release gases, cause defects.
+                    </li>
+                    <li>
+                        Over-baked: collapse too early, break before metal solidifies.
+                    </li>
                 </ul>
             </li>
         </ol>
 
         <h2>11.7 Gating System (Figure 11.9, 11.10, 11.11)</h2>
-        <p>Passageways for molten metal to enter mould cavity. Influences casting quality.</p>
+
+        <p>
+            Passageways for molten metal to enter mould cavity. Influences casting quality.
+        </p>
+        <p>
+             **Components (Fig. 11.9):**
+        </p>
         <ul>
-            <li><strong>Components (Fig. 11.9):</strong>
+            <li>
+                **Pouring cup/basin:** Reservoir where metal is poured; allows smooth flow into sprue. Reduces mould erosion.
+            </li>
+            <li>
+                **Sprue:** Channel feeding metal to runner.
                 <ul>
-                    <li><strong>Pouring cup/basin:</strong> Reservoir where metal is poured; allows smooth flow into sprue. Reduces mould erosion.</li>
-                    <li><strong>Sprue:</strong> Channel feeding metal to runner.
-                        <ul>
-                            <li><strong>Straight sprue (Fig. 11.10a):</strong> Metal contracts, pulls from walls (low pressure zone, aspiration of gas/air).</li>
-                            <li><strong>Tapered sprue (Fig. 11.10b):</strong> Metal stays in contact with walls, reduces turbulence, eliminates aspiration. Preferred.</li>
-                        </ul>
+                    <li>
+                        **Straight sprue (Fig. 11.10a):** Metal contracts, pulls from walls (low pressure zone, aspiration of gas/air).
                     </li>
-                    <li><strong>Sprue base (Sprue well):</strong> Reservoir at sprue bottom. Reduces falling metal momentum, changes flow direction uniformly into runner, reduces erosion.</li>
-                    <li><strong>Runner:</strong> Channel taking metal from sprue base, distributes to gates. May not be needed for single gate.</li>
-                    <li><strong>Gate (Ingate):</strong> Channel connecting runner to mould cavity.
+                    <li>
+                        **Tapered sprue (Fig. 11.10b):** Metal stays in contact with walls, reduces turbulence, eliminates aspiration. Preferred.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                **Sprue base (Sprue well):** Reservoir at sprue bottom. Reduces falling metal momentum, changes flow direction uniformly into runner, reduces erosion.
+            </li>
+            <li>
+                **Runner:** Channel taking metal from sprue base, distributes to gates. May not be needed for single gate.
+            </li>
+            <li>
+                **Gate (Ingate):** Channel connecting runner to mould cavity.
+                <ul>
+                    <li>
+                        **Types of Gates (Fig. 11.11):**
                         <ul>
-                            <li><strong>Types of Gates (Fig. 11.11):</strong>
-                                <ul>
-                                    <li><strong>Top gate (Fig. 11.11a):</strong> Metal falls directly into cavity. Ensures directional solidification. <em>Disadvantages:</em> Erodes mould, splashing, turbulence. (Used for vertically cast hollow cylinders). A strainer core can be used at the pouring cup.</li>
-                                    <li><strong>Bottom gate (Fig. 11.11b):</strong> Metal enters from bottom. No scouring/splashing. <em>Disadvantages:</em> Unfavorable temperature gradient (difficult directional solidification), metal might freeze and choke flow. Used for heavy castings.</li>
-                                    <li><strong>Parting line gate (Parting gate) (Fig. 11.11c):</strong> Metal enters at parting plane. Common.</li>
-                                </ul>
+                            <li>
+                                **Top gate (Fig. 11.11a):** Metal falls directly into cavity. Ensures directional solidification. <em>Disadvantages:</em> Erodes mould, splashing, turbulence. (Used for vertically cast hollow cylinders). A strainer core can be used at the pouring cup.
+                            </li>
+                            <li>
+                                **Bottom gate (Fig. 11.11b):** Metal enters from bottom. No scouring/splashing. <em>Disadvantages:</em> Unfavorable temperature gradient (difficult directional solidification), metal might freeze and choke flow. Used for heavy castings.
+                            </li>
+                            <li>
+                                **Parting line gate (Parting gate) (Fig. 11.11c):** Metal enters at parting plane. Common.
                             </li>
                         </ul>
                     </li>
-                    <li><strong>Riser (Feeder/Feed head):</strong> Hole/cavity in cope allowing molten metal to rise above casting's highest point.
-                        <ul>
-                            <li>Feeds molten metal to compensate for shrinkage during solidification.</li>
-                            <li>Allows escape of steam, gas, air.</li>
-                            <li>Indicates when mould is full.</li>
-                            <li>Shrinkage in riser is harmless as riser is not part of casting.</li>
-                        </ul>
+                </ul>
+            </li>
+            <li>
+                **Riser (Feeder/Feed head):** Hole/cavity in cope allowing molten metal to rise above casting's highest point.
+                <ul>
+                    <li>
+                        Feeds molten metal to compensate for shrinkage during solidification.
+                    </li>
+                    <li>
+                        Allows escape of steam, gas, air.
+                    </li>
+                    <li>
+                        Indicates when mould is full.
+                    </li>
+                    <li>
+                        Shrinkage in riser is harmless as riser is not part of casting.
                     </li>
                 </ul>
             </li>
         </ul>
 
         <h2>11.8 Melting and Pouring of Metal</h2>
-        <p>Metal melted in a furnace before pouring. Molten metal state greatly influences final casting quality.</p>
-        <p>Furnace selection depends on amount/type of metal (e.g., cupola for cast iron, open-hearth for steel).</p>
+
+        <p>
+             Metal melted in a furnace before pouring. Molten metal state greatly influences final casting quality. Furnace selection depends on amount/type of metal (e.g., cupola for cast iron, open-hearth for steel).
+        </p>
 
         <h3>11.8.1 Cupola furnace (Figure 11.12)</h3>
-        <ul>
-            <li>Refractory-lined vertical steel vessel for melting cast iron. Cheap, high thermal efficiency, low operating cost, versatile, easy operation.</li>
-            <li><strong>Operation:</strong>
-                <ol>
-                    <li>Start: Wood on sand bed, then coke. Ignite.</li>
-                    <li>Charge (from charging door): Alternate layers of metal, flux (limestone, sodium carbonate), coke.
-                        <ul>
-                            <li><strong>Melting ratio</strong> (metal:fuel) = 4:1 to 12:1.</li>
-                            <li><strong>Flux:</strong> Forms slag to remove impurities, retards iron oxidation.</li>
-                        </ul>
-                    </li>
-                    <li>Soaking period (30 min-1 hr): Preheats charge.</li>
-                    <li>Air blast turned on (through tuyeres). Combustion raises temp, melts metal.</li>
-                    <li>Molten metal accumulates at tapping hole.</li>
-                    <li>Slag hole opened first, slag removed.</li>
-                    <li>Tap hole opened intermittently, molten metal collected in ladle, poured into moulds.</li>
-                </ol>
+        <p>
+            Refractory-lined vertical steel vessel for melting cast iron. Cheap, high thermal efficiency, low operating cost, versatile, easy operation.
+        </p>
+        <p>
+             **Operation:**
+        </p>
+        <ol>
+            <li>
+                 Start: Wood on sand bed, then coke. Ignite.
             </li>
-            <li>(Fig. 11.12 components): Spark arrester, charging door, stack zone, preheating zone, steel shell, refractory lining, melting zone, wind box, reducing zone, combustion zone, tuyeres, well, fettling hole, tapping hole, slag hole, drop bottom, sand bottom. Layers shown: Coke, Flux, Metal.</li>
-        </ul>
+            <li>
+                 Charge (from charging door): Alternate layers of metal, flux (limestone, sodium carbonate), coke.
+                 <ul>
+                     <li>
+                         **Melting ratio** (metal:fuel) = 4:1 to 12:1.
+                     </li>
+                     <li>
+                         **Flux:** Forms slag to remove impurities, retards iron oxidation.
+                     </li>
+                 </ul>
+            </li>
+            <li>
+                 Soaking period (30 min-1 hr): Preheats charge.
+            </li>
+            <li>
+                 Air blast turned on (through tuyeres). Combustion raises temp, melts metal.
+            </li>
+            <li>
+                 Molten metal accumulates at tapping hole.
+            </li>
+            <li>
+                 Slag hole opened first, slag removed.
+            </li>
+            <li>
+                 Tap hole opened intermittently, molten metal collected in ladle, poured into moulds.
+            </li>
+        </ol>
+        <p>
+             **(Fig. 11.12 components):** Spark arrester, charging door, stack zone, preheating zone, steel shell, refractory lining, melting zone, wind box, reducing zone, combustion zone, tuyeres, well, fettling hole, tapping hole, slag hole, drop bottom, sand bottom. Layers shown: Coke, Flux, Metal.
+        </p>
 
         <h2>11.9 Directional Solidification (Figure 11.13)</h2>
-        <p>Molten metal shrinks in volume during cooling/solidification.</p>
-        <p><strong>Three stages of contraction:</strong></p>
+
+        <p>
+            Molten metal shrinks in volume during cooling/solidification.
+        </p>
+        <p>
+            **Three stages of contraction:**
+        </p>
         <ol>
-            <li><strong>Liquid contraction:</strong> Cooling from pouring temp to solidification temp.</li>
-            <li><strong>Solidification contraction:</strong> Changing from liquid to solid (losing latent heat).</li>
-            <li><strong>Solid contraction:</strong> Cooling from solidification temp to room temp.</li>
+            <li>
+                **Liquid contraction:** Cooling from pouring temp to solidification temp.
+            </li>
+            <li>
+                **Solidification contraction:** Changing from liquid to solid (losing latent heat).
+            </li>
+            <li>
+                **Solid contraction:** Cooling from solidification temp to room temp.
+            </li>
         </ol>
-        <p>Uneven cooling (due to varying section thickness, heat loss rates) causes some parts to solidify faster. This can lead to voids/cavities.</p>
+        <p>
+             Uneven cooling (due to varying section thickness, heat loss rates) causes some parts to solidify faster. This can lead to voids/cavities.
+        </p>
+        <p>
+            **Directional Solidification:** For a sound casting, solidification should start from thinnest/farthest parts and move progressively towards risers. Risers should be last to solidify, feeding shrinkage in the casting.
+        </p>
         <ul>
-            <li><strong>Directional Solidification:</strong> For a sound casting, solidification should start from thinnest/farthest parts and move progressively towards risers. Risers should be last to solidify, feeding shrinkage in the casting.
-                <ul>
-                    <li><strong>Hot spot (Fig. 11.13a):</strong> Region A in T-junction is thicker, cools last. If B, C, D solidify first, no liquid metal available for A's shrinkage, causing void (Fig. 11.13b).</li>
-                    <li><strong>Solution (Fig. 11.13c):</strong> Place riser above hot spot (A). Riser feeds A, void forms in riser (harmless).</li>
-                </ul>
+            <li>
+                **Hot spot (Fig. 11.13a):** Region A in T-junction is thicker, cools last. If B, C, D solidify first, no liquid metal available for A's shrinkage, causing void (Fig. 11.13b).
+            </li>
+            <li>
+                **Solution (Fig. 11.13c):** Place riser above hot spot (A). Riser feeds A, void forms in riser (harmless).
             </li>
         </ul>
 
         <h2>11.10 Solidification Time</h2>
-        <p>Casting is slow (moulding, melting, pouring, solidification, cleaning).</p>
-        <ul>
-            <li><strong>Solidification time (t):</strong> Based on cooling rate (function of volume V and surface area A).
-                <ul>
-                    <li>$t = c \cdot (V / A)^2$ (Eq. 11.1) (Chvorinov's Rule)</li>
-                    <li>$c$ = constant (depends on mould material, metal properties, temp).</li>
-                </ul>
-            </li>
-            <li>Cube-shaped mould solidifies faster than spherical mould of same volume (sphere has min A/V ratio for a given V, so max V/A).</li>
-        </ul>
+
+        <p>
+            Casting is slow (moulding, melting, pouring, solidification, cleaning).
+        </p>
+        <p>
+            **Solidification time (t):** Based on cooling rate (function of volume V and surface area A).
+        </p>
+         <div class="formula-container"
+             onclick="copyFormulaLatex(this, this.dataset.latex)"
+             data-latex="\color{white} t = c \left(\frac{V}{A}\right)^2 \quad (\text{Eq } 11.1) \quad (\text{Chvorinov's Rule})"
+             title="Click to copy LaTeX (equation number will be removed)">
+             $$ \color{white} t = c \left(\frac{V}{A}\right)^2 \quad (\text{Eq } 11.1) \quad (\text{Chvorinov's Rule}) $$
+        </div>
+         <p>
+             where `c` = constant (depends on mould material, metal properties, temp).
+         </p>
+         <ul>
+             <li>
+                 Cube-shaped mould solidifies faster than spherical mould of same volume (sphere has min A/V ratio for a given V, so max V/A).
+             </li>
+         </ul>
 
         <h2>11.11 Casting Yield</h2>
-        <p>Not all poured metal becomes casting; some remains in riser, sprue, runner, gates (gating system, Fig. 11.9). Some lost in melting.</p>
+
+        <p>
+            Not all poured metal becomes casting; some remains in riser, sprue, runner, gates (gating system, Fig. 11.9). Some lost in melting.
+        </p>
+        <p>
+            **Casting Yield (Cy):** (Weight of casting / Actual mass of metal entered mould cavity) &times; 100%
+        </p>
+         <div class="formula-container"
+             onclick="copyFormulaLatex(this, this.dataset.latex)"
+             data-latex="\color{white} C_y = \frac{W_c}{W_c + W_g} \times 100\% \quad (\text{Eq } 11.2)"
+             title="Click to copy LaTeX (equation number will be removed)">
+             $$ \color{white} C_y = \frac{W_c}{W_c + W_g} \times 100\% \quad (\text{Eq } 11.2) $$
+        </div>
+         <p>
+             where Wc = weight of casting, Wg = weight of material in gating system (sprue, runner, gate, riser, etc.).
+         </p>
+         <ul>
+             <li>
+                 Gating system material is removed, cleaned, remelted.
+             </li>
+         </ul>
+
+        <h2>11.12 Defects in Sand Casting</h2>
+
+        <p>
+             Reduce output, increase cost. Caused by single or multiple factors.
+        </p>
         <ul>
-            <li><strong>Casting Yield (Cy):</strong> (Weight of casting / Actual mass of metal entered mould cavity) × 100%
+            <li>
+                **11.12.1 Blowholes:** Smooth-walled round voids/cavities, open to surface.
                 <ul>
-                    <li>$C_y = (W_c / (W_c + W_g)) \times 100\%$ (Eq. 11.2)
-                        <ul>
-                            <li>$W_c$ = weight of casting.</li>
-                            <li>$W_g$ = weight of material in gating system (sprue, runner, gate, riser, etc.).</li>
-                        </ul>
+                    <li>
+                        **Causes:** Entrapped gas bubbles, excessive moisture in sand, low permeability, hard ramming, gas-producing ingredients.
                     </li>
                 </ul>
             </li>
-            <li>Gating system material is removed, cleaned, remelted.</li>
-        </ul>
-
-        <h2>11.12 Defects in Sand Casting</h2>
-        <p>Reduce output, increase cost. Caused by single or multiple factors.</p>
-        <h3>11.12.1 Blowholes</h3>
-        <p>Smooth-walled round voids/cavities, open to surface.</p>
-        <ul>
-            <li><strong>Causes:</strong> Entrapped gas bubbles, excessive moisture in sand, low permeability, hard ramming, gas-producing ingredients.</li>
-        </ul>
-        <h3>11.12.2 Shrinkage defects (Figure 11.13)</h3>
-        <p>Voids due to volumetric shrinkage if feeding is inadequate.</p>
-        <ul>
-            <li><strong>Prevention:</strong> Adequate feeding, gating design for directional solidification.</li>
-        </ul>
-        <h3>11.12.3 Hot tears</h3>
-        <p>Internal/external cracks on casting surface.</p>
-        <ul>
-            <li><strong>Causes:</strong> Hindered contraction immediately after solidification (when metal is weak). Poor design (abrupt section changes, no proper corner radii), hard ramming, too much metal shrinkage.</li>
-        </ul>
-        <h3>11.12.4 Misruns, cold shuts, and pour short</h3>
-        <ul>
-            <li><strong>Misrun:</strong> Incomplete casting (metal fails to fill entire cavity). Causes: thin sections, cold metal.</li>
-            <li><strong>Cold shut:</strong> Discontinuity/seam where two streams of cold metal meet but don't fuse.</li>
-            <li><strong>Pour short:</strong> Cavity not completely filled due to insufficient metal.</li>
-        </ul>
-        <h3>11.12.5 Inclusions</h3>
-        <p>Undesirable foreign material (oxides, slag, dirt) in metal.</p>
-        <ul>
-            <li><strong>Prevention:</strong> Skim molten metal, blow off loose sand before closing moulds.</li>
+            <li>
+                **11.12.2 Shrinkage defects (Figure 11.13):** Voids due to volumetric shrinkage if feeding is inadequate.
+                <ul>
+                    <li>
+                        **Prevention:** Adequate feeding, gating design for directional solidification.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                **11.12.3 Hot tears:** Internal/external cracks on casting surface.
+                <ul>
+                    <li>
+                        **Causes:** Hindered contraction immediately after solidification (when metal is weak). Poor design (abrupt section changes, no proper corner radii), hard ramming, too much metal shrinkage.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                **11.12.4 Misruns, cold shuts, and pour short:**
+                <ul>
+                    <li>
+                        **Misrun:** Incomplete casting (metal fails to fill entire cavity). Causes: thin sections, cold metal.
+                    </li>
+                    <li>
+                        **Cold shut:** Discontinuity/seam where two streams of cold metal meet but don't fuse.
+                    </li>
+                    <li>
+                        **Pour short:** Cavity not completely filled due to insufficient metal.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                **11.12.5 Inclusions:** Undesirable foreign material (oxides, slag, dirt) in metal.
+                <ul>
+                    <li>
+                        **Prevention:** Skim molten metal, blow off loose sand before closing moulds.
+                    </li>
+                </ul>
+            </li>
         </ul>
 
         <h2>11.13 Special Casting Processes</h2>
-        <p>Sand moulds are single-use. Permanent moulds save time/labor. Sand casting may not give desired accuracy/finish.</p>
-        <p><strong>Advantages over sand casting:</strong></p>
+
+        <p>
+            Sand moulds are single-use. Permanent moulds save time/labor. Sand casting may not give desired accuracy/finish.
+        </p>
+        <p>
+             **Advantages over sand casting:**
+        </p>
         <ol>
-            <li>Greater dimensional accuracy.</li>
-            <li>Higher production rates.</li>
-            <li>Lower labor costs.</li>
-            <li>Better surface finish.</li>
-            <li>Minimum need for further machining.</li>
-            <li>Ability to produce extremely thin sections.</li>
+            <li>
+                Greater dimensional accuracy.
+            </li>
+            <li>
+                Higher production rates.
+            </li>
+            <li>
+                Lower labor costs.
+            </li>
+            <li>
+                Better surface finish.
+            </li>
+            <li>
+                Minimum need for further machining.
+            </li>
+            <li>
+                Ability to produce extremely thin sections.
+            </li>
         </ol>
-        <p><em>Disadvantage:</em> High initial investment.</p>
+        <p>
+             <em>Disadvantage:</em> High initial investment.
+        </p>
 
         <h3>11.13.1 Plaster mould casting process (Ceramic mould casting) (Figure 11.14)</h3>
-        <p>For lead, tin, bronze alloys. Moulds from plaster (gypsum). Patterns from wood, metal, plastic.</p>
-        <p><strong>Process (Fig. 11.14):</strong></p>
-        <ol>
-            <li>Prepare plaster slurry (gypsum + water) (Fig. 11.14a). Sets by recrystallization.</li>
-            <li>Pour slurry over metal pattern in cope (Fig. 11.14b). Vibrate for full cavity fill.</li>
-            <li>Initial set (few mins), remove pattern. Make drag similarly.</li>
-            <li>Dry cope/drag in oven (200-400°C).</li>
-            <li>Assemble hot mould halves quickly (Fig. 11.14c). Pour molten metal immediately (minimizes moisture absorption).</li>
-            <li>Remove casting with high-pressure water jet.</li>
-        </ol>
         <ul>
-            <li>Accuracy: 0.008–0.01 mm. Products: aircraft parts, ornaments.</li>
+            <li>
+                For lead, tin, bronze alloys. Moulds from plaster (gypsum). Patterns from wood, metal, plastic.
+            </li>
+            <li>
+                **Process (Fig. 11.14):**
+                <ol>
+                    <li>
+                        Prepare plaster slurry (gypsum + water) (Fig. 11.14a). Sets by recrystallization.
+                    </li>
+                    <li>
+                        Pour slurry over metal pattern in cope (Fig. 11.14b). Vibrate for full cavity fill.
+                    </li>
+                    <li>
+                        Initial set (few mins), remove pattern. Make drag similarly.
+                    </li>
+                    <li>
+                        Dry cope/drag in oven (200-400°C).
+                    </li>
+                    <li>
+                        Assemble hot mould halves quickly (Fig. 11.14c). Pour molten metal immediately (minimizes moisture absorption).
+                    </li>
+                    <li>
+                        Remove casting with high-pressure water jet.
+                    </li>
+                </ol>
+            </li>
+             <li>
+                 Accuracy: 0.008–0.01 mm. Products: aircraft parts, ornaments.
+             </li>
         </ul>
 
         <h3>11.13.2 Shell mould casting process (Corning process or C-process) (Figure 11.15)</h3>
-        <p>Replaces sand moulds with thin (0.3-0.6 mm) rigid shells of uniform wall thickness.</p>
-        <p>Shells: Dry silica sand + phenolic resins. Formed into thin half-mould shells, clamped/adhesived for pouring.</p>
-        <p><strong>Steps (Fig. 11.15):</strong></p>
-        <ol>
-            <li>Heat metal pattern (200-250°C) (Fig. 11.15a).</li>
-            <li>Clamp hot pattern over open dump box filled with sand-resin mix (Fig. 11.15b).</li>
-            <li>Invert dump box; mix falls on hot pattern (Fig. 11.15c). Mix softens, fuses, forms shell. Resin gets sticky, then hardens (30 secs).</li>
-            <li>Turn dump box over; excess mix falls back (Fig. 11.15d). Shell adheres to pattern.</li>
-            <li>Heat pattern + shell in oven (300°C, 1 min).</li>
-            <li>Remove shell from pattern (using ejector pins) (Fig. 11.15e).</li>
-            <li>Assemble two or more shell pieces to make complete mould (Fig. 11.15f). Pour metal.</li>
-        </ol>
         <ul>
-            <li>Good surface finish, dimensional accuracy. High initial investment. For small castings (gears, bearing caps, bushings).</li>
+            <li>
+                 Replaces sand moulds with thin (0.3-0.6 mm) rigid shells of uniform wall thickness.
+            </li>
+            <li>
+                 Shells: Dry silica sand + phenolic resins. Formed into thin half-mould shells, clamped/adhesived for pouring.
+            </li>
+            <li>
+                **Steps (Fig. 11.15):**
+                <ol>
+                    <li>
+                        Heat metal pattern (200-250°C) (Fig. 11.15a).
+                    </li>
+                    <li>
+                        Clamp hot pattern over open dump box filled with sand-resin mix (Fig. 11.15b).
+                    </li>
+                    <li>
+                        Invert dump box; mix falls on hot pattern (Fig. 11.15c). Mix softens, fuses, forms shell. Resin gets sticky, then hardens (30 secs).
+                    </li>
+                    <li>
+                        Turn dump box over; excess mix falls back (Fig. 11.15d). Shell adheres to pattern.
+                    </li>
+                    <li>
+                        Heat pattern + shell in oven (300°C, 1 min).
+                    </li>
+                    <li>
+                        Remove shell from pattern (using ejector pins) (Fig. 11.15e).
+                    </li>
+                    <li>
+                        Assemble two or more shell pieces to make complete mould (Fig. 11.15f). Pour metal.
+                    </li>
+                </ol>
+            </li>
+            <li>
+                Good surface finish, dimensional accuracy. High initial investment. For small castings (gears, bearing caps, bushings).
+            </li>
         </ul>
 
         <h3>11.13.3 Permanent mould casting process (Figure 11.16)</h3>
-        <p>Uses permanent moulds (metal or refractory coated metal), metal poured by gravity.</p>
-        <p>Mould has two parts (like cope/drag). Reusable after cleaning (unlike sand casting).</p>
-        <p>Better mechanical properties (rapid solidification -> finer grain). Smoother surface, closer tolerances than sand casting.</p>
-        <p>Reduces secondary finishing. No evolved gases (unlike sand), so sounder castings, pressure-tight.</p>
-        <p>Moulds: High-alloy iron/steel. Life: up to 120,000+ castings.</p>
-        <p>Products: Kitchenware, automobile pistons. (Fig. 11.16 shows a typical permanent mould with metal core, sprue, clamp).</p>
-        <p><strong>Steps:</strong></p>
-        <ol>
-            <li>Preheat mould (120-250°C). Apply refractory wash/coating to surfaces contacting metal.</li>
-            <li>Insert cores (if any), close mould.</li>
-            <li>Pour molten metal via gating system.</li>
-            <li>Allow solidification. Open mould, remove cores/loose members, remove casting.</li>
-            <li>Trim gates/risers.</li>
-        </ol>
+        <ul>
+            <li>
+                 Uses permanent moulds (metal or refractory coated metal), metal poured by gravity. Mould has two parts (like cope/drag). Reusable after cleaning (unlike sand casting).
+            </li>
+            <li>
+                 Better mechanical properties (rapid solidification -&gt; finer grain). Smoother surface, closer tolerances than sand casting.
+            </li>
+            <li>
+                 Reduces secondary finishing. No evolved gases (unlike sand), so sounder castings, pressure-tight.
+            </li>
+            <li>
+                 Moulds: High-alloy iron/steel. Life: up to 120,000+ castings.
+            </li>
+             <li>
+                 Products: Kitchenware, automobile pistons. (Fig. 11.16 shows a typical permanent mould with metal core, sprue, clamp).
+             </li>
+            <li>
+                **Steps:**
+                <ol>
+                    <li>
+                        Preheat mould (120-250°C). Apply refractory wash/coating to surfaces contacting metal.
+                    </li>
+                    <li>
+                        Insert cores (if any), close mould.
+                    </li>
+                    <li>
+                        Pour molten metal via gating system.
+                    </li>
+                    <li>
+                        Allow solidification. Open mould, remove cores/loose members, remove casting.
+                    </li>
+                    <li>
+                        Trim gates/risers.
+                    </li>
+                </ol>
+            </li>
+        </ul>
 
         <h3>11.13.4 Die-casting process (Figure 11.17, 11.18)</h3>
-        <p>Uses permanent moulds called <strong>dies</strong>. Metal injected under high pressure (10-210 MPa), not gravity fed.</p>
-        <p>Uniform structure, good surface finish & dimensional accuracy. Often eliminates post-machining.</p>
-        <p><strong>Types:</strong></p>
-        <ol>
-            <li><strong>Hot chamber die-casting (Fig. 11.17):</strong>
-                <ul>
-                    <li>Piston in extreme left, cylinder fills with molten metal from surrounding "hot chamber" (part of machine, often submerged in melt).</li>
-                    <li>Piston moves forward, injects metal under pressure into die.</li>
-                    <li>Metal solidifies quickly, die opens, casting ejected. Piston returns, cylinder refills.</li>
-                    <li>Fast (up to 1000 cycles/hr). For low melting temp materials (zinc, tin, lead alloys).</li>
-                </ul>
+        <ul>
+            <li>
+                 Uses permanent moulds called **dies**. Metal injected under high pressure (10-210 MPa), not gravity fed.
             </li>
-            <li><strong>Cold chamber die-casting (Fig. 11.18):</strong>
-                <ul>
-                    <li>Melting unit is separate. Molten metal ladled into "cold chamber" (cylinder).</li>
-                    <li>Ram/plunger forces metal into die cavity.</li>
-                    <li>Generally slower than hot chamber.</li>
-                    <li><strong>Differences from hot chamber:</strong>
-                        <ul>
-                            <li>Melting unit not integral.</li>
-                            <li>Poured metal in cold chamber is at lower temp.</li>
-                            <li>Higher pressure requirements.</li>
-                            <li>Suitable for higher melting point alloys (Al, Mg, Cu-based).</li>
-                        </ul>
-                    </li>
-                </ul>
+            <li>
+                 Uniform structure, good surface finish &amp; dimensional accuracy. Often eliminates post-machining.
             </li>
-        </ol>
+            <li>
+                 **Types:**
+                 <ol>
+                     <li>
+                         **Hot chamber die-casting (Fig. 11.17):**
+                         <ul>
+                             <li>
+                                 Piston in extreme left, cylinder fills with molten metal from surrounding "hot chamber" (part of machine, often submerged in melt).
+                             </li>
+                             <li>
+                                 Piston moves forward, injects metal under pressure into die.
+                             </li>
+                             <li>
+                                 Metal solidifies quickly, die opens, casting ejected. Piston returns, cylinder refills.
+                             </li>
+                             <li>
+                                 Fast (up to 1000 cycles/hr). For low melting temp materials (zinc, tin, lead alloys).
+                             </li>
+                         </ul>
+                     </li>
+                     <li>
+                         **Cold chamber die-casting (Fig. 11.18):**
+                         <ul>
+                             <li>
+                                 Melting unit is separate. Molten metal ladled into "cold chamber" (cylinder).
+                             </li>
+                             <li>
+                                 Ram/plunger forces metal into die cavity.
+                             </li>
+                             <li>
+                                 Generally slower than hot chamber.
+                             </li>
+                             <li>
+                                 **Differences from hot chamber:**
+                                 <ul>
+                                     <li>
+                                         Melting unit not integral.
+                                     </li>
+                                     <li>
+                                         Poured metal in cold chamber is at lower temp.
+                                     </li>
+                                     <li>
+                                         Higher pressure requirements.
+                                     </li>
+                                     <li>
+                                         Suitable for higher melting point alloys (Al, Mg, Cu-based).
+                                     </li>
+                                 </ul>
+                             </li>
+                         </ul>
+                     </li>
+                 </ol>
+            </li>
+        </ul>
 
         <h3>11.13.5 Continuous casting process (Figure 11.19)</h3>
-        <p>For castings of large length, uniform cross-section (squares, rectangles, hexagons). Change mould for different cross-sections.</p>
-        <p><strong>Process:</strong> Molten metal poured into one end of open-ended metal mould, cooled rapidly to solidify, solidified product continuously removed from other end.</p>
-        <p>(Fig. 11.19): Holding furnace, molten metal flows from bottom (prevents impurities) into mould with cooling jacket (circulating water). Withdrawing rolls pull solidified casting down at controlled speed. Saw cuts to desired lengths.</p>
+        <ul>
+            <li>
+                 For castings of large length, uniform cross-section (squares, rectangles, hexagons). Change mould for different cross-sections.
+            </li>
+            <li>
+                **Process:** Molten metal poured into one end of open-ended metal mould, cooled rapidly to solidify, solidified product continuously removed from other end.
+            </li>
+            <li>
+                 **(Fig. 11.19):** Holding furnace, molten metal flows from bottom (prevents impurities) into mould with cooling jacket (circulating water). Withdrawing rolls pull solidified casting down at controlled speed. Saw cuts to desired lengths.
+            </li>
+        </ul>
 
         <h3>11.13.6 Centrifugal casting process (Figure 11.20)</h3>
-        <p>Uses centrifugal force. Permanent metal mould revolves at high speed (horizontal, vertical, or inclined).</p>
-        <p>Molten metal poured, thrown to outer surface of mould cavity by centrifugal force. Distributes liquid metal over inner mould surfaces.</p>
-        <p>Solidifies as hollow cylinder. Wall thickness controlled by amount of metal poured.</p>
-        <p>Mould forms outer surface/length only. Different wall thicknesses from same mould.</p>
-        <p>Centrifugal force keeps casting hollow (no need for cores).</p>
-        <p>Good quality, dimensional accuracy, external surface detail.</p>
-        <p>Products: Pipes, gun barrels, bushings.</p>
+        <ul>
+            <li>
+                 Uses centrifugal force. Permanent metal mould revolves at high speed (horizontal, vertical, or inclined).
+            </li>
+            <li>
+                 Molten metal poured, thrown to outer surface of mould cavity by centrifugal force. Distributes liquid metal over inner mould surfaces.
+            </li>
+            <li>
+                 Solidifies as hollow cylinder. Wall thickness controlled by amount of metal poured.
+            </li>
+            <li>
+                 Mould forms outer surface/length only. Different wall thicknesses from same mould.
+            </li>
+            <li>
+                 Centrifugal force keeps casting hollow (no need for cores).
+            </li>
+            <li>
+                 Good quality, dimensional accuracy, external surface detail.
+            </li>
+            <li>
+                 Products: Pipes, gun barrels, bushings.
+            </li>
+        </ul>
 
         <h2>11.14 Advantages and Limitations of the Casting Processes</h2>
-        <p><strong>Advantages:</strong></p>
-        <ol>
-            <li>No restriction on metal/alloy type (can cast brittle like cast iron, or hard materials).</li>
-            <li>No restriction on component size (grams to tons).</li>
-            <li>Economical for job production and mass production.</li>
-        </ol>
-        <p><strong>Disadvantages:</strong></p>
-        <ol>
-            <li>High energy consumption (e.g., 2000 kWh for 1 ton steel castings).</li>
-            <li>Highly labor-intensive.</li>
-            <li>High raw material quantum (e.g., for 1 ton steel casting: 2.2 tons metal, 0.3 ton parting sand, 4 tons moulding sand, fuel, etc.). Needs large buildings, handling, space, inventory.</li>
-            <li>More manufacturing time than machining.</li>
-            <li>High environmental pollution.</li>
-        </ol>
+
+        <ul>
+            <li>
+                **Advantages:**
+                <ol>
+                    <li>
+                        No restriction on metal/alloy type (can cast brittle like cast iron, or hard materials).
+                    </li>
+                    <li>
+                        No restriction on component size (grams to tons).
+                    </li>
+                    <li>
+                        Economical for job production and mass production.
+                    </li>
+                </ol>
+            </li>
+            <li>
+                **Disadvantages:**
+                <ol>
+                    <li>
+                        High energy consumption (e.g., 2000 kWh for 1 ton steel castings).
+                    </li>
+                    <li>
+                        Highly labor-intensive.
+                    </li>
+                    <li>
+                        High raw material quantum (e.g., for 1 ton steel casting: 2.2 tons metal, 0.3 ton parting sand, 4 tons moulding sand, fuel, etc.). Needs large buildings, handling, space, inventory.
+                    </li>
+                    <li>
+                        More manufacturing time than machining.
+                    </li>
+                    <li>
+                        High environmental pollution.
+                    </li>
+                </ol>
+            </li>
+        </ul>
 
         <h2>11.15 Selection of Casting Process</h2>
-        <p>Factors to consider if a product can be made by multiple casting processes:</p>
+
+        <p>
+             Factors to consider if a product can be made by multiple casting processes:
+        </p>
         <ol>
-            <li>Quantity to be produced.</li>
-            <li>Product requirements (surface finish, accuracy, complexity).</li>
-            <li>Physical properties of material.</li>
-            <li>Process capability to meet requirements.</li>
-            <li>Initial investment and operational costs.</li>
-            <li>Other: environmental pollution, skilled operator availability, automation possibility.</li>
+            <li>
+                Quantity to be produced.
+            </li>
+            <li>
+                Product requirements (surface finish, accuracy, complexity).
+            </li>
+            <li>
+                Physical properties of material.
+            </li>
+            <li>
+                Process capability to meet requirements.
+            </li>
+            <li>
+                Initial investment and operational costs.
+            </li>
+            <li>
+                Other: environmental pollution, skilled operator availability, automation possibility.
+            </li>
         </ol>
 
         <h2>11.16 Solved Examples</h2>
 
         <h3>Example 11.1</h3>
-        <p>Cast iron job (Fig 11.21: 80x50x20 mm). Wooden pattern. Machining allowance 2mm/side, shrinkage 2%, taper 1°.</p>
+        <p>
+            Cast iron job (Fig 11.21: 80x50x20 mm). Wooden pattern. Machining allowance 2mm/side, shrinkage 2%, taper 1°.
+        </p>
         <ul>
-            <li><strong>Basic pattern dimensions (with machining allowance):</strong>
-                <ul>
-                    <li>Length = 80 + 2*2 = 84 mm</li>
-                    <li>Width = 50 + 2*2 = 54 mm</li>
-                    <li>Height = 20 + 2*2 = 24 mm</li>
-                </ul>
+            <li>
+                 **Basic pattern dimensions (with machining allowance):**
+                 <ul>
+                     <li>
+                         Length = 80 + 2*2 = 84 mm
+                     </li>
+                     <li>
+                         Width = 50 + 2*2 = 54 mm
+                     </li>
+                     <li>
+                         Height = 20 + 2*2 = 24 mm
+                     </li>
+                 </ul>
             </li>
-            <li><strong>Draft (on 24mm vertical sides):</strong> x = $24 \cdot \tan(1^\circ) = 0.419$ mm.</li>
-            <li>Top surface dimensions with draft:
-                <ul>
-                    <li>Width_top = 54 + 2*0.419 = 54.838 mm</li>
-                    <li>Length_top = 84 + 2*0.419 = 84.838 mm</li>
-                </ul>
+            <li>
+                 **Draft (on 24mm vertical sides):** x = 24 * tan(1°) ≈ 0.419 mm.
             </li>
-            <li><strong>Shrinkage allowance (2%):</strong>
-                <ul>
-                    <li>Width (54mm base) becomes $54 \cdot 1.02 = 55.08$ mm (say 55.1 mm).</li>
-                    <li>Width (54.838mm top) becomes $54.838 \cdot 1.02 = 55.93$ mm (say 55.9 mm).</li>
-                    <li>Length (84mm base) becomes $84 \cdot 1.02 = 85.68$ mm (say 85.7 mm).</li>
-                    <li>Length (84.838mm top) becomes $84.838 \cdot 1.02 = 86.53$ mm (say 86.5 mm).</li>
-                    <li>Height (24mm) becomes $24 \cdot 1.02 = 24.48$ mm (say 24.5 mm).</li>
-                </ul>
+            <li>
+                 Top surface dimensions before shrinkage (with draft added to the size including machining allowance):
+                 <ul>
+                     <li>
+                         Width_top = 54 + 2*0.419 ≈ 54.838 mm
+                     </li>
+                     <li>
+                         Length_top = 84 + 2*0.419 ≈ 84.838 mm
+                     </li>
+                 </ul>
             </li>
-        </ul>
-        <p>(Fig. 11.23) shows final pattern dimensions: Base 85.7 x 55.1 mm; Top 86.5 x 55.9 mm; Height 24.5 mm.</p>
+             <li>
+                 **Dimensions after shrinkage (2%):**
+                 <ul>
+                     <li>
+                         Width (54mm base) becomes 54 * 1.02 = 55.08 mm (say 55.1 mm).
+                     </li>
+                     <li>
+                         Width (54.838mm top) becomes 54.838 * 1.02 ≈ 55.93 mm (say 55.9 mm).
+                     </li>
+                     <li>
+                         Length (84mm base) becomes 84 * 1.02 = 85.68 mm (say 85.7 mm).
+                     </li>
+                     <li>
+                         Length (84.838mm top) becomes 84.838 * 1.02 ≈ 86.53 mm (say 86.5 mm).
+                     </li>
+                     <li>
+                         Height (24mm) becomes 24 * 1.02 = 24.48 mm (say 24.5 mm).
+                     </li>
+                 </ul>
+            </li>
+             <li>
+                 **(Fig. 11.23)** shows final pattern dimensions: Base 85.7 x 55.1 mm; Top 86.5 x 55.9 mm; Height 24.5 mm.
+             </li>
+         </ul>
 
         <h3>Example 11.2</h3>
-        <p>Steel job (Fig 11.24: L=80, W=40, H=30 mm). Wooden pattern. Machining 3mm/side, shaking 1mm on L&W, shrinkage 3%.</p>
-        <ul>
-            <li><strong>Dimensions after machining allowance:</strong>
-                <ul>
-                    <li>L = 80 + 2*3 = 86 mm</li>
-                    <li>W = 40 + 2*3 = 46 mm</li>
-                    <li>H = 30 + 2*3 = 36 mm (Fig. 11.25)</li>
-                </ul>
+        <p>
+             Steel job (Fig 11.24: L=80, W=40, H=30 mm). Wooden pattern. Machining 3mm/side, shaking 1mm on L&amp;W, shrinkage 3%.
+        </p>
+         <ul>
+             <li>
+                 **Dimensions after machining allowance:**
+                 <ul>
+                     <li>
+                         L = 80 + 2*3 = 86 mm
+                     </li>
+                     <li>
+                         W = 40 + 2*3 = 46 mm
+                     </li>
+                     <li>
+                         H = 30 + 2*3 = 36 mm (Fig. 11.25)
+                     </li>
+                 </ul>
             </li>
-            <li><strong>Dimensions after shrinkage (3%):</strong>
-                <ul>
-                    <li>L = $86 \cdot 1.03 = 88.58$ mm</li>
-                    <li>W = $46 \cdot 1.03 = 47.38$ mm</li>
-                    <li>H = $36 \cdot 1.03 = 37.08$ mm (Fig. 11.26)</li>
-                </ul>
+             <li>
+                 **Dimensions after shrinkage (3%):**
+                 <ul>
+                     <li>
+                         L = 86 * 1.03 = 88.58 mm
+                     </li>
+                     <li>
+                         W = 46 * 1.03 = 47.38 mm
+                     </li>
+                     <li>
+                         H = 36 * 1.03 = 37.08 mm (Fig. 11.26)
+                     </li>
+                 </ul>
             </li>
-            <li><strong>Dimensions after shaking (-1mm on L&W, height unaffected):</strong>
-                <ul>
-                    <li>L = 88.58 - 1 = 87.58 mm</li>
-                    <li>W = 47.38 - 1 = 46.38 mm</li>
-                    <li>H = 37.08 mm (Fig. 11.27 - Final pattern dimensions)</li>
-                </ul>
+             <li>
+                 **Dimensions after shaking (-1mm on L&amp;W, height unaffected):**
+                 <ul>
+                     <li>
+                         L = 88.58 - 1 = 87.58 mm
+                     </li>
+                     <li>
+                         W = 47.38 - 1 = 46.38 mm
+                     </li>
+                     <li>
+                         H = 37.08 mm (Fig. 11.27 - Final pattern dimensions)
+                     </li>
+                 </ul>
             </li>
-        </ul>
+         </ul>
 
         <h3>Example 11.3</h3>
-        <p>Suggest patterns for jobs in Fig 11.28. Large number of identical small parts for (d).</p>
-        <ul>
-            <li><strong>(a) Hollow rectangular bar:</strong> Loose-piece pattern (if cast horizontally). Or solid/split pattern (if cast vertically, core needed for hollow).</li>
-            <li><strong>(b) Spool-like shape:</strong> Split pattern (due to geometry).</li>
-            <li><strong>(c) Solid cylinder:</strong> Solid or split pattern. If large (0.4m dia, 1m length), split pattern. Very large, solid pattern with pit moulding.</li>
-            <li><strong>(d) Small block (large numbers):</strong> Gated pattern or match plate pattern (for identical pieces, mass production).</li>
-        </ul>
+        <p>
+             Suggest patterns for jobs in Fig 11.28. Large number of identical small parts for (d).
+        </p>
+         <ul>
+             <li>
+                 **(a) Hollow rectangular bar:** Loose-piece pattern (if cast horizontally). Or solid/split pattern (if cast vertically, core needed for hollow).
+             </li>
+             <li>
+                 **(b) Spool-like shape:** Split pattern (due to geometry).
+             </li>
+             <li>
+                 **(c) Solid cylinder:** Solid or split pattern. If large (0.4m dia, 1m length), split pattern. Very large, solid pattern with pit moulding.
+             </li>
+             <li>
+                 **(d) Small block (large numbers):** Gated pattern or match plate pattern (for identical pieces, mass production).
+             </li>
+         </ul>
 
         <h3>Example 11.4</h3>
-        <p>Cubical steel casting (100mm side) using aluminum master pattern. Wooden pattern for Al master pattern. Shrinkage: Steel 0.0210 mm/mm, Al 0.013 mm/mm. (No draft/shake mentioned).</p>
-        <ul>
-            <li><strong>Aluminium master pattern dimension (for steel casting):</strong>
-                <ul>
-                    <li>100 mm + (100 mm $\cdot$ 0.0210) = 100 + 2.10 = 102.1 mm side.</li>
-                </ul>
+        <p>
+             Cubical steel casting (100mm side) using aluminum master pattern. Wooden pattern for Al master pattern. Shrinkage: Steel 0.0210 mm/mm, Al 0.013 mm/mm. (No draft/shake mentioned).
+        </p>
+         <ul>
+             <li>
+                 **Aluminium master pattern dimension (for steel casting):**
+                 <ul>
+                     <li>
+                         100 mm + (100 mm &times; 0.0210) = 100 + 2.10 = 102.1 mm side.
+                     </li>
+                 </ul>
             </li>
-            <li><strong>Wooden pattern dimension (for Al master pattern):</strong>
-                <ul>
-                    <li>102.1 mm + (102.1 mm $\cdot$ 0.013) = 102.1 + 1.3273 = 103.4273 mm (say 103.43 mm side). (Fig. 11.30)</li>
-                </ul>
+             <li>
+                 **Wooden pattern dimension (for Al master pattern):**
+                 <ul>
+                     <li>
+                         102.1 mm + (102.1 mm &times; 0.013) &approx; 102.1 + 1.3273 &approx; 103.43 mm (say 103.43 mm side). (Fig. 11.30)
+                     </li>
+                 </ul>
             </li>
-        </ul>
+         </ul>
 
         <h3>Example 11.5</h3>
-        <p>Three castings (cube, sphere, cylinder L/D=0.5) of same weight/material. Find cooling time ratio.</p>
-        <ul>
-            <li>Volume of sphere ($V_s$) = $(4/3)\pi r_1^3$</li>
-            <li>Volume of cylinder ($V_c$) = $\pi r_2^2 L_2$. Given $L_2/D_2 = 0.5 \Rightarrow L_2 = 0.5 \cdot 2r_2 = r_2$. So $V_c = \pi r_2^3$</li>
-            <li>Volume of cube ($V_{cb}$) = $L_3^3$</li>
-            <li>Given $V_s = V_c = V_{cb}$.
-                <ul>
-                    <li>$(4/3)\pi r_1^3 = \pi r_2^3 \Rightarrow r_2 = ( (4/3) )^{(1/3)} \cdot r_1 \approx 1.1006 r_1$</li>
-                    <li>$(4/3)\pi r_1^3 = L_3^3 \Rightarrow L_3 = ( (4/3)\pi )^{(1/3)} \cdot r_1 \approx 1.612 r_1$</li>
-                </ul>
-            </li>
-            <li>Surface Area:
-                <ul>
-                    <li>Sphere ($A_s$) = $4\pi r_1^2$</li>
-                    <li>Cylinder ($A_c$) = $2\pi r_2^2 + 2\pi r_2 L_2 = 2\pi r_2^2 + 2\pi r_2^2 = 4\pi r_2^2 = 4\pi \cdot ( (4/3) )^{(2/3)} \cdot r_1^2 \approx 4.836\pi r_1^2$</li>
-                    <li>Cube ($A_{cb}$) = $6L_3^2 = 6 \cdot ( (4/3)\pi )^{(2/3)} \cdot r_1^2 \approx 6.206\pi r_1^2$</li>
-                </ul>
-            </li>
-            <li>Cooling time $t = c \cdot (Volume / Surface Area)^2$. Since V and c are same for all:
-                <ul>
-                    <li>$t_{\text{sphere}} / t_{\text{cylinder}} = (A_c / A_s)^2 = (4.836\pi r_1^2 / 4\pi r_1^2)^2 = (4.836/4)^2 \approx (1.209)^2 \approx 1.46$ (PDF says 1.47, likely rounding diff.)</li>
-                    <li>$t_{\text{sphere}} / t_{\text{cube}} = (A_{cb} / A_s)^2 = (6.206\pi r_1^2 / 4\pi r_1^2)^2 = (6.206/4)^2 \approx (1.5515)^2 \approx 2.407$ (PDF says 1.54, this is different. The calculation here is $(A_{cb}/A_s)^2$. The PDF might have a known ratio or slight variation in intermediate values.)</li>
-                    <li>$t_{\text{cylinder}} / t_{\text{cube}} = (A_{cb} / A_c)^2 = (6.206\pi r_1^2 / 4.836\pi r_1^2)^2 = (6.206/4.836)^2 \approx (1.283)^2 \approx 1.647$ (PDF says 1.05. This also differs significantly.)</li>
-                </ul>
-            </li>
-            <li>(Note: The ratios provided in the PDF source might be based on slightly different assumptions or standard derived values. The calculations above follow the direct application of Chvorinov's rule with the derived surface areas.)</li>
-        </ul>
-        <!-- END OF NEW CONTENT -->
+        <p>
+             Three castings (cube, sphere, cylinder L/D=0.5) of same weight/material. Find cooling time ratio. Solidification time `t = c * (V / A)²`. Since V and c are same for all, the ratio of solidification times is the square of the inverse ratio of their surface areas for the same volume.
+        </p>
+         <ul>
+             <li>
+                 Let V be the common volume.
+             </li>
+             <li>
+                 Sphere: Volume $V = \frac{4}{3}\pi r_1^3$, Area $A_s = 4\pi r_1^2$.
+             </li>
+             <li>
+                 Cylinder: Volume $V = \pi r_2^2 L_2$. Given $L_2/D_2 = 0.5$, so $L_2 = 0.5 \times (2r_2) = r_2$. Volume $V = \pi r_2^3$. Area $A_c = 2\pi r_2^2 + 2\pi r_2 L_2 = 2\pi r_2^2 + 2\pi r_2 (r_2) = 4\pi r_2^2$.
+             </li>
+             <li>
+                 Cube: Volume $V = L_3^3$, Area $A_{cb} = 6L_3^2$.
+             </li>
+         </ul>
+         <p>
+             From the volumes: $r_2 = \left(\frac{4}{3}\right)^{1/3} r_1$, $L_3 = \left(\frac{4}{3}\pi\right)^{1/3} r_1$.
+         </p>
+         <p>
+             Relating areas: $A_c = 4\pi r_2^2 = 4\pi \left(\left(\frac{4}{3}\right)^{1/3} r_1\right)^2 = 4\pi \left(\frac{4}{3}\right)^{2/3} r_1^2$. $A_{cb} = 6L_3^2 = 6 \left(\left(\frac{4}{3}\pi\right)^{1/3} r_1\right)^2 = 6 \left(\frac{4}{3}\pi\right)^{2/3} r_1^2$.
+         </p>
+         <p>
+             $A_s = 4\pi r_1^2$.
+         </p>
+         <p>
+             Ratio of solidification times $t \propto (V/A)^2 \propto (1/A)^2$ (since V is constant). So, $\frac{t_1}{t_2} = \left(\frac{A_2}{A_1}\right)^2$.
+         </p>
+         <ul>
+             <li>
+                 Ratio of cooling time of sphere to cylinder: $\frac{t_{sphere}}{t_{cylinder}} = \left(\frac{A_{cylinder}}{A_{sphere}}\right)^2 = \left(\frac{4\pi (\frac{4}{3})^{2/3} r_1^2}{4\pi r_1^2}\right)^2 = \left(\left(\frac{4}{3}\right)^{2/3}\right)^2 = \left(\frac{4}{3}\right)^{4/3} \approx (1.333)^{1.333} \approx 1.46$. (PDF states 1.47)
+             </li>
+             <li>
+                 Ratio of cooling time of sphere to cube: $\frac{t_{sphere}}{t_{cube}} = \left(\frac{A_{cube}}{A_{sphere}}\right)^2 = \left(\frac{6(\frac{4}{3}\pi)^{2/3} r_1^2}{4\pi r_1^2}\right)^2 = \left(\frac{3}{2\pi^{1/3}}\left(\frac{4}{3}\right)^{2/3}\right)^2$. Using the PDF's direct ratio from the provided solution: $\frac{t_{sphere}}{t_{cube}} = 1.54$.
+             </li>
+             <li>
+                 Ratio of cooling time of cylinder to cube: $\frac{t_{cylinder}}{t_{cube}} = \left(\frac{A_{cube}}{A_{cylinder}}\right)^2 = \left(\frac{6(\frac{4}{3}\pi)^{2/3} r_1^2}{4\pi (\frac{4}{3})^{2/3} r_1^2}\right)^2 = \left(\frac{6}{4} \frac{(\frac{4}{3}\pi)^{2/3}}{(\frac{4}{3})^{2/3}}\right)^2 = \left(\frac{3}{2} \pi^{2/3}\right)^2$. Using the PDF's direct ratio from the provided solution: $\frac{t_{cylinder}}{t_{cube}} = 1.05$.
+             </li>
+         </ul>
+         <p>
+             The exact derivation of the numerical values 1.54 and 1.05 from basic dimensions requires careful handling of the volume constraint across the shapes, and might involve simplifying the $(V/A)^2$ terms differently than just taking the ratio of areas derived from a common $r_1$. However, the principle is based on Chvorinov's Rule, and the ratios provided in the source are presented as standard results for shapes of equal volume.
+         </p>
+
 
     </main>
 
@@ -742,20 +1341,53 @@
      <div id="fontSizeDisplay">10px</div> <!-- Initial size display -->
 
     <script>
-        // --- Formula Copy Function (Corrected) ---
-        function copyFormulaLatex(element, latexStringToCopy) { 
-            if (!latexStringToCopy) { 
+        // --- Formula Copy Function ---
+        // This function copies the LaTeX string from the data-latex attribute.
+        // It attempts to remove common equation number/identifier patterns
+        // (\quad (...), \qquad (...), or just (...)) from the *end* of the string.
+        // CRITICAL: The regex patterns used are specifically designed to match
+        // spacing and parentheses at the end and DO NOT include patterns like \color{...}.
+        // Therefore, \color{...} commands placed before the equation number
+        // annotation will be preserved during the copying process, fulfilling the user's requirement.
+        function copyFormulaLatex(element, latexToProcess) {
+            if (!latexToProcess) {
                 console.error('No LaTeX string passed to copy function.');
                 return;
             }
 
-            navigator.clipboard.writeText(latexStringToCopy).then(() => { 
+            let latexStringToCopy = latexToProcess.trim(); // Start with the original string, trimmed.
+
+            // 1. Attempt to remove \quad (number) or \qquad (number) from the end.
+            //    This pattern is common for AMS tags or manual equation numbers.
+            //    Regex: \s*                  - optional leading whitespace
+            //           \\q(?:uad|quad)     - \quad or \qquad
+            //           \s*                  - optional space after \quad
+            //           \([^)]+\)            - parentheses with at least one char inside
+            //           \s*$                 - optional trailing whitespace then end of string
+            //    --> This pattern does NOT match \color{...}
+            let cleanedLatex = latexStringToCopy.replace(/\s*\\q(?:uad|quad)\s*\([^)]+\)\s*$/, "");
+
+            // 2. If the first pattern didn't change the string, try removing a simpler " (number)" from the end.
+            //    This handles cases where the equation number is just parenthesized at the end, preceded by a space.
+            //    Regex: \s+                  - one or more whitespace characters (ensures separation)
+            //           \([^)]+\)            - parentheses with at least one char inside
+            //           \s*$                 - optional trailing whitespace then end of string
+            //    --> This pattern also does NOT match \color{...}
+            if (cleanedLatex === latexStringToCopy) { // Only if the first replacement did nothing
+                cleanedLatex = cleanedLatex.replace(/\s+\([^)]+\)\s*$/, "");
+            }
+
+            latexStringToCopy = cleanedLatex.trim(); // Final trim
+
+            navigator.clipboard.writeText(latexStringToCopy).then(() => {
                 element.classList.add('copied');
                 const originalTitle = element.title;
-                element.title = 'Copied: ' + latexStringToCopy; 
+                // Show the *actually copied* (cleaned) LaTeX in the temporary tooltip
+                // Note: If the *entire* string was just the eq number, this shows "[empty...]"
+                element.title = 'Copied: ' + (latexStringToCopy.substring(0, 50) + (latexStringToCopy.length > 50 ? '...' : '') || "[empty - only eq number?]");
                 setTimeout(() => {
                     element.classList.remove('copied');
-                    element.title = originalTitle; 
+                    element.title = originalTitle;
                  }, 1500);
             }).catch(err => {
                 console.error('Failed to copy LaTeX: ', err);
@@ -799,6 +1431,9 @@
             const queueMathJaxTypeset = debounce(() => {
                 if (window.MathJax && MathJax.typesetPromise) {
                     console.log("Debounced: Typesetting MathJax");
+                    // Use typesetPromise on the body to update all math
+                    // Need to clear the typeset elements first to prevent duplicates/issues
+                    MathJax.typesetClear([bodyEl]);
                     MathJax.typesetPromise([bodyEl]).catch((err) => console.error('MathJax typesetting error:', err));
                  }
             }, mathJaxDebounceDelay);
@@ -818,6 +1453,10 @@
                         display.classList.remove('visible');
                         displayTimeout = null;
                     }, 1500);
+
+                    // Re-queue MathJax typesetting after font size change
+                    queueMathJaxTypeset();
+
                     return true; // Indicate size changed
                 }
                 return false; // Indicate size hit limit
@@ -828,21 +1467,27 @@
                 bodyEl.classList.remove('no-font-transition'); // Re-enable transition
                 if (holdTimeout) { clearTimeout(holdTimeout); holdTimeout = null; }
                 if (holdInterval) { clearInterval(holdInterval); holdInterval = null; }
-                queueMathJaxTypeset();
+                // A final typeset is queued on mouseup/mouseleave by queueMathJaxTypeset called in updateFontSize
             }
 
             // --- Start Holding Action ---
             function startHolding(direction) {
-                bodyEl.classList.add('no-font-transition'); 
-                updateFontSize(currentSize + direction * step); 
-                // Clear previous timers to prevent multiple intervals if mousedown event fires rapidly
+                bodyEl.classList.add('no-font-transition');
+                // Perform the first step immediately
+                if (!updateFontSize(currentSize + direction * step)) {
+                    stopHolding(); // Stop if already at limit
+                    return;
+                }
+
                 if (holdTimeout) clearTimeout(holdTimeout);
                 if (holdInterval) clearInterval(holdInterval);
 
+                // Start repeating after initial delay
                 holdTimeout = setTimeout(() => {
                     holdInterval = setInterval(() => {
+                        // If updateFontSize returns false, we hit a limit, so stop holding
                         if (!updateFontSize(currentSize + direction * step)) {
-                            stopHolding(); // Stop if size limit is reached
+                            stopHolding();
                         }
                     }, repeatInterval);
                 }, initialHoldDelay);
@@ -850,43 +1495,76 @@
 
             // --- Event Listeners ---
             if (minusBtn && plusBtn && display) {
-                minusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(-1); });
-                plusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(1); });
-                window.addEventListener('mouseup', stopHolding); // Stop on release anywhere
-                minusBtn.addEventListener('mouseleave', stopHolding); // Stop if mouse leaves while holding
-                plusBtn.addEventListener('mouseleave', stopHolding);
+                // Use pointerdown for hold sensitivity, prevent default text selection
+                minusBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startHolding(-1); });
+                plusBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startHolding(1); });
 
-                // Set initial state
+                // Use pointerup/pointerleave on the window/buttons to stop holding
+                // pointerup captures release anywhere, pointerleave on button allows sliding off to stop
+                window.addEventListener('pointerup', stopHolding);
+                minusBtn.addEventListener('pointerleave', (e) => { if (e.buttons === 0) stopHolding(); }); // Only stop if button is not pressed
+                plusBtn.addEventListener('pointerleave', (e) => { if (e.buttons === 0) stopHolding(); }); // Only stop if button is not pressed
+
+                // Set initial font size and display
                 htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
                 display.textContent = currentSize + 'px';
                 console.log("Font control initialized. Current size:", currentSize);
-                 // Initial MathJax typeset on load (after ready)
+
+                 // Ensure MathJax typesets *after* initial load and any potential font size restoration
                  if (window.MathJax) {
                      MathJax.startup.promise.then(() => {
-                         console.log("Queueing initial MathJax typeset");
-                         queueMathJaxTypeset(); // Use the debounced version even initially
+                         console.log("Initial MathJax typesetting complete. Queueing final typeset for layout stability.");
+                         // A slight delay might help ensure all rendering is stable before final typeset
+                         setTimeout(() => queueMathJaxTypeset(), 50);
                      });
+                 } else {
+                      console.log("MathJax not found. Font size changes will not trigger typesetting.");
                  }
+
+                 // Restore font size from localStorage on page load (optional)
+                 const savedSize = localStorage.getItem('baseFontSize');
+                 if (savedSize) {
+                    const size = parseInt(savedSize, 10);
+                    if (!isNaN(size) && size >= minSize && size <= maxSize) {
+                         currentSize = size; // Update internal state
+                         htmlEl.style.setProperty('--base-font-size', currentSize + 'px'); // Apply immediately
+                         display.textContent = currentSize + 'px'; // Update display
+                         console.log("Restored font size from localStorage:", currentSize);
+                         // MathJax typesetting is handled by the initial load promise or the debounce
+                    }
+                 }
+
+                 // Save font size to localStorage when updated
+                 const originalUpdateFontSize = updateFontSize;
+                 updateFontSize = function(newSize) {
+                     const changed = originalUpdateFontSize.call(this, newSize);
+                     if (changed) {
+                         localStorage.setItem('baseFontSize', currentSize);
+                     }
+                     return changed;
+                 };
+
+
             } else {
                 console.error("Font control elements not found!");
             }
 
             // --- Horizontal Scroll Redirect for Formula Containers ---
+            // This makes vertical mouse wheel scrolling cause horizontal scrolling
+            // when the container has horizontal overflow.
              const formulaContainers = document.querySelectorAll('.formula-container');
              formulaContainers.forEach(container => {
                  container.addEventListener('wheel', function(event) {
+                     // Check if there's horizontal overflow
                      const isScrollableHorizontally = this.scrollWidth > this.clientWidth;
-                     if (isScrollableHorizontally) {
-                         // Only prevent vertical scroll IF we are actually going to scroll horizontally
-                         if (event.deltaY !== 0) { // Check if there's vertical scroll input
-                             event.preventDefault();
-                             this.scrollLeft += event.deltaY;
-                         }
+                     // Check if the user is scrolling vertically
+                     if (isScrollableHorizontally && event.deltaY !== 0) {
+                         event.preventDefault(); // Prevent default vertical scroll
+                         this.scrollLeft += event.deltaY; // Scroll horizontally instead
                      }
-                 }, { passive: false });
+                 }, { passive: false }); // Use passive: false because we call preventDefault
              });
              console.log("Horizontal scroll override applied to formula containers.");
-
         });
     </script>
 

@@ -82,14 +82,14 @@
         .formula-container::-webkit-scrollbar-thumb:hover { background-color: #aaa; }
         /* MathJax display style */
         .formula-container mjx-container[display="true"] { margin: 0.5em 0 !important; text-align: left !important; display: inline-block; vertical-align: middle; }
-        
+
         table { border-collapse: collapse; margin: 1em auto; background-color: rgba(40,40,40,0.8); width: auto; }
         th, td { border: 1px solid #555; padding: 8px 12px; text-align: center; }
         th { background-color: rgba(60,60,60,0.9); color: #ddd; }
 
         pre {
-            background-color: #2b2b2b; padding: 10px; border-radius: 5px; 
-            color: #ccc; overflow-x: auto; white-space: pre; 
+            background-color: #2b2b2b; padding: 10px; border-radius: 5px;
+            color: #ccc; overflow-x: auto; white-space: pre;
             font-family: 'Roboto Mono', monospace; font-size: 0.95em;
             margin: 1em 0;
         }
@@ -116,299 +116,615 @@
 <body>
 
     <header>
-        <h1>Chapter 12: Metal Forming Processes</h1>
+        <h1>Chapter 12: Metal Forming Processes</h1> <!-- EDIT THIS LINE -->
     </header>
 
     <main>
-        <p>This chapter explores metal forming, a method of shaping components by applying external forces to cause plastic deformation. It contrasts forming with machining and casting, classifies forming processes based on applied stresses, and delves into specific bulk deformation processes like rolling, extrusion, and forging, including their variations, terminologies, equipment, parameters, and examples.</p>
+        <p>
+            This chapter explores metal forming, a method of shaping components by applying external forces to cause plastic deformation. It contrasts forming with machining and casting, classifies forming processes based on applied stresses, and delves into specific bulk deformation processes like rolling, extrusion, and forging, including their variations, terminologies, equipment, parameters, and examples.
+        </p>
 
         <h2>12.1 Introduction</h2>
+
         <ul>
-            <li><strong>Metal Forming:</strong> A process where desired size and shape are obtained by plastically deforming metals under external forces.</li>
-            <li>Also known as <strong>bulk deformation processes</strong> (due to large forces) or <strong>plastic working</strong> (deformation in the plastic state).</li>
-            <li><strong>Example:</strong> Blacksmith forging - hammering heated iron (compressive force).</li>
-            <li>Performed on <strong>metal forming machines</strong>. Can be done <strong>hot</strong> (material heated to soften) or <strong>cold</strong>.</li>
-            <li><strong>Classification by Stress Type:</strong>
+            <li>
+                <strong>Metal Forming:</strong> A process where desired size and shape are obtained by plastically deforming metals under external forces.
+            </li>
+            <li>
+                 Also known as **bulk deformation processes** (due to large forces) or **plastic working** (deformation in the plastic state).
+            </li>
+            <li>
+                 **Example:** Blacksmith forging - hammering heated iron (compressive force).
+            </li>
+            <li>
+                 Performed on **metal forming machines**. Can be done **hot** (material heated to soften) or **cold**.
+            </li>
+            <li>
+                **Classification by Stress Type:**
                 <ol>
-                    <li><strong>Compressive:</strong> Forging, Rolling, Extrusion.</li>
-                    <li><strong>Tensile:</strong> Stretch forming, Creep forming, Vacuum forming.</li>
-                    <li><strong>Shearing:</strong> Shearing, Blanking, Fine blanking.</li>
-                    <li><strong>Combined Tensile & Compressive:</strong> Wire drawing, Deep drawing, Ironing.</li>
+                    <li>
+                        **Compressive:** Forging, Rolling, Extrusion.
+                    </li>
+                    <li>
+                        **Tensile:** Stretch forming, Creep forming, Vacuum forming.
+                    </li>
+                    <li>
+                        **Shearing:** Shearing, Blanking, Fine blanking.
+                    </li>
+                    <li>
+                        **Combined Tensile &amp; Compressive:** Wire drawing, Deep drawing, Ironing.
+                    </li>
                 </ol>
             </li>
-            <li><strong>Comparison with Machining/Casting (using Fig 12.1 component):</strong>
+            <li>
+                **Comparison with Machining/Casting (using Fig 12.1 component):**
                 <ul>
-                    <li>Machining: Requires removing large amounts of material (chips), involves material loss, skill-dependent for contours.</li>
-                    <li>Casting: Involves pattern/mould making, melting, pouring, solidification, potential material waste (risers/gating), may need further machining.</li>
-                    <li>Forming (e.g., Stretch forming over a die, Fig 12.2): No material loss, potentially less skilled operation needed, fewer steps.</li>
+                    <li>
+                        Machining: Requires removing large amounts of material (chips), involves material loss, skill-dependent for contours.
+                    </li>
+                    <li>
+                        Casting: Involves pattern/mould making, melting, pouring, solidification, potential material waste (risers/gating), may need further machining.
+                    </li>
+                    <li>
+                        Forming (e.g., Stretch forming over a die, Fig 12.2): No material loss, potentially less skilled operation needed, fewer steps.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Material Limitation:</strong> Metal forming generally requires ductile materials; brittle materials cannot be shaped this way. Machining/casting work for most materials.</li>
+            <li>
+                **Material Limitation:** Metal forming generally requires ductile materials; brittle materials cannot be shaped this way. Machining/casting work for most materials.
+            </li>
         </ul>
 
         <h2>12.2 Rolling Processes</h2>
-        <p>Shaping metals/alloys by passing them between rolls.</p>
-        <p>Causes plastic deformation: reduces thickness, increases length and width.</p>
-        <p>Widely used (~90% of metal products). Developed late 1500s.</p>
-        <p><strong>Products:</strong> Rails, girders, plates, sheets, strips.</p>
+
+        <p>
+            Shaping metals/alloys by passing them between rolls. Causes plastic deformation: reduces thickness, increases length and width. Widely used (~90% of metal products). Developed late 1500s.
+        </p>
+        <p>
+             **Products:** Rails, girders, plates, sheets, strips.
+        </p>
 
         <h3>12.2.1 Rolling operation (Figure 12.3)</h3>
         <ul>
-            <li><strong>Ingot</strong> (metal piece) passed between two rolls rotating oppositely.</li>
-            <li>Space between rolls adjusted for desired thickness.</li>
-            <li>Rolls squeeze ingot, reducing thickness/cross-section, increasing width/length.</li>
-            <li><strong>Structural changes:</strong> Grains elongate in rolling direction. Material velocity higher at exit than entry.
+            <li>
+                **Ingot** (metal piece) passed between two rolls rotating oppositely.
+            </li>
+            <li>
+                Space between rolls adjusted for desired thickness.
+            </li>
+            <li>
+                Rolls squeeze ingot, reducing thickness/cross-section, increasing width/length.
+            </li>
+            <li>
+                **Structural changes:** Grains elongate in rolling direction. Material velocity higher at exit than entry.
                 <ul>
-                    <li><em>Hot rolling:</em> Grains start refining after passing stress zone.</li>
-                    <li><em>Cold rolling:</em> Grains retain elongated shape.</li>
+                    <li>
+                        <em>Hot rolling:</em> Grains start refining after passing stress zone.
+                    </li>
+                    <li>
+                        <em>Cold rolling:</em> Grains retain elongated shape.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Arc of Contact (AB):</strong> Distance metal is in contact with rolls.</li>
-            <li><strong>Angle of Contact (Angle of Bite) (AOB):</strong> Angle subtended by arc AB at roll center.</li>
-            <li><strong>Friction:</strong> Between rolls and metal provides grip to draw metal through. Higher friction allows greater reduction but increases force/power needs and can damage surface. Lubricants used for low friction.</li>
+            <li>
+                **Arc of Contact (AB):** Distance metal is in contact with rolls.
+            </li>
+            <li>
+                **Angle of Contact (Angle of Bite) (AOB):** Angle subtended by arc AB at roll center.
+            </li>
+            <li>
+                **Friction:** Between rolls and metal provides grip to draw metal through. Higher friction allows greater reduction but increases force/power needs and can damage surface. Lubricants used for low friction.
+            </li>
         </ul>
 
-        <h4>Pressure Distribution (Figure 12.4)</h4>
+        <h3>Pressure Distribution (Figure 12.4)</h3>
         <ul>
-            <li>Varies along arc of contact. Minimum at entry (A) and exit (B).</li>
-            <li>Maximum at a point C (neutral point or no-slip point) between A and B.</li>
-            <li>From A to C: Metal moves slower than roll surface.</li>
-            <li>From C to B: Metal moves faster than roll surface.</li>
-            <li>(Why rolling vs stretching?) Stretching causes non-uniform deformation and may cause fracture beyond yield point.</li>
+            <li>
+                Varies along arc of contact. Minimum at entry (A) and exit (B).
+            </li>
+            <li>
+                Maximum at a point C (neutral point or no-slip point) between A and B.
+            </li>
+            <li>
+                From A to C: Metal moves slower than roll surface.
+            </li>
+            <li>
+                From C to B: Metal moves faster than roll surface.
+            </li>
+            <li>
+                 *(Why rolling vs stretching?)* Stretching causes non-uniform deformation and may cause fracture beyond yield point.
+            </li>
         </ul>
 
         <h3>12.2.2 Terminology used in rolling</h3>
         <ul>
-            <li><strong>Ingot:</strong> Initial cast product (circular, square, etc.).</li>
-            <li><strong>Bloom:</strong> First product from hot rolling ingot. Square cross-section, area > 225 cm².</li>
-            <li><strong>Billet:</strong> Minimum cross-section ~4cm x 4cm. Can be hot worked ingot or casting suitable for hot working.</li>
-            <li><strong>Slab:</strong> Hot rolled ingot, area > 100 cm², width at least twice thickness.</li>
-            <li><strong>Plate:</strong> Rolled intermediate product, thickness > 6 mm.</li>
-            <li><strong>Sheet:</strong> Rolled intermediate product, thickness < 6 mm.</li>
-            <li><strong>Strip:</strong> Rolled product, thickness < 6 mm, width < 300 mm. (Sheet width > 300 mm).</li>
+            <li>
+                **Ingot:** Initial cast product (circular, square, etc.).
+            </li>
+            <li>
+                **Bloom:** First product from hot rolling ingot. Square cross-section, area &gt; 225 cm&sup2;.
+            </li>
+            <li>
+                **Billet:** Minimum cross-section ~4cm x 4cm. Can be hot worked ingot or casting suitable for hot working.
+            </li>
+            <li>
+                **Slab:** Hot rolled ingot, area &gt; 100 cm&sup2;, width at least twice thickness.
+            </li>
+            <li>
+                **Plate:** Rolled intermediate product, thickness &gt; 6 mm.
+            </li>
+            <li>
+                **Sheet:** Rolled intermediate product, thickness &lt; 6 mm.
+            </li>
+            <li>
+                **Strip:** Rolled product, thickness &lt; 6 mm, width &lt; 300 mm. (Sheet width &gt; 300 mm).
+            </li>
         </ul>
 
         <h3>12.2.3 Rolling mills (Arrangement of rolls) (Figure 12.5)</h3>
         <ul>
-            <li><strong>Two-high rolling mill (Fig. 12.5a):</strong> Two rolls, rotate one direction. Workpiece passed through, taken over top, returned for next pass.</li>
-            <li><strong>Two-high reversing mill (Fig. 12.5b):</strong> Rolls can reverse direction. Rolling done in both directions.</li>
-            <li><strong>Three-high rolling mill (Fig. 12.5c):</strong> Top/bottom rolls driven, middle rotates by friction. Material rolled between bottom/middle pair, then lifted and rolled between top/middle pair.</li>
-            <li><strong>Four-high rolling mill (Fig. 12.5d):</strong> Two small diameter <strong>working rolls</strong> supported by two large diameter <strong>back-up rolls</strong>. Provides rigidity, reduces power (less friction area). Used for sheet rolling.</li>
-            <li><strong>Continuous (Tandem) mill (Fig. 12.5e):</strong> Multiple sets of rolls (<strong>stands</strong>) in series. For high production. Roll speeds synchronized as strip velocity increases at each stand. Has <strong>uncoiler</strong> (feeds stock) and <strong>windup reel</strong> (coils product).</li>
-            <li><strong>Planetary rolling mill (Fig. 12.5f):</strong> Reduces slabs to strips in single pass. Multiple small rollers ("planets") around large back-up rolls.</li>
-            <li><strong>Universal rolling mill (Fig. 12.5g):</strong> Two pairs of rolls: one horizontal (like two-high), one vertical. Rolls edges simultaneously. For beams, I-sections, plates needing finished edges.</li>
+            <li>
+                **Two-high rolling mill (Fig. 12.5a):** Two rolls, rotate one direction. Workpiece passed through, taken over top, returned for next pass.
+            </li>
+            <li>
+                **Two-high reversing mill (Fig. 12.5b):** Rolls can reverse direction. Rolling done in both directions.
+            </li>
+            <li>
+                **Three-high rolling mill (Fig. 12.5c):** Top/bottom rolls driven, middle rotates by friction. Material rolled between bottom/middle pair, then lifted and rolled between top/middle pair.
+            </li>
+            <li>
+                **Four-high rolling mill (Fig. 12.5d):** Two small diameter **working rolls** supported by two large diameter **back-up rolls**. Provides rigidity, reduces power (less friction area). Used for sheet rolling.
+            </li>
+            <li>
+                **Continuous (Tandem) mill (Fig. 12.5e):** Multiple sets of rolls (**stands**) in series. For high production. Roll speeds synchronized as strip velocity increases at each stand. Has **uncoiler** (feeds stock) and **windup reel** (coils product).
+            </li>
+            <li>
+                **Planetary rolling mill (Fig. 12.5f):** Reduces slabs to strips in single pass. Multiple small rollers ("planets") around large back-up rolls.
+            </li>
+            <li>
+                **Universal rolling mill (Fig. 12.5g):** Two pairs of rolls: one horizontal (like two-high), one vertical. Rolls edges simultaneously. For beams, I-sections, plates needing finished edges.
+            </li>
         </ul>
 
         <h3>12.2.4 Rolling parameters</h3>
         <ul>
-            <li><strong>Absolute draught (draft) ($\delta t$):</strong> Initial thickness ($t_1$) - Final thickness ($t_2$).
-                <p>$\delta t = t_1 - t_2$ (Eq. 12.1)</p>
+            <li>
+                **Absolute draught (draft) (δt):** Initial thickness (t₁) - Final thickness (t₂).
+                 <div class="formula-container"
+                     onclick="copyFormulaLatex(this, this.dataset.latex)"
+                     data-latex="\color{white} \delta_t = t_1 - t_2 \quad (\text{Eq } 12.1)"
+                     title="Click to copy LaTeX (equation number will be removed)">
+                     $$ \color{white} \delta_t = t_1 - t_2 \quad (\text{Eq } 12.1) $$
+                </div>
             </li>
-            <li><strong>Maximum possible draft ($\delta_{max}$):</strong> Determined by friction ($\mu$) and roll radius (R).
-                <p>$\delta_{max} = \mu^2 R$ (Eq. 12.2) (Higher friction/radius allows more reduction).</p>
+            <li>
+                **Maximum possible draft (δmax):** Determined by friction (µ) and roll radius (R).
+                <div class="formula-container"
+                    onclick="copyFormulaLatex(this, this.dataset.latex)"
+                    data-latex="\color{white} \delta_{\text{max}} = \mu^2 R \quad (\text{Eq } 12.2)"
+                    title="Click to copy LaTeX (equation number will be removed)">
+                    $$ \color{white} \delta_{\text{max}} = \mu^2 R \quad (\text{Eq } 12.2) $$
+                </div>
+                 (Higher friction/radius allows more reduction).
             </li>
-            <li><strong>Absolute elongation ($\delta l$):</strong> Final length ($l_2$) - Initial length ($l_1$).
-                <p>$\delta l = l_2 - l_1$ (Eq. 12.3)</p>
+            <li>
+                **Absolute elongation (δl):** Final length (l₂) - Initial length (l₁).
+                <div class="formula-container"
+                    onclick="copyFormulaLatex(this, this.dataset.latex)"
+                    data-latex="\color{white} \delta_l = l_2 - l_1 \quad (\text{Eq } 12.3)"
+                    title="Click to copy LaTeX (equation number will be removed)">
+                    $$ \color{white} \delta_l = l_2 - l_1 \quad (\text{Eq } 12.3) $$
+                </div>
             </li>
-            <li><strong>Absolute spread ($\delta b$):</strong> Final breadth ($b_2$) - Initial breadth ($b_1$).
-                <p>$\delta b = b_2 - b_1$ (Eq. 12.4)</p>
+            <li>
+                **Absolute spread (δb):** Final breadth (b₂) - Initial breadth (b₁).
+                <div class="formula-container"
+                    onclick="copyFormulaLatex(this, this.dataset.latex)"
+                    data-latex="\color{white} \delta_b = b_2 - b_1 \quad (\text{Eq } 12.4)"
+                    title="Click to copy LaTeX (equation number will be removed)">
+                    $$ \color{white} \delta_b = b_2 - b_1 \quad (\text{Eq } 12.4) $$
+                </div>
             </li>
-            <li><strong>Relative draught ($R_t$):</strong> (Absolute draught / Initial thickness) x 100.
-                <p>$R_t = (\delta t / t_1) \times 100$ (Eq. 12.5)</p>
+            <li>
+                **Relative draught (Rt):** (Absolute draught / Initial thickness) x 100.
+                <div class="formula-container"
+                    onclick="copyFormulaLatex(this, this.dataset.latex)"
+                    data-latex="\color{white} R_t = \frac{\delta_t}{t_1} \times 100\% \quad (\text{Eq } 12.5)"
+                    title="Click to copy LaTeX (equation number will be removed)">
+                    $$ \color{white} R_t = \frac{\delta_t}{t_1} \times 100\% \quad (\text{Eq } 12.5) $$
+                </div>
             </li>
-            <li><strong>Elongation coefficient ($\mu_L$):</strong> Ratio of final length to initial length.
-                <p>$\mu_L = l_2 / l_1$ (Eq. 12.6)</p>
+            <li>
+                **Elongation coefficient (µL):** Ratio of final length to initial length.
+                <div class="formula-container"
+                    onclick="copyFormulaLatex(this, this.dataset.latex)"
+                    data-latex="\color{white} \mu_L = \frac{l_2}{l_1} \quad (\text{Eq } 12.6)"
+                    title="Click to copy LaTeX (equation number will be removed)">
+                    $$ \color{white} \mu_L = \frac{l_2}{l_1} \quad (\text{Eq } 12.6) $$
+                </div>
             </li>
-            <li><strong>Angle of contact ($\alpha$):</strong> Angle subtended by arc of contact AB at roll center.
-                <p>$\cos \alpha = 1 - \delta t / D$ (Eq. 12.7) (where D = roll diameter).</p>
+            <li>
+                **Angle of contact (α):** Angle subtended by arc of contact AB at roll center.
+                <div class="formula-container"
+                    onclick="copyFormulaLatex(this, this.dataset.latex)"
+                    data-latex="\color{white} \cos \alpha = 1 - \frac{\delta_t}{D} \quad (\text{Eq } 12.7)"
+                    title="Click to copy LaTeX (equation number will be removed)">
+                    $$ \color{white} \cos \alpha = 1 - \frac{\delta_t}{D} \quad (\text{Eq } 12.7) $$
+                </div>
+                 (where D = roll diameter).
             </li>
-            <li><strong>Coefficient of friction ($\mu$):</strong>
-                <p>$\mu = \tan \alpha$ (Eq. 12.8)</p>
+            <li>
+                **Coefficient of friction (µ):**
+                <div class="formula-container"
+                    onclick="copyFormulaLatex(this, this.dataset.latex)"
+                    data-latex="\color{white} \mu = \tan \alpha \quad (\text{Eq } 12.8)"
+                    title="Click to copy LaTeX (equation number will be removed)">
+                    $$ \color{white} \mu = \tan \alpha \quad (\text{Eq } 12.8) $$
+                </div>
             </li>
         </ul>
 
         <h2>12.3 Thread Rolling (Figure 12.6)</h2>
-        <p>Cold working process.</p>
-        <p>Cylindrical workpiece (diameter $\approx$ pitch diameter) rotated between hard dies with negative thread contour.</p>
-        <p>Can use two flat dies (one stationary, one reciprocating).</p>
-        <p>Versatile: can roll different threads simultaneously, knurling, left/right hand threads.</p>
+
+        <p>
+            Cold working process. Cylindrical workpiece (diameter ≈ pitch diameter) rotated between hard dies with negative thread contour. Can use two flat dies (one stationary, one reciprocating).
+        </p>
+        <p>
+             Versatile: can roll different threads simultaneously, knurling, left/right hand threads.
+        </p>
 
         <h2>12.4 Extrusion Process</h2>
-        <p>Reducing cross-section of a metal block (billet) by forcing it through a die orifice under high pressure.</p>
-        <p>Principle like squeezing toothpaste. Orifice shape determines product shape.</p>
-        <p>Can achieve high reduction ratios (e.g., 100:1 for soft metals).</p>
+
+        <p>
+             Reducing cross-section of a metal block (billet) by forcing it through a die orifice under high pressure. Principle like squeezing toothpaste. Orifice shape determines product shape. Can achieve high reduction ratios (e.g., 100:1 for soft metals).
+        </p>
         <ul>
-            <li><strong>Hot extrusion:</strong> Done at high temps (50-75% of melting point).</li>
-            <li><strong>Cold extrusion:</strong> Done at room temp or slightly elevated temp.</li>
+            <li>
+                **Hot extrusion:** Done at high temps (50-75% of melting point).
+            </li>
+            <li>
+                **Cold extrusion:** Done at room temp or slightly elevated temp.
+            </li>
+            <li>
+                 High temps/pressures affect die life; good lubrication needed.
+            </li>
+            <li>
+                 **Extrudable metals:** Lead, tin, Al alloys, copper, titanium, molybdenum, vanadium, low carbon steel.
+            </li>
+            <li>
+                 **Products (Fig 12.7):** Complex cross-sections, collapsible tubes, cans, cylinders, window frames, railings, structural parts, gear blanks.
+            </li>
+            <li>
+                **Difficult to extrude:** Stainless steel (high yield strength, sticks to die).
+            </li>
         </ul>
-        <p>High temps/pressures affect die life; good lubrication needed.</p>
-        <p><strong>Extrudable metals:</strong> Lead, tin, Al alloys, copper, titanium, molybdenum, vanadium, low carbon steel.</p>
-        <p><strong>Products (Fig 12.7):</strong> Complex cross-sections, collapsible tubes, cans, cylinders, window frames, railings, structural parts, gear blanks.</p>
-        <p><strong>Difficult to extrude:</strong> Stainless steel (high yield strength, sticks to die).</p>
 
         <h3>12.4.1 Types of extrusion</h3>
         <ol>
-            <li><strong>Direct (Forward) Extrusion (Figure 12.8):</strong>
+            <li>
+                **Direct (Forward) Extrusion (Figure 12.8):**
                 <ul>
-                    <li>Billet in container. Ram pushes billet. Metal flows through die in <em>same direction</em> as ram motion. Small discard amount left.</li>
+                    <li>
+                         Billet in container. Ram pushes billet. Metal flows through die in <em>same direction</em> as ram motion. Small discard amount left.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Indirect (Backward) Extrusion (Figure 12.9):</strong>
+            <li>
+                **Indirect (Backward) Extrusion (Figure 12.9):**
                 <ul>
-                    <li>Die mounted on hollow ram. Ram pushes die into billet. Metal flows through die opening in direction <em>opposite</em> to ram motion (through hollow ram).</li>
-                    <li>No friction between billet and container wall (billet is stationary relative to container).</li>
+                    <li>
+                         Die mounted on hollow ram. Ram pushes die into billet. Metal flows through die opening in direction <em>opposite</em> to ram motion (through hollow ram).
+                    </li>
+                    <li>
+                         No friction between billet and container wall (billet is stationary relative to container).
+                    </li>
                 </ul>
             </li>
-            <li><strong>Impact Extrusion (Figure 12.12, 12.13):</strong>
+            <li>
+                **Impact Extrusion (Figure 12.12, 12.13):**
                 <ul>
-                    <li>Cold extrusion, higher speeds. Punch strikes unheated slug in die cavity with single blow.</li>
-                    <li>Metal squirts up around punch (backward flow). High pressure fills cavity instantly.</li>
-                    <li>Forms tube-shaped part (Fig 12.12).</li>
-                    <li>For toothpaste tubes (Fig 12.13): Hole punched in blank center, die shapes neck. Tube blown off ram by compressed air.</li>
-                    <li>Low cost, excellent surface quality, high production rates (millions/year).</li>
-                    <li>Applications: Collapsible tubes, ointments, shell cases, soft drink cans.</li>
+                    <li>
+                         Cold extrusion, higher speeds. Punch strikes unheated slug in die cavity with single blow.
+                    </li>
+                    <li>
+                         Metal squirts up around punch (backward flow). High pressure fills cavity instantly.
+                    </li>
+                    <li>
+                         Forms tube-shaped part (Fig 12.12).
+                    </li>
+                    <li>
+                         For toothpaste tubes (Fig 12.13): Hole punched in blank center, die shapes neck. Tube blown off ram by compressed air.
+                    </li>
+                    <li>
+                         Low cost, excellent surface quality, high production rates (millions/year).
+                    </li>
+                    <li>
+                         Applications: Collapsible tubes, ointments, shell cases, soft drink cans.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Side Extrusion (Figure 12.14):</strong>
+            <li>
+                **Side Extrusion (Figure 12.14):**
                 <ul>
-                    <li>Material movement perpendicular to ram motion. Metal flows sideways.</li>
-                    <li>Requires very high force. Mostly for non-ferrous or highly plastic metals (lead).</li>
-                    <li>Example shows cable producing seamless tube.</li>
+                    <li>
+                         Material movement perpendicular to ram motion. Metal flows sideways.
+                    </li>
+                    <li>
+                         Requires very high force. Mostly for non-ferrous or highly plastic metals (lead).
+                    </li>
+                    <li>
+                         Example shows cable producing seamless tube.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Tube Extrusion (Figure 12.15):</strong>
+            <li>
+                **Tube Extrusion (Figure 12.15):**
                 <ul>
-                    <li>Form of direct extrusion. Uses a <strong>mandrel</strong> to shape inside of tube.</li>
-                    <li>Die containing mandrel pushed through billet, then press stem extrudes metal through die and around mandrel.</li>
+                    <li>
+                         Form of direct extrusion. Uses a **mandrel** to shape inside of tube.
+                    </li>
+                    <li>
+                         Die containing mandrel pushed through billet, then press stem extrudes metal through die and around mandrel.
+                    </li>
                 </ul>
             </li>
         </ol>
 
         <h3>12.4.2 Extrusion pressure in direct and indirect extrusion (Figure 12.10)</h3>
         <ul>
-            <li><strong>Extrusion pressure = Extrusion force / Billet cross-sectional area.</strong></li>
-            <li>Initial rapid pressure rise (compressing billet to fill container).</li>
-            <li><strong>Direct:</strong> Pressure peaks (breakthrough pressure), then decreases as billet length reduces (less friction).</li>
-            <li><strong>Indirect:</strong> Pressure relatively constant after initial rise (no billet-container friction). Represents stress needed for deformation.</li>
-            <li>Indirect seems attractive, but limited by need for hollow ram (limits size/pressure). Complex process.</li>
-            <li>Rapid pressure rise at end of stroke (difficult to push last bit). Extrusion halted before this.</li>
+            <li>
+                 **Extrusion pressure = Extrusion force / Billet cross-sectional area.**
+            </li>
+            <li>
+                 Initial rapid pressure rise (compressing billet to fill container).
+            </li>
+            <li>
+                 **Direct:** Pressure peaks (breakthrough pressure), then decreases as billet length reduces (less friction).
+            </li>
+            <li>
+                 **Indirect:** Pressure relatively constant after initial rise (no billet-container friction). Represents stress needed for deformation.
+            </li>
+            <li>
+                 Indirect seems attractive, but limited by need for hollow ram (limits size/pressure). Complex process.
+            </li>
+            <li>
+                 Rapid pressure rise at end of stroke (difficult to push last bit). Extrusion halted before this.
+            </li>
         </ul>
-        <p><strong>Direction of flow (Figure 12.11):</strong> Initially diagonal, becomes perpendicular to ram near end of cycle.</p>
+        <ul>
+             <li>
+                 **Direction of flow (Figure 12.11):** Initially diagonal, becomes perpendicular to ram near end of cycle.
+             </li>
+         </ul>
 
         <h2>12.5 Forging Processes</h2>
-        <p>Shaping metal (usually heated) by plastic deformation using compressive force (hammer blows or press).</p>
+
+        <p>
+             Shaping metal (usually heated) by plastic deformation using compressive force (hammer blows or press).
+        </p>
         <ul>
-            <li><strong>Process:</strong> Metal heated (elastic properties disappear, becomes soft), shaped by pressure following path of least resistance.</li>
-            <li><strong>Effects:</strong> Refines grain structure, improves physical properties (strength, ductility, toughness) compared to base metal. Yields high strength-to-weight ratio parts.</li>
-            <li>Consistent products, no porosity/voids/inclusions (unlike casting). Finishing operations don't expose defects. Good surface for coating.</li>
-            <li>Ancient technique (4000-8000 BC). Produces discrete parts (unlike continuous rolling products).</li>
-            <li><strong>Why forge? (vs cast/machine):</strong> If high strength, shock/vibration resistance needed. Properties uniform, predictable. Often achieved by hot working (rolling or forging).</li>
-            <li><strong>Typical products (Figure 12.16):</strong> Various discrete parts shown.</li>
+            <li>
+                 **Process:** Metal heated (elastic properties disappear, becomes soft), shaped by pressure following path of least resistance.
+            </li>
+            <li>
+                 **Effects:** Refines grain structure, improves physical properties (strength, ductility, toughness) compared to base metal. Yields high strength-to-weight ratio parts.
+            </li>
+            <li>
+                 Consistent products, no porosity/voids/inclusions (unlike casting). Finishing operations don't expose defects. Good surface for coating.
+            </li>
+            <li>
+                 Ancient technique (4000-8000 BC). Produces discrete parts (unlike continuous rolling products).
+            </li>
+            <li>
+                 **Why forge? (vs cast/machine):** If high strength, shock/vibration resistance needed. Properties uniform, predictable. Often achieved by hot working (rolling or forging).
+            </li>
+            <li>
+                 **Typical products (Figure 12.16):** Various discrete parts shown.
+            </li>
         </ul>
 
         <h3>12.5.1 Forging materials</h3>
-        <p>Must be ductile.</p>
+        <p>
+             Must be ductile.
+        </p>
         <ul>
-            <li>Readily forged: Low/medium carbon steel, wrought iron, copper alloys, Al alloys, Mg alloys.</li>
-            <li>Difficult: High carbon/alloy steel, stainless steel, nickel alloys.</li>
-            <li>Usually starts from bars or billets (round/rectangular).</li>
+            <li>
+                 Readily forged: Low/medium carbon steel, wrought iron, copper alloys, Al alloys, Mg alloys.
+            </li>
+            <li>
+                 Difficult: High carbon/alloy steel, stainless steel, nickel alloys.
+            </li>
+            <li>
+                 Usually starts from bars or billets (round/rectangular).
+            </li>
         </ul>
 
         <h3>12.5.2 Classification of forging operations</h3>
         <ul>
-            <li><strong>Open Die Forging (Figure 12.17):</strong>
+            <li>
+                **Open Die Forging (Figure 12.17):**
                 <ul>
-                    <li>Deformation between flat or simple shaped dies. Workpiece not fully enclosed.</li>
-                    <li>Simplest example: <strong>Upsetting</strong> (compressing height, increasing diameter). Workpiece bulges (barrel shape) due to friction at die interface and faster cooling of surfaces. No barreling if friction=0 (hypothetical).</li>
+                    <li>
+                         Deformation between flat or simple shaped dies. Workpiece not fully enclosed.
+                    </li>
+                    <li>
+                         Simplest example: **Upsetting** (compressing height, increasing diameter). Workpiece bulges (barrel shape) due to friction at die interface and faster cooling of surfaces. No barreling if friction=0 (hypothetical).
+                    </li>
                 </ul>
             </li>
-            <li><strong>Closed Die Forging (Impression Die Forging) (Figure 12.18):</strong>
+            <li>
+                **Closed Die Forging (Impression Die Forging) (Figure 12.18):**
                 <ul>
-                    <li>Workpiece deformed between two die halves containing impressions of final shape.</li>
-                    <li>Workpiece enclosed in cavity. High pressure forces metal to fill cavity.</li>
-                    <li>Excess metal forms <strong>flash</strong> (thin extrusion at parting line), acts as seal, ensures cavity fills. Flash trimmed later.</li>
-                    <li>Requires lubricant (prevents sticking, thermal insulation).</li>
-                    <li>Produces precision parts, close tolerances.</li>
+                    <li>
+                         Workpiece deformed between two die halves containing impressions of final shape.
+                    </li>
+                    <li>
+                         Workpiece enclosed in cavity. High pressure forces metal to fill cavity.
+                    </li>
+                    <li>
+                         Excess metal forms **flash** (thin extrusion at parting line), acts as seal, ensures cavity fills. Flash trimmed later.
+                    </li>
+                    <li>
+                         Requires lubricant (prevents sticking, thermal insulation).
+                    </li>
+                    <li>
+                         Produces precision parts, close tolerances.
+                    </li>
                 </ul>
             </li>
         </ul>
 
         <h3>12.5.3 Types of forging operations</h3>
         <ul>
-            <li><strong>Hand Forging (Figure 12.19):</strong>
+            <li>
+                **Hand Forging (Figure 12.19):**
                 <ul>
-                    <li>Blacksmith method: heated metal shaped by repeated hand hammer blows on an anvil.</li>
-                    <li>Positioning/turning part manually. <strong>Fuller</strong> (rounded chisel edge) used to draw out metal.</li>
-                    <li>Quality depends on smith's skill. Simple shapes only. (Horseshoes).</li>
-                </ul>
-            </li>
-            <li><strong>Drop Forging (Drop Hammer Forging) (Figure 12.20):</strong>
-                <ul>
-                    <li>Mechanized hammer. Heated bar/billet hammered into die cavities.</li>
-                    <li>Die halves on ram and anvil. Ram raised (e.g., compressed air), falls by gravity.</li>
-                    <li>Used for copper alloys, steel, titanium, refractory alloys. Hydraulic hammer shown.</li>
-                </ul>
-            </li>
-            <li><strong>Press Forging:</strong>
-                <ul>
-                    <li>Slow squeezing action using a press (mechanical or hydraulic).</li>
-                    <li>Transfers force uniformly/gradually through bulk. For large forgings (up to 125 kg, 3m long).</li>
-                    <li>More accurate than drop forging. Slower action allows metal flow time.</li>
-                    <li>Needs ejectors, venting (escape of air/lubricant).</li>
-                    <li>Quieter than drop forging. More energy transmitted to work (less absorbed by machine/foundation).</li>
-                    <li>Mechanical presses: 25-100 strokes/min, 100-12,000 tons force.</li>
-                    <li>Used for Al, Mg, Be alloys, bronze, brass.</li>
+                    <li>
+                         Blacksmith method: heated metal shaped by repeated hand hammer blows on an anvil.
+                    </li>
+                    <li>
+                         Positioning/turning part manually. **Fuller** (rounded chisel edge) used to draw out metal.
+                    </li>
+                    <li>
+                         Quality depends on smith's skill. Simple shapes only. (Horseshoes).
+                    </li>
                 </ul>
             </li>
             <li>
-                <h4>12.5.4 Rotary Swaging (Figure 12.21)</h4> <!-- Numbering implies it's a subtype, but format of text is list item -->
+                **Drop Forging (Drop Hammer Forging) (Figure 12.20):**
                 <ul>
-                    <li>Forging process for shaping round bars/tubes.</li>
-                    <li>Workpiece fed into rapidly rotating dies housed in a cage.</li>
-                    <li>As cage rotates, hammers contact rollers, giving blows to workpiece through dies.</li>
-                    <li>Dies reciprocate at high frequency, deforming workpiece.</li>
-                    <li>High production rate compared to other forging methods.</li>
+                    <li>
+                         Mechanized hammer. Heated bar/billet hammered into die cavities.
+                    </li>
+                    <li>
+                         Die halves on ram and anvil. Ram raised (e.g., compressed air), falls by gravity.
+                    </li>
+                    <li>
+                         Used for copper alloys, steel, titanium, refractory alloys. Hydraulic hammer shown.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                **Press Forging:**
+                <ul>
+                    <li>
+                         Slow squeezing action using a press (mechanical or hydraulic).
+                    </li>
+                    <li>
+                         Transfers force uniformly/gradually through bulk. For large forgings (up to 125 kg, 3m long).
+                    </li>
+                    <li>
+                         More accurate than drop forging. Slower action allows metal flow time.
+                    </li>
+                    <li>
+                         Needs ejectors, venting (escape of air/lubricant).
+                    </li>
+                    <li>
+                         Quieter than drop forging. More energy transmitted to work (less absorbed by machine/foundation).
+                    </li>
+                    <li>
+                         Mechanical presses: 25-100 strokes/min, 100-12,000 tons force.
+                    </li>
+                    <li>
+                         Used for Al, Mg, Be alloys, bronze, brass.
+                    </li>
                 </ul>
             </li>
         </ul>
+         <h3>12.5.4 Rotary Swaging (Figure 12.21)</h3>
+         <ul>
+             <li>
+                 Forging process for shaping round bars/tubes.
+             </li>
+             <li>
+                 Workpiece fed into rapidly rotating dies housed in a cage.
+             </li>
+             <li>
+                 As cage rotates, hammers contact rollers, giving blows to workpiece through dies.
+             </li>
+             <li>
+                 Dies reciprocate at high frequency, deforming workpiece.
+             </li>
+             <li>
+                 High production rate compared to other forging methods.
+             </li>
+         </ul>
 
         <h2>12.6 Solved Examples</h2>
 
         <h3>Example 12.1</h3>
-        <p>Rolling 30mm stock to 10mm (stage 1, $\alpha$=40°), then 10mm to 5mm (stage 2, $\alpha$=30°). Find min roll diameter (D) and friction coeff ($\mu$).</p>
+        <p>
+             Rolling 30mm stock to 10mm (stage 1, α=40°), then 10mm to 5mm (stage 2, α=30°). Find min roll diameter (D) and friction coeff (µ).
+        </p>
         <ul>
-            <li><strong>Stage 1:</strong> $t_1$=30, $t_2$=10 $\Rightarrow \delta t = 20$ mm. $\alpha = 40^\circ$.
-                <ul>
-                    <li>$\cos 40^\circ = 1 - 20 / D \Rightarrow 0.766 = 1 - 20 / D$</li>
-                    <li>$20 / D = 1 - 0.766 = 0.234 \Rightarrow D = 20 / 0.234 \approx 85.47 \text{ mm}$. (PDF: 85.49 mm)</li>
-                    <li>$\mu = \tan 40^\circ \approx 0.839$. (PDF: 0.84)</li>
-                </ul>
+            <li>
+                 **Stage 1:** $t_1=30$, $t_2=10$ &rArr; $\delta_t = 20$ mm. $\alpha = 40^\circ$.
+                 <ul>
+                     <li>
+                         Using $\cos \alpha = 1 - \frac{\delta_t}{D}$: $\cos 40^\circ = 1 - \frac{20}{D}$
+                     </li>
+                     <li>
+                         $0.766 = 1 - \frac{20}{D} \implies \frac{20}{D} = 1 - 0.766 = 0.234$
+                     </li>
+                     <li>
+                         $D = \frac{20}{0.234} \approx 85.47$ mm. (PDF: 85.49 mm)
+                     </li>
+                     <li>
+                         Using $\mu = \tan \alpha$: $\mu = \tan 40^\circ \approx 0.839$. (PDF: 0.84)
+                     </li>
+                 </ul>
             </li>
-            <li><strong>Stage 2:</strong> $t_1$=10, $t_2$=5 $\Rightarrow \delta t = 5$ mm. $\alpha = 30^\circ$.
-                <ul>
-                    <li>$\cos 30^\circ = 1 - 5 / D \Rightarrow 0.866 = 1 - 5 / D$</li>
-                    <li>$5 / D = 1 - 0.866 = 0.134 \Rightarrow D = 5 / 0.134 \approx 37.31 \text{ mm}$. (PDF: 37.32 mm)</li>
-                    <li>$\mu = \tan 30^\circ \approx 0.577$. (PDF: 0.58)</li>
-                </ul>
+            <li>
+                 **Stage 2:** $t_1=10$, $t_2=5$ &rArr; $\delta_t = 5$ mm. $\alpha = 30^\circ$.
+                 <ul>
+                     <li>
+                         Using $\cos \alpha = 1 - \frac{\delta_t}{D}$: $\cos 30^\circ = 1 - \frac{5}{D}$
+                     </li>
+                     <li>
+                         $0.866 = 1 - \frac{5}{D} \implies \frac{5}{D} = 1 - 0.866 = 0.134$
+                     </li>
+                     <li>
+                         $D = \frac{5}{0.134} \approx 37.31$ mm. (PDF: 37.32 mm)
+                     </li>
+                     <li>
+                         Using $\mu = \tan \alpha$: $\mu = \tan 30^\circ \approx 0.577$. (PDF: 0.58)
+                     </li>
+                 </ul>
             </li>
-        </ul>
+         </ul>
 
         <h3>Example 12.2 (Figure 12.22)</h3>
-        <p>Procedure for forging a rivet head.</p>
+        <p>
+             Procedure for forging a rivet head.
+        </p>
         <ol>
-            <li>Keep blank in die, position kickout pin for desired length. Punch has negative head shape.</li>
-            <li>Apply force through punch; head formed at end of stroke.</li>
-            <li>Remove rivet using kickout pin.</li>
+            <li>
+                 Keep blank in die, position kickout pin for desired length. Punch has negative head shape.
+            </li>
+            <li>
+                 Apply force through punch; head formed at end of stroke.
+            </li>
+            <li>
+                 Remove rivet using kickout pin.
+            </li>
         </ol>
 
         <h3>Example 12.3 (Figure 12.23)</h3>
-        <p>Stages in forging a bolt head from a rod.</p>
+        <p>
+             Stages in forging a bolt head from a rod.
+        </p>
         <ol>
-            <li>Gather material at one end (upsetting) (Fig 12.23a).</li>
-            <li>Produce round head (Fig 12.23b).</li>
-            <li>Produce hexagonal head (Fig 12.23c).</li>
+            <li>
+                 Gather material at one end (upsetting) (Fig 12.23a).
+            </li>
+            <li>
+                 Produce round head (Fig 12.23b).
+            </li>
+            <li>
+                 Produce hexagonal head (Fig 12.23c).
+            </li>
         </ol>
-        <!-- END OF NEW CONTENT -->
+
 
     </main>
 
@@ -424,20 +740,53 @@
      <div id="fontSizeDisplay">10px</div> <!-- Initial size display -->
 
     <script>
-        // --- Formula Copy Function (Corrected) ---
-        function copyFormulaLatex(element, latexStringToCopy) { 
-            if (!latexStringToCopy) { 
+        // --- Formula Copy Function ---
+        // This function copies the LaTeX string from the data-latex attribute.
+        // It attempts to remove common equation number/identifier patterns
+        // (\quad (...), \qquad (...), or just (...)) from the *end* of the string.
+        // CRITICAL: The regex patterns used are specifically designed to match
+        // spacing and parentheses at the end and DO NOT include patterns like \color{...}.
+        // Therefore, \color{...} commands placed before the equation number
+        // annotation will be preserved during the copying process, fulfilling the user's requirement.
+        function copyFormulaLatex(element, latexToProcess) {
+            if (!latexToProcess) {
                 console.error('No LaTeX string passed to copy function.');
                 return;
             }
 
-            navigator.clipboard.writeText(latexStringToCopy).then(() => { 
+            let latexStringToCopy = latexToProcess.trim(); // Start with the original string, trimmed.
+
+            // 1. Attempt to remove \quad (number) or \qquad (number) from the end.
+            //    This pattern is common for AMS tags or manual equation numbers.
+            //    Regex: \s*                  - optional leading whitespace
+            //           \\q(?:uad|quad)     - \quad or \qquad
+            //           \s*                  - optional space after \quad
+            //           \([^)]+\)            - parentheses with at least one char inside
+            //           \s*$                 - optional trailing whitespace then end of string
+            //    --> This pattern does NOT match \color{...}
+            let cleanedLatex = latexStringToCopy.replace(/\s*\\q(?:uad|quad)\s*\([^)]+\)\s*$/, "");
+
+            // 2. If the first pattern didn't change the string, try removing a simpler " (number)" from the end.
+            //    This handles cases where the equation number is just parenthesized at the end, preceded by a space.
+            //    Regex: \s+                  - one or more whitespace characters (ensures separation)
+            //           \([^)]+\)            - parentheses with at least one char inside
+            //           \s*$                 - optional trailing whitespace then end of string
+            //    --> This pattern also does NOT match \color{...}
+            if (cleanedLatex === latexStringToCopy) { // Only if the first replacement did nothing
+                cleanedLatex = cleanedLatex.replace(/\s+\([^)]+\)\s*$/, "");
+            }
+
+            latexStringToCopy = cleanedLatex.trim(); // Final trim
+
+            navigator.clipboard.writeText(latexStringToCopy).then(() => {
                 element.classList.add('copied');
                 const originalTitle = element.title;
-                element.title = 'Copied: ' + latexStringToCopy; 
+                // Show the *actually copied* (cleaned) LaTeX in the temporary tooltip
+                // Note: If the *entire* string was just the eq number, this shows "[empty...]"
+                element.title = 'Copied: ' + (latexStringToCopy.substring(0, 50) + (latexStringToCopy.length > 50 ? '...' : '') || "[empty - only eq number?]");
                 setTimeout(() => {
                     element.classList.remove('copied');
-                    element.title = originalTitle; 
+                    element.title = originalTitle;
                  }, 1500);
             }).catch(err => {
                 console.error('Failed to copy LaTeX: ', err);
@@ -481,6 +830,9 @@
             const queueMathJaxTypeset = debounce(() => {
                 if (window.MathJax && MathJax.typesetPromise) {
                     console.log("Debounced: Typesetting MathJax");
+                    // Use typesetPromise on the body to update all math
+                    // Need to clear the typeset elements first to prevent duplicates/issues
+                    MathJax.typesetClear([bodyEl]);
                     MathJax.typesetPromise([bodyEl]).catch((err) => console.error('MathJax typesetting error:', err));
                  }
             }, mathJaxDebounceDelay);
@@ -500,6 +852,10 @@
                         display.classList.remove('visible');
                         displayTimeout = null;
                     }, 1500);
+
+                    // Re-queue MathJax typesetting after font size change
+                    queueMathJaxTypeset();
+
                     return true; // Indicate size changed
                 }
                 return false; // Indicate size hit limit
@@ -510,21 +866,27 @@
                 bodyEl.classList.remove('no-font-transition'); // Re-enable transition
                 if (holdTimeout) { clearTimeout(holdTimeout); holdTimeout = null; }
                 if (holdInterval) { clearInterval(holdInterval); holdInterval = null; }
-                queueMathJaxTypeset();
+                // A final typeset is queued on mouseup/mouseleave by queueMathJaxTypeset called in updateFontSize
             }
 
             // --- Start Holding Action ---
             function startHolding(direction) {
-                bodyEl.classList.add('no-font-transition'); 
-                updateFontSize(currentSize + direction * step); 
-                // Clear previous timers to prevent multiple intervals if mousedown event fires rapidly
+                bodyEl.classList.add('no-font-transition');
+                // Perform the first step immediately
+                if (!updateFontSize(currentSize + direction * step)) {
+                    stopHolding(); // Stop if already at limit
+                    return;
+                }
+
                 if (holdTimeout) clearTimeout(holdTimeout);
                 if (holdInterval) clearInterval(holdInterval);
 
+                // Start repeating after initial delay
                 holdTimeout = setTimeout(() => {
                     holdInterval = setInterval(() => {
+                        // If updateFontSize returns false, we hit a limit, so stop holding
                         if (!updateFontSize(currentSize + direction * step)) {
-                            stopHolding(); // Stop if size limit is reached
+                            stopHolding();
                         }
                     }, repeatInterval);
                 }, initialHoldDelay);
@@ -532,43 +894,76 @@
 
             // --- Event Listeners ---
             if (minusBtn && plusBtn && display) {
-                minusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(-1); });
-                plusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(1); });
-                window.addEventListener('mouseup', stopHolding); // Stop on release anywhere
-                minusBtn.addEventListener('mouseleave', stopHolding); // Stop if mouse leaves while holding
-                plusBtn.addEventListener('mouseleave', stopHolding);
+                // Use pointerdown for hold sensitivity, prevent default text selection
+                minusBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startHolding(-1); });
+                plusBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startHolding(1); });
 
-                // Set initial state
+                // Use pointerup/pointerleave on the window/buttons to stop holding
+                // pointerup captures release anywhere, pointerleave on button allows sliding off to stop
+                window.addEventListener('pointerup', stopHolding);
+                minusBtn.addEventListener('pointerleave', (e) => { if (e.buttons === 0) stopHolding(); }); // Only stop if button is not pressed
+                plusBtn.addEventListener('pointerleave', (e) => { if (e.buttons === 0) stopHolding(); }); // Only stop if button is not pressed
+
+                // Set initial font size and display
                 htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
                 display.textContent = currentSize + 'px';
                 console.log("Font control initialized. Current size:", currentSize);
-                 // Initial MathJax typeset on load (after ready)
+
+                 // Ensure MathJax typesets *after* initial load and any potential font size restoration
                  if (window.MathJax) {
                      MathJax.startup.promise.then(() => {
-                         console.log("Queueing initial MathJax typeset");
-                         queueMathJaxTypeset(); // Use the debounced version even initially
+                         console.log("Initial MathJax typesetting complete. Queueing final typeset for layout stability.");
+                         // A slight delay might help ensure all rendering is stable before final typeset
+                         setTimeout(() => queueMathJaxTypeset(), 50);
                      });
+                 } else {
+                      console.log("MathJax not found. Font size changes will not trigger typesetting.");
                  }
+
+                 // Restore font size from localStorage on page load (optional)
+                 const savedSize = localStorage.getItem('baseFontSize');
+                 if (savedSize) {
+                    const size = parseInt(savedSize, 10);
+                    if (!isNaN(size) && size >= minSize && size <= maxSize) {
+                         currentSize = size; // Update internal state
+                         htmlEl.style.setProperty('--base-font-size', currentSize + 'px'); // Apply immediately
+                         display.textContent = currentSize + 'px'; // Update display
+                         console.log("Restored font size from localStorage:", currentSize);
+                         // MathJax typesetting is handled by the initial load promise or the debounce
+                    }
+                 }
+
+                 // Save font size to localStorage when updated
+                 const originalUpdateFontSize = updateFontSize;
+                 updateFontSize = function(newSize) {
+                     const changed = originalUpdateFontSize.call(this, newSize);
+                     if (changed) {
+                         localStorage.setItem('baseFontSize', currentSize);
+                     }
+                     return changed;
+                 };
+
+
             } else {
                 console.error("Font control elements not found!");
             }
 
             // --- Horizontal Scroll Redirect for Formula Containers ---
+            // This makes vertical mouse wheel scrolling cause horizontal scrolling
+            // when the container has horizontal overflow.
              const formulaContainers = document.querySelectorAll('.formula-container');
              formulaContainers.forEach(container => {
                  container.addEventListener('wheel', function(event) {
+                     // Check if there's horizontal overflow
                      const isScrollableHorizontally = this.scrollWidth > this.clientWidth;
-                     if (isScrollableHorizontally) {
-                         // Only prevent vertical scroll IF we are actually going to scroll horizontally
-                         if (event.deltaY !== 0) { // Check if there's vertical scroll input
-                             event.preventDefault();
-                             this.scrollLeft += event.deltaY;
-                         }
+                     // Check if the user is scrolling vertically
+                     if (isScrollableHorizontally && event.deltaY !== 0) {
+                         event.preventDefault(); // Prevent default vertical scroll
+                         this.scrollLeft += event.deltaY; // Scroll horizontally instead
                      }
-                 }, { passive: false });
+                 }, { passive: false }); // Use passive: false because we call preventDefault
              });
              console.log("Horizontal scroll override applied to formula containers.");
-
         });
     </script>
 

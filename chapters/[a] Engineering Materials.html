@@ -70,7 +70,7 @@
             border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);
             overflow-x: auto; overflow-y: hidden; /* Horizontal scroll, no vertical */
             transition: background-color 0.3s ease, border-color 0.3s ease;
-            cursor: pointer; color: #e0e0e0; border-left: 4px solid transparent;
+            cursor: pointer; color: #e0e0e0; border-left: 4棟 solid transparent;
             font-family: 'Roboto Mono', monospace; position: relative; white-space: nowrap;
         }
         .formula-container:hover { background-color: rgba(60, 60, 60, 0.95); border-left-color: #a6e3a1; border-color: rgba(166, 227, 161, 0.5); }
@@ -82,14 +82,14 @@
         .formula-container::-webkit-scrollbar-thumb:hover { background-color: #aaa; }
         /* MathJax display style */
         .formula-container mjx-container[display="true"] { margin: 0.5em 0 !important; text-align: left !important; display: inline-block; vertical-align: middle; }
-        
+
         table { border-collapse: collapse; margin: 1em auto; background-color: rgba(40,40,40,0.8); width: auto; }
         th, td { border: 1px solid #555; padding: 8px 12px; text-align: center; }
         th { background-color: rgba(60,60,60,0.9); color: #ddd; }
 
         pre {
-            background-color: #2b2b2b; padding: 10px; border-radius: 5px; 
-            color: #ccc; overflow-x: auto; white-space: pre; 
+            background-color: #2b2b2b; padding: 10px; border-radius: 5px;
+            color: #ccc; overflow-x: auto; white-space: pre;
             font-family: 'Roboto Mono', monospace; font-size: 0.95em;
             margin: 1em 0;
         }
@@ -116,444 +116,698 @@
 <body>
 
     <header>
-        <h1>Chapter 2: Engineering Materials</h1>
+        <h1>Chapter 2: Engineering Materials</h1> <!-- EDIT THIS LINE -->
     </header>
 
     <main>
-        <p>This chapter introduces the fundamental concepts of engineering materials, focusing on their classification, structure, and particularly their mechanical properties. Understanding these properties is crucial for selecting appropriate materials for manufacturing specific products and for predicting their behavior during processing and in service. The chapter also covers common engineering materials and the factors involved in material selection, along with solved examples illustrating the calculation of mechanical properties.</p>
+        <p>
+            This chapter introduces the fundamental concepts of engineering materials, focusing on their classification, structure, and particularly their mechanical properties. Understanding these properties is crucial for selecting appropriate materials for manufacturing specific products and for predicting their behavior during processing and in service. The chapter also covers common engineering materials and the factors involved in material selection, along with solved examples illustrating the calculation of mechanical properties.
+        </p>
 
         <h2>2.1 Introduction</h2>
+
+        <p>
+            <strong>Core Idea:</strong> Materials are fundamental to all technology. Choosing the right material with the right properties is crucial for any product, from a microchip to a bridge.
+        </p>
+        <p>
+            Different parts of a product often require different materials because they have different functions.
+        </p>
         <ul>
-            <li>Materials are the foundation of all technological advances. Knowledge of their properties and behavioral characteristics is crucial.</li>
-            <li>Products like automobiles consist of many parts made from different materials, each chosen for its specific function and properties (e.g., steel for car body due to strength and formability, plastics for dashboards due to light weight and mouldability).</li>
-            <li>Engineers consider material properties for the application (e.g., hardness for mechanical use, conductivity for electrical use), behavior during manufacturing, and environmental impact.</li>
-            <li><strong>Major classes of materials:</strong>
-                <ol>
-                    <li><strong>Metals:</strong> (e.g., iron, copper, aluminum).</li>
-                    <li><strong>Ceramics:</strong> (e.g., sand, bricks, glass).</li>
-                    <li><strong>Polymers:</strong> (e.g., nylon, Teflon, polyethylene).</li>
-                    <li><strong>Composites:</strong> (e.g., carbon fibers in epoxy, used in tennis rackets).</li>
-                    <li><strong>Semiconductors:</strong> (e.g., silicon, germanium, used in transistors).</li>
-                </ol>
+            <li>
+                <strong>Example (Car):</strong> Steel for the body (strong, formable), plastics for dashboards/seats (lightweight, mouldable, colours), glass for windows (transparent, hard), reinforced plastics for bumpers.
             </li>
-            <li>There's an intimate link between a material's <strong>structure</strong> (atomic arrangement) and its properties (mechanical, electrical, thermal, etc.).</li>
-            <li><strong>Processing affects structure, which in turn affects properties.</strong>
-                <ul>
-                    <li><strong>Example:</strong> Steel slowly cooled from high temperature is soft. If quenched (rapidly cooled), the same steel becomes extremely hard and brittle due to changes in its structure.</li>
-                </ul>
+        </ul>
+        <p>
+            Materials science involves understanding and manipulating materials to achieve desired properties.
+        </p>
+        <p>
+            <strong>Major Classes of Materials:</strong>
+        </p>
+        <ul>
+            <li>
+                <strong>Metals:</strong> Iron, copper, aluminium, gold, etc. (Strong, ductile, conductive).
+            </li>
+            <li>
+                <strong>Ceramics:</strong> Sand, bricks, glass, graphite (Hard, brittle, insulators, high-temperature resistance).
+            </li>
+            <li>
+                <strong>Polymers (Plastics):</strong> Nylon, Teflon, polyethylene (Lightweight, easily shaped, insulators, lower strength).
+            </li>
+            <li>
+                <strong>Composites:</strong> Mixtures of materials (e.g., carbon fibres in epoxy). Designed to combine properties.
+            </li>
+            <li>
+                <strong>Semiconductors:</strong> Silicon, germanium (Electrical properties between conductors and insulators).
+            </li>
+        </ul>
+        <p>
+            <strong>Key Link:</strong> A material's <strong>structure</strong> (how its atoms or molecules are arranged) determines its properties (mechanical, electrical, etc.). Crucially, <strong>processing</strong> (how we treat the material) affects its structure and therefore its properties.
+        </p>
+        <ul>
+            <li>
+                <strong>Example (Steel):</strong> If steel is cooled slowly from high temperature, it's relatively soft. If the <em>same</em> steel is cooled rapidly (quenched), it becomes very hard and brittle. This is due to changes in its internal crystal structure caused by the cooling rate.
             </li>
         </ul>
 
         <h2>2.2 Structure of Materials</h2>
-        <p>Understanding material structure is key to understanding its properties and behavior. This section focuses mainly on metals.</p>
-        
-        <h3>2.2.1 Crystalline structures of metals</h3>
+
+        <p>
+            Understanding material structure is key to understanding its properties and behavior. This section focuses mainly on <strong>Metals</strong>.
+        </p>
+
+        <h3>2.2.1 Crystalline Structure</h3>
+        <p>
+             When metals solidify, their atoms arrange in a regular, repeating 3D pattern called a <strong>crystal</strong>.
+        </p>
         <ul>
-            <li>When metals solidify, atoms arrange themselves into specific, orderly 3-D patterns called <strong>crystals</strong>.</li>
-            <li><strong>Space lattice:</strong> The 3-D geometrical arrangement of atom centers in a crystal.</li>
-            <li><strong>Unit cell:</strong> The smallest repeating volume of the space lattice that represents the entire crystal structure (analogous to a brick in a wall). Most metals have cubic or hexagonal unit cells.</li>
-            <li><strong>Three common crystal lattice structures (Figure 2.1):</strong>
-                <ol>
-                    <li><strong>Face Centred Cubic (FCC) (Fig. 2.1a):</strong> Unit cell is a cube with atoms at each corner and one at the center of each of the six faces.
-                        <ul>
-                            <li><strong>Examples:</strong> Copper, gold, nickel, aluminum.</li>
-                            <li><strong>Features:</strong> Good ductility and electrical conductivity.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Body Centred Cubic (BCC) (Fig. 2.1b):</strong> Unit cell is a cube with atoms at each corner and one atom at the geometric center of the cube.
-                        <ul>
-                            <li><strong>Examples:</strong> Iron, sodium, vanadium, molybdenum.</li>
-                            <li><strong>Features:</strong> Tend to deform plastically.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Hexagonal Closely Packed (HCP) (Fig. 2.1c):</strong> Unit cell is a hexagonal prism with atoms at each corner, one atom in the center of the top and bottom faces, and three atoms in the midplane between the top and bottom faces.
-                        <ul>
-                            <li><strong>Examples:</strong> Zinc, cadmium, cobalt, titanium.</li>
-                            <li><strong>Features:</strong> Good ductility, easily deformed.</li>
-                        </ul>
-                    </li>
-                </ol>
+            <li>
+                <strong>Space Lattice:</strong> The geometric pattern of atom positions.
             </li>
-            <li><strong>Polymorphic:</strong> A material that can exist in more than one crystal lattice type, often changing with temperature.</li>
-            <li><strong>X-ray diffraction:</strong> A technique used to determine crystal structure and atom positions.</li>
-            <li><strong>Non-crystalline or Amorphous materials:</strong> Atoms are not arranged in a regular lattice (e.g., thermoset plastics, transparent polymers, rubber, metallic glasses).</li>
+            <li>
+                <strong>Unit Cell:</strong> The smallest repeating unit of the space lattice (like a single brick in a wall).
+            </li>
+            <li>
+                <strong>Common Metal Crystal Structures (Fig 2.1):</strong>
+                <ul>
+                    <li>
+                        <strong>Face-Centred Cubic (FCC):</strong> Atoms at corners and center of each face of a cube. (e.g., Copper, Gold, Aluminium, Nickel). <em>Key property:</em> Generally good <strong>ductility</strong> (ability to deform without breaking).
+                    </li>
+                    <li>
+                        <strong>Body-Centred Cubic (BCC):</strong> Atoms at corners and one atom in the very center of the cube. (e.g., Iron (at room temp), Chromium, Molybdenum). <em>Key property:</em> Generally strong, moderate ductility.
+                    </li>
+                    <li>
+                        <strong>Hexagonal Close-Packed (HCP):</strong> Atoms in a hexagonal pattern. (e.g., Zinc, Titanium, Magnesium, Cobalt). <em>Key property:</em> Ductility varies, can be strong.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                 <strong>Polymorphic:</strong> A material that can exist in more than one crystal lattice type, often changing with temperature.
+            </li>
+            <li>
+                <strong>X-ray diffraction:</strong> A technique used to determine crystal structure and atom positions.
+            </li>
+            <li>
+                <strong>Non-crystalline (Amorphous):</strong> Some materials (like glass, some plastics, metallic glasses) solidify without forming a regular crystal structure. Their atoms are arranged randomly.
+            </li>
         </ul>
 
         <h2>2.3 Properties of Materials</h2>
+
+        <p>
+             Materials have various properties:
+        </p>
         <ul>
-            <li>Material properties include physical, chemical, mechanical, electrical, etc.</li>
-            <li><strong>Physical properties:</strong> e.g., plastics for pens (lightweight), copper for wires (good conductor).</li>
-            <li><strong>Chemical properties:</strong> e.g., iron corrodes with water.</li>
-            <li><strong>Electrical properties:</strong> Related to conductivity. Impurities reduce metal conductivity but can increase semiconductor conductivity (e.g., phosphorus in silicon).</li>
-            <li><strong>Mechanical properties:</strong> Describe material behavior under mechanical forces/loads (e.g., strength, hardness, ductility). These are critical for manufacturing process selection. Cast iron, being brittle, cannot be formed easily.</li>
+            <li>
+                <strong>Physical:</strong> Density, melting point, colour.
+            </li>
+            <li>
+                <strong>Chemical:</strong> Reactivity, corrosion resistance.
+            </li>
+            <li>
+                <strong>Electrical:</strong> Conductivity, resistivity. Impurities reduce metal conductivity but can increase semiconductor conductivity (e.g., phosphorus in silicon).
+            </li>
+            <li>
+                <strong>Mechanical:</strong> How a material responds to applied forces. <strong>This is the main focus for manufacturing.</strong>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <strong>Example:</strong> Cast iron is brittle (a mechanical property), so it can't be easily shaped by forming processes that require significant deformation.
+            </li>
         </ul>
 
         <h2>2.4 Mechanical Properties</h2>
-        <p>Properties like elasticity, ductility, hardness, toughness relate to a material's ability to resist deformation or deform under forces.</p>
-        <p>Mechanical properties are defined to be independent of specimen size/geometry for comparison.</p>
 
-        <h3>2.4.1 Types of stresses (Figure 2.2)</h3>
+        <p>
+             These describe how materials deform or resist forces. They are measured in standardized tests so different materials can be compared. Mechanical properties are defined to be independent of specimen size/geometry for comparison.
+        </p>
+
+        <h3>2.4.1 Types of stresses</h3>
+        <p>
+             (See Figure 2.2 for visual representation)
+        </p>
         <ul>
-            <li><strong>Tensile load (Fig. 2.2a):</strong> Equal and opposite forces pulling a body, causing elongation. The internal resisting stress is <strong>tensile stress</strong>.</li>
-            <li><strong>Compressive load (Fig. 2.2b):</strong> Equal and opposite forces pushing into a body, causing shortening. The internal resisting stress is <strong>compressive stress</strong>.</li>
-            <li><strong>Shear load (Fig. 2.2c):</strong> Opposite forces acting radially across a section. The internal resisting stress is <strong>shear stress</strong> (or transverse stress).</li>
-            <li><strong>Stress (s or $\sigma$):</strong> Force per unit area. SI unit: N/m$^2$ (Pascal, Pa).
-                <div class="formula-container"
-                     onclick="copyFormulaLatex(this, this.dataset.latex)"
-                     data-latex="s = \frac{F}{A_0} \quad (Eq. 2.1)"
-                     title="Click to copy LaTeX (equation number will be removed)">
-                     $$ s = \frac{F}{A_0} \quad (Eq. 2.1) $$
-                </div>
-                where F is force, $A_0$ is original cross-sectional area.
+            <li>
+                <strong>Tensile load (Fig. 2.2a):</strong> Equal and opposite forces pulling a body, causing elongation. The internal resisting stress is **tensile stress**.
             </li>
-            <li><strong>Strain (e or $\epsilon$):</strong> Measure of deformation; ratio of change in dimension to original dimension (dimensionless, e.g., mm/mm).
-                <div class="formula-container"
-                     onclick="copyFormulaLatex(this, this.dataset.latex)"
-                     data-latex="e = \frac{\Delta L}{L_0} \quad (Eq. 2.2)"
-                     title="Click to copy LaTeX (equation number will be removed)">
-                     $$ e = \frac{\Delta L}{L_0} \quad (Eq. 2.2) $$
-                </div>
-                where $\Delta L$ is change in length, $L_0$ is original length.
+            <li>
+                <strong>Compressive load (Fig. 2.2b):</strong> Equal and opposite forces pushing into a body, causing shortening. The internal resisting stress is **compressive stress**.
             </li>
-            <li><strong>Deformation under tensile load (Figure 2.3):</strong> A cylinder of original diameter $D_0$ and length $L_0$, when pulled by force F, elongates to $L_1$ and its diameter contracts to $D_1$.
-                <ul>
-                    <li><strong>Linear strain (axial strain):</strong> Strain in the direction of applied load.</li>
-                    <li><strong>Lateral strain (perpendicular strain):</strong> Strain at right angles to the applied load.</li>
-                    <li><strong>Poisson's ratio:</strong> Ratio of lateral strain to linear strain (discussed later).</li>
-                </ul>
+            <li>
+                <strong>Shear load (Fig. 2.2c):</strong> Opposite forces acting radially across a section. The internal resisting stress is **shear stress** (or transverse stress).
             </li>
         </ul>
 
-        <h3>2.4.2 Stress-strain relationship (Figure 2.4, Figure 2.5)</h3>
+        <p>
+            <strong>Stress (s or σ):</strong> Internal resistance force per unit area. Measured in N/m² (Pascals, Pa) or MPa.
+        </p>
+        <div class="formula-container"
+             onclick="copyFormulaLatex(this, this.dataset.latex)"
+             data-latex="\color{white} \text{Stress} (s) = \frac{F}{A_0} \quad (\text{Eq } 2.1)"
+             title="Click to copy LaTeX (equation number will be removed)">
+             $$ \color{white} \text{Stress} (s) = \frac{F}{A_0} \quad (\text{Eq } 2.1) $$
+        </div>
+
+        <p>
+            <strong>Strain (e or ε):</strong> Measure of deformation relative to original size. It's dimensionless (m/m or often expressed as %).
+        </p>
+         <div class="formula-container"
+             onclick="copyFormulaLatex(this, this.dataset.latex)"
+             data-latex="\color{white} \text{Strain} (e) = \frac{\Delta L}{L_0} \quad (\text{Eq } 2.2)"
+             title="Click to copy LaTeX (equation number will be removed)">
+             $$ \color{white} \text{Strain} (e) = \frac{\Delta L}{L_0} \quad (\text{Eq } 2.2) $$
+        </div>
+
+        <p>
+            <strong>Axial vs. Lateral Strain (Fig 2.3):</strong> When you pull (tensile stress) a bar, it gets longer (axial strain) but also thinner (lateral strain). Poisson's ratio relates these.
+            Under compression, it contracts axially and expands transversely (Fig. 2.7b).
+        </p>
         <ul>
-            <li>A cylindrical rod (ductile material) subjected to increasing tensile load elongates until it breaks (Fig. 2.4).</li>
-            <li>Plotting stress vs. strain gives the <strong>stress-strain curve</strong> (Fig. 2.5).</li>
-            <li>(Fig. 2.5a: Stress-strain curve for brass; Fig. 2.5b: Stress-strain curve for mild steel)</li>
-            <li><strong>Elastic Region (Origin to P or Q):</strong> Material deforms but returns to original shape when stress is removed.
+             <li>
+                 <strong>Linear strain (axial strain):</strong> Strain in the direction of applied load.
+             </li>
+             <li>
+                 <strong>Lateral strain (perpendicular strain):</strong> Strain at right angles to the applied load.
+             </li>
+        </ul>
+
+        <h3>2.4.2 Stress-strain relationship</h3>
+        <p>
+            A fundamental test (tensile test, Fig 2.4) pulls a standard specimen and measures load and elongation. Plotting stress vs. strain gives the **stress-strain curve** (Fig. 2.5).
+        </p>
+        <ul>
+            <li>
+                (Fig 2.5a - Ductile material like brass/aluminium; Fig 2.5b - Ductile material like mild steel)
+            </li>
+            <li>
+                <strong>Elastic Region (Origin to P/Q):</strong> Material deforms but returns to original shape when load is removed. Stress is proportional to strain in the initial linear part (Origin to P).
                 <ul>
-                    <li><strong>Proportional Limit (P):</strong> Point up to which stress is directly proportional to strain (linear relationship).</li>
-                    <li><strong>Elastic Limit (Q):</strong> Maximum stress a material can withstand without permanent deformation. Often close to P.</li>
-                    <li><strong>Young's Modulus (E) / Modulus of Elasticity:</strong> Ratio of stress to strain in the linear elastic region. It is the slope of the linear portion.
-                        <div class="formula-container"
-                             onclick="copyFormulaLatex(this, this.dataset.latex)"
-                             data-latex="E = \frac{\text{Stress}}{\text{Strain}} = \frac{\sigma}{\epsilon} \quad (Eq. 2.3)"
-                             title="Click to copy LaTeX (equation number will be removed)">
-                             $$ E = \frac{\text{Stress}}{\text{Strain}} = \frac{\sigma}{\epsilon} \quad (Eq. 2.3) $$
-                        </div>
-                        <div class="formula-container"
-                             onclick="copyFormulaLatex(this, this.dataset.latex)"
-                             data-latex="E = \frac{F/A_0}{\Delta L/L_0} = \frac{FL_0}{A_0\Delta L} \quad (Eq. 2.4)"
-                             title="Click to copy LaTeX (equation number will be removed)">
-                             $$ E = \frac{F/A_0}{\Delta L/L_0} = \frac{FL_0}{A_0\Delta L} \quad (Eq. 2.4) $$
-                        </div>
-                        It measures <strong>stiffness</strong>: resistance to elastic deformation. A stiff material has a high E.
+                    <li>
+                        <strong>Proportional Limit (P):</strong> End of the straight-line portion.
                     </li>
-                    <li>Elongation
+                    <li>
+                        <strong>Elastic Limit (Q):</strong> Maximum stress before <em>permanent</em> deformation occurs. Often very close to P.
+                    </li>
+                    <li>
+                        <strong>Young's Modulus (E) / Modulus of Elasticity:</strong> Slope of the linear elastic region. It measures the material's **stiffness** or resistance to elastic deformation. A higher E means stiffer material.
+                         <div class="formula-container"
+                             onclick="copyFormulaLatex(this, this.dataset.latex)"
+                             data-latex="\color{white} E = \frac{\text{Stress}}{\text{Strain}} = \frac{\sigma}{\varepsilon} \quad (\text{Eq } 2.3)"
+                             title="Click to copy LaTeX (equation number will be removed)">
+                             $$ \color{white} E = \frac{\text{Stress}}{\text{Strain}} = \frac{\sigma}{\varepsilon} \quad (\text{Eq } 2.3) $$
+                        </div>
                         <div class="formula-container"
                              onclick="copyFormulaLatex(this, this.dataset.latex)"
-                             data-latex="\Delta L = \frac{FL_0}{A_0E} \quad (Eq. 2.5)"
+                             data-latex="\color{white} E = \frac{(F/A_0)}{(\Delta L/L_0)} = \frac{F L_0}{A_0 \Delta L} \quad (\text{Eq } 2.4)"
                              title="Click to copy LaTeX (equation number will be removed)">
-                             $$ \Delta L = \frac{FL_0}{A_0E} \quad (Eq. 2.5) $$
+                             $$ \color{white} E = \frac{(F/A_0)}{(\Delta L/L_0)} = \frac{F L_0}{A_0 \Delta L} \quad (\text{Eq } 2.4) $$
+                        </div>
+                        Elongation can be calculated as:
+                         <div class="formula-container"
+                             onclick="copyFormulaLatex(this, this.dataset.latex)"
+                             data-latex="\color{white} \Delta L = \frac{F L_0}{A_0 E} \quad (\text{Eq } 2.5)"
+                             title="Click to copy LaTeX (equation number will be removed)">
+                             $$ \color{white} \Delta L = \frac{F L_0}{A_0 E} \quad (\text{Eq } 2.5) $$
                         </div>
                     </li>
                 </ul>
             </li>
-            <li><strong>Plastic Region (Right of P or Q):</strong> Material undergoes permanent deformation.
+            <li>
+                <strong>Plastic Region (Right of Q):</strong> Material undergoes permanent deformation. It will not return to its original shape after load removal.
                 <ul>
-                    <li><strong>Yield Point (Yield Strength, Y on Fig. 2.5a):</strong> Stress at which material begins to deform plastically without a significant increase in stress (or with a specified permanent strain, e.g., 0.2% offset method for materials like brass, as shown by dotted line in Fig. 2.5a). Mild steel (Fig. 2.5b) shows a distinct yield point (C).</li>
-                    <li><strong>Ultimate Tensile Strength (UTS) (T on Fig. 2.5a & b):</strong> Maximum stress the material can withstand before necking (localized reduction in cross-section) begins in ductile materials.</li>
-                    <li><strong>Breaking Strength / Rupture Strength (R on Fig. 2.5a):</strong> Stress at which the material fractures.</li>
+                    <li>
+                        <strong>Yield Point / Yield Strength (Y):</strong> The stress at which significant plastic deformation starts. Mild steel (Fig 2.5b) shows a clear yield point. For others (Fig 2.5a), it's often defined by the **0.2% offset method** (draw line parallel to elastic slope from 0.2% strain; where it hits the curve is the yield strength). This is a critical value for design, marking the onset of permanent damage.
+                    </li>
+                    <li>
+                        <strong>Ultimate Tensile Strength (UTS) (T):</strong> The maximum stress the material can withstand on the curve. Corresponds to the maximum load.
+                    </li>
+                    <li>
+                        <strong>Necking:</strong> After UTS, ductile materials often start to locally thin down ('neck') before breaking (visible in Fig 2.4).
+                    </li>
+                    <li>
+                        <strong>Fracture / Breaking Strength (R):</strong> The stress at which the material breaks.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Brittle Materials (Figure 2.6):</strong> These materials (e.g., cast iron, glass) show little to no plastic deformation. They fracture at or near the ultimate tensile strength, often without yielding.</li>
+            <li>
+                <strong>Brittle Materials (Fig 2.6):</strong> Show very little or no plastic deformation. They fracture soon after the UTS, often without yielding. (e.g., Cast iron, glass).
+            </li>
         </ul>
 
         <h3>2.4.3 Toughness</h3>
+        <p>
+             Ability to absorb energy (especially under sudden impact) <em>before fracturing</em>. Includes both strength and ductility.
+        </p>
         <ul>
-            <li>Ability of a material to absorb energy (withstand sudden load) without failure.</li>
-            <li>Depends on both strength and ductility.</li>
-            <li>Measured by the total area under the stress-strain curve up to fracture.</li>
-            <li>Important for impact loads (e.g., milling cutters, gears).</li>
+            <li>
+                Represented by the <em>total area</em> under the stress-strain curve up to fracture.
+            </li>
+            <li>
+                 Important for parts subject to impact loads (gears, tools, milling cutters).
+            </li>
         </ul>
 
         <h3>2.4.4 Hardness</h3>
+        <p>
+             Resistance to scratching, indentation, or wear. General indication of strength. Diamond is the hardest.
+        </p>
         <ul>
-            <li>Resistance to mechanical indentation, scratching, or wear.</li>
-            <li>General indication of strength. Diamond is the hardest.</li>
-            <li>Important for tools and machine tool structures. Hard materials are difficult to shape.</li>
+            <li>
+                Important for tools, surfaces that rub against each other, and machine tool structures. Hard materials are often difficult to machine.
+            </li>
         </ul>
 
         <h3>2.4.5 Ductility</h3>
+        <p>
+             Ability to undergo significant <em>plastic</em> deformation under <em>tensile</em> stress before fracture.
+        </p>
         <ul>
-            <li>Extent to which a material can sustain plastic deformation under <em>tension</em> before rupture.</li>
-            <li>Indicates ability to be drawn into wires.</li>
-            <li><strong>Example:</strong> Gold (28.35g can be drawn into 80 km of thin wire).</li>
-            <li>Important for forming and bending (e.g., automobile body).</li>
-            <li>Materials with little or no ductility are <strong>brittle</strong>.</li>
+            <li>
+                Indicates ability to be drawn into wires. (e.g., Gold (28.35g can be drawn into 80 km of thin wire)).
+            </li>
+            <li>
+                Essential for forming processes like deep drawing and bending (e.g., automobile body).
+            </li>
+            <li>
+                (Quantified by % elongation or % reduction in area at fracture).
+            </li>
+            <li>
+                 Materials with little or no ductility are <strong>brittle</strong>.
+            </li>
         </ul>
 
-        <h3>2.4.6 Brittleness</h3>
-        <ul>
-            <li>Material undergoes very little plastic deformation before rupture.</li>
-            <li>Exhibits no yielding or necking. Ruptures suddenly at ultimate strength.</li>
-            <li>Weak and unreliable in tension.</li>
-            <li><strong>Examples:</strong> Cast iron, glass, ceramics.</li>
-        </ul>
+         <h3>2.4.6 Brittleness</h3>
+         <p>
+              Lack of ductility. Material undergoes very little plastic deformation before rupture.
+         </p>
+         <ul>
+             <li>
+                 Exhibits no yielding or necking. Ruptures suddenly at ultimate strength.
+             </li>
+             <li>
+                 Weak and unreliable in tension.
+             </li>
+             <li>
+                 Brittle materials often fail suddenly. Can happen at stresses below yield strength, especially under impact, low temperatures, or if flaws are present. Dangerous as it's often catastrophic and without warning.
+             </li>
+             <li>
+                 <strong>Examples:</strong> Cast iron, glass, ceramics.
+             </li>
+         </ul>
 
-        <h3>2.4.7 Malleability</h3>
-        <ul>
-            <li>Ability to be flattened (deformed) into thin sheets under <em>compression</em> without cracking.</li>
-            <li>Different from ductility (tensile quality). Malleability is a compressive quality.</li>
-            <li><strong>Example:</strong> Lead is malleable but not very ductile. Silver is both.</li>
-            <li><strong>Examples:</strong> Aluminum, lead, copper, tin.</li>
-        </ul>
+         <h3>2.4.7 Malleability</h3>
+         <p>
+             Ability to undergo significant <em>plastic</em> deformation under <em>compressive</em> stress without fracture.
+         </p>
+         <ul>
+             <li>
+                 Allows hammering/rolling into thin sheets.
+             </li>
+             <li>
+                 Different from ductility (tensile quality). Malleability is a compressive quality.
+             </li>
+             <li>
+                 (Note: Lead is malleable but not very ductile. Silver is both).
+             </li>
+             <li>
+                 <strong>Examples:</strong> Aluminum, lead, copper, tin.
+             </li>
+         </ul>
 
         <h3>2.4.8 Resilience</h3>
+        <p>
+            Ability to absorb energy <em>elastically</em> (i.e., without permanent deformation) and release it upon unloading.
+        </p>
         <ul>
-            <li>Capacity of a material to absorb energy <em>elastically</em> (without permanent deformation).</li>
-            <li>Energy is released upon load removal (like a spring).</li>
-            <li>Measured by the triangular area under the elastic portion of the stress-strain curve (Fig. 2.5).</li>
-            <li>Important for shock absorbers, springs.</li>
+            <li>
+                 Measured by the area under the <em>elastic</em> portion of the stress-strain curve (Fig. 2.5).
+            </li>
+            <li>
+                 Important for shock absorbers, springs.
+            </li>
         </ul>
 
         <h3>2.4.9 Stiffness</h3>
+        <p>
+            Ability of a material to resist deformation (elastic).
+        </p>
         <ul>
-            <li>Ability of a material to resist deformation (elastic).</li>
-            <li>A material with a high Young's modulus (E) is stiffer.</li>
-            <li><strong>Example:</strong> Steel (E $\approx$ 210 GPa) is three times stiffer than aluminum (E $\approx$ 70 GPa). For the same stress and cross-section, aluminum deforms three times more than steel.</li>
-        </ul>
-        
-        <h3>2.4.10 Poisson's ratio ($\nu$) (Figure 2.7)</h3>
-        <ul>
-            <li>When a bar is subjected to axial tensile load, it elongates axially and contracts transversely (Fig. 2.7a). Under compression, it contracts axially and expands transversely (Fig. 2.7b).</li>
-            <li>Poisson's ratio is the ratio of transverse strain ($\epsilon_t$) to axial strain ($\epsilon_a$) within the proportionality limit. It's a material constant.
-                <p>Axial strain $\epsilon_a = \delta/L$</p>
-                <p>Transverse strain $\epsilon_t = \delta b/b$ (where b is original transverse dimension, $\delta b$ is change in b)</p>
-                <div class="formula-container"
-                     onclick="copyFormulaLatex(this, this.dataset.latex)"
-                     data-latex="\nu = -\frac{\epsilon_t}{\epsilon_a} \quad (Eq. 2.6)"
-                     title="Click to copy LaTeX (equation number will be removed)">
-                     $$ \nu = -\frac{\epsilon_t}{\epsilon_a} \quad (Eq. 2.6) $$
-                </div>
-                (The negative sign indicates that axial elongation causes transverse contraction, and vice versa).
+            <li>
+                 Measured by <strong>Young's Modulus (E)</strong>. High E = high stiffness.
+            </li>
+            <li>
+                 <strong>Example:</strong> Steel (E ≈ 210 GPa) is three times stiffer than aluminum (E ≈ 70 GPa). For the same stress and cross-section, aluminum deforms three times more than steel.
             </li>
         </ul>
+
+        <h3>2.4.10 Poisson's Ratio (ν)</h3>
+        <p>
+             (See Figure 2.7 for visual representation)
+        </p>
+        <p>
+             The ratio of lateral (transverse) strain (εt) to axial strain (εa) during elastic deformation. It's a material constant within the proportionality limit.
+        </p>
+        <div class="formula-container"
+             onclick="copyFormulaLatex(this, this.dataset.latex)"
+             data-latex="\color{white} \nu = - \frac{\text{Lateral Strain}}{\text{Axial Strain}} = - \frac{\varepsilon_t}{\varepsilon_a} \quad (\text{Eq } 2.6)"
+             title="Click to copy LaTeX (equation number will be removed)">
+             $$ \color{white} \nu = - \frac{\text{Lateral Strain}}{\text{Axial Strain}} = - \frac{\varepsilon_t}{\varepsilon_a} \quad (\text{Eq } 2.6) $$
+        </div>
+         <ul>
+             <li>
+                 It's negative because if length increases (positive axial strain), width decreases (negative lateral strain), and vice versa.
+             </li>
+             <li>
+                 For most metals, ν is around 0.3.
+             </li>
+         </ul>
+
 
         <h2>2.5 Modes of Fracture</h2>
-        <p>Understanding how and why materials fail. Determined by crystal structure, purity, properties, temperature, stress state, loading rate, environment.</p>
-        <p><strong>Four general classes of fracture mechanisms:</strong></p>
+
+        <p>
+             How materials break. Understanding how and why materials fail is important. Determined by crystal structure, purity, properties, temperature, stress state, loading rate, environment.
+        </p>
+        <p>
+            <strong>Four general classes of fracture mechanisms:</strong>
+        </p>
         <ol>
             <li>
-                <h3>2.5.1 Ductile fracture (Figure 2.8)</h3>
+                <strong>Ductile Fracture (2.5.1 & Fig 2.8):</strong>
                 <ul>
-                    <li>Occurs after significant plastic deformation, typically above the yield point.</li>
-                    <li>Stages (Fig 2.8b-f): Stress concentration, formation of small pores (Fig 2.8c), necking (reduction of cross-section area), pores join to form an internal cavity (Fig 2.8e), rim fails by shear (often at 45° to tensile axis, Fig 2.8f).</li>
-                    <li>Requires considerable energy for plastic deformation in the necking region.</li>
-                    <li>Important in metalworking (deep drawing, forging).</li>
+                    <li>
+                         Occurs after significant plastic deformation, typically above the yield point.
+                    </li>
+                    <li>
+                         Characteristic features: necking, formation and growth of internal voids, final shear failure (often at 45°).
+                    </li>
+                    <li>
+                        Requires considerable energy for plastic deformation in the necking region.
+                    </li>
+                    <li>
+                        Preferred mode in many situations as it gives warning.
+                    </li>
+                     <li>
+                         Important in metalworking (deep drawing, forging).
+                     </li>
                 </ul>
             </li>
             <li>
-                <h3>2.5.2 Brittle fracture</h3>
+                <strong>Brittle Fracture (2.5.2):</strong>
                 <ul>
-                    <li>Little or no plastic deformation before fracture. Cracks propagate rapidly.</li>
-                    <li>Brittle metals are weak as they offer little resistance to crack propagation. Ductile metals deform rather than allowing cracks to propagate.</li>
-                    <li>Can occur at stresses below yield strength, especially under impact/shock loads, often without warning, leading to catastrophic failure.</li>
-                    <li>More likely in large components or under shock loading.</li>
+                    <li>
+                         Occurs suddenly with little/no plastic deformation. Cracks spread rapidly.
+                    </li>
+                    <li>
+                         Brittle metals are weak as they offer little resistance to crack propagation. Ductile metals deform rather than allowing cracks to propagate.
+                    </li>
+                    <li>
+                        Can happen at stresses below yield strength, especially under impact/shock loads, low temperatures, or if flaws are present.
+                    </li>
+                    <li>
+                        Dangerous as it's often catastrophic and without warning.
+                    </li>
+                    <li>
+                         More likely in large components or under shock loading.
+                    </li>
                 </ul>
             </li>
             <li>
-                <h3>2.5.3 Creep fracture</h3>
+                <strong>Creep Fracture (2.5.3):</strong>
                 <ul>
-                    <li>Time-dependent deformation and fracture under constant load, especially at elevated temperatures (can occur below room temp for materials like lead/aluminum, or very high temp for alloy steels).</li>
-                    <li>Material continues to deform (elongate) over time, even if load is constant, until usefulness is impaired or fracture occurs.</li>
-                    <li><strong>Creep:</strong> Plastic/inelastic distortion under long-term loading.</li>
-                    <li>Amount depends on elasticity, yield strength, stress, temperature.</li>
-                    <li>Critical in design of steam turbines, boilers, jet engine blades (e.g., turbine blades at 1200°C).</li>
+                    <li>
+                        Time-dependent failure under constant stress, especially at high temperatures (even below the normal yield strength). Material slowly stretches over time until it breaks.
+                    </li>
+                    <li>
+                         <strong>Creep:</strong> Plastic/inelastic distortion under long-term loading.
+                    </li>
+                     <li>
+                         Amount depends on elasticity, yield strength, stress, temperature.
+                     </li>
+                    <li>
+                         Critical for components like jet engine turbine blades, boiler tubes (e.g., turbine blades at 1200°C).
+                    </li>
                 </ul>
             </li>
             <li>
-                <h3>2.5.4 Fatigue fracture</h3>
+                <strong>Fatigue Fracture (2.5.4):</strong>
                 <ul>
-                    <li>Failure due to cyclic or repeated stresses, often at stress levels well below the static yield strength.</li>
-                    <li>Occurs suddenly and unexpectedly. Described as "progressive fracture."</li>
-                    <li>Mechanism involves initiation of microcracks (due to crystal imperfections or surface flaws) that grow with each stress cycle until the part fails.</li>
-                    <li>Important for components under alternating loads (e.g., bending a paper clip back and forth).</li>
+                    <li>
+                         Failure due to cyclic or repeated loading (stress going up and down). Fracture can occur at stresses well below the UTS or even the yield strength.
+                    </li>
+                    <li>
+                        Occurs suddenly and unexpectedly. Described as "progressive fracture."
+                    </li>
+                    <li>
+                         Starts as a small crack (often at a surface defect or stress concentration) which grows progressively with each cycle until the remaining area can no longer support the load.
+                    </li>
+                    <li>
+                         Very common failure mode in machinery (axles, springs, wings).
+                    </li>
+                    <li>
+                         <strong>Example:</strong> Bending a paperclip back and forth breaks it due to fatigue.
+                    </li>
                 </ul>
             </li>
         </ol>
 
-        <h2>2.6 Factor of Safety</h2>
-        <p>Design work assumes material homogeneity, which is not always true. Uncertainties exist in material properties, service conditions, and potential defects (cracks, blowholes).</p>
-        <p>To avoid failure, <strong>design stress</strong> is kept well within the yield stress (for ductile materials) or ultimate stress (for brittle materials).</p>
+        <h2>2.6 Factor of Safety (FoS)</h2>
+
+        <p>
+             **Concept:** Designs are based on an allowable stress that is <em>lower</em> than the material's actual failure stress (Yield Strength for ductile, UTS for brittle). The ratio is the Factor of Safety.
+        </p>
+        <div class="formula-container"
+             onclick="copyFormulaLatex(this, this.dataset.latex)"
+             data-latex="\color{white} \text{FoS} = \frac{\text{Yield stress}}{\text{Design stress}} \quad (\text{Eq } 2.7) \quad \text{(for ductile materials)}"
+             title="Click to copy LaTeX (equation number will be removed)">
+             $$ \color{white} \text{FoS} = \frac{\text{Yield stress}}{\text{Design stress}} \quad (\text{Eq } 2.7) \quad \text{(for ductile materials)} $$
+        </div>
+         <div class="formula-container"
+             onclick="copyFormulaLatex(this, this.dataset.latex)"
+             data-latex="\color{white} \text{FoS} = \frac{\text{Ultimate stress}}{\text{Design stress}} \quad (\text{Eq } 2.8) \quad \text{(for brittle materials)}"
+             title="Click to copy LaTeX (equation number will be removed)">
+             $$ \color{white} \text{FoS} = \frac{\text{Ultimate stress}}{\text{Design stress}} \quad (\text{Eq } 2.8) \quad \text{(for brittle materials)} $$
+        </div>
+        <p>
+            **Why use FoS?** To account for uncertainties:
+        </p>
         <ul>
-            <li><strong>Factor of safety (FoS)</strong> or <strong>safety factor:</strong> A number used to achieve this.
-                <ul>
-                    <li>
-                        <div class="formula-container"
-                             onclick="copyFormulaLatex(this, this.dataset.latex)"
-                             data-latex="\text{FoS} = \frac{\text{Yield stress}}{\text{Design stress}} \quad (Eq. 2.7)"
-                             title="Click to copy LaTeX (equation number will be removed)">
-                             $$ \text{FoS} = \frac{\text{Yield stress}}{\text{Design stress}} \quad (Eq. 2.7) $$
-                        </div>
-                        (for ductile materials)
-                    </li>
-                    <li>
-                        <div class="formula-container"
-                             onclick="copyFormulaLatex(this, this.dataset.latex)"
-                             data-latex="\text{FoS} = \frac{\text{Ultimate stress}}{\text{Design stress}} \quad (Eq. 2.8)"
-                             title="Click to copy LaTeX (equation number will be removed)">
-                             $$ \text{FoS} = \frac{\text{Ultimate stress}}{\text{Design stress}} \quad (Eq. 2.8) $$
-                        </div>
-                        (for brittle materials)
-                    </li>
-                </ul>
+            <li>
+                Variations in material properties (never perfectly uniform).
             </li>
-            <li><strong>Example:</strong> If design criteria stress is 500 N/m$^2$ and yield strength is 1000 N/m$^2$, FoS = 2. This accounts for uncertainties in properties, wear, surface finish, manufacturing inaccuracies.</li>
-            <li>FoS varies with application. Higher for fatigue loads, critical applications (airplane parts, satellites) involving risk to human life.</li>
-            <li><strong>Factors considered when choosing FoS:</strong>
-                <ol>
-                    <li>Variation/non-homogeneity in material properties.</li>
-                    <li>Uncertainty in analysis methods and manufacturing.</li>
-                    <li>Environmental conditions.</li>
-                    <li>Type of application.</li>
-                </ol>
+            <li>
+                Uncertainty in load calculations or unexpected loads.
+            </li>
+            <li>
+                Manufacturing defects (small cracks, imperfections).
+            </li>
+            <li>
+                Environmental effects (corrosion, temperature).
+            </li>
+            <li>
+                Method of analysis limitations.
             </li>
         </ul>
+        <p>
+            **Value:** Depends on the application. Higher FoS is used for critical components (e.g., aircraft parts, pressure vessels) where failure risk is unacceptable, or under fatigue/uncertain conditions. Lower FoS might be used where weight or cost is paramount and conditions are well understood.
+        </p>
+        <p>
+             **Factors considered when choosing FoS:**
+        </p>
+        <ul>
+            <li>
+                 Variation/non-homogeneity in material properties.
+            </li>
+            <li>
+                 Uncertainty in analysis methods and manufacturing inaccuracies (e.g., surface finish, blowholes).
+            </li>
+            <li>
+                 Environmental conditions.
+            </li>
+            <li>
+                 Type of application.
+            </li>
+         </ul>
+
 
         <h2>2.7 Common Engineering Materials</h2>
-        <p>Metals are seldom used in pure state; usually as <strong>alloys</strong>.</p>
-        
-        <h3>2.7.1 Cast iron</h3>
-        <ul>
-            <li>Ferrous alloy: Iron + 2.1% to 4.5% Carbon + ~3.5% Silicon.</li>
-            <li>Hard, brittle. Free graphite gives self-lubricating properties. Excellent vibration damping.</li>
-            <li>Good compressive strength, weak in tension.</li>
-            <li>Used for machine beds, frames.</li>
-            <li><strong>Types:</strong>
+
+        <p>
+             Brief overview of commonly used metals and alloys (metals mixed with other elements). Metals are seldom used in pure state; usually as **alloys**.
+        </p>
+
+        <ol>
+            <li>
+                <strong>Cast Iron (2.7.1):</strong>
                 <ul>
-                    <li><strong>Gray cast iron:</strong> Good wear resistance (e.g., machine tool guideways).</li>
-                    <li><strong>Malleable cast iron:</strong> More tensile, impact, fatigue strength than gray CI (e.g., agricultural/textile machinery parts).</li>
-                    <li><strong>Spheroidal-graphite (SG) cast iron / Ductile Iron:</strong> Strength, toughness, ductility similar to steel (e.g., crankshafts, connecting rods).</li>
+                    <li>
+                         Ferrous alloy: Iron + high carbon (2.1-4.5%) & silicon (~3.5%).
+                    </li>
+                    <li>
+                        Hard, brittle. Free graphite gives self-lubricating properties. Excellent vibration damping.
+                    </li>
+                    <li>
+                        Good compressive strength, weak in tension. Used for machine beds, frames.
+                    </li>
+                    <li>
+                         <strong>Types:</strong> Gray (good wear resistance, e.g., machine tool guideways), Malleable (improved toughness, e.g., agricultural/textile machinery parts), SG/Ductile Iron (strength/toughness near steel, e.g., crankshafts, connecting rods).
+                    </li>
                 </ul>
             </li>
-        </ul>
-
-        <h3>2.7.2 Steel</h3>
-        <ul>
-            <li>Most common engineering material. Iron + Carbon alloy (typically < 2.1% C), may contain other elements (Mn, Si, Cr, Cu).</li>
-            <li>Properties can be manipulated by heat treatment.</li>
-            <li><strong>Classification by carbon content (see Table 2.1 for applications):</strong>
-                <ol>
-                    <li><strong>Low carbon steel / Mild steel (0.05 to 0.3%C):</strong> Thin sheets, tubes, wire, structural sections, boilers.</li>
-                    <li><strong>Medium carbon steel (0.3 to 0.7%C):</strong> Agricultural implements, axles, hammers, springs, dies.</li>
-                    <li><strong>High carbon steel (0.7 to 1.5%C):</strong> Cutting blades, chisels, woodworking tools, metal cutting tools, razor blades, files, drills.</li>
-                </ol>
-            </li>
-        </ul>
-
-        <h3>2.7.3 Aluminium</h3>
-        <ul>
-            <li>Non-ferrous. Excellent thermal/electrical conductor, good corrosion resistance.</li>
-            <li>Weighs ~1/3 of steel. Very good ductility.</li>
-            <li>Applications: Packaging, consumer durables, utensils, electrical appliances, airplanes/jet engines (75-85% of components).</li>
-        </ul>
-
-        <h3>2.7.4 Copper</h3>
-        <ul>
-            <li>Non-ferrous. Excellent heat/electricity conductor, good corrosion resistance.</li>
-            <li>Soft, tough, easy to mould, workable hot or cold.</li>
-            <li>Pure form: thermal/electrical uses.</li>
-            <li><strong>Alloys:</strong>
+            <li>
+                <strong>Steel (2.7.2):</strong>
                 <ul>
-                    <li><strong>Brass (Cu + Zn):</strong> Utensils, household fittings, decorative objects.</li>
-                    <li><strong>Bronze (Cu + Sn):</strong> Good corrosion resistance. Used for valves, bearings.</li>
-                    <li>Brass and bronze can be machined at high speeds for fine surface finish.</li>
+                    <li>
+                        Most common engineering material. Iron alloy with &lt; 2.1% Carbon, often other elements (Mn, Si, Cr, Cu).
+                    </li>
+                    <li>
+                        Highly versatile, properties adjustable via alloying &amp; heat treatment.
+                    </li>
+                    <li>
+                         <strong>Classification by carbon content (see Table 2.1 for applications):</strong>
+                         <ul>
+                             <li>
+                                 <strong>Low Carbon (Mild) Steel (0.05-0.3% C):</strong> Ductile, weldable, relatively cheap. Uses: structural shapes, car bodies, sheet metal, wire.
+                             </li>
+                             <li>
+                                 <strong>Medium Carbon Steel (0.3-0.7% C):</strong> Stronger, harder than mild steel. Uses: agricultural implements, axles, gears, shafts, hammers, springs, dies.
+                             </li>
+                             <li>
+                                 <strong>High Carbon Steel (0.7-1.5% C):</strong> Hardest, strongest, wear-resistant, less ductile. Uses: Cutting blades, chisels, woodworking tools, metal cutting tools, razor blades, files, drills.
+                             </li>
+                         </ul>
+                    </li>
                 </ul>
             </li>
-        </ul>
-
-        <h3>2.7.5 Lead</h3>
-        <ul>
-            <li>Durable, versatile. High density, easy workability. Good corrosion resistance (many acids don't affect it).</li>
-            <li>Used in soldering (lead-tin alloy).</li>
-        </ul>
-
-        <h3>2.7.6 Zinc</h3>
-        <ul>
-            <li>Low melting point. Fourth most used metal (after Fe, Al, Cu).</li>
-            <li>Applications (zinc alloys): Carburetors, fuel pumps, automobile parts.</li>
-        </ul>
-
-        <h3>2.7.7 Tin</h3>
-        <ul>
-            <li>Soft, ductile, very good malleability.</li>
-            <li>Resists corrosion in wet/dry conditions; used as protective coating for iron/steel.</li>
-            <li>Tin-base white metals for bearings (high pressure/load).</li>
-            <li>High malleability: tin cans for food.</li>
-        </ul>
+            <li>
+                <strong>Aluminium (Al) (2.7.3):</strong>
+                <ul>
+                    <li>
+                        Non-ferrous. Lightweight (~1/3 of steel), excellent thermal/electrical conductor, good corrosion resistance.
+                    </li>
+                    <li>
+                        Very good ductility. Easy to mould, workable hot or cold.
+                    </li>
+                    <li>
+                        Uses: Packaging, consumer durables, utensils, electrical appliances, aircraft parts, airplanes/jet engines (75-85% of components).
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>Copper (Cu) (2.7.4):</strong>
+                <ul>
+                    <li>
+                        Non-ferrous. Excellent heat/electricity conductor, corrosion-resistant.
+                    </li>
+                    <li>
+                        Soft, tough, easy to mould, workable hot or cold.
+                    </li>
+                    <li>
+                        Pure form: thermal/electrical uses (e.g., electrical wiring, plumbing pipes, heat exchangers).
+                    </li>
+                    <li>
+                        <strong>Alloys:</strong>
+                         <ul>
+                             <li>
+                                 <strong>Brass (Cu+Zn):</strong> Utensils, household fittings, decorative objects. Can be machined at high speeds for fine surface finish.
+                             </li>
+                             <li>
+                                 <strong>Bronze (Cu+Sn):</strong> Good corrosion resistance. Used for valves, bearings. Can be machined at high speeds for fine surface finish.
+                             </li>
+                         </ul>
+                    </li>
+                </ul>
+            </li>
+             <li>
+                 <strong>Lead (Pb) (2.7.5):</strong>
+                 <ul>
+                     <li>
+                         Durable, versatile. High density, easy workability.
+                     </li>
+                     <li>
+                         Good corrosion resistance (many acids don't affect it).
+                     </li>
+                     <li>
+                         Uses: batteries, radiation shielding, solder (lead-tin alloy).
+                     </li>
+                 </ul>
+             </li>
+             <li>
+                 <strong>Zinc (Zn) (2.7.6):</strong>
+                 <ul>
+                     <li>
+                         Low melting point. Fourth most used metal (after Fe, Al, Cu).
+                     </li>
+                     <li>
+                         Used for galvanizing (coating steel for corrosion resistance), die casting alloys.
+                     </li>
+                     <li>
+                         Uses (zinc alloys): Carburetors, fuel pumps, automobile parts, fittings.
+                     </li>
+                 </ul>
+             </li>
+             <li>
+                 <strong>Tin (Sn) (2.7.7):</strong>
+                 <ul>
+                     <li>
+                         Soft, ductile, very good malleability.
+                     </li>
+                     <li>
+                         Resists corrosion in wet/dry conditions; used as protective coating for iron/steel (tin cans for food).
+                     </li>
+                     <li>
+                         Uses: coating steel (tin cans), solder, bearings (tin-base white metals for high pressure/load).
+                     </li>
+                 </ul>
+             </li>
+        </ol>
 
         <h2>2.8 Selection of Material</h2>
-        <p>Crucial decision, considering physical and mechanical properties. Can dictate manufacturing process and affect final cost (material cost $\approx$ 50% of manufacturing cost).</p>
-        <p><strong>Stepwise approach:</strong></p>
+
+        <p>
+            Choosing the right material is a critical engineering decision, often involving trade-offs. Material cost can be ~50% of total manufacturing cost. It is a crucial decision considering physical and mechanical properties, which can dictate the manufacturing process and affect final cost.
+        </p>
+        <p>
+            <strong>Steps:</strong>
+        </p>
         <ol>
-            <li><strong>Define material requirements:</strong> Based on overall objectives (cost, durability, life, function).
+            <li>
+                <strong>Define Requirements:</strong> What function must the part perform? What properties are needed (strength, hardness, weight limit, corrosion resistance, cost target, appearance)? Based on overall objectives (cost, durability, life, function).
                 <ul>
-                    <li><strong>Example (Coins):</strong> Good ductility, hardness, corrosion resistance, high plasticity, lightweight.</li>
+                    <li>
+                        <strong>Example (Coins):</strong> Need good ductility, hardness, corrosion resistance, high plasticity, lightweight.
+                    </li>
                 </ul>
             </li>
-            <li><strong>Find possible material(s):</strong> List materials meeting most requirements. (e.g., for coins: gold, silver, copper, alloys).</li>
-            <li><strong>Make a choice:</strong> Consider influencing factors/restrictions (availability, cost, aesthetics).
-                <ul>
-                    <li><strong>Example (Razor blades):</strong> Good malleability, corrosion resistance, abrasive resistance, economical. Edge may be alloyed for hardness/sharpness retention. Stainless steel is common.</li>
-                </ul>
+            <li>
+                <strong>Find Possible Materials:</strong> List materials that meet the key requirements.
+                 <ul>
+                     <li>
+                         (e.g., for coins: gold, silver, copper, alloys).
+                     </li>
+                 </ul>
+            </li>
+            <li>
+                <strong>Make a Choice:</strong> Evaluate the candidates based on all factors, including cost, availability, ease of manufacturing (processability), reliability, aesthetics. Consider influencing factors/restrictions (availability, cost, aesthetics).
+                 <ul>
+                     <li>
+                         <strong>Example (Coins):</strong> Gold, silver, copper alloys work. Final choice depends heavily on cost and availability.
+                     </li>
+                     <li>
+                         <strong>Example (Razor Blades):</strong> Need malleability (to make thin), high hardness (for sharp edge), corrosion resistance, low cost, abrasive resistance. Stainless steel is common, often with special edge treatments/alloys for hardness.
+                     </li>
+                 </ul>
             </li>
         </ol>
 
-        <h2>2.9 Solved Examples</h2>
+        <p>
+            (Skipping 2.9 Solved Examples and Review Questions as requested.)
+        </p>
 
-        <h3>Example 2.1</h3>
-        <p>A steel rod (10 mm diameter, 1.5 m length) pulled by 1 kN. E = $205 \times 10^9 \text{ N/m}^2$ (Note: PDF says $10^6 \text{ kN/m}^2$, which is $10^9 \text{ N/m}^2$).</p>
-        <ul>
-            <li><strong>Given:</strong> D = 10 mm = 0.01 m, L = 1.5 m, F = 1 kN = 1000 N, E = $205 \times 10^9 \text{ N/m}^2$.</li>
-            <li><strong>Cross-sectional area A:</strong> $\pi D^2/4 = \pi(0.01)^2/4 = 7.85 \times 10^{-5} \text{ m}^2$.</li>
-            <li><strong>(a) Stress ($\sigma$):</strong> $F/A = 1000 \text{ N} / (7.85 \times 10^{-5} \text{ m}^2) = 1.27 \times 10^7 \text{ N/m}^2$.</li>
-            <li><strong>(b) Strain ($\epsilon$):</strong> $\sigma/E = (1.27 \times 10^7 \text{ N/m}^2) / (205 \times 10^9 \text{ N/m}^2) = 6.21 \times 10^{-5}$ (m/m is implied, dimensionless). (PDF uses $10^5$, likely a typo if E is in N/m$^2$ and F in N. If F is in kN and E in kN/m$^2$, then $1 \text{ kN} / (7.85 \times 10^{-5} \text{ m}^2) / (205 \times 10^6 \text{ kN/m}^2) = 6.21 \times 10^{-5}$. My calculation matches PDF answer with consistent units.)</li>
-            <li><strong>(c) Elongation ($\Delta L$):</strong> $\epsilon \times L = (6.21 \times 10^{-5}) \times 1.5 \text{ m} = 9.32 \times 10^{-5} \text{ m}$.</li>
-        </ul>
-
-        <h3>Example 2.2</h3>
-        <p>Tensile test on steel (D=30mm, L=200mm). Extension at 50kN load = 0.1mm. Diameter at failure = 20mm. Total extension = 50mm.</p>
-        <ul>
-            <li><strong>Given:</strong> $D_{\text{initial}}$ = 30 mm, $L_{\text{initial}}$ = 200 mm. At F = $50 \times 10^3$ N, $\Delta L$ = 0.1 mm.</li>
-            <li><strong>Area (initial, $A_0$):</strong> $\pi(30)^2/4 = 706.86 \text{ mm}^2 = 706.86 \times 10^{-6} \text{ m}^2$.</li>
-            <li><strong>Stress (at 50kN):</strong> $(50 \times 10^3 \text{ N}) / (706.86 \times 10^{-6} \text{ m}^2) = 7.07 \times 10^7 \text{ N/m}^2$.</li>
-            <li><strong>Strain (at 0.1mm extension):</strong> $\Delta L/L = 0.1 \text{ mm} / 200 \text{ mm} = 0.0005$.</li>
-            <li><strong>(a) Young's Modulus (E):</strong> $\text{Stress/Strain} = (7.07 \times 10^7 \text{ N/m}^2) / 0.0005 = 1.414 \times 10^{11} \text{ N/m}^2$ (or 141.4 GPa).</li>
-            <li><strong>(b) Percentage elongation (at fracture):</strong> $(\text{Total extension / Original length}) \times 100 = (50 \text{ mm} / 200 \text{ mm}) \times 100 = 25\%$.</li>
-            <li><strong>(c) Percentage decrease in area (at fracture):</strong>
-                <ul>
-                    <li>Area_final ($A_f$): $\pi(20)^2/4 = 314.16 \text{ mm}^2$.</li>
-                    <li>Decrease in area: $A_0 - A_f = 706.86 - 314.16 = 392.7 \text{ mm}^2$.</li>
-                    <li>$((A_0 - A_f) / A_0) \times 100 = (392.7 / 706.86) \times 100 = 55.55\%$.</li>
-                    <li>(Or using $(D^2 - d^2) / D^2 \times 100 = (30^2 - 20^2) / 30^2 \times 100 = (900 - 400) / 900 \times 100 = 500/900 \times 100 = 55.55\%$).</li>
-                </ul>
-            </li>
-        </ul>
-
-        <h3>Example 2.3</h3>
-        <p>Timber post, rectangular, one side twice the other. Compressive load 10kN, contracts 0.0521mm over 1m length. E_timber = 12 GPa. Find dimensions.</p>
-        <ul>
-            <li><strong>Given:</strong> F = $10 \times 10^3$ N, $\Delta L = 0.0521 \times 10^{-3}$ m, $L_0 = 1$ m, E = $12 \times 10^9 \text{ N/m}^2$.</li>
-            <li>Using $\Delta L = FL_0 / (AE)$ (Eq. 2.5).</li>
-            <li>$A = FL_0 / (\Delta L \times E) = (10 \times 10^3 \text{ N} \times 1 \text{ m}) / (0.0521 \times 10^{-3} \text{ m} \times 12 \times 10^9 \text{ N/m}^2) = 0.015994 \text{ m}^2 \approx 0.016 \text{ m}^2$.</li>
-            <li>Let sides be $b$ and $d$. $d = 2b$.</li>
-            <li>Area $A = b \times d = b \times 2b = 2b^2$.</li>
-            <li>$2b^2 = 0.016 \text{ m}^2$</li>
-            <li>$b^2 = 0.008 \text{ m}^2$</li>
-            <li>$b = \sqrt{0.008} \approx 0.0894 \text{ m}$ (or 89.4 mm).</li>
-            <li>$d = 2b \approx 2 \times 0.0894 \approx 0.1788 \text{ m}$ (or 178.8 mm).</li>
-        </ul>
-        <!-- END OF NEW CONTENT -->
+        <p>
+            This chapter provides the foundation for understanding <em>why</em> certain materials are chosen for specific applications and how their inherent properties influence which manufacturing processes can be used effectively. Remember the key definitions (stress, strain, E, yield strength, UTS, ductility, hardness, toughness, fatigue, creep) and the different types of materials.
+        </p>
+        <!-- END OF REFORMATTED CONTENT -->
 
     </main>
 
@@ -569,7 +823,14 @@
      <div id="fontSizeDisplay">10px</div> <!-- Initial size display -->
 
     <script>
-        // --- Formula Copy Function (Simplified Equation Number Removal) ---
+        // --- Formula Copy Function ---
+        // This function copies the LaTeX string from the data-latex attribute.
+        // It attempts to remove common equation number/identifier patterns
+        // (\quad (...), \qquad (...), or just (...)) from the *end* of the string.
+        // CRITICAL: The regex patterns used are specifically designed to match
+        // spacing and parentheses at the end and DO NOT include patterns like \color{...}.
+        // Therefore, \color{...} commands placed before the equation number
+        // annotation will be preserved during the copying process, fulfilling the user's requirement.
         function copyFormulaLatex(element, latexToProcess) {
             if (!latexToProcess) {
                 console.error('No LaTeX string passed to copy function.');
@@ -585,6 +846,7 @@
             //           \s*                  - optional space after \quad
             //           \([^)]+\)            - parentheses with at least one char inside
             //           \s*$                 - optional trailing whitespace then end of string
+            //    --> This pattern does NOT match \color{...}
             let cleanedLatex = latexStringToCopy.replace(/\s*\\q(?:uad|quad)\s*\([^)]+\)\s*$/, "");
 
             // 2. If the first pattern didn't change the string, try removing a simpler " (number)" from the end.
@@ -592,8 +854,9 @@
             //    Regex: \s+                  - one or more whitespace characters (ensures separation)
             //           \([^)]+\)            - parentheses with at least one char inside
             //           \s*$                 - optional trailing whitespace then end of string
+            //    --> This pattern also does NOT match \color{...}
             if (cleanedLatex === latexStringToCopy) { // Only if the first replacement did nothing
-                cleanedLatex = cleanedLatex.replace(/\s+\([^)]+\)\s*$/, "");
+                cleanedLatex = cleanedLateed.replace(/\s+\([^)]+\)\s*$/, "");
             }
 
             latexStringToCopy = cleanedLatex.trim(); // Final trim
@@ -602,7 +865,8 @@
                 element.classList.add('copied');
                 const originalTitle = element.title;
                 // Show the *actually copied* (cleaned) LaTeX in the temporary tooltip
-                element.title = 'Copied: ' + (latexStringToCopy || "[empty - only eq number?]");
+                // Note: If the *entire* string was just the eq number, this shows "[empty...]"
+                element.title = 'Copied: ' + (latexStringToCopy.substring(0, 50) + (latexStringToCopy.length > 50 ? '...' : '') || "[empty - only eq number?]");
                 setTimeout(() => {
                     element.classList.remove('copied');
                     element.title = originalTitle;
@@ -649,6 +913,9 @@
             const queueMathJaxTypeset = debounce(() => {
                 if (window.MathJax && MathJax.typesetPromise) {
                     console.log("Debounced: Typesetting MathJax");
+                    // Use typesetPromise on the body to update all math
+                    // Need to clear the typeset elements first to prevent duplicates/issues
+                    MathJax.typesetClear([bodyEl]);
                     MathJax.typesetPromise([bodyEl]).catch((err) => console.error('MathJax typesetting error:', err));
                  }
             }, mathJaxDebounceDelay);
@@ -668,6 +935,10 @@
                         display.classList.remove('visible');
                         displayTimeout = null;
                     }, 1500);
+
+                    // Re-queue MathJax typesetting after font size change
+                    queueMathJaxTypeset();
+
                     return true; // Indicate size changed
                 }
                 return false; // Indicate size hit limit
@@ -678,20 +949,27 @@
                 bodyEl.classList.remove('no-font-transition'); // Re-enable transition
                 if (holdTimeout) { clearTimeout(holdTimeout); holdTimeout = null; }
                 if (holdInterval) { clearInterval(holdInterval); holdInterval = null; }
-                queueMathJaxTypeset();
+                // A final typeset is queued on mouseup/mouseleave by queueMathJaxTypeset called in updateFontSize
             }
 
             // --- Start Holding Action ---
             function startHolding(direction) {
-                bodyEl.classList.add('no-font-transition'); 
-                updateFontSize(currentSize + direction * step); 
+                bodyEl.classList.add('no-font-transition');
+                // Perform the first step immediately
+                if (!updateFontSize(currentSize + direction * step)) {
+                    stopHolding(); // Stop if already at limit
+                    return;
+                }
+
                 if (holdTimeout) clearTimeout(holdTimeout);
                 if (holdInterval) clearInterval(holdInterval);
 
+                // Start repeating after initial delay
                 holdTimeout = setTimeout(() => {
                     holdInterval = setInterval(() => {
+                        // If updateFontSize returns false, we hit a limit, so stop holding
                         if (!updateFontSize(currentSize + direction * step)) {
-                            stopHolding(); 
+                            stopHolding();
                         }
                     }, repeatInterval);
                 }, initialHoldDelay);
@@ -699,40 +977,76 @@
 
             // --- Event Listeners ---
             if (minusBtn && plusBtn && display) {
-                minusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(-1); });
-                plusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(1); });
-                window.addEventListener('mouseup', stopHolding); 
-                minusBtn.addEventListener('mouseleave', stopHolding); 
-                plusBtn.addEventListener('mouseleave', stopHolding);
+                // Use pointerdown for hold sensitivity, prevent default text selection
+                minusBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startHolding(-1); });
+                plusBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startHolding(1); });
 
+                // Use pointerup/pointerleave on the window/buttons to stop holding
+                // pointerup captures release anywhere, pointerleave on button allows sliding off to stop
+                window.addEventListener('pointerup', stopHolding);
+                minusBtn.addEventListener('pointerleave', (e) => { if (e.buttons === 0) stopHolding(); }); // Only stop if button is not pressed
+                plusBtn.addEventListener('pointerleave', (e) => { if (e.buttons === 0) stopHolding(); }); // Only stop if button is not pressed
+
+                // Set initial font size and display
                 htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
                 display.textContent = currentSize + 'px';
                 console.log("Font control initialized. Current size:", currentSize);
+
+                 // Ensure MathJax typesets *after* initial load and any potential font size restoration
                  if (window.MathJax) {
                      MathJax.startup.promise.then(() => {
-                         console.log("Queueing initial MathJax typeset");
-                         queueMathJaxTypeset(); 
+                         console.log("Initial MathJax typesetting complete. Queueing final typeset for layout stability.");
+                         // A slight delay might help ensure all rendering is stable before final typeset
+                         setTimeout(() => queueMathJaxTypeset(), 50);
                      });
+                 } else {
+                      console.log("MathJax not found. Font size changes will not trigger typesetting.");
                  }
+
+                 // Restore font size from localStorage on page load (optional)
+                 const savedSize = localStorage.getItem('baseFontSize');
+                 if (savedSize) {
+                    const size = parseInt(savedSize, 10);
+                    if (!isNaN(size) && size >= minSize && size <= maxSize) {
+                         currentSize = size; // Update internal state
+                         htmlEl.style.setProperty('--base-font-size', currentSize + 'px'); // Apply immediately
+                         display.textContent = currentSize + 'px'; // Update display
+                         console.log("Restored font size from localStorage:", currentSize);
+                         // MathJax typesetting is handled by the initial load promise or the debounce
+                    }
+                 }
+
+                 // Save font size to localStorage when updated
+                 const originalUpdateFontSize = updateFontSize;
+                 updateFontSize = function(newSize) {
+                     const changed = originalUpdateFontSize.call(this, newSize);
+                     if (changed) {
+                         localStorage.setItem('baseFontSize', currentSize);
+                     }
+                     return changed;
+                 };
+
+
             } else {
                 console.error("Font control elements not found!");
             }
 
             // --- Horizontal Scroll Redirect for Formula Containers ---
+            // This makes vertical mouse wheel scrolling cause horizontal scrolling
+            // when the container has horizontal overflow.
              const formulaContainers = document.querySelectorAll('.formula-container');
              formulaContainers.forEach(container => {
                  container.addEventListener('wheel', function(event) {
+                     // Check if there's horizontal overflow
                      const isScrollableHorizontally = this.scrollWidth > this.clientWidth;
-                     if (isScrollableHorizontally) {
-                         if (event.deltaY !== 0) { 
-                             event.preventDefault();
-                             this.scrollLeft += event.deltaY;
-                         }
+                     // Check if the user is scrolling vertically
+                     if (isScrollableHorizontally && event.deltaY !== 0) {
+                         event.preventDefault(); // Prevent default vertical scroll
+                         this.scrollLeft += event.deltaY; // Scroll horizontally instead
                      }
-                 }, { passive: false });
+                 }, { passive: false }); // Use passive: false because we call preventDefault
              });
              console.log("Horizontal scroll override applied to formula containers.");
-
         });
     </script>
 
