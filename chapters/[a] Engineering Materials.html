@@ -198,10 +198,22 @@
             <li><strong>Compressive load (Fig. 2.2b):</strong> Equal and opposite forces pushing into a body, causing shortening. The internal resisting stress is <strong>compressive stress</strong>.</li>
             <li><strong>Shear load (Fig. 2.2c):</strong> Opposite forces acting radially across a section. The internal resisting stress is <strong>shear stress</strong> (or transverse stress).</li>
             <li><strong>Stress (s or $\sigma$):</strong> Force per unit area. SI unit: N/m$^2$ (Pascal, Pa).
-                Stress ($s$) = $F / A_0$ (Eq. 2.1) where F is force, $A_0$ is original cross-sectional area.
+                <div class="formula-container"
+                     onclick="copyFormulaLatex(this, this.dataset.latex)"
+                     data-latex="s = \frac{F}{A_0} \quad (Eq. 2.1)"
+                     title="Click to copy LaTeX (equation number will be removed)">
+                     $$ s = \frac{F}{A_0} \quad (Eq. 2.1) $$
+                </div>
+                where F is force, $A_0$ is original cross-sectional area.
             </li>
             <li><strong>Strain (e or $\epsilon$):</strong> Measure of deformation; ratio of change in dimension to original dimension (dimensionless, e.g., mm/mm).
-                Strain ($e$) = $\Delta L / L_0$ (Eq. 2.2) where $\Delta L$ is change in length, $L_0$ is original length.
+                <div class="formula-container"
+                     onclick="copyFormulaLatex(this, this.dataset.latex)"
+                     data-latex="e = \frac{\Delta L}{L_0} \quad (Eq. 2.2)"
+                     title="Click to copy LaTeX (equation number will be removed)">
+                     $$ e = \frac{\Delta L}{L_0} \quad (Eq. 2.2) $$
+                </div>
+                where $\Delta L$ is change in length, $L_0$ is original length.
             </li>
             <li><strong>Deformation under tensile load (Figure 2.3):</strong> A cylinder of original diameter $D_0$ and length $L_0$, when pulled by force F, elongates to $L_1$ and its diameter contracts to $D_1$.
                 <ul>
@@ -221,8 +233,29 @@
                 <ul>
                     <li><strong>Proportional Limit (P):</strong> Point up to which stress is directly proportional to strain (linear relationship).</li>
                     <li><strong>Elastic Limit (Q):</strong> Maximum stress a material can withstand without permanent deformation. Often close to P.</li>
-                    <li><strong>Young's Modulus (E) / Modulus of Elasticity:</strong> Ratio of stress to strain in the linear elastic region. It is the slope of the linear portion. $E = \text{Stress / Strain} = \sigma / \epsilon$ (Eq. 2.3). $E = (F/A_0) / (\Delta L/L_0) = FL_0 / (A_0\Delta L)$ (Eq. 2.4). It measures <strong>stiffness</strong>: resistance to elastic deformation. A stiff material has a high E.</li>
-                    <li>Elongation $\Delta L = FL_0 / (A_0E)$ (Eq. 2.5).</li>
+                    <li><strong>Young's Modulus (E) / Modulus of Elasticity:</strong> Ratio of stress to strain in the linear elastic region. It is the slope of the linear portion.
+                        <div class="formula-container"
+                             onclick="copyFormulaLatex(this, this.dataset.latex)"
+                             data-latex="E = \frac{\text{Stress}}{\text{Strain}} = \frac{\sigma}{\epsilon} \quad (Eq. 2.3)"
+                             title="Click to copy LaTeX (equation number will be removed)">
+                             $$ E = \frac{\text{Stress}}{\text{Strain}} = \frac{\sigma}{\epsilon} \quad (Eq. 2.3) $$
+                        </div>
+                        <div class="formula-container"
+                             onclick="copyFormulaLatex(this, this.dataset.latex)"
+                             data-latex="E = \frac{F/A_0}{\Delta L/L_0} = \frac{FL_0}{A_0\Delta L} \quad (Eq. 2.4)"
+                             title="Click to copy LaTeX (equation number will be removed)">
+                             $$ E = \frac{F/A_0}{\Delta L/L_0} = \frac{FL_0}{A_0\Delta L} \quad (Eq. 2.4) $$
+                        </div>
+                        It measures <strong>stiffness</strong>: resistance to elastic deformation. A stiff material has a high E.
+                    </li>
+                    <li>Elongation
+                        <div class="formula-container"
+                             onclick="copyFormulaLatex(this, this.dataset.latex)"
+                             data-latex="\Delta L = \frac{FL_0}{A_0E} \quad (Eq. 2.5)"
+                             title="Click to copy LaTeX (equation number will be removed)">
+                             $$ \Delta L = \frac{FL_0}{A_0E} \quad (Eq. 2.5) $$
+                        </div>
+                    </li>
                 </ul>
             </li>
             <li><strong>Plastic Region (Right of P or Q):</strong> Material undergoes permanent deformation.
@@ -296,7 +329,13 @@
             <li>Poisson's ratio is the ratio of transverse strain ($\epsilon_t$) to axial strain ($\epsilon_a$) within the proportionality limit. It's a material constant.
                 <p>Axial strain $\epsilon_a = \delta/L$</p>
                 <p>Transverse strain $\epsilon_t = \delta b/b$ (where b is original transverse dimension, $\delta b$ is change in b)</p>
-                <p>Poisson's ratio $v = -\epsilon_t / \epsilon_a$ (Eq. 2.6) (The negative sign indicates that axial elongation causes transverse contraction, and vice versa).</p>
+                <div class="formula-container"
+                     onclick="copyFormulaLatex(this, this.dataset.latex)"
+                     data-latex="\nu = -\frac{\epsilon_t}{\epsilon_a} \quad (Eq. 2.6)"
+                     title="Click to copy LaTeX (equation number will be removed)">
+                     $$ \nu = -\frac{\epsilon_t}{\epsilon_a} \quad (Eq. 2.6) $$
+                </div>
+                (The negative sign indicates that axial elongation causes transverse contraction, and vice versa).
             </li>
         </ul>
 
@@ -349,8 +388,24 @@
         <ul>
             <li><strong>Factor of safety (FoS)</strong> or <strong>safety factor:</strong> A number used to achieve this.
                 <ul>
-                    <li>$FoS = \text{Yield stress / Design stress}$ (for ductile materials) (Eq. 2.7)</li>
-                    <li>$FoS = \text{Ultimate stress / Design stress}$ (for brittle materials) (Eq. 2.8)</li>
+                    <li>
+                        <div class="formula-container"
+                             onclick="copyFormulaLatex(this, this.dataset.latex)"
+                             data-latex="\text{FoS} = \frac{\text{Yield stress}}{\text{Design stress}} \quad (Eq. 2.7)"
+                             title="Click to copy LaTeX (equation number will be removed)">
+                             $$ \text{FoS} = \frac{\text{Yield stress}}{\text{Design stress}} \quad (Eq. 2.7) $$
+                        </div>
+                        (for ductile materials)
+                    </li>
+                    <li>
+                        <div class="formula-container"
+                             onclick="copyFormulaLatex(this, this.dataset.latex)"
+                             data-latex="\text{FoS} = \frac{\text{Ultimate stress}}{\text{Design stress}} \quad (Eq. 2.8)"
+                             title="Click to copy LaTeX (equation number will be removed)">
+                             $$ \text{FoS} = \frac{\text{Ultimate stress}}{\text{Design stress}} \quad (Eq. 2.8) $$
+                        </div>
+                        (for brittle materials)
+                    </li>
                 </ul>
             </li>
             <li><strong>Example:</strong> If design criteria stress is 500 N/m$^2$ and yield strength is 1000 N/m$^2$, FoS = 2. This accounts for uncertainties in properties, wear, surface finish, manufacturing inaccuracies.</li>
@@ -514,20 +569,43 @@
      <div id="fontSizeDisplay">10px</div> <!-- Initial size display -->
 
     <script>
-        // --- Formula Copy Function (Corrected) ---
-        function copyFormulaLatex(element, latexStringToCopy) { 
-            if (!latexStringToCopy) { 
+        // --- Formula Copy Function (Simplified Equation Number Removal) ---
+        function copyFormulaLatex(element, latexToProcess) {
+            if (!latexToProcess) {
                 console.error('No LaTeX string passed to copy function.');
                 return;
             }
 
-            navigator.clipboard.writeText(latexStringToCopy).then(() => { 
+            let latexStringToCopy = latexToProcess.trim(); // Start with the original string, trimmed.
+
+            // 1. Attempt to remove \quad (number) or \qquad (number) from the end.
+            //    This pattern is common for AMS tags or manual equation numbers.
+            //    Regex: \s*                  - optional leading whitespace
+            //           \\q(?:uad|quad)     - \quad or \qquad
+            //           \s*                  - optional space after \quad
+            //           \([^)]+\)            - parentheses with at least one char inside
+            //           \s*$                 - optional trailing whitespace then end of string
+            let cleanedLatex = latexStringToCopy.replace(/\s*\\q(?:uad|quad)\s*\([^)]+\)\s*$/, "");
+
+            // 2. If the first pattern didn't change the string, try removing a simpler " (number)" from the end.
+            //    This handles cases where the equation number is just parenthesized at the end, preceded by a space.
+            //    Regex: \s+                  - one or more whitespace characters (ensures separation)
+            //           \([^)]+\)            - parentheses with at least one char inside
+            //           \s*$                 - optional trailing whitespace then end of string
+            if (cleanedLatex === latexStringToCopy) { // Only if the first replacement did nothing
+                cleanedLatex = cleanedLatex.replace(/\s+\([^)]+\)\s*$/, "");
+            }
+
+            latexStringToCopy = cleanedLatex.trim(); // Final trim
+
+            navigator.clipboard.writeText(latexStringToCopy).then(() => {
                 element.classList.add('copied');
                 const originalTitle = element.title;
-                element.title = 'Copied: ' + latexStringToCopy; 
+                // Show the *actually copied* (cleaned) LaTeX in the temporary tooltip
+                element.title = 'Copied: ' + (latexStringToCopy || "[empty - only eq number?]");
                 setTimeout(() => {
                     element.classList.remove('copied');
-                    element.title = originalTitle; 
+                    element.title = originalTitle;
                  }, 1500);
             }).catch(err => {
                 console.error('Failed to copy LaTeX: ', err);
@@ -607,14 +685,13 @@
             function startHolding(direction) {
                 bodyEl.classList.add('no-font-transition'); 
                 updateFontSize(currentSize + direction * step); 
-                // Clear previous timers to prevent multiple intervals if mousedown event fires rapidly
                 if (holdTimeout) clearTimeout(holdTimeout);
                 if (holdInterval) clearInterval(holdInterval);
 
                 holdTimeout = setTimeout(() => {
                     holdInterval = setInterval(() => {
                         if (!updateFontSize(currentSize + direction * step)) {
-                            stopHolding(); // Stop if size limit is reached
+                            stopHolding(); 
                         }
                     }, repeatInterval);
                 }, initialHoldDelay);
@@ -624,19 +701,17 @@
             if (minusBtn && plusBtn && display) {
                 minusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(-1); });
                 plusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(1); });
-                window.addEventListener('mouseup', stopHolding); // Stop on release anywhere
-                minusBtn.addEventListener('mouseleave', stopHolding); // Stop if mouse leaves while holding
+                window.addEventListener('mouseup', stopHolding); 
+                minusBtn.addEventListener('mouseleave', stopHolding); 
                 plusBtn.addEventListener('mouseleave', stopHolding);
 
-                // Set initial state
                 htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
                 display.textContent = currentSize + 'px';
                 console.log("Font control initialized. Current size:", currentSize);
-                 // Initial MathJax typeset on load (after ready)
                  if (window.MathJax) {
                      MathJax.startup.promise.then(() => {
                          console.log("Queueing initial MathJax typeset");
-                         queueMathJaxTypeset(); // Use the debounced version even initially
+                         queueMathJaxTypeset(); 
                      });
                  }
             } else {
@@ -649,8 +724,7 @@
                  container.addEventListener('wheel', function(event) {
                      const isScrollableHorizontally = this.scrollWidth > this.clientWidth;
                      if (isScrollableHorizontally) {
-                         // Only prevent vertical scroll IF we are actually going to scroll horizontally
-                         if (event.deltaY !== 0) { // Check if there's vertical scroll input
+                         if (event.deltaY !== 0) { 
                              event.preventDefault();
                              this.scrollLeft += event.deltaY;
                          }
