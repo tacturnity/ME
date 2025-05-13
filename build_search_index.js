@@ -1,7 +1,7 @@
 // build_search_index.js
 const fs = require('fs').promises;
 const path = require('path');
-const cheerio = require('cheerio'); // For robust HTML parsing
+const cheerio = require('cheerio');
 
 // --- CONFIGURATION ---
 const CHAPTERS_DIR_NAME = 'chapters';
@@ -33,18 +33,48 @@ async function processDirectory(directoryName, relativeLinkPathPrefix) {
                     console.log(`Indexing: ${filePath}`);
                     const htmlContent = await fs.readFile(filePath, 'utf-8');
                     const $ = cheerio.load(htmlContent);
-
-                    // --- MODIFIED: Specifically target the <main> tag ---
                     const mainElement = $('main');
-                    let textContent = '';
+                    let mainTextContent = '';
+                    const headingsData = [];
+
                     if (mainElement.length > 0) {
-                        textContent = mainElement.text(); // Get text content of the <main> element
+                        // To get positions, we need to iterate and build text content progressively
+                        let currentPosition = 0;
+                        mainElement.contents().each(function() {
+                            const node = $(this);
+                            let nodeText = '';
+
+                            if (this.type === 'tag' && ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(this.tagName.toLowerCase())) {
+                                nodeText = node.text().replace(/\s\s+/g, ' ').trim();
+                                if (nodeText) {
+                                    headingsData.push({
+                                        level: this.tagName.toLowerCase(),
+                                        text: nodeText,
+                                        position: currentPosition // Position at the start of this heading's text
+                                    });
+                                }
+                            } else {
+                                // For other elements, just get their text
+                                nodeText = node.text().replace(/\s\s+/g, ' ').trim();
+                            }
+                            
+                            if (nodeText) {
+                                // Append text and a space if it's not just whitespace itself
+                                // and if mainTextContent isn't empty and doesn't already end with a space
+                                if (mainTextContent.length > 0 && !mainTextContent.endsWith(' ')) {
+                                    mainTextContent += ' ';
+                                    currentPosition += 1;
+                                }
+                                mainTextContent += nodeText;
+                                currentPosition += nodeText.length;
+                            }
+                        });
+                        mainTextContent = mainTextContent.replace(/\s\s+/g, ' ').trim(); // Final cleanup
+
                     } else {
                         console.warn(`Warning: <main> tag not found in ${fileName}. Indexing full body text as fallback.`);
-                        // Fallback to body if main is not found, or keep it empty
-                        textContent = $('body').text(); // Or: textContent = ''; if you only want <main>
+                        mainTextContent = $('body').text().replace(/\s\s+/g, ' ').trim();
                     }
-                    textContent = textContent.replace(/\s\s+/g, ' ').trim(); // Normalize whitespace
 
                     const displayTitle = generateDisplayTitleFromName(fileName);
                     const linkPath = `${relativeLinkPathPrefix}/${encodeURIComponent(fileName)}`;
@@ -54,21 +84,17 @@ async function processDirectory(directoryName, relativeLinkPathPrefix) {
                         name: fileName,
                         title: displayTitle,
                         path: linkPath,
-                        textContent: textContent.toLowerCase()
+                        textContent: mainTextContent.toLowerCase(), // Store lowercase for search
+                        headings: headingsData // Add headings data
                     });
                 }
             }
         }
-    } catch (err) {
-        if (err.code === 'ENOENT') {
-            console.warn(`Warning: Directory "${dirPath}" not found. Skipping.`);
-        } else {
-            console.error(`Error processing directory ${dirPath}:`, err);
-        }
-    }
+    } catch (err) { /* ... error handling ... */ }
     return indexedItems;
 }
 
+// ... (rest of buildIndex and the self-invoking function remain the same as before)
 async function buildIndex() {
     console.log('Starting search index build...');
     let allIndexedFiles = [];

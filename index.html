@@ -388,54 +388,124 @@
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && searchOverlay.classList.contains('visible')) closeSearchModal(); });
 
             // --- Search Execution Logic (mostly unchanged) ---
-            function generateSnippet(text, keyword, contextLength = 70) {
-                const lowerKeyword = keyword.toLowerCase();
-                let matchIndex = text.indexOf(lowerKeyword); // text is already lowercased from index
-                if (matchIndex === -1) return "";
-                let start = Math.max(0, matchIndex - contextLength);
-                let end = Math.min(text.length, matchIndex + keyword.length + contextLength);
-                if (start > 0) { const spaceBefore = text.lastIndexOf(' ', start); if (spaceBefore !== -1 && spaceBefore > start - 20) start = spaceBefore + 1; }
-                if (end < text.length) { const spaceAfter = text.indexOf(' ', end); if (spaceAfter !== -1 && spaceAfter < end + 20) end = spaceAfter; }
-                let snippetContent = text.substring(start, end);
-                if (start > 0) snippetContent = "..." + snippetContent;
-                if (end < text.length && end !== text.length -1) snippetContent = snippetContent + "...";
-                const regex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-                return snippetContent.replace(regex, '<mark>$&</mark>');
+                // ... (inside your <script> tag in index.html) ...
+
+            // --- Search Execution Logic ---
+            function findAssociatedHeading(headingsArray, matchIndex) {
+                if (!headingsArray || headingsArray.length === 0) return "";
+
+                let closestHeading = null;
+                for (let i = headingsArray.length - 1; i >= 0; i--) {
+                    if (headingsArray[i].position <= matchIndex) {
+                        closestHeading = headingsArray[i];
+                        break;
+                    }
+                }
+                // Extract just the number part like "3.1" or "3.4.1"
+                if (closestHeading && closestHeading.text) {
+                    const match = closestHeading.text.match(/^([\d\.]+)/); // Match numbers and dots at the beginning
+                    if (match && match[1]) {
+                        return `Section ${match[1]}`;
+                    }
+                    // Fallback to full heading text if no number prefix
+                    // return closestHeading.text.substring(0, 30) + (closestHeading.text.length > 30 ? "..." : "");
+                }
+                return ""; // No suitable heading found or no number prefix
             }
+
+            function generateSnippet(itemTextContent, keyword, headings, contextLength = 70) { // Added headings parameter
+                const lowerKeyword = keyword.toLowerCase();
+                // itemTextContent is already lowercased from the index
+                let matchIndex = itemTextContent.indexOf(lowerKeyword);
+
+                if (matchIndex === -1) return { snippet: "", section: "" };
+
+                let start = Math.max(0, matchIndex - contextLength);
+                let end = Math.min(itemTextContent.length, matchIndex + keyword.length + contextLength);
+
+                if (start > 0) { const spaceBefore = itemTextContent.lastIndexOf(' ', start); if (spaceBefore !== -1 && spaceBefore > start - 20) start = spaceBefore + 1; }
+                if (end < itemTextContent.length) { const spaceAfter = itemTextContent.indexOf(' ', end); if (spaceAfter < itemTextContent.length -1 && spaceAfter !== -1 && spaceAfter < end + 20) end = spaceAfter; }
+
+                let snippetContent = itemTextContent.substring(start, end);
+                if (start > 0) snippetContent = "..." + snippetContent;
+                if (end < itemTextContent.length && end !== itemTextContent.length -1) snippetContent = snippetContent + "...";
+
+                const regex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+                const highlightedSnippet = snippetContent.replace(regex, '<mark>$&</mark>');
+
+                const sectionInfo = findAssociatedHeading(headings, matchIndex);
+
+                return { snippet: highlightedSnippet, section: sectionInfo };
+            }
+
             function performSearch() {
                 const query = searchQueryInput.value.trim();
                 const scope = searchScopeSelect.value;
-                searchResultsList.innerHTML = '';
+                searchResultsList.innerHTML = ''; // Clear previous results
+
                 if (executeSearchBtn.disabled || searchableContentStore.length === 0) {
                     searchInfoMsg.textContent = "Search is currently unavailable or no data loaded.";
                     searchInfoMsg.style.display = 'block'; return;
                 }
-                if (!query) { searchInfoMsg.textContent = "Please enter a search term."; searchInfoMsg.style.display = 'block'; return; }
-                searchInfoMsg.style.display = 'none'; let resultsFound = 0;
-                const itemsToSearch = scope === 'all' ? searchableContentStore : searchableContentStore.filter(item => item.path === scope);
+                if (!query) {
+                    searchInfoMsg.textContent = "Please enter a search term.";
+                    searchInfoMsg.style.display = 'block'; return;
+                }
+
+                searchInfoMsg.style.display = 'none';
+                let resultsFound = 0;
+
+                const itemsToSearch = scope === 'all'
+                    ? searchableContentStore
+                    : searchableContentStore.filter(item => item.path === scope);
+
                 itemsToSearch.forEach(item => {
+                    // item.textContent is already lowercase from the index
                     if (item.textContent.includes(query.toLowerCase())) {
-                        const snippetText = generateSnippet(item.textContent, query);
+                        // Get snippet and section info
+                        const { snippet, section } = generateSnippet(item.textContent, query, item.headings); // Pass item.headings
+
                         const li = document.createElement('li');
                         const a = document.createElement('a');
-                        a.href = item.path; a.textContent = item.title; a.target = "_blank";
+                        a.href = item.path; // Path from index
+                        a.textContent = item.title; // Title from index
+                        if (section) { // Add section info to the link text if available
+                            a.textContent += ` (${section})`;
+                        }
+                        a.target = "_blank";
                         li.appendChild(a);
-                        if (snippetText) { const p = document.createElement('p'); p.classList.add('snippet'); p.innerHTML = snippetText; li.appendChild(p); }
-                        searchResultsList.appendChild(li); resultsFound++;
+
+                        if (snippet) {
+                            const p = document.createElement('p');
+                            p.classList.add('snippet');
+                            p.innerHTML = snippet; // innerHTML because of <mark>
+                            li.appendChild(p);
+                        }
+                        searchResultsList.appendChild(li);
+                        resultsFound++;
                     }
                 });
-                if (resultsFound === 0) searchInfoMsg.textContent = `No results found for "${query}"` + (scope === 'all' ? "." : ` in "${searchScopeSelect.options[searchScopeSelect.selectedIndex].text}".`);
-                else searchInfoMsg.textContent = `${resultsFound} result(s) found.`;
+
+                if (resultsFound === 0) {
+                    searchInfoMsg.textContent = `No results found for "${query}"` + (scope === 'all' ? "." : ` in "${searchScopeSelect.options[searchScopeSelect.selectedIndex].text}".`);
+                } else {
+                    searchInfoMsg.textContent = `${resultsFound} result(s) found.`;
+                }
                 searchInfoMsg.style.display = 'block';
             }
+    // ... (rest of your script)
             executeSearchBtn.addEventListener('click', performSearch);
             searchQueryInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
 
             // --- Page Initialization ---
-            async function initializePage() {
-                startFactRotation();
+                // ... (inside your <script> tag in index.html, within initializePage) ...
 
-                // Promise.allSettled to ensure all fetches complete, regardless of individual success/failure
+                    async function initializePage() {
+                startFactRotation();
+                const minLoaderTime = 3000; // 3 seconds in milliseconds
+                const startTime = Date.now(); // Record start time
+
+                // Promise.allSettled to ensure all fetches complete
                 const results = await Promise.allSettled([
                     loadSearchIndex(),
                     fetchNavList('chapter-list', chaptersApiPath, chaptersRelativeLinkPath, 'Chapters'),
@@ -444,25 +514,38 @@
 
                 stopFactRotation();
 
-                // Check if search index loaded successfully to enable search UI
-                const searchIndexResult = results[0];
-                if (searchIndexResult.status === 'fulfilled' && searchIndexResult.value === true && searchableContentStore.length > 0) {
-                    executeSearchBtn.disabled = false;
-                    searchQueryInput.disabled = false;
-                    searchScopeSelect.disabled = false;
-                    searchInfoMsg.textContent = "Type a query and press Search, or press Enter.";
-                } else if (searchIndexResult.status === 'fulfilled' && searchIndexResult.value === true && searchableContentStore.length === 0) {
-                    searchInfoMsg.textContent = "Search data loaded, but it's empty. No items to search.";
-                } else {
-                     // Error message for search already handled in loadSearchIndex
-                    searchInfoMsg.textContent = "Search initialization failed. Please try refreshing.";
-                }
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = minLoaderTime - elapsedTime;
 
-                // Hide loader and show content
-                if (pageLoader) pageLoader.classList.add('loaded');
-                document.body.classList.remove('loading');
-                console.log("Page initialization complete. Loader hidden.");
+                // Function to finalize page setup
+                const finalizeSetup = () => {
+                    // Check if search index loaded successfully to enable search UI
+                    const searchIndexResult = results[0];
+                    if (searchIndexResult.status === 'fulfilled' && searchIndexResult.value === true && searchableContentStore.length > 0) {
+                        executeSearchBtn.disabled = false;
+                        searchQueryInput.disabled = false;
+                        searchScopeSelect.disabled = false;
+                        searchInfoMsg.textContent = "Type a query and press Search, or press Enter.";
+                    } else if (searchIndexResult.status === 'fulfilled' && searchIndexResult.value === true && searchableContentStore.length === 0) {
+                        searchInfoMsg.textContent = "Search data loaded, but it's empty. No items to search.";
+                    } else {
+                        searchInfoMsg.textContent = "Search initialization failed. Please try refreshing.";
+                    }
+
+                    // Hide loader and show content
+                    if (pageLoader) pageLoader.classList.add('loaded');
+                    document.body.classList.remove('loading');
+                    console.log("Page initialization complete. Loader hidden.");
+                };
+
+                if (remainingTime > 0) {
+                    console.log(`Content loaded quickly. Waiting an additional ${remainingTime}ms for minimum loader display.`);
+                    setTimeout(finalizeSetup, remainingTime);
+                } else {
+                    finalizeSetup();
+                }
             }
+    // ... (rest of your script) ...
 
             initializePage();
         });
