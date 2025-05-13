@@ -10,389 +10,150 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Embedded CSS Styles -->
     <style>
         /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Keyframes for Animations (FadeIn, PopIn) */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* Keyframes */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.98) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        @keyframes searchModalEnter { from { opacity: 0; transform: translateY(-30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes searchModalLeave { from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(-30px) scale(0.95); } }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        @keyframes popIn {
-             from { opacity: 0; transform: scale(0.98) translateY(8px); }
-             to { opacity: 1; transform: scale(1) translateY(0); }
-        }
 
-        @keyframes searchModalEnter {
-            from { opacity: 0; transform: translateY(-30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        /* --- PAGE LOADER STYLES --- */
+        #page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a1a; /* Match body background */
+            z-index: 2000; /* Highest */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.5s ease-out, visibility 0s linear 0.5s;
+            visibility: visible;
         }
-        @keyframes searchModalLeave {
-            from { opacity: 1; transform: translateY(0) scale(1); }
-            to { opacity: 0; transform: translateY(-30px) scale(0.95); }
+        #page-loader.loaded {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-spinner {
+            border: 6px solid #333; /* Darker circle */
+            border-top: 6px solid #a6e3a1; /* Accent color for spinner part */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 25px;
+        }
+        .loader-text {
+            font-family: 'Roboto Mono', monospace;
+            color: #cccccc;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .loader-fact {
+            font-family: 'Roboto Mono', monospace;
+            color: #888888;
+            font-size: 0.9em;
+            font-style: italic;
+            max-width: 80%;
+            text-align: center;
+        }
+        /* Hide main content and footer initially */
+        body.loading header,
+        body.loading main,
+        body.loading footer,
+        body.loading #search-icon-container {
+            opacity: 0;
+            visibility: hidden;
+        }
+        body:not(.loading) header,
+        body:not(.loading) main,
+        body:not(.loading) footer,
+        body:not(.loading) #search-icon-container {
+            opacity: 1;
+            visibility: visible;
+            /* You can add fade-in animation here if desired after loader hides */
         }
 
 
         /* Fonts & Base Styling */
         body {
             font-family: 'Roboto Mono', monospace;
-            color: #e0e0e0; /* Light grey text for readability */
+            color: #e0e0e0;
             line-height: 1.7;
             padding: 25px;
-            background-color: #1a1a1a; /* Simple dark background */
+            background-color: #1a1a1a;
             min-height: 100vh;
         }
-
         /* Headings */
-        h1, h2 {
-            font-family: 'Roboto Mono', monospace;
-            text-align: center;
-            margin-bottom: 1.5em;
-        }
-
-        h1 {
-            font-size: 2.4em;
-            color: #ffffff;
-            font-weight: 700;
-            padding-bottom: 12px;
-            margin-top: 1.5em;
-            margin-bottom: 1.5em;
-            border-bottom: 2px solid #ffffff;
-            animation: fadeIn 0.8s ease-out both;
-            animation-delay: 0.1s;
-            letter-spacing: -0.5px;
-        }
-
-        h2 {
-            font-size: 1.6em;
-            color: #cccccc;
-            font-weight: 500;
-            margin-top: 2.5em;
-            margin-bottom: 1.8em;
-            animation: fadeIn 0.8s ease-out both;
-            animation-delay: 0.3s;
-        }
-
-        h2:first-of-type {
-            margin-top: 0;
-        }
-
+        h1, h2 { font-family: 'Roboto Mono', monospace; text-align: center; margin-bottom: 1.5em; }
+        h1 { font-size: 2.4em; color: #ffffff; font-weight: 700; padding-bottom: 12px; margin-top: 1.5em; margin-bottom: 1.5em; border-bottom: 2px solid #ffffff; animation: fadeIn 0.8s ease-out both; animation-delay: 0.1s; letter-spacing: -0.5px; }
+        h2 { font-size: 1.6em; color: #cccccc; font-weight: 500; margin-top: 2.5em; margin-bottom: 1.8em; animation: fadeIn 0.8s ease-out both; animation-delay: 0.3s; }
+        h2:first-of-type { margin-top: 0; }
 
         /* Main Content Area */
-        main {
-            max-width: 800px;
-            margin: 40px auto;
-            background-color: rgba(30, 30, 30, 0.85);
-            padding: 35px 45px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: fadeIn 0.8s ease-out both;
-            animation-delay: 0.2s;
-            position: relative; /* For potential relative positioning if needed */
-        }
-
+        main { max-width: 800px; margin: 40px auto; background-color: rgba(30, 30, 30, 0.85); padding: 35px 45px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); border: 1px solid rgba(255, 255, 255, 0.1); animation: fadeIn 0.8s ease-out both; animation-delay: 0.2s; }
         /* List Styling */
-        #chapter-list,
-        #tutorial-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        #chapter-list li,
-        #tutorial-list li {
-            background-color: rgba(45, 45, 45, 0.9);
-            margin-bottom: 14px;
-            border-radius: 6px;
-            transition: background-color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
-            border-left: 4px solid transparent;
-            opacity: 0; /* Start hidden for animation */
-        }
-
-        #chapter-list li.loaded,
-        #tutorial-list li.loaded {
-             animation: popIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-
-        #chapter-list li:hover,
-        #tutorial-list li:hover {
-            background-color: rgba(60, 60, 60, 0.95);
-            transform: translateY(-3px);
-            border-left-color: #a6e3a1;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
-        }
-
-        #chapter-list a,
-        #tutorial-list a {
-            display: block;
-            padding: 15px 25px;
-            text-decoration: none;
-            color: #f5f5f5;
-            font-weight: 500;
-            font-size: 1.1em;
-            transition: color 0.3s ease, transform 0.25s ease;
-            letter-spacing: 0.5px;
-        }
-
-        #chapter-list li:hover a,
-        #tutorial-list li:hover a {
-            color: #a6e3a1;
-            transform: translateX(4px);
-        }
-
+        #chapter-list, #tutorial-list { list-style: none; padding-left: 0; }
+        #chapter-list li, #tutorial-list li { background-color: rgba(45, 45, 45, 0.9); margin-bottom: 14px; border-radius: 6px; transition: background-color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease, border-left-color 0.3s ease; border-left: 4px solid transparent; opacity: 0; }
+        #chapter-list li.loaded, #tutorial-list li.loaded { animation: popIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        #chapter-list li:hover, #tutorial-list li:hover { background-color: rgba(60, 60, 60, 0.95); transform: translateY(-3px); border-left-color: #a6e3a1; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); }
+        #chapter-list a, #tutorial-list a { display: block; padding: 15px 25px; text-decoration: none; color: #f5f5f5; font-weight: 500; font-size: 1.1em; transition: color 0.3s ease, transform 0.25s ease; letter-spacing: 0.5px; }
+        #chapter-list li:hover a, #tutorial-list li:hover a { color: #a6e3a1; transform: translateX(4px); }
         /* Message Styling */
-        .loading-message,
-        .error-message,
-        .info-message { /* Added info-message */
-            opacity: 1;
-            color: #a0a0a0;
-            font-style: italic;
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(45, 45, 45, 0.7) !important;
-            border-radius: 6px;
-            border-left: none !important;
-            animation: fadeIn 0.6s ease-out both;
-            animation-delay: 0.5s;
-        }
-
-        .error-message {
-             color: #dcdcdc !important;
-             font-weight: 500;
-             font-style: normal;
-             background-color: rgba(80, 80, 80, 0.2) !important;
-             border: 1px solid rgba(220, 220, 220, 0.2);
-        }
-
+        .loading-message, .error-message, .info-message { opacity: 1; color: #a0a0a0; font-style: italic; text-align: center; padding: 20px; background-color: rgba(45, 45, 45, 0.7) !important; border-radius: 6px; border-left: none !important; animation: fadeIn 0.6s ease-out both; animation-delay: 0.5s; }
+        .error-message { color: #dcdcdc !important; font-weight: 500; font-style: normal; background-color: rgba(80, 80, 80, 0.2) !important; border: 1px solid rgba(220, 220, 220, 0.2); }
         /* Footer */
-        footer {
-            text-align: center;
-            margin-top: 70px;
-            padding-bottom: 35px;
-            font-size: 0.85em;
-            color: #888888;
-             animation: fadeIn 1s ease-out both;
-             animation-delay: 0.7s;
-        }
+        footer { text-align: center; margin-top: 70px; padding-bottom: 35px; font-size: 0.85em; color: #888888; animation: fadeIn 1s ease-out both; animation-delay: 0.7s; }
 
-        /* --- SEARCH STYLES --- */
-        #search-icon-container {
-            position: fixed;
-            top: 25px;
-            right: 30px;
-            z-index: 1001; /* Above search overlay's backdrop */
-            cursor: pointer;
-            padding: 10px;
-            background-color: rgba(45, 45, 45, 0.8);
-            border-radius: 50%;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        #search-icon-container:hover {
-            background-color: rgba(60, 60, 60, 0.95);
-            transform: scale(1.1);
-        }
-        #search-icon-container svg {
-            display: block;
-            width: 28px;
-            height: 28px;
-            fill: #e0e0e0;
-        }
-
-        #search-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent backdrop */
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            display: flex;
-            /*align-items: center; /* Vertically center */
-            align-items: flex-start; /* Align to top */
-            justify-content: center; /* Horizontally center */
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0s linear 0.4s;
-            padding-top: 80px; /* Space from top */
-        }
-        #search-overlay.visible {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.4s ease, visibility 0s linear 0s;
-        }
-
-        #search-modal {
-            background-color: #232323; /* Slightly lighter than page bg */
-            padding: 30px 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            width: 90%;
-            max-width: 700px;
-            max-height: 85vh; /* Limit height */
-            display: flex;
-            flex-direction: column;
-            animation: searchModalEnter 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-        }
-        #search-overlay:not(.visible) #search-modal {
-             animation: searchModalLeave 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
-        }
-
-        #search-modal h2 {
-            color: #ffffff;
-            font-size: 1.8em;
-            margin-top: 0;
-            margin-bottom: 1.2em;
-            text-align: left;
-            border-bottom: 1px solid #444;
-            padding-bottom: 0.6em;
-        }
-
-        #close-search-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #a0a0a0;
-            font-size: 2.5em;
-            line-height: 1;
-            cursor: pointer;
-            transition: color 0.3s ease, transform 0.2s ease;
-        }
-        #close-search-btn:hover {
-            color: #ffffff;
-            transform: scale(1.1);
-        }
-
-        #search-query, #search-scope {
-            width: 100%;
-            padding: 12px 18px;
-            margin-bottom: 20px;
-            background-color: rgba(30, 30, 30, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #e0e0e0;
-            border-radius: 6px;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 1em;
-        }
-        #search-query::placeholder {
-            color: #777;
-        }
-        #search-query:focus, #search-scope:focus {
-            outline: none;
-            border-color: #a6e3a1;
-            box-shadow: 0 0 0 2px rgba(166, 227, 161, 0.3);
-        }
+        /* Search Styles (mostly unchanged from previous working version) */
+        #search-icon-container { position: fixed; top: 25px; right: 30px; z-index: 1001; cursor: pointer; padding: 10px; background-color: rgba(45, 45, 45, 0.8); border-radius: 50%; transition: background-color 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        #search-icon-container:hover { background-color: rgba(60, 60, 60, 0.95); transform: scale(1.1); }
+        #search-icon-container svg { display: block; width: 28px; height: 28px; fill: #e0e0e0; }
+        #search-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); z-index: 1000; display: flex; align-items: flex-start; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0s linear 0.4s; padding-top: 80px; }
+        #search-overlay.visible { opacity: 1; visibility: visible; transition: opacity 0.4s ease, visibility 0s linear 0s; }
+        #search-modal { background-color: #232323; padding: 30px 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); border: 1px solid rgba(255, 255, 255, 0.15); width: 90%; max-width: 700px; max-height: 85vh; display: flex; flex-direction: column; animation: searchModalEnter 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+        #search-overlay:not(.visible) #search-modal { animation: searchModalLeave 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; }
+        #search-modal h2 { color: #ffffff; font-size: 1.8em; margin-top: 0; margin-bottom: 1.2em; text-align: left; border-bottom: 1px solid #444; padding-bottom: 0.6em; }
+        #close-search-btn { position: absolute; top: 15px; right: 20px; background: none; border: none; color: #a0a0a0; font-size: 2.5em; line-height: 1; cursor: pointer; transition: color 0.3s ease, transform 0.2s ease; }
+        #close-search-btn:hover { color: #ffffff; transform: scale(1.1); }
+        #search-query, #search-scope { width: 100%; padding: 12px 18px; margin-bottom: 20px; background-color: rgba(30, 30, 30, 0.9); border: 1px solid rgba(255, 255, 255, 0.2); color: #e0e0e0; border-radius: 6px; font-family: 'Roboto Mono', monospace; font-size: 1em; }
+        #search-query::placeholder { color: #777; }
+        #search-query:focus, #search-scope:focus { outline: none; border-color: #a6e3a1; box-shadow: 0 0 0 2px rgba(166, 227, 161, 0.3); }
         .search-filter-container { margin-bottom: 20px; }
-        .search-filter-container label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.9em;
-            color: #bbb;
-        }
-
-        #execute-search-btn {
-            padding: 12px 25px;
-            background-color: #a6e3a1;
-            color: #1a1a1a;
-            border: none;
-            border-radius: 6px;
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 700;
-            font-size: 1.05em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            align-self: flex-start; /* Align to left if container is flex */
-        }
-        #execute-search-btn:hover {
-            background-color: #8bc34a; /* Darker green */
-            transform: translateY(-2px);
-        }
-
-        #search-results-container {
-            margin-top: 25px;
-            overflow-y: auto; /* Scroll for results */
-            flex-grow: 1; /* Take available space */
-            padding-right: 10px; /* For scrollbar */
-        }
-        #search-results-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        #search-results-list li {
-            background-color: rgba(55, 55, 55, 0.85);
-            margin-bottom: 12px;
-            border-radius: 5px;
-            border-left: 3px solid #555;
-            transition: background-color 0.3s ease, border-left-color 0.3s ease;
-        }
-        #search-results-list li:hover {
-            background-color: rgba(70, 70, 70, 0.9);
-            border-left-color: #a6e3a1;
-        }
-        #search-results-list li a {
-            display: block;
-            padding: 10px 18px;
-            text-decoration: none;
-            color: #f0f0f0;
-            font-weight: 500;
-            font-size: 1.0em;
-            transition: color 0.3s ease;
-        }
-        #search-results-list li:hover a {
-            color: #a6e3a1;
-        }
-        #search-results-list li p.snippet { /* Snippet styling */
-            font-size: 0.9em;
-            color: #b0b0b0;
-            padding: 0px 18px 12px;
-            margin: 0;
-            line-height: 1.5;
-        }
-        #search-results-list li p.snippet mark {
-            background-color: #a6e3a1;
-            color: #1a1a1a;
-            padding: 1px 3px;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-        .search-info { /* For "Type query...", "No results..." */
-            color: #888;
-            text-align: center;
-            padding: 15px;
-            font-style: italic;
-        }
-
-        /* Scrollbar styling for search results (Webkit) */
-        #search-results-container::-webkit-scrollbar {
-            width: 8px;
-        }
-        #search-results-container::-webkit-scrollbar-track {
-            background: rgba(30,30,30,0.5);
-            border-radius: 4px;
-        }
-        #search-results-container::-webkit-scrollbar-thumb {
-            background: #555;
-            border-radius: 4px;
-        }
-        #search-results-container::-webkit-scrollbar-thumb:hover {
-            background: #777;
-        }
-
+        .search-filter-container label { display: block; margin-bottom: 8px; font-size: 0.9em; color: #bbb; }
+        #execute-search-btn { padding: 12px 25px; background-color: #a6e3a1; color: #1a1a1a; border: none; border-radius: 6px; font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.05em; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease; align-self: flex-start; }
+        #execute-search-btn:hover { background-color: #8bc34a; transform: translateY(-2px); }
+        #search-results-container { margin-top: 25px; overflow-y: auto; flex-grow: 1; padding-right: 10px; }
+        #search-results-list { list-style: none; padding-left: 0; }
+        #search-results-list li { background-color: rgba(55, 55, 55, 0.85); margin-bottom: 12px; border-radius: 5px; border-left: 3px solid #555; transition: background-color 0.3s ease, border-left-color 0.3s ease; }
+        #search-results-list li:hover { background-color: rgba(70, 70, 70, 0.9); border-left-color: #a6e3a1; }
+        #search-results-list li a { display: block; padding: 10px 18px; text-decoration: none; color: #f0f0f0; font-weight: 500; font-size: 1.0em; transition: color 0.3s ease; }
+        #search-results-list li:hover a { color: #a6e3a1; }
+        #search-results-list li p.snippet { font-size: 0.9em; color: #b0b0b0; padding: 0px 18px 12px; margin: 0; line-height: 1.5; }
+        #search-results-list li p.snippet mark { background-color: #a6e3a1; color: #1a1a1a; padding: 1px 3px; border-radius: 3px; font-weight: bold; }
+        .search-info { color: #888; text-align: center; padding: 15px; font-style: italic; }
+        #search-results-container::-webkit-scrollbar { width: 8px; }
+        #search-results-container::-webkit-scrollbar-track { background: rgba(30,30,30,0.5); border-radius: 4px; }
+        #search-results-container::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+        #search-results-container::-webkit-scrollbar-thumb:hover { background: #777; }
     </style>
 </head>
-<body>
+<body class="loading"> <!-- Start with loading class -->
+
+    <div id="page-loader">
+        <div class="loader-spinner"></div>
+        <p class="loader-text">Loading Summaries & Insights...</p>
+        <p class="loader-fact" id="loaderFactText">Did you know? This project aims to make learning engineering concepts easier!</p>
+    </div>
 
     <div id="search-icon-container" title="Search Content">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -404,18 +165,17 @@
         <div id="search-modal">
             <button id="close-search-btn" title="Close Search">&times;</button>
             <h2>Search Content</h2>
-            <input type="text" id="search-query" placeholder="Enter search term...">
+            <input type="text" id="search-query" placeholder="Enter search term..." disabled>
             <div class="search-filter-container">
                 <label for="search-scope">Search in:</label>
-                <select id="search-scope">
+                <select id="search-scope" disabled>
                     <option value="all">All Files</option>
-                    <!-- Specific file options will be populated here by JS -->
                 </select>
             </div>
-            <button id="execute-search-btn">Search</button>
+            <button id="execute-search-btn" disabled>Search</button>
             <div id="search-results-container">
                 <ul id="search-results-list"></ul>
-                <p class="search-info">Type a query and press Search, or press Enter.</p>
+                <p class="search-info">Initializing search...</p>
             </div>
         </div>
     </div>
@@ -437,24 +197,34 @@
     </main>
 
     <footer>
-        <!-- Content removed -->
+        <!-- Content -->
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
+            // --- CONFIGURATION ---
             const githubUsername = 'tacturnity';
             const githubRepoName = 'ME';
             const chaptersApiPath = 'chapters';
-            const chaptersRelativeLinkPath = 'chapters';
             const tutorialsApiPath = 'tutorials';
+            const chaptersRelativeLinkPath = 'chapters';
             const tutorialsRelativeLinkPath = 'tutorials';
+            const SEARCH_INDEX_FILE_PATH = 'search_index.json'; // Ensure this file exists and is up-to-date
 
-            // --- Search Functionality Globals ---
-            const searchableContentStore = []; // Stores {id, name, title, path, textContent}
-            let allFilesForDropdown = [];    // Stores {title, path} for dropdown
-            let searchDropdownPopulated = false;
+            const interestingFacts = [
+                "This project uses client-side search, making it fast once loaded!",
+                "The styling is inspired by modern dark themes.",
+                "Content is fetched directly from GitHub.",
+                "Built with HTML, CSS, and vanilla JavaScript.",
+                "Focuses on clear and concise summaries.",
+                "Did you know? The 'tree' command inspired parts of this index!",
+                "Every character typed here was with enthusiasm!"
+            ];
+            let factInterval;
 
+            // --- DOM Elements ---
+            const pageLoader = document.getElementById('page-loader');
+            const loaderFactText = document.getElementById('loaderFactText');
             const searchIcon = document.getElementById('search-icon-container');
             const searchOverlay = document.getElementById('search-overlay');
             const searchModal = document.getElementById('search-modal');
@@ -465,321 +235,236 @@
             const searchResultsList = document.getElementById('search-results-list');
             const searchInfoMsg = searchModal.querySelector('.search-info');
 
+            // --- Search Globals ---
+            let searchableContentStore = [];
+            let allFilesForDropdown = [];
+            let searchDropdownPopulated = false;
+
+            function showRandomFact() {
+                if (loaderFactText) {
+                    const randomIndex = Math.floor(Math.random() * interestingFacts.length);
+                    loaderFactText.textContent = interestingFacts[randomIndex];
+                }
+            }
+
+            function startFactRotation() {
+                showRandomFact(); // Show one immediately
+                factInterval = setInterval(showRandomFact, 5000); // Change fact every 5 seconds
+            }
+
+            function stopFactRotation() {
+                clearInterval(factInterval);
+            }
 
             /**
-             * Generates a display-friendly title from a filename.
-             * @param {string} fileName - The original filename (e.g., "[a] File_Name.html").
-             * @returns {string} A cleaned-up title (e.g., "File Name").
+             * Generates a display-friendly title from a filename (for Nav Links).
              */
-            function generateDisplayTitleFromName(fileName) {
+            function generateDisplayTitleFromNameForNav(fileName) {
                 let rawTitle = fileName.replace(/\.html$/i, '');
                 let displayTitle = rawTitle.replace(/^\[[a-z]\][-_\s]*/i, '');
                 displayTitle = displayTitle.replace(/[-_]/g, ' ').trim();
-                // Capitalize first letter of each word for better display
                 return displayTitle.split(' ')
                                    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
                                    .join(' ');
             }
 
             /**
-             * Fetches the text content of an HTML file.
-             * @param {string} filePath - The path to the HTML file.
-             * @returns {Promise<string>} A promise that resolves with the text content or empty string on error.
+             * Fetches the pre-built search index.
              */
-            async function fetchFileTextContent(filePath) {
+            async function loadSearchIndex() {
+                console.log(`Fetching search index from: ${SEARCH_INDEX_FILE_PATH}`);
                 try {
-                    const response = await fetch(filePath);
+                    // Add cache buster for development; remove or use proper versioning for production
+                    const response = await fetch(SEARCH_INDEX_FILE_PATH + `?v=${new Date().getTime()}`);
                     if (!response.ok) {
-                        console.error(`Failed to fetch content for ${filePath}: ${response.status} ${response.statusText}`);
-                        return "";
+                        throw new Error(`Failed to load search index (${response.status}). Ensure '${SEARCH_INDEX_FILE_PATH}' exists and is accessible.`);
                     }
-                    const htmlContent = await response.text();
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = htmlContent;
-                    // Fallback for older browsers, prefer textContent
-                    return (tempDiv.textContent || tempDiv.innerText || "").trim();
+                    const indexData = await response.json();
+
+                    if (!Array.isArray(indexData)) {
+                        throw new Error('Search index data is not in the expected format (array).');
+                    }
+                    searchableContentStore = indexData;
+                    allFilesForDropdown = indexData.map(item => ({
+                        title: item.title, path: item.path
+                    })).sort((a, b) => a.title.localeCompare(b.title));
+
+                    console.log(`Search index loaded successfully. ${searchableContentStore.length} items indexed.`);
+                    return true; // Indicate success
                 } catch (error) {
-                    console.error(`Error fetching or parsing content for ${filePath}:`, error);
-                    return "";
+                    console.error("Error loading or parsing search index:", error);
+                    searchInfoMsg.textContent = `Search unavailable: ${error.message}`;
+                    if (searchModal.contains(executeSearchBtn)) { // Check if button is still in DOM
+                         executeSearchBtn.disabled = true;
+                         searchQueryInput.disabled = true;
+                         searchScopeSelect.disabled = true;
+                    }
+                    return false; // Indicate failure
                 }
             }
 
             /**
-             * Fetches files from GitHub, populates lists, and indexes content for search.
+             * Fetches list of files from GitHub to populate main navigation links.
              */
-            function fetchAndPopulateList(listElementId, apiPath, relativeLinkPath, sectionTitle) {
+            async function fetchNavList(listElementId, githubApiPath, navLinkRelativePath, sectionTitle) {
                 const listElement = document.getElementById(listElementId);
                 const loadingMessage = listElement.querySelector('.loading-message');
+                if (!listElement) { console.error(`Nav list element '${listElementId}' not found.`); return false; }
 
-                if (!listElement) {
-                    console.error(`Element with ID '${listElementId}' not found.`);
-                    return;
-                }
-
-                const encodedPath = apiPath.split('/').map(encodeURIComponent).join('/');
+                const encodedPath = githubApiPath.split('/').map(encodeURIComponent).join('/');
                 const apiUrl = `https://api.github.com/repos/${githubUsername}/${githubRepoName}/contents/${encodedPath}`;
-                console.log(`Fetching ${sectionTitle} list from: ${apiUrl}`);
+                console.log(`Fetching ${sectionTitle} NAV list from: ${apiUrl}`);
 
-                fetch(apiUrl)
-                    .then(response => {
-                        if (!response.ok) {
-                            return response.json().catch(() => null).then(errorData => {
-                                let errorMsg = `GitHub API error (${sectionTitle}): ${response.status} ${response.statusText}`;
-                                if (errorData && errorData.message) {
-                                    if (response.status === 404 && errorData.message.toLowerCase().includes("not found")) {
-                                        errorMsg = `GitHub API error (${sectionTitle}): 404 Not Found.`;
-                                        errorMsg += ` Could not find the folder '${apiPath}' in the repository '${githubUsername}/${githubRepoName}'.`;
-                                    } else { errorMsg += ` - ${errorData.message}`; }
-                                } else if (response.status === 404) { errorMsg += ` (Path '${apiPath}' correct?)`; }
-                                if (response.status === 403) { errorMsg += ` (API rate limit or private repo?)`; }
-                                throw new Error(errorMsg);
-                            });
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (loadingMessage && loadingMessage.parentNode === listElement) {
-                            listElement.removeChild(loadingMessage);
-                        }
+                try {
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => null);
+                        let errorMsg = `GitHub API error for ${sectionTitle} Nav (${response.status})`;
+                        if (errorData && errorData.message) errorMsg += ` - ${errorData.message}`;
+                        throw new Error(errorMsg);
+                    }
+                    const data = await response.json();
 
-                        if (!Array.isArray(data)) {
-                            const baseError = `Invalid data format for ${sectionTitle}. Expected array.`;
-                            if (typeof data === 'object' && data !== null && data.message) {
-                                throw new Error(`${baseError} GitHub API: ${data.message}. Check if '${apiPath}' is a file, not directory.`);
-                            }
-                            throw new Error(baseError);
-                        }
+                    if (loadingMessage && loadingMessage.parentNode === listElement) listElement.removeChild(loadingMessage);
+                    if (!Array.isArray(data)) throw new Error(`Invalid data for ${sectionTitle} Nav. Expected array.`);
 
-                        const htmlFiles = data.filter(item => item.type === 'file' && item.name.toLowerCase().endsWith('.html'));
+                    const htmlFiles = data.filter(item => item.type === 'file' && item.name.toLowerCase().endsWith('.html'));
+                    if (htmlFiles.length === 0) {
+                        const li = document.createElement('li');
+                        li.textContent = `No HTML files found for ${sectionTitle} navigation.`;
+                        li.classList.add('info-message'); listElement.appendChild(li);
+                        return true; // Technically successful fetch, just no files
+                    }
 
-                        if (htmlFiles.length === 0) {
-                            const li = document.createElement('li');
-                            li.textContent = data.length === 0 ? `The '${apiPath}' directory is empty.` : `No HTML files found in '${apiPath}'.`;
-                            li.classList.add('error-message');
-                            listElement.appendChild(li);
-                            return;
-                        }
-
-                        htmlFiles.sort((a, b) => {
-                            const extractNumber = (str) => {
-                                const match = str.match(/\d+/);
-                                return match ? parseInt(match[0], 10) : NaN;
-                            };
-                            const numA = extractNumber(a.name);
-                            const numB = extractNumber(b.name);
-                            if (!isNaN(numA) && !isNaN(numB) && numA !== numB) return numA - numB;
-                            return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
-                        });
-
-                        const contentFetchPromises = [];
-
-                        htmlFiles.forEach((file, index) => {
-                            const listItem = document.createElement('li');
-                            const link = document.createElement('a');
-                            const displayTitle = generateDisplayTitleFromName(file.name);
-                            const filePath = `${relativeLinkPath}/${encodeURIComponent(file.name)}`;
-
-                            link.href = filePath;
-                            link.textContent = displayTitle;
-                            listItem.appendChild(link);
-                            listElement.appendChild(listItem);
-                            listItem.style.animationDelay = `${index * 0.07}s`;
-                            listItem.classList.add('loaded');
-
-                            // --- Prepare for search indexing ---
-                            const fileDataForSearch = {
-                                id: filePath, // Unique ID
-                                name: file.name,
-                                title: displayTitle,
-                                path: filePath,
-                                textContent: "" // Will be filled by fetchFileTextContent
-                            };
-                            // Add to dropdown list (will be sorted later)
-                            if (!allFilesForDropdown.find(f => f.path === filePath)) {
-                                allFilesForDropdown.push({ title: displayTitle, path: filePath });
-                            }
-
-                            contentFetchPromises.push(
-                                fetchFileTextContent(filePath).then(textContent => {
-                                    if (textContent) {
-                                        fileDataForSearch.textContent = textContent.toLowerCase(); // Store lowercase for search
-                                        // Only add to store if not already there (e.g. if file appears in multiple lists)
-                                        if (!searchableContentStore.find(item => item.id === fileDataForSearch.id)) {
-                                            searchableContentStore.push(fileDataForSearch);
-                                        }
-                                    } else {
-                                        console.warn(`No content fetched for ${filePath}, it won't be searchable.`);
-                                    }
-                                }).catch(err => console.error(`Failed to process content for ${file.name}: ${err}`))
-                            );
-                        });
-
-                        // Log when all content for this section is attempted
-                        Promise.allSettled(contentFetchPromises).then(results => {
-                            console.log(`Content fetching for ${sectionTitle} settled. ${searchableContentStore.length} items now in search index.`);
-                            // Potentially update search dropdown if it's already open, or flag for update
-                            searchDropdownPopulated = false; // Force repopulate if modal opened
-                        });
-
-                    })
-                    .catch(error => {
-                        console.error(`Error loading ${sectionTitle}:`, error);
-                        if (loadingMessage && loadingMessage.parentNode === listElement) listElement.removeChild(loadingMessage);
-                        const errorItem = document.createElement('li');
-                        errorItem.textContent = error.message || `Failed to load ${sectionTitle} list.`;
-                        errorItem.classList.add('error-message');
-                        listElement.appendChild(errorItem);
+                    htmlFiles.sort((a, b) => {
+                        const extractNumber = (str) => { const match = str.match(/\d+/); return match ? parseInt(match[0], 10) : NaN; };
+                        const numA = extractNumber(a.name); const numB = extractNumber(b.name);
+                        if (!isNaN(numA) && !isNaN(numB) && numA !== numB) return numA - numB;
+                        return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
                     });
+
+                    htmlFiles.forEach((file, index) => {
+                        const listItem = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = `${navLinkRelativePath}/${encodeURIComponent(file.name)}`;
+                        link.textContent = generateDisplayTitleFromNameForNav(file.name);
+                        listItem.appendChild(link);
+                        listElement.appendChild(listItem);
+                        listItem.style.animationDelay = `${index * 0.07}s`;
+                        listItem.classList.add('loaded');
+                    });
+                    return true; // Success
+                } catch (error) {
+                    console.error(`Error loading ${sectionTitle} Nav list:`, error);
+                    if (loadingMessage && loadingMessage.parentNode === listElement) listElement.removeChild(loadingMessage);
+                    const errorItem = document.createElement('li');
+                    errorItem.textContent = `Failed to load ${sectionTitle} navigation. Please check network or try refreshing.`;
+                    errorItem.classList.add('error-message');
+                    listElement.appendChild(errorItem);
+                    return false; // Failure
+                }
             }
 
-
-            // --- Search UI Handlers ---
+            // --- Search UI Handlers (mostly unchanged) ---
             function openSearchModal() {
-                if (!searchDropdownPopulated && allFilesForDropdown.length > 0) {
-                    populateSearchScopeDropdown();
-                }
+                if (!searchDropdownPopulated && allFilesForDropdown.length > 0) populateSearchScopeDropdown();
                 searchOverlay.classList.add('visible');
                 searchQueryInput.focus();
-                document.body.style.overflow = 'hidden'; // Prevent background scroll
+                document.body.style.overflow = 'hidden';
             }
-
-            function closeSearchModal() {
-                searchOverlay.classList.remove('visible');
-                document.body.style.overflow = ''; // Restore scroll
-            }
-
+            function closeSearchModal() { searchOverlay.classList.remove('visible'); document.body.style.overflow = ''; }
             function populateSearchScopeDropdown() {
-                // Clear existing options except "All Files"
-                while (searchScopeSelect.options.length > 1) {
-                    searchScopeSelect.remove(1);
-                }
-                // Sort files by title for dropdown
-                allFilesForDropdown.sort((a, b) => a.title.localeCompare(b.title));
+                while (searchScopeSelect.options.length > 1) searchScopeSelect.remove(1);
                 allFilesForDropdown.forEach(file => {
                     const option = document.createElement('option');
-                    option.value = file.path;
-                    option.textContent = file.title;
+                    option.value = file.path; option.textContent = file.title;
                     searchScopeSelect.appendChild(option);
                 });
                 searchDropdownPopulated = true;
             }
-
             searchIcon.addEventListener('click', openSearchModal);
             closeSearchBtn.addEventListener('click', closeSearchModal);
-            searchOverlay.addEventListener('click', (e) => { // Close on backdrop click
-                if (e.target === searchOverlay) closeSearchModal();
-            });
-            document.addEventListener('keydown', (e) => { // Close with Escape key
-                if (e.key === 'Escape' && searchOverlay.classList.contains('visible')) {
-                    closeSearchModal();
-                }
-            });
+            searchOverlay.addEventListener('click', (e) => { if (e.target === searchOverlay) closeSearchModal(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && searchOverlay.classList.contains('visible')) closeSearchModal(); });
 
-            // --- Search Execution ---
+            // --- Search Execution Logic (mostly unchanged) ---
             function generateSnippet(text, keyword, contextLength = 70) {
-                const lowerText = text.toLowerCase();
                 const lowerKeyword = keyword.toLowerCase();
-                let matchIndex = lowerText.indexOf(lowerKeyword);
-
+                let matchIndex = text.indexOf(lowerKeyword); // text is already lowercased from index
                 if (matchIndex === -1) return "";
-
                 let start = Math.max(0, matchIndex - contextLength);
                 let end = Math.min(text.length, matchIndex + keyword.length + contextLength);
-
-                // Try to start/end on word boundaries
-                if (start > 0) {
-                    const spaceBefore = text.lastIndexOf(' ', start);
-                    if (spaceBefore !== -1) start = spaceBefore + 1; else start = 0;
-                }
-                if (end < text.length) {
-                    const spaceAfter = text.indexOf(' ', end);
-                    if (spaceAfter !== -1) end = spaceAfter; else end = text.length;
-                }
-
-                let snippet = text.substring(start, end);
-                if (start > 0) snippet = "..." + snippet;
-                if (end < text.length && end !== text.length -1) snippet = snippet + "...";
-
+                if (start > 0) { const spaceBefore = text.lastIndexOf(' ', start); if (spaceBefore !== -1 && spaceBefore > start - 20) start = spaceBefore + 1; }
+                if (end < text.length) { const spaceAfter = text.indexOf(' ', end); if (spaceAfter !== -1 && spaceAfter < end + 20) end = spaceAfter; }
+                let snippetContent = text.substring(start, end);
+                if (start > 0) snippetContent = "..." + snippetContent;
+                if (end < text.length && end !== text.length -1) snippetContent = snippetContent + "...";
                 const regex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-                return snippet.replace(regex, '<mark>$&</mark>');
+                return snippetContent.replace(regex, '<mark>$&</mark>');
             }
-
-
             function performSearch() {
                 const query = searchQueryInput.value.trim();
                 const scope = searchScopeSelect.value;
-                searchResultsList.innerHTML = ''; // Clear previous results
-
-                if (!query) {
-                    searchInfoMsg.textContent = "Please enter a search term.";
-                    searchInfoMsg.style.display = 'block';
-                    return;
+                searchResultsList.innerHTML = '';
+                if (executeSearchBtn.disabled || searchableContentStore.length === 0) {
+                    searchInfoMsg.textContent = "Search is currently unavailable or no data loaded.";
+                    searchInfoMsg.style.display = 'block'; return;
                 }
-
-                searchInfoMsg.style.display = 'none'; // Hide default/error message
-                let resultsFound = 0;
-
-                const itemsToSearch = scope === 'all'
-                    ? searchableContentStore
-                    : searchableContentStore.filter(item => item.path === scope);
-
-                if (itemsToSearch.length === 0 && scope !== 'all') {
-                     searchInfoMsg.textContent = "Selected file not found in index or has no content.";
-                     searchInfoMsg.style.display = 'block';
-                     return;
-                }
-                if (searchableContentStore.length === 0) {
-                    searchInfoMsg.textContent = "Content indexing might still be in progress or failed. No items to search.";
-                    searchInfoMsg.style.display = 'block';
-                    return;
-                }
-
-
+                if (!query) { searchInfoMsg.textContent = "Please enter a search term."; searchInfoMsg.style.display = 'block'; return; }
+                searchInfoMsg.style.display = 'none'; let resultsFound = 0;
+                const itemsToSearch = scope === 'all' ? searchableContentStore : searchableContentStore.filter(item => item.path === scope);
                 itemsToSearch.forEach(item => {
                     if (item.textContent.includes(query.toLowerCase())) {
-                        // Simple search: find first occurrence for snippet
                         const snippetText = generateSnippet(item.textContent, query);
-
                         const li = document.createElement('li');
                         const a = document.createElement('a');
-                        a.href = item.path;
-                        a.textContent = item.title;
-                        a.target = "_blank"; // Open in new tab
-
+                        a.href = item.path; a.textContent = item.title; a.target = "_blank";
                         li.appendChild(a);
-
-                        if (snippetText) {
-                            const p = document.createElement('p');
-                            p.classList.add('snippet');
-                            p.innerHTML = snippetText; //innerHTML because of <mark>
-                            li.appendChild(p);
-                        }
-                        searchResultsList.appendChild(li);
-                        resultsFound++;
+                        if (snippetText) { const p = document.createElement('p'); p.classList.add('snippet'); p.innerHTML = snippetText; li.appendChild(p); }
+                        searchResultsList.appendChild(li); resultsFound++;
                     }
                 });
+                if (resultsFound === 0) searchInfoMsg.textContent = `No results found for "${query}"` + (scope === 'all' ? "." : ` in "${searchScopeSelect.options[searchScopeSelect.selectedIndex].text}".`);
+                else searchInfoMsg.textContent = `${resultsFound} result(s) found.`;
+                searchInfoMsg.style.display = 'block';
+            }
+            executeSearchBtn.addEventListener('click', performSearch);
+            searchQueryInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
 
-                if (resultsFound === 0) {
-                    searchInfoMsg.textContent = `No results found for "${query}"` + (scope === 'all' ? "." : ` in "${searchScopeSelect.options[searchScopeSelect.selectedIndex].text}".`);
-                    searchInfoMsg.style.display = 'block';
+            // --- Page Initialization ---
+            async function initializePage() {
+                startFactRotation();
+
+                // Promise.allSettled to ensure all fetches complete, regardless of individual success/failure
+                const results = await Promise.allSettled([
+                    loadSearchIndex(),
+                    fetchNavList('chapter-list', chaptersApiPath, chaptersRelativeLinkPath, 'Chapters'),
+                    fetchNavList('tutorial-list', tutorialsApiPath, tutorialsRelativeLinkPath, 'Tutorials')
+                ]);
+
+                stopFactRotation();
+
+                // Check if search index loaded successfully to enable search UI
+                const searchIndexResult = results[0];
+                if (searchIndexResult.status === 'fulfilled' && searchIndexResult.value === true && searchableContentStore.length > 0) {
+                    executeSearchBtn.disabled = false;
+                    searchQueryInput.disabled = false;
+                    searchScopeSelect.disabled = false;
+                    searchInfoMsg.textContent = "Type a query and press Search, or press Enter.";
+                } else if (searchIndexResult.status === 'fulfilled' && searchIndexResult.value === true && searchableContentStore.length === 0) {
+                    searchInfoMsg.textContent = "Search data loaded, but it's empty. No items to search.";
                 } else {
-                     searchInfoMsg.textContent = `${resultsFound} result(s) found.`; // Optional: show count
-                     searchInfoMsg.style.display = 'block'; // Or hide if you prefer cleaner look
+                     // Error message for search already handled in loadSearchIndex
+                    searchInfoMsg.textContent = "Search initialization failed. Please try refreshing.";
                 }
+
+                // Hide loader and show content
+                if (pageLoader) pageLoader.classList.add('loaded');
+                document.body.classList.remove('loading');
+                console.log("Page initialization complete. Loader hidden.");
             }
 
-            executeSearchBtn.addEventListener('click', performSearch);
-            searchQueryInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    performSearch();
-                }
-            });
-
-
-            // --- Initiate Fetching for Both Sections ---
-            fetchAndPopulateList('chapter-list', chaptersApiPath, chaptersRelativeLinkPath, 'Chapters');
-            fetchAndPopulateList('tutorial-list', tutorialsApiPath, tutorialsRelativeLinkPath, 'Tutorials');
-
+            initializePage();
         });
     </script>
 
