@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" style="--base-font-size: 10px;"> <!-- Default font size set to 10px -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Additive Manufacturing</title> <!-- CHANGE THIS TITLE -->
+
+    <!-- Google Fonts - Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+          tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true, tags: 'ams' },
+          options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'tex2jax_ignore', processHtmlClass: 'tex2jax_process' },
+          svg: { fontCache: 'global' },
+          startup: {
+            ready: () => { console.log('MathJax ready.'); MathJax.startup.defaultReady(); MathJax.startup.promise.then(() => console.log('MathJax initial typeset complete.')); }
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Keyframes for Animations (FadeIn) */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Fonts & Base Styling */
+        body {
+            font-family: 'Roboto Mono', monospace;
+            color: #e0e0e0;
+            line-height: 1.7;
+            padding: 25px;
+            background-color: #1a1a1a;
+            min-height: 100vh;
+            font-size: var(--base-font-size); /* Controlled by JS */
+            transition: font-size 0.2s ease-in-out; /* Default smooth transition */
+            padding-bottom: 80px; /* Space for controls */
+            overflow-x: hidden;
+        }
+        /* Class to disable transition during rapid changes (e.g., hold) */
+        body.no-font-transition {
+            transition: none !important;
+        }
+
+        /* Headings */
+        h1, h2 { font-family: 'Roboto Mono', monospace; text-align: center; margin-bottom: 1.5em; }
+        h1 { font-size: 2.4em; color: #ffffff; font-weight: 700; padding-bottom: 12px; margin-top: 1.5em; margin-bottom: 1.5em; border-bottom: 2px solid #ffffff; animation: fadeIn 0.8s ease-out both; animation-delay: 0.1s; letter-spacing: -0.5px; }
+        h2 { font-size: 1.6em; color: #cccccc; font-weight: 500; margin-top: 30px; margin-bottom: 1.5em; border-bottom: 1px solid #555555; padding-bottom: 5px; animation: fadeIn 0.8s ease-out both; animation-delay: 0.3s; }
+        h3 { font-size: 1.2em; color: #bdbdbd; font-weight: 500; margin-top: 1.8em; margin-bottom: 0.8em; padding-bottom: 3px; border-bottom: 1px dotted #444; text-align: left; }
+        h4 { font-size: 1.1em; color: #b0b0b0; font-weight: 500; margin-top: 1.5em; margin-bottom: 0.7em; text-align: left; }
+
+
+        /* Main Content Area */
+        main { max-width: 800px; margin: 40px auto; background-color: rgba(30, 30, 30, 0.85); padding: 35px 45px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); border: 1px solid rgba(255, 255, 255, 0.1); animation: fadeIn 0.8s ease-out both; animation-delay: 0.2s; }
+        /* Paragraph and List styling */
+        p { margin-bottom: 1em; color: inherit; font-size: inherit; }
+        ul, ol { margin-left: 25px; list-style: disc; margin-bottom: 1em; }
+        ol { list-style: decimal; }
+        li { margin-bottom: 8px; font-size: inherit; }
+        strong { font-weight: 500; color: #ffffff; }
+
+        /* Formula Container Styling (with horizontal scroll) */
+        .formula-container {
+            margin: 15px 0 20px 0; padding: 10px 20px; background-color: rgba(45, 45, 45, 0.9);
+            border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto; overflow-y: hidden; /* Horizontal scroll, no vertical */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer; color: #e0e0e0; border-left: 4px solid transparent;
+            font-family: 'Roboto Mono', monospace; position: relative; white-space: nowrap;
+        }
+        .formula-container:hover { background-color: rgba(60, 60, 60, 0.95); border-left-color: #a6e3a1; border-color: rgba(166, 227, 161, 0.5); }
+        .formula-container.copied { background-color: rgba(166, 227, 161, 0.2); border-color: #a6e3a1; border-left-color: #a6e3a1; }
+        /* Optional Scrollbar Style */
+        .formula-container::-webkit-scrollbar { height: 8px; }
+        .formula-container::-webkit-scrollbar-track { background: rgba(60, 60, 60, 0.5); border-radius: 4px; }
+        .formula-container::-webkit-scrollbar-thumb { background-color: #888; border-radius: 4px; border: 2px solid transparent; background-clip: content-box; }
+        .formula-container::-webkit-scrollbar-thumb:hover { background-color: #aaa; }
+        /* MathJax display style */
+        .formula-container mjx-container[display="true"] { margin: 0.5em 0 !important; text-align: left !important; display: inline-block; vertical-align: middle; }
+        
+        table { border-collapse: collapse; margin: 1em auto; background-color: rgba(40,40,40,0.8); width: auto; }
+        th, td { border: 1px solid #555; padding: 8px 12px; text-align: center; }
+        th { background-color: rgba(60,60,60,0.9); color: #ddd; }
+
+        pre {
+            background-color: #2b2b2b; padding: 10px; border-radius: 5px; 
+            color: #ccc; overflow-x: auto; white-space: pre; 
+            font-family: 'Roboto Mono', monospace; font-size: 0.95em;
+            margin: 1em 0;
+        }
+
+        /* Footer Styling */
+        footer { text-align: center; margin-top: 70px; padding-bottom: 35px; font-size: 0.85em; color: #888888; animation: fadeIn 1s ease-out both; animation-delay: 0.7s; }
+
+        /* Simple Dark Theme Scrollbar for Page */
+        body::-webkit-scrollbar { width: 10px; }
+        body::-webkit-scrollbar-track { background: #2a2a2a; border-radius: 5px; }
+        body::-webkit-scrollbar-thumb { background-color: #777; border-radius: 5px; border: 2px solid #2a2a2a; background-clip: content-box; }
+        body::-webkit-scrollbar-thumb:hover { background-color: #999; }
+        html { scrollbar-width: thin; scrollbar-color: #777 #2a2a2a; }
+        @supports (scrollbar-gutter: stable) { html { scrollbar-gutter: stable; } }
+
+        /* Font Control Icons CSS */
+        .font-control { position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px 25px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; pointer-events: none; z-index: 10; }
+        .font-control-icon { font-size: 28px; font-weight: bold; color: #777; cursor: pointer; padding: 8px; transition: color 0.3s ease; pointer-events: auto; user-select: none; line-height: 1; display: inline-block; }
+        .font-control-icon:hover { color: #a6e3a1; }
+        #fontSizeDisplay { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); background-color: rgba(45, 45, 45, 0.9); color: #e0e0e0; padding: 6px 12px; border-radius: 5px; font-size: 13px; font-family: 'Roboto Mono', monospace; z-index: 11; opacity: 0; transition: opacity 0.3s ease-in-out; pointer-events: none; white-space: nowrap; }
+        #fontSizeDisplay.visible { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Additive Manufacturing</h1> <!-- EDIT THIS LINE -->
+    </header>
+
+    <main>
+        <h2>Additive Manufacturing: Overview</h2>
+        <ul>
+            <li><strong>Core Concept:</strong> Additive Manufacturing (AM), also commonly known as 3D Printing, refers to a collection of processes used to create three-dimensional objects by adding material layer by layer, directly from a digital model (typically a CAD file). This is fundamentally different from subtractive manufacturing (where material is removed, like in machining) or formative manufacturing (where material is reshaped, like in casting or forging).</li>
+            <li><strong>Example Application:</strong> The image of a "Titanium acetabular cup" (a component of an artificial hip joint) showcases a key application area, particularly for custom medical devices made from advanced materials.</li>
+        </ul>
+
+        <h3>Advantages of Additive Manufacturing</h3>
+        <ul>
+            <li><strong>Custom Built:</strong> Enables the production of highly personalized and unique items. Since each part is built directly from a digital file without the need for part-specific tooling, complex customizations are feasible. This is critical for applications like patient-specific medical implants or bespoke tools.</li>
+            <li><strong>Less Material Wastage:</strong> AM processes generally use only the material required to form the part and any necessary support structures. This contrasts sharply with subtractive methods that can generate significant scrap material, leading to better material utilization, especially for expensive materials like titanium or specialized polymers.</li>
+            <li><strong>Complex Parts:</strong> Facilitates the creation of intricate geometries, internal features (like cooling channels or lattice structures for lightweighting), and consolidated assemblies (printing multiple components as a single part) that would be difficult, costly, or impossible to produce using traditional manufacturing techniques.</li>
+            <li><strong>Key Application Examples:</strong>
+                <ul>
+                    <li><strong>Bioimplants:</strong> Custom-fit medical devices (hips, knees, dental implants, cranial plates) often designed with porous structures to promote better integration with biological tissues.</li>
+                    <li><strong>Aeroengines:</strong> Manufacturing of lightweight, complex components (e.g., fuel nozzles, turbine blades with sophisticated internal cooling) designed for enhanced performance and fuel efficiency. An image of an additively manufactured aeroengine component is shown later in the slides.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Limitations of Additive Manufacturing</h3>
+        <ul>
+            <li><strong>Costly:</strong>
+                <ul>
+                    <li><strong>Equipment:</strong> The initial investment for AM machines, particularly those for metal or high-performance polymers, can be substantial.</li>
+                    <li><strong>Materials:</strong> Raw materials for AM (e.g., specialized metal powders, photopolymer resins, high-grade filaments) are often more expensive than their conventional counterparts.</li>
+                    <li><strong>Build Time & Labor:</strong> Layer-by-layer construction can be a slow process, especially for large or highly detailed parts, contributing to higher per-part costs. Post-processing steps can also add to labor costs.</li>
+                </ul>
+            </li>
+            <li><strong>Not Meant for Mass Production:</strong> While AM technologies are continually advancing, they are generally less economical for very high-volume production runs where traditional methods like injection molding or casting benefit from economies of scale. AM is typically more competitive for prototyping, low-to-medium volume production, or parts requiring high degrees of customization.</li>
+            <li><strong>Residual Stress Related Issues:</strong>
+                <ul>
+                    <li>Many AM processes, especially those involving localized melting and solidification of material (like metal powder bed fusion or directed energy deposition), create significant thermal gradients and rapid heating/cooling cycles.</li>
+                    <li>These thermal cycles can lead to the build-up of internal <strong>residual stresses</strong> within the printed part.</li>
+                    <li>Consequences of residual stress can include: warping or distortion of the part (during or after printing), cracking, reduced fatigue life, and deviations from desired mechanical properties.</li>
+                    <li>Post-processing steps, such as heat treatment (stress relieving), are often necessary to mitigate these issues, adding to the overall production time and cost.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Fused Deposition Modelling (FDM)</h2>
+        <ul>
+            <li><strong>Core Concept:</strong> FDM is a widely used and often more accessible additive manufacturing technique. It operates by extruding a molten thermoplastic filament through a nozzle, depositing it layer by layer to construct a 3D object.
+                <ul>
+                    <li><strong>Process:</strong>
+                        <ol>
+                            <li>A thermoplastic filament (wire-like plastic) is unwound from a spool and fed into a heated extruder head (nozzle).</li>
+                            <li>The filament melts within the heated nozzle.</li>
+                            <li>The extruder head, controlled by a computer, moves in precise X-Y coordinates across a build platform, depositing the molten material.</li>
+                            <li>The deposited material cools, solidifies, and fuses to the layer below it.</li>
+                            <li>Once a layer is completed, the build platform moves down (or the extruder head moves up) by a small increment (the layer thickness), and the process is repeated for the next layer until the object is fully formed.</li>
+                        </ol>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <h3>Starting Material: Thermoplastic (e.g., ABS, PLA)</h3>
+        <ul>
+            <li><strong>Thermoplastics:</strong> A class of polymers that become soft and moldable when heated to a specific temperature and then solidify upon cooling. They can typically be remelted and reshaped multiple times without significant degradation of their properties.</li>
+            <li><strong>ABS (Acrylonitrile Butadiene Styrene):</strong> A common engineering thermoplastic known for its good strength, toughness, and impact resistance. It generally requires a heated build platform to prevent warping during printing.</li>
+            <li><strong>PLA (Polylactic Acid):</strong> A biodegradable thermoplastic derived from renewable resources like corn starch or sugarcane. It is easier to print with than ABS (often doesn't require a heated bed), has less odor during printing, and produces parts with a slightly more glossy finish. It is generally less strong and durable than ABS.</li>
+        </ul>
+
+        <h2>Stereolithography (SLA)</h2>
+        <ul>
+            <li><strong>Core Concept:</strong> SLA is one of the earliest forms of additive manufacturing. It creates objects by selectively curing a liquid photosensitive resin, layer by layer, using a focused ultraviolet (UV) laser beam.
+                <ul>
+                    <li><strong>Process:</strong>
+                        <ol>
+                            <li>A build platform is submerged just below the surface of a vat of liquid photopolymer resin.</li>
+                            <li>A UV laser, directed by mirrors (galvanometers), traces the cross-section of the first layer onto the surface of the resin.</li>
+                            <li>The UV light causes the exposed resin to solidify (cure or polymerize).</li>
+                            <li>After the layer is cured, the platform is lowered by one layer thickness into the vat.</li>
+                            <li>A recoater blade may sweep across the surface to ensure a fresh, even layer of liquid resin for the next exposure.</li>
+                            <li>The laser then traces and cures the next layer, which adheres to the previously cured layer.</li>
+                            <li>This process repeats until the entire object is built.</li>
+                            <li>After printing, the part is typically removed from the vat, cleaned of excess uncured resin (often with a solvent like isopropyl alcohol), and then undergoes a final post-curing step in a UV oven to ensure full solidification and achieve optimal mechanical properties.</li>
+                        </ol>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <h3>Starting Material: Photosensitive resin</h3>
+        <ul>
+            <li><strong>Photosensitive Resins (Photopolymers):</strong> Liquid polymers that undergo a chemical reaction (polymerization or cross-linking) and solidify when exposed to light of a specific wavelength, typically UV light. Different resin formulations offer varying mechanical properties, colors, and transparencies.</li>
+        </ul>
+        <h3>Source: Laser Source</h3>
+        <ul>
+            <li>A UV laser is used to provide the energy needed to cure the resin with high precision. The laser beam is precisely controlled to draw the shape of each layer.</li>
+        </ul>
+        <p>(The provided YouTube link: <a href="https://www.youtube.com/watch?v=yW4EbCWaJHE" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=yW4EbCWaJHE</a> would offer a visual demonstration of the SLA process.)</p>
+
+        <h2>Selective Laser Sintering (SLS) & Selective Laser Melting (SLM)</h2>
+        <ul>
+            <li><strong>Starting Material (for both): Powder</strong>
+                <ul>
+                    <li>Both SLS and SLM use powdered materials as their feedstock. This can include polymers (like nylon for SLS), metals (like titanium, aluminum, stainless steel, tool steel for SLM and sometimes SLS), or ceramics.</li>
+                </ul>
+            </li>
+            <li><strong>Source (for both): Laser in both the cases</strong>
+                <ul>
+                    <li>A high-power laser is used to selectively fuse the powder particles together, layer by layer, according to the digital model.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>SLS – Selective Laser Sintering</h3>
+        <ul>
+            <li><strong>Fusion occurs by sintering or atomic mobility – no full melting.</strong></li>
+            <li>In SLS, the laser heats the powder particles to a point where their surfaces fuse together (sinter) without the material reaching its full melting point. This process relies on atomic diffusion at the particle boundaries to create a solid mass.</li>
+            <li>Because the powder is not fully melted, SLS parts can sometimes be slightly porous compared to SLM parts, though advancements are improving density.</li>
+            <li>A key advantage of SLS (especially with polymers) is that the un-sintered powder in the build chamber acts as a natural support structure for the part being built, often eliminating the need for dedicated support structures that must be removed later.</li>
+            <li>Commonly used for functional prototypes and end-use parts from polymers like nylon. Metal SLS is also possible but less common than SLM for metals due to potential porosity.</li>
+        </ul>
+
+        <h3>SLM – Selective Laser Melting</h3>
+        <ul>
+            <li><strong>Fusion occurs by melting – more dense products.</strong></li>
+            <li>In SLM, the laser provides enough energy to fully melt the powder particles in the targeted area. The molten material then cools and solidifies, fusing with the previous layer.</li>
+            <li>This full melting and resolidification process typically results in parts with very high density (often >99%), comparable to conventionally manufactured metal parts.</li>
+            <li>SLM is predominantly used for producing metal components with good mechanical properties.</li>
+            <li>Due to the full melting, support structures are usually required for overhanging features and to anchor the part to the build plate, managing thermal stresses. These supports must be removed in post-processing.</li>
+        </ul>
+
+        <h2>Additive Manufactured Aeroengine Component</h2>
+        <ul>
+            <li><strong>Image:</strong> Shows a complex aeroengine component, likely a fan or compressor section, illustrating the capability of additive manufacturing to produce intricate, high-value parts for demanding applications like aerospace.</li>
+            <li><strong>Relevance:</strong> As mentioned in the advantages of AM, aeroengine components are a prime example where the benefits of complex geometries, lightweighting (through optimized designs or internal lattice structures), and part consolidation (reducing the number of individual components in an assembly) can be realized through processes like SLM. This can lead to improved engine performance, reduced weight, and potentially lower manufacturing lead times for certain components.</li>
+        </ul>
+
+    </main>
+
+    <footer>
+        <!-- Optional: Add footer text if needed -->
+    </footer>
+
+     <!-- Font Size Control Icons HTML -->
+     <div class="font-control">
+         <span class="font-control-icon" id="fontMinusBtn" title="Decrease font size">-</span>
+         <span class="font-control-icon" id="fontPlusBtn" title="Increase font size">+</span>
+     </div>
+     <div id="fontSizeDisplay">10px</div> <!-- Initial size display -->
+
+    <script>
+        // --- Formula Copy Function (Simplified Equation Number Removal) ---
+        function copyFormulaLatex(element, latexToProcess) {
+            if (!latexToProcess) {
+                console.error('No LaTeX string passed to copy function.');
+                return;
+            }
+
+            let latexStringToCopy = latexToProcess.trim(); // Start with the original string, trimmed.
+
+            // 1. Attempt to remove \quad (number) or \qquad (number) from the end.
+            //    This pattern is common for AMS tags or manual equation numbers.
+            //    Regex: \s*                  - optional leading whitespace
+            //           \\q(?:uad|quad)     - \quad or \qquad
+            //           \s*                  - optional space after \quad
+            //           \([^)]+\)            - parentheses with at least one char inside
+            //           \s*$                 - optional trailing whitespace then end of string
+            let cleanedLatex = latexStringToCopy.replace(/\s*\\q(?:uad|quad)\s*\([^)]+\)\s*$/, "");
+
+            // 2. If the first pattern didn't change the string, try removing a simpler " (number)" from the end.
+            //    This handles cases where the equation number is just parenthesized at the end, preceded by a space.
+            //    Regex: \s+                  - one or more whitespace characters (ensures separation)
+            //           \([^)]+\)            - parentheses with at least one char inside
+            //           \s*$                 - optional trailing whitespace then end of string
+            if (cleanedLatex === latexStringToCopy) { // Only if the first replacement did nothing
+                cleanedLatex = cleanedLatex.replace(/\s+\([^)]+\)\s*$/, "");
+            }
+
+            latexStringToCopy = cleanedLatex.trim(); // Final trim
+
+            navigator.clipboard.writeText(latexStringToCopy).then(() => {
+                element.classList.add('copied');
+                const originalTitle = element.title;
+                // Show the *actually copied* (cleaned) LaTeX in the temporary tooltip
+                element.title = 'Copied: ' + (latexStringToCopy || "[empty - only eq number?]");
+                setTimeout(() => {
+                    element.classList.remove('copied');
+                    element.title = originalTitle;
+                 }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy LaTeX: ', err);
+                const originalTitle = element.title;
+                element.title = 'Copy failed!';
+                 setTimeout(() => { element.title = originalTitle; }, 1500);
+            });
+        }
+
+        // --- Font Size Control & Hold Functionality ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const minusBtn = document.getElementById('fontMinusBtn');
+            const plusBtn = document.getElementById('fontPlusBtn');
+            const display = document.getElementById('fontSizeDisplay');
+            const htmlEl = document.documentElement;
+            const bodyEl = document.body; // Target body for transition class
+
+            // Configuration
+            let currentSize = 10; // Initial size set to 10px
+            const minSize = 10;
+            const maxSize = 28; // Adjust max size if needed
+            const step = 1;
+            let displayTimeout = null;
+            let holdTimeout = null;
+            let holdInterval = null;
+            const initialHoldDelay = 400; // ms before repeat starts
+            const repeatInterval = 100;  // ms between repeats while holding
+            const mathJaxDebounceDelay = 350; // ms to wait after last change before re-typesetting
+
+            // --- Debounce Function ---
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => { clearTimeout(timeout); func(...args); };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // --- Debounced MathJax Typesetting ---
+            const queueMathJaxTypeset = debounce(() => {
+                if (window.MathJax && MathJax.typesetPromise) {
+                    console.log("Debounced: Typesetting MathJax");
+                    MathJax.typesetPromise([bodyEl]).catch((err) => console.error('MathJax typesetting error:', err));
+                 }
+            }, mathJaxDebounceDelay);
+
+            // --- Update Font Size and Display ---
+            function updateFontSize(newSize) {
+                const oldSize = currentSize;
+                currentSize = Math.max(minSize, Math.min(maxSize, newSize));
+
+                if (currentSize !== oldSize) {
+                    htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
+                    display.textContent = currentSize + 'px';
+                    display.classList.add('visible');
+
+                    if (displayTimeout) { clearTimeout(displayTimeout); }
+                    displayTimeout = setTimeout(() => {
+                        display.classList.remove('visible');
+                        displayTimeout = null;
+                    }, 1500);
+                    return true; // Indicate size changed
+                }
+                return false; // Indicate size hit limit
+            }
+
+            // --- Stop Holding Action ---
+            function stopHolding() {
+                bodyEl.classList.remove('no-font-transition'); // Re-enable transition
+                if (holdTimeout) { clearTimeout(holdTimeout); holdTimeout = null; }
+                if (holdInterval) { clearInterval(holdInterval); holdInterval = null; }
+                queueMathJaxTypeset();
+            }
+
+            // --- Start Holding Action ---
+            function startHolding(direction) {
+                bodyEl.classList.add('no-font-transition'); 
+                updateFontSize(currentSize + direction * step); 
+                if (holdTimeout) clearTimeout(holdTimeout);
+                if (holdInterval) clearInterval(holdInterval);
+
+                holdTimeout = setTimeout(() => {
+                    holdInterval = setInterval(() => {
+                        if (!updateFontSize(currentSize + direction * step)) {
+                            stopHolding(); 
+                        }
+                    }, repeatInterval);
+                }, initialHoldDelay);
+            }
+
+            // --- Event Listeners ---
+            if (minusBtn && plusBtn && display) {
+                minusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(-1); });
+                plusBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startHolding(1); });
+                window.addEventListener('mouseup', stopHolding); 
+                minusBtn.addEventListener('mouseleave', stopHolding); 
+                plusBtn.addEventListener('mouseleave', stopHolding);
+
+                htmlEl.style.setProperty('--base-font-size', currentSize + 'px');
+                display.textContent = currentSize + 'px';
+                console.log("Font control initialized. Current size:", currentSize);
+                 if (window.MathJax) {
+                     MathJax.startup.promise.then(() => {
+                         console.log("Queueing initial MathJax typeset");
+                         queueMathJaxTypeset(); 
+                     });
+                 }
+            } else {
+                console.error("Font control elements not found!");
+            }
+
+            // --- Horizontal Scroll Redirect for Formula Containers ---
+             const formulaContainers = document.querySelectorAll('.formula-container');
+             formulaContainers.forEach(container => {
+                 container.addEventListener('wheel', function(event) {
+                     const isScrollableHorizontally = this.scrollWidth > this.clientWidth;
+                     if (isScrollableHorizontally) {
+                         if (event.deltaY !== 0) { 
+                             event.preventDefault();
+                             this.scrollLeft += event.deltaY;
+                         }
+                     }
+                 }, { passive: false });
+             });
+             console.log("Horizontal scroll override applied to formula containers.");
+
+        });
+    </script>
+
+</body>
+</html>
